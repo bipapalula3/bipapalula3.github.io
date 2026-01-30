@@ -12,20 +12,26 @@
       font-family: Arial, Helvetica, sans-serif;
       margin: 0;
       padding: 0;
-      background: #fafafa;
-      color: #222;
+      background: #0f1115;
+      color: #e5e7eb;
       line-height: 1.6;
     }
+
     header, section, footer {
       max-width: 1200px;
       margin: auto;
       padding: 20px;
     }
+
     h1, h2 {
-      color: #111;
+      color: #f9fafb;
     }
 
-    /* 🔍 검색창 스타일 */
+    p {
+      color: #cbd5e1;
+    }
+
+    /* 🔍 검색창 */
     .search-box {
       margin-top: 20px;
       text-align: center;
@@ -34,90 +40,117 @@
       width: 260px;
       padding: 10px;
       font-size: 14px;
-      border: 1px solid #ccc;
+      background: #1f2933;
+      color: #f9fafb;
+      border: 1px solid #374151;
       border-radius: 4px;
+    }
+    .search-box input::placeholder {
+      color: #9ca3af;
     }
     .search-box button {
       padding: 10px 14px;
       font-size: 14px;
       border: none;
       border-radius: 4px;
-      background: #111;
+      background: #2563eb;
       color: #fff;
       cursor: pointer;
       margin-left: 5px;
     }
     .search-box button:hover {
-      background: #333;
+      background: #1d4ed8;
     }
 
+    /* 🎤 아티스트 카드 */
     .artist-block {
       display: inline-block;
       width: 240px;
       margin: 15px;
       vertical-align: top;
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: #111827;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       overflow: hidden;
     }
+
     .artist-name {
       font-weight: bold;
       text-align: center;
       padding: 10px;
-      background: #f3f3f3;
+      background: #1f2933;
+      color: #f9fafb;
     }
-    .artist-img-box {
-      position: relative;
-    }
+
     .artist-img {
       width: 100%;
       height: auto;
       display: block;
     }
+
     .artist-link-overlay {
       padding: 10px;
       text-align: center;
     }
+
     .artist-btn {
       display: inline-block;
       margin: 5px;
       padding: 6px 10px;
-      background: #111;
-      color: #fff;
+      background: #374151;
+      color: #f9fafb;
       text-decoration: none;
       font-size: 13px;
       border-radius: 4px;
     }
+
+    .artist-btn:hover {
+      background: #4b5563;
+    }
+
     .artist-credit-overlay {
       font-size: 11px;
       text-align: center;
-      color: #666;
+      color: #9ca3af;
       padding-bottom: 8px;
     }
+
+    /* 💿 앨범 버튼 */
     .album-entry {
       text-align: center;
       margin-bottom: 30px;
     }
+
     .btn {
       display: inline-block;
       padding: 8px 14px;
-      background: #0066cc;
+      background: #2563eb;
       color: #fff;
       text-decoration: none;
       border-radius: 4px;
       font-size: 14px;
     }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* 🔻 푸터 */
     footer {
       font-size: 14px;
-      color: #555;
-      border-top: 1px solid #ddd;
+      color: #9ca3af;
+      border-top: 1px solid #374151;
       margin-top: 40px;
     }
+
     footer a {
-      color: #0066cc;
+      color: #60a5fa;
       text-decoration: none;
       margin-right: 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -138,15 +171,9 @@
     순수 정보 제공을 목적으로 운영됩니다.
   </p>
 
-  <!-- 🔍 검색창 -->
   <div class="search-box">
     <form action="https://bipapalula3.github.io/YMPL/search.html" method="get">
-      <input
-        type="text"
-        name="q"
-        placeholder="가수명 / 아티스트 검색"
-        required
-      />
+      <input type="text" name="q" placeholder="가수명 / 아티스트 검색" required />
       <button type="submit">검색</button>
     </form>
   </div>
@@ -157,9 +184,6 @@
   <p>
     아래는 현재 YMPL Music Database에 등록된
     한국 가수 아티스트 일부입니다.
-    각 아티스트 페이지에서는 앨범 정보, 트랙 리스트,
-    그리고 타이달(TIDAL) 공식 아티스트 페이지로 연결되는
-    링크를 확인할 수 있습니다.
   </p>
 
   <div><div class='artist-block'><div class='artist-name'>가비엔제이(gavy nj)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/15aef1eb/d7d8/4089/bc91/28544ba81279/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5360924' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10646398' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
