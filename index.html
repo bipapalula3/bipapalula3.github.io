@@ -24,6 +24,33 @@
     h1, h2 {
       color: #111;
     }
+
+    /* 🔍 검색창 스타일 */
+    .search-box {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .search-box input[type="text"] {
+      width: 260px;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .search-box button {
+      padding: 10px 14px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+    .search-box button:hover {
+      background: #333;
+    }
+
     .artist-block {
       display: inline-block;
       width: 240px;
@@ -110,6 +137,19 @@
     공개적으로 접근 가능한 음악 플랫폼 정보를 기반으로
     순수 정보 제공을 목적으로 운영됩니다.
   </p>
+
+  <!-- 🔍 검색창 -->
+  <div class="search-box">
+    <form action="https://bipapalula3.github.io/YMPL/search.html" method="get">
+      <input
+        type="text"
+        name="q"
+        placeholder="가수명 / 아티스트 검색"
+        required
+      />
+      <button type="submit">검색</button>
+    </form>
+  </div>
 </header>
 
 <section>
