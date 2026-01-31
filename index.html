@@ -135,6 +135,22 @@
       background: #1d4ed8;
     }
 
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 18px;        /* ← 글자 크기 */
+      font-weight: 600;
+      color: #e5e7eb;         /* 다크모드 기준 */
+    }
+    
+    .footer-brand img {
+      height: 22px;           /* ← 글자 높이와 맞춤 */
+      width: auto;            /* 80x80 비율 유지 */
+      display: block;
+    }
+
     /* 🔻 푸터 */
     footer {
       font-size: 14px;
@@ -407,7 +423,11 @@
     <a href="/terms.html">이용약관</a>
     <a href="/contact.html">문의하기</a>
   </p>
-  <p>© YMPL</p>
+
+  <p class="footer-brand">
+    <img src="/images/icon80.png" alt="YMPL logo">
+    <span>YMPL</span>
+  </p>
 </footer>
 
 </body>
