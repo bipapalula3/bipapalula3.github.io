@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YMPL | K-POP TIDAL Archive</title>
+    <title>YMPL | K-POP TIDAL Artist & Chart Finder</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0f1115;
             --card-bg: #1a1d23;
-            --primary-blue: #2563eb;
+            --gold-primary: #ffd966;
+            --gold-glow: rgba(255, 217, 102, 0.4);
             --text-main: #e5e7eb;
-            --text-dim: #9ca3af;
         }
 
         body {
@@ -19,125 +19,192 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0; padding: 0;
+            overflow-x: hidden;
         }
 
-        /* 1. 상단 네비게이션 (풀다운 포함) */
+        /* --- 상단 네비게이션 (인덱스 풀다운) --- */
         nav {
             background: #000;
-            padding: 10px 20px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid #334155;
         }
-
+        .logo { font-weight: 700; font-size: 1.4rem; color: #fff; display: flex; align-items: center; gap: 10px; }
         .nav-links select {
-            background: #1f2933;
-            color: white;
-            border: 1px solid #374151;
-            padding: 5px;
-            border-radius: 4px;
+            background: #1f2933; color: #fff; border: 1px solid #4b5563;
+            padding: 8px 15px; border-radius: 8px; cursor: pointer;
         }
 
-        /* 2. 메인 히어로 섹션 */
-        .hero {
+        /* --- 메인 히어로 & 검색 --- */
+        .hero { text-align: center; padding: 60px 20px; }
+        .search-box {
+            position: relative; max-width: 600px; margin: 30px auto;
+        }
+        .search-box input {
+            width: 100%; padding: 18px 25px; border-radius: 35px;
+            border: 2px solid #334155; background: #111827; color: #fff; font-size: 1.1rem;
+        }
+
+        /* --- [핵심] 앱의 RewardAccessBanner 이식 --- */
+        .reward-banner {
+            max-width: 800px; margin: 20px auto; padding: 20px;
+            background: linear-gradient(145deg, #2a2414, #1c170c);
+            border-radius: 15px; border: 1.5px solid var(--gold-primary);
+            text-align: center; cursor: pointer; position: relative;
+            overflow: hidden; transition: 0.3s;
+            animation: pulse 3.4s infinite ease-in-out;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .reward-banner:hover { transform: scale(1.02); }
+        
+        /* 쉬머 애니메이션 효과 */
+        .reward-banner::after {
+            content: ''; position: absolute; top: -50%; left: -60%;
+            width: 20%; height: 200%; background: rgba(255,255,255,0.13);
+            transform: rotate(30deg); animation: shimmer 6s infinite linear;
+        }
+
+        @keyframes shimmer { 0% { left: -60%; } 100% { left: 150%; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+        .banner-text { color: var(--gold-primary); font-size: 14px; margin: 5px 0; }
+
+        /* --- 모달 다이얼로그 (앱의 AlertDialog) --- */
+        .modal {
+            display: none; position: fixed; z-index: 2000; top: 0; left: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+        }
+        .modal-content {
+            background: #1a1d23; margin: 15% auto; padding: 30px;
+            border-radius: 20px; width: 90%; max-width: 450px; border: 1px solid #444;
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #1e293b, #0f1115);
         }
-
-        .search-container input {
-            width: 60%;
-            max-width: 500px;
-            padding: 15px;
-            border-radius: 30px;
-            border: none;
-            outline: none;
-            font-size: 16px;
+        .modal-title { color: #ffff00; font-size: 1.2rem; margin-bottom: 20px; }
+        .modal-btn {
+            display: block; width: 100%; padding: 15px; margin: 10px 0;
+            background: transparent; color: #60a5fa; border: none;
+            border-bottom: 1px solid #334155; cursor: pointer; font-size: 1rem;
         }
+        .modal-btn:hover { background: #23272f; }
+        .close-btn { color: #9ca3af; margin-top: 15px; cursor: pointer; display: inline-block; }
 
-        /* 3. 보상형 버튼을 웹 카드로 변환 */
-        .shortcut-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: -40px auto 40px;
-            padding: 0 20px;
+        /* --- 인덱스 바로가기 버튼 그룹 --- */
+        .index-grid {
+            max-width: 1000px; margin: 40px auto; padding: 20px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 10px;
         }
-
-        .shortcut-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid #334155;
-            transition: 0.3s;
-            text-decoration: none; color: white;
+        .index-item {
+            background: #1f2933; padding: 10px; text-align: center; border-radius: 5px;
+            text-decoration: none; color: #fff; font-size: 13px;
         }
-
-        .shortcut-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
-
-        /* 4. 설명 텍스트 (애드센스 승인용) */
-        .about-section {
-            max-width: 800px;
-            margin: 60px auto;
-            line-height: 1.8;
-            color: var(--text-dim);
-            padding: 0 20px;
-        }
+        .index-item:hover { background: var(--primary-blue, #2563eb); }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo"><img src="/images/icon80.png" height="30" alt="YMPL"></div>
+    <div class="logo">
+        <img src="/images/icon80.png" alt="logo" height="30">
+        <span>YMPL Archive</span>
+    </div>
     <div class="nav-links">
-        <label>Quick Index: </label>
-        <select onchange="location.href=this.value;">
-            <option value="">가나다순 선택</option>
-            <option value="/blog/index_K.html">ㄱ (K)</option>
-            <option value="/blog/index_N.html">ㄴ (N)</option>
-            </select>
+        <select onchange="if(this.value) window.location.href=this.value;">
+            <option value="">Quick Index (가나다/ABC)</option>
+            <optgroup label="Korean (가나다)">
+                <option value="/blog/index_K_ㄱ.html">ㄱ (K-pop)</option>
+                <option value="/blog/index_K_ㄴ.html">ㄴ (K-pop)</option>
+                </optgroup>
+            <optgroup label="English (A-Z)">
+                <option value="/blog/index_E_A.html">A (Artists)</option>
+            </optgroup>
+        </select>
     </div>
 </nav>
 
 <header class="hero">
-    <h1>K-POP TIDAL Artist Finder</h1>
-    <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
-    <div class="search-container">
+    <h1>TIDAL Kpop Artist Finder</h1>
+    <div class="search-box">
         <form action="search.html" method="get">
-            <input type="text" name="q" placeholder="가수명 또는 앨범명을 입력하세요">
+            <input type="text" name="q" placeholder="가수명/검색어 입력 (Enter search term)" required>
         </form>
+    </div>
+
+    <div class="reward-banner" onclick="openModal()">
+        <div class="banner-text">🎁 K-Pop 주간 신규 발매 검색 (Weekly New)</div>
+        <div class="banner-text">🎁 K-Pop 최신곡순 Top 차트 검색 (Ktop Chart)</div>
+        <div class="banner-text">🎁 K-Pop 최신 데뷔 앨범 검색 (Latest Debut)</div>
+        <div style="margin-top:10px; font-size:12px; color:#aaa;">Click for Special Access Info.</div>
     </div>
 </header>
 
-<section class="shortcut-grid">
-    <a href="search.html?q=22N023160&label=Weekly%20New" class="shortcut-card">
-        <h3>🆕 Weekly New</h3>
-        <p>이번 주 새롭게 발매된 K-POP</p>
-    </a>
-    <a href="search.html?q=22T023160&label=Weekly%20Top" class="shortcut-card">
-        <h3>🔥 Weekly Top</h3>
-        <p>지금 가장 핫한 인기 차트</p>
-    </a>
-    <a href="search.html?q=22D023160&label=Monthly%20Debut" class="shortcut-card">
-        <h3>💎 Monthly Debut</h3>
-        <p>이달의 주목할만한 데뷔 앨범</p>
-    </a>
+<section class="index-grid">
+    <a href="/blog/index_K_ㄱ.html" class="index-item">ㄱ</a>
+    <a href="/blog/index_K_ㄴ.html" class="index-item">ㄴ</a>
+    <a href="/blog/index_K_ㄷ.html" class="index-item">ㄷ</a>
+    <a href="/blog/index_K_ㄹ.html" class="index-item">ㄹ</a>
+    <a href="/blog/index_K_ㅁ.html" class="index-item">ㅁ</a>
+    <a href="/blog/index_K_ㅂ.html" class="index-item">ㅂ</a>
+    <a href="/blog/index_K_ㅅ.html" class="index-item">ㅅ</a>
+    <a href="/blog/index_K_ㅇ.html" class="index-item">ㅇ</a>
+    <a href="/blog/index_K_ㅈ.html" class="index-item">ㅈ</a>
+    <a href="/blog/index_K_ㅊ.html" class="index-item">ㅊ</a>
+    <a href="/blog/index_K_ㅋ.html" class="index-item">ㅋ</a>
+    <a href="/blog/index_K_ㅌ.html" class="index-item">ㅌ</a>
+    <a href="/blog/index_K_ㅍ.html" class="index-item">ㅍ</a>
+    <a href="/blog/index_K_ㅎ.html" class="index-item">ㅎ</a>
 </section>
 
-<article class="about-section">
-    <h2>Why YMPL?</h2>
-    <p>
-        YMPL은 전 세계 고음질 스트리밍 서비스인 TIDAL을 이용하는 K-POP 팬들을 위해 탄생했습니다. 
-        글로벌 플랫폼 특성상 한국 아티스트의 이름이 영문이나 오타로 등록되어 찾기 어려운 경우가 많습니다. 
-        저희는 정확한 매칭 데이터를 통해 아티스트의 공식 프로필과 최신 앨범을 연결합니다.
-    </p>
-    </article>
+<div id="rewardModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-title">🎁 Reward Access Info.<br>(보상 혜택 안내)</div>
+        <p style="font-size:14px; color:#ccc;">보상 콘텐츠를 확인하면 오늘 하루 동안<br>최신 정보를 편리하게 이용할 수 있습니다.</p>
+        
+        <button class="modal-btn" onclick="handleRewardClick('WEEKLY_NEW', 'Weekly New Kpop Releases')">
+            Weekly New Kpop Releases<br>(K-Pop 주간 신규 발매)
+        </button>
+        <button class="modal-btn" onclick="handleRewardClick('WEEKLY_TOP', 'Ktop Chart - Newest First')">
+            Ktop Chart – Newest First<br>(K-Pop 최신곡순 탑 차트)
+        </button>
+        <button class="modal-btn" onclick="handleRewardClick('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
+            Latest Kpop Debut Albums<br>(K-Pop 최신 데뷔 앨범)
+        </button>
+        
+        <div class="close-btn" onclick="closeModal()">Cancel (취소)</div>
+    </div>
+</div>
 
-<footer>
-    </footer>
+<script>
+    // 앱의 암호화 키 생성 로직 (1번 응답에서 드린 것과 동일)
+    function generateCustomKey(type) {
+        const now = new Date();
+        const dateStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+        const digits = dateStr.split('');
+        let b = "";
+        for(let i=0; i<digits.length; i+=2) b += digits[i];
+        for(let i=digits.length-1; i>=0; i--) if(i%2===1) b += digits[i];
+        const day1 = String(now.getDate()).padStart(2,'0')[0];
+        let idx = (day1 === '0') ? 0 : (day1 === '1') ? 1 : (day1 === '2') ? 2 : (day1 === '3') ? 3 : 0;
+        const char = { 'WEEKLY_NEW':'N', 'WEEKLY_TOP':'T', 'MONTHLY_DEBUT':'D' }[type];
+        return b.slice(0, idx) + char + b.slice(idx);
+    }
+
+    function openModal() { document.getElementById('rewardModal').style.display = 'block'; }
+    function closeModal() { document.getElementById('rewardModal').style.display = 'none'; }
+
+    function handleRewardClick(type, label) {
+        const key = generateCustomKey(type);
+        location.href = `search.html?q=${encodeURIComponent(key)}&label=${encodeURIComponent(label)}`;
+    }
+
+    // 모달 바깥 클릭 시 닫기
+    window.onclick = function(event) {
+        let modal = document.getElementById('rewardModal');
+        if (event.target == modal) closeModal();
+    }
+</script>
 
 </body>
 </html>
