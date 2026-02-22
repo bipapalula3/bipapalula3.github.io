@@ -1,471 +1,143 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>YMPL TIDAL Kpop Artists Finder</title>
-  <meta name="google-adsense-account" content="ca-pub-1954623157146783">
-  <meta name="description" content="YMPL (Your Music Playlist Link)는 당신의 음악 플레이리스트 링크를 위한 한국 가수의 타이달(TIDAL) 아티스트 정보, 앨범, 트랙 리스트를 찿아서 제공하는 음악 정보 사이트 입니다." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YMPL | K-POP TIDAL Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #0f1115;
-      color: #e5e7eb;
-      line-height: 1.6;
-    }
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #1a1d23;
+            --primary-blue: #2563eb;
+            --text-main: #e5e7eb;
+            --text-dim: #9ca3af;
+        }
 
-    header, section, footer {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-    }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0; padding: 0;
+        }
 
-    h1, h2 {
-      color: #f9fafb;
-    }
+        /* 1. 상단 네비게이션 (풀다운 포함) */
+        nav {
+            background: #000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+        }
 
-    p {
-      color: #cbd5e1;
-    }
+        .nav-links select {
+            background: #1f2933;
+            color: white;
+            border: 1px solid #374151;
+            padding: 5px;
+            border-radius: 4px;
+        }
 
-    /* 🏷 사이트 제목 */
-    .site-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 28px;
-      font-weight: 700;
-    }
+        /* 2. 메인 히어로 섹션 */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, #1e293b, #0f1115);
+        }
 
-    .site-title img {
-      height: 34px;
-      width: auto;
-      display: block;
-    }
+        .search-container input {
+            width: 60%;
+            max-width: 500px;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
 
-    /* 🔍 검색창 */
-    .search-box {
-      margin-top: 20px;
-      text-align: center;
-    }
+        /* 3. 보상형 버튼을 웹 카드로 변환 */
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+        }
 
-    .search-box input[type="text"] {
-      width: 260px;
-      padding: 10px;
-      font-size: 14px;
-      background: #1f2933;
-      color: #f9fafb;
-      border: 1px solid #374151;
-      border-radius: 4px;
-    }
+        .shortcut-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #334155;
+            transition: 0.3s;
+            text-decoration: none; color: white;
+        }
 
-    .search-box input::placeholder {
-      color: #9ca3af;
-    }
+        .shortcut-card:hover { transform: translateY(-5px); border-color: var(--primary-blue); }
 
-    .search-box button {
-      padding: 10px 14px;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      background: #2563eb;
-      color: #fff;
-      cursor: pointer;
-      margin-left: 5px;
-    }
-
-    .search-box button:hover {
-      background: #1d4ed8;
-    }
-
-    /* 🎤 아티스트 카드 */
-    .artist-block {
-      display: inline-block;
-      width: 240px;
-      margin: 15px;
-      vertical-align: top;
-      background: #111827;
-      border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      overflow: hidden;
-    }
-
-    .artist-name {
-      font-weight: bold;
-      text-align: center;
-      padding: 10px;
-      background: #1f2933;
-      color: #f9fafb;
-    }
-
-    .artist-img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .artist-link-overlay {
-      padding: 10px;
-      text-align: center;
-    }
-
-    .artist-btn {
-      display: inline-block;
-      margin: 5px;
-      padding: 6px 10px;
-      background: #374151;
-      color: #f9fafb;
-      text-decoration: none;
-      font-size: 13px;
-      border-radius: 4px;
-    }
-
-    .artist-btn:hover {
-      background: #4b5563;
-    }
-
-    .artist-credit-overlay {
-      font-size: 11px;
-      text-align: center;
-      color: #9ca3af;
-      padding-bottom: 8px;
-    }
-
-    /* 💿 앨범 버튼 */
-    .album-entry {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 8px 14px;
-      background: #2563eb;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
-    }
-
-    .copyright-section h2 {
-      font-size: 16px;    /* 제목 축소 */
-    }
-    
-    .copyright-section p {
-      font-size: 13px;    /* 본문 축소 */
-      color: #9ca3af;     /* 살짝 연하게 */
-    }  
-
-    /* 🔻 푸터 */
-    footer {
-      font-size: 14px;
-      color: #9ca3af;
-      border-top: 1px solid #374151;
-      margin-top: 40px;
-    }
-
-    footer a {
-      color: #60a5fa;
-      text-decoration: none;
-      margin-right: 10px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-      font-size: 22px;
-      font-weight: 600;
-      color: #e5e7eb;
-      margin-top: 10px;
-    }
-
-    .footer-brand img {
-      height: 28px;
-      width: auto;
-      display: block;
-    }
-  </style>
+        /* 4. 설명 텍스트 (애드센스 승인용) */
+        .about-section {
+            max-width: 800px;
+            margin: 60px auto;
+            line-height: 1.8;
+            color: var(--text-dim);
+            padding: 0 20px;
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <h1 class="site-title">
-    <img src="/images/icon80.png" alt="YMPL logo">
-    <span>YMPL TIDAL Kpop Artists Finder</span>
-  </h1>
+<nav>
+    <div class="logo"><img src="/images/icon80.png" height="30" alt="YMPL"></div>
+    <div class="nav-links">
+        <label>Quick Index: </label>
+        <select onchange="location.href=this.value;">
+            <option value="">가나다순 선택</option>
+            <option value="/blog/index_K.html">ㄱ (K)</option>
+            <option value="/blog/index_N.html">ㄴ (N)</option>
+            </select>
+    </div>
+</nav>
 
-  <p>
-    YMPL은 한국 가수 및 음악 그룹을 중심으로
-    TIDAL에 등록된 공식 아티스트 정보, 앨범 목록,
-    트랙 리스트를 정리하여 제공하고 있습니다.
-  </p>
-
-  <p>
-    본 사이트는 음악 감상이나 다운로드 기능을 제공하지 않으며,
-    공개적으로 접근 가능한 음악 플랫폼 정보를 기반으로
-    순수 정보 제공합니다.
-  </p>
-
-  <div class="search-box">
-    <form action="https://bipapalula3.github.io/YMPL/search.html" method="get">
-      <input type="text" name="q" placeholder="가수명 / 아티스트 검색" required />
-      <button type="submit">검색</button>
-    </form>
-  </div>
+<header class="hero">
+    <h1>K-POP TIDAL Artist Finder</h1>
+    <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
+    <div class="search-container">
+        <form action="search.html" method="get">
+            <input type="text" name="q" placeholder="가수명 또는 앨범명을 입력하세요">
+        </form>
+    </div>
 </header>
 
-<section>
-  <h2>TIDAL Kpop 아티스트 목록</h2>
-  <p>
-    아래는 현재 YMPL TIDAL에 등록된
-    Kpop 아티스트의 프로필과 앨범 링크입니다.
-  </p>
-
-  <div><div class='artist-block'><div class='artist-name'>가비엔제이(gavy nj)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/15aef1eb/d7d8/4089/bc91/28544ba81279/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5360924' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10646398' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/gavy_nj.html' target='_blank'>타이달 가비엔제이 ( Tidal gavy nj ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>가호(GaHo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/6b43eaaf/9f4e/4275/8899/bb6450779761/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/20225847' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/22921540' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/GaHo.html' target='_blank'>타이달 가호 ( Tidal GaHo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>갓더비트(GOT the beat)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/86c517fa/c944/4b6d/8a13/304ec1df960f/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/29967511' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/GOT_the_beat.html' target='_blank'>타이달 갓더비트 ( Tidal GOT the beat ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>갓세븐(GOT7)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/f4cff3dd/0246/4074/8599/7c81694fcd86/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6168572' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/GOT7.html' target='_blank'>타이달 갓세븐 ( Tidal GOT7 ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>강다니엘(Kang Daniel)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/9d763147/11d8/494d/9233/19ce870d9904/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/32154708' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kang_Daniel.html' target='_blank'>타이달 강다니엘 ( Tidal Kang Daniel ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>강산애(Kang San Eh)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/df34ea4d/1338/4f12/ad40/e8c41e44e53d/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5687966' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10819802' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a><a href='https://tidal.com/browse/artist/8081411' target='_blank' class='artist-btn'>Artist Link ▶️ 3</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kang_San_Eh.html' target='_blank'>타이달 강산애 ( Tidal Kang San Eh ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>강성훈(Kang Sung Hoon)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/d9f38469/fb77/42b1/a746/f4dc3b3ca0e7/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/17804844' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kang_Sung_Hoon.html' target='_blank'>타이달 강성훈 ( Tidal Kang Sung Hoon ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>강수지(Kang Su Ji)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/e2816889/a4c7/4f39/b5ef/5d0f1c88eec7/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9830603' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kang_Su_Ji.html' target='_blank'>타이달 강수지 ( Tidal Kang Su Ji ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>강승원(Kang Seung won)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/9648c47f/d9f1/44bf/9a2f/d2ce2c7a2ede/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10656988' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/20573610' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kang_Seung_won.html' target='_blank'>타이달 강승원 ( Tidal Kang Seung won ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>강승윤(Kang Seung Yoon)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/e81d5494/df97/4826/a134/b306987fefef/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/11008107' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/31731189' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kang_Seung_Yoon.html' target='_blank'>타이달 강승윤 ( Tidal Kang Seung Yoon ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>강타(KANGTA)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/bbeb717d/6122/4cf6/8e84/5f9e39de8611/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6459704' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/KANGTA.html' target='_blank'>타이달 강타 ( Tidal KANGTA ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>개코(Gaeko)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/c4a92c60/38d3/42ce/a746/bd4454ad0074/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5021815' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Gaeko.html' target='_blank'>타이달 개코 ( Tidal Gaeko ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>거미(Gummy)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/f515ed5e/34e0/48ab/b781/4c7486aee93e/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6014442' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10610760' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Gummy.html' target='_blank'>타이달 거미 ( Tidal Gummy ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>거북이(Turtle)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/323bf8d8/c3f9/4bae/93a5/383ba8b5434f/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/4139569' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Turtle.html' target='_blank'>타이달 거북이 ( Tidal Turtle ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>걸스데이(Girl's Day)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/afb4cccd/f607/4d19/82a3/eee82e97c734/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/4213200' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Girls_Day.html' target='_blank'>타이달 걸스데이 ( Tidal Girl's Day ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>걸카인드(Girlkind)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/e092e91d/b38f/4990/a66e/7f053e81bff1/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9442674' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Girlkind.html' target='_blank'>타이달 걸카인드 ( Tidal Girlkind ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>검정치마(The Black Skirts)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/56f767d0/5a1c/4efb/80be/243b151efda5/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/3671280' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/15412629' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/The_Black_Skirts.html' target='_blank'>타이달 검정치마 ( Tidal The Black Skirts ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>경서(KyoungSeo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/9ea263c9/b058/4a35/946a/a3af0ff080a1/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/22212540' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/KyoungSeo.html' target='_blank'>타이달 경서 ( Tidal KyoungSeo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>고스트나인(GHOST9)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/e2fce9e5/833e/4c87/a606/e89e4abb52e1/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/21444924' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/GHOST9.html' target='_blank'>타이달 고스트나인 ( Tidal GHOST9 ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>고유진(Go Yu Jin)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/4796d6d1/8943/404b/91e8/8db287c0850d/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/20575595' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10027773' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a><a href='https://tidal.com/browse/artist/22168271' target='_blank' class='artist-btn'>Artist Link ▶️ 3</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Go_Yu_Jin.html' target='_blank'>타이달 고유진 ( Tidal Go Yu Jin ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>골든차일드(Golden Child)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/61e77718/bea5/4ad6/b464/a0a6571667a5/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/22101083' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Golden_Child.html' target='_blank'>타이달 골든차일드 ( Tidal Golden Child ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>공원소녀(GWSN)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/b491d088/8301/4167/8bc9/0ce5f74bf7e0/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10675164' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/GWSN.html' target='_blank'>타이달 공원소녀 ( Tidal GWSN ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>공일오비(015B)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/02fd605e/94f7/4d49/83f1/cb547f1ade8b/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/4683077' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/015B.html' target='_blank'>타이달 공일오비 ( Tidal 015B ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>곽진언(Kwak Jin Eon)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/b42e4113/8e7b/4193/8915/0ca7572b3e0e/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/8681408' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/17340553' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a><a href='https://tidal.com/browse/artist/20178937' target='_blank' class='artist-btn'>Artist Link ▶️ 3</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kwak_Jin_Eon.html' target='_blank'>타이달 곽진언 ( Tidal Kwak Jin Eon ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>구피(Goofy)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/669008aa/9d6b/4463/b6df/54510979fce6/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/3589848' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Goofy.html' target='_blank'>타이달 구피 ( Tidal Goofy ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>국카스텐(Guckkasten)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/1b00d9c1/fbce/451a/8bb4/5d7d928e6e67/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10611912' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10611287' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a><a href='https://tidal.com/browse/artist/39088103' target='_blank' class='artist-btn'>Artist Link ▶️ 3</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Guckkasten.html' target='_blank'>타이달 국카스텐 ( Tidal Guckkasten ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>굿모닝달리(Good Morning Dari)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/0d826db4/a403/4587/b939/fac73ec5a72e/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/22163332' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Good_Morning_Dari.html' target='_blank'>타이달 굿모닝달리 ( Tidal Good Morning Dari ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>권은비(Kwon Eunbi)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/4daf1ebc/48c1/41d2/a6b1/da62037e45a6/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/13177982' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kwon_Eunbi.html' target='_blank'>타이달 권은비 ( Tidal Kwon Eunbi ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>권인하(Kwon In Ha)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/fc926c9a/d0d9/41bb/ad68/a8b91b68fba0/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/25575039' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/6597995' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kwon_In_Ha.html' target='_blank'>타이달 권인하 ( Tidal Kwon In Ha ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>권진아(Kwon Jim Ah)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/1cba229c/eb9e/4da1/a4ad/f6de7e19b90c/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10111797' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10611196' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kwon_Jim_Ah.html' target='_blank'>타이달 권진아 ( Tidal Kwon Jim Ah ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>규현(KYUHYUN)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/d9085fd9/789e/4725/ad7c/7a48d3a9b2bb/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6262297' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/KYUHYUN.html' target='_blank'>타이달 규현 ( Tidal KYUHYUN ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>기리보이(Giriboy)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/9fab5f71/87b1/4042/bbe5/87524b064c6d/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6425467' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Giriboy.html' target='_blank'>타이달 기리보이 ( Tidal Giriboy ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>기현(KIHYUN)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/24a909ff/70a0/4d53/8fcf/31ca9a09c88e/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6253872' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/KIHYUN.html' target='_blank'>타이달 기현 ( Tidal KIHYUN ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>긱스(Geeks)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/8862f775/fc15/4c4f/905c/7c37ed11a652/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/20543918' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/4296229' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Geeks.html' target='_blank'>타이달 긱스 ( Tidal Geeks ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김강현(Kim Kang Hyun)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/c2efa5c0/3f3a/4a4a/8c1e/9fcddd1e343f/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/17107726' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Kang_Hyun.html' target='_blank'>타이달 김강현 ( Tidal Kim Kang Hyun ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김건모(Kim Gun Mo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/ce879351/755f/4e71/975d/bfd5c5d0ff54/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5886074' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Gun_Mo.html' target='_blank'>타이달 김건모 ( Tidal Kim Gun Mo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김경호(Kim Kyung Ho)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/78af9b46/25f7/4c64/b7bf/6d332274ae90/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/3848389' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Kyung_Ho.html' target='_blank'>타이달 김경호 ( Tidal Kim Kyung Ho ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김경희(Kim Kyung Hee)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/c571d100/e48c/4037/9665/869269ece62b/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/15842505' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Kyung_Hee.html' target='_blank'>타이달 김경희 ( Tidal Kim Kyung Hee ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김광석(Kim Kwang Seok)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/ec2a2696/724d/40a3/86b5/3337b41bf589/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10562475' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/11008149' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Kwang_Seok.html' target='_blank'>타이달 김광석 ( Tidal Kim Kwang Seok ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김그림(Kim Greem)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/b839510a/7a86/4bb8/9f6c/7b5fecf34393/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10458496' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10243523' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Greem.html' target='_blank'>타이달 김그림 ( Tidal Kim Greem ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>김나영(Kim Na Young)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/ae278cfc/4a76/4ae1/b4cb/6489bc401d2c/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/7989963' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Na_Young.html' target='_blank'>타이달 김나영 ( Tidal Kim Na Young ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김다비(Kim DaVi)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/99d322bd/eb7e/4e84/bca1/5bf3667e540d/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/21526271' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_DaVi.html' target='_blank'>타이달 김다비 ( Tidal Kim DaVi ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김달(Kim Dal)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/be081bff/a6d4/465b/91fb/3083b83dc64a/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/38595314' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/22105215' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Dal.html' target='_blank'>타이달 김달 ( Tidal Kim Dal ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김동한(Kim Dong Han)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/beb2466b/b46d/4e4f/8fc4/93b928969eab/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/15663717' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Dong_Han.html' target='_blank'>타이달 김동한 ( Tidal Kim Dong Han ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김동희(Kim Dong Hee)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/8e64230a/e3bb/4126/a83e/d2b953f7f66f/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/18556086' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/13121797' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Dong_Hee.html' target='_blank'>타이달 김동희 ( Tidal Kim Dong Hee ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김뮤지엄(kimmuseum)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/00b162e1/c6e3/4181/b3f4/6ea64c28dac7/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/16109014' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/kimmuseum.html' target='_blank'>타이달 김뮤지엄 ( Tidal kimmuseum ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김민종(Kim Min Jong)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/a949738c/4d74/481a/a263/5f38054dc4a7/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/21276068' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10966758' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a><a href='https://tidal.com/browse/artist/28227383' target='_blank' class='artist-btn'>Artist Link ▶️ 3</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Min_Jong.html' target='_blank'>타이달 김민종 ( Tidal Kim Min Jong ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김범수(Kim Bum Soo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/f105e9a3/0e13/48a7/a85b/9f238c4c1286/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/4000088' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/44422874' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a><a href='https://tidal.com/browse/artist/4694040' target='_blank' class='artist-btn'>Artist Link ▶️ 3</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Bum_Soo.html' target='_blank'>타이달 김범수 ( Tidal Kim Bum Soo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김보아(Kim BoA)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/d559bcf9/6035/4861/b8f2/8b5d20b4563f/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10924582' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/15096241' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_BoA.html' target='_blank'>타이달 김보아 ( Tidal Kim BoA ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>김사랑(Kim Sarang)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/19271b78/877a/4ebc/85ae/96906de1f26f/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/7042910' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/15822879' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Sarang.html' target='_blank'>타이달 김사랑 ( Tidal Kim Sarang ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김성규(Kim Sung Kyu)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/262fed0b/4c03/4134/a2ef/9b9145a99710/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6086648' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Sung_Kyu.html' target='_blank'>타이달 김성규 ( Tidal Kim Sung Kyu ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김성면(Kim Seong Myun)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/564115ce/0e78/4378/89c3/c4049ea4aa4a/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/21061641' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Seong_Myun.html' target='_blank'>타이달 김성면 ( Tidal Kim Seong Myun ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김성욱(Kim Sung Wook)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/62b5df40/13b5/4e6d/ab13/42b3ed06f505/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/18931295' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Sung_Wook.html' target='_blank'>타이달 김성욱 ( Tidal Kim Sung Wook ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김성재(Kim Sung Jae)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/caf6a123/5df0/417c/b1e2/a659e9d80cdf/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/29222309' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Sung_Jae.html' target='_blank'>타이달 김성재 ( Tidal Kim Sung Jae ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김성호(Kim Sungho)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/1639fd95/0e14/4917/a35d/43517f5c74ab/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10541027' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Sungho.html' target='_blank'>타이달 김성호 ( Tidal Kim Sungho ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김세정(Sejeong)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/8c3101a8/3f82/47d2/8b36/9e27a78f28bf/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/8444336' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Sejeong.html' target='_blank'>타이달 김세정 ( Tidal Sejeong ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김세환(Kim Se Hwan)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/5600d560/258b/4286/b502/d3ad484cff6b/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/13123714' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Se_Hwan.html' target='_blank'>타이달 김세환 ( Tidal Kim Se Hwan ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김수철(Kim Soo Chul)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/6e6f97cf/64f6/4e92/9848/2481a741be76/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/19266620' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Soo_Chul.html' target='_blank'>타이달 김수철 ( Tidal Kim Soo Chul ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>김수희(Kim Soo Hee)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/b88ca18c/0fd5/4b1f/9bbd/8283823d34e3/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/23753248' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Soo_Hee.html' target='_blank'>타이달 김수희 ( Tidal Kim Soo Hee ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김연우(Kim Yeon Woo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/b265f486/fa27/419a/b6a1/8d25da7c31c6/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6890339' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Yeon_Woo.html' target='_blank'>타이달 김연우 ( Tidal Kim Yeon Woo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김연자(Kim Yon Ja)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/4c9a4152/cb18/46b6/9b0b/1622f6cb3e5e/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/18931261' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Yon_Ja.html' target='_blank'>타이달 김연자 ( Tidal Kim Yon Ja ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김연지(Kim Yeon Ji)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/93078302/2cf1/444f/8fbb/7af224010032/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9608549' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Yeon_Ji.html' target='_blank'>타이달 김연지 ( Tidal Kim Yeon Ji ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김영근(Kim Young Geun)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/d5b3f8ed/2431/4dcc/9549/56fbacab66bc/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10363098' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Young_Geun.html' target='_blank'>타이달 김영근 ( Tidal Kim Young Geun ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김예림(Lim Kim)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/502070d0/43e6/44bc/ac7f/8ee61d1f5e8a/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/8081438' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Lim_Kim.html' target='_blank'>타이달 김예림 ( Tidal Lim Kim ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김완선(Kim Wan Sun)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/198b8385/0486/497d/a598/ccc42ee18023/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/4669016' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/10611283' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Wan_Sun.html' target='_blank'>타이달 김완선 ( Tidal Kim Wan Sun ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김요한(Kim Yo Han)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/56b61a04/d7a3/4290/9068/e31b2f69c28e/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/21060938' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Yo_Han.html' target='_blank'>타이달 김요한 ( Tidal Kim Yo Han ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김우석(Kim Woo Seok)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/73e5f76e/d9fe/4bce/bad4/d05ad7a998cc/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/19780749' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Woo_Seok.html' target='_blank'>타이달 김우석 ( Tidal Kim Woo Seok ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>김윤아(Kim Yuna)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/354aaef8/d966/4ea1/829a/2d1e111692b1/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9208810' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Yuna.html' target='_blank'>타이달 김윤아 ( Tidal Kim Yuna ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김재환(Kim Jae Hwan)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/71846f75/efd9/455f/8277/fd6ec621c2d4/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/13122570' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jae_Hwan.html' target='_blank'>타이달 김재환 ( Tidal Kim Jae Hwan ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김정민(Kim Jung Min)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/22f7edbd/3701/42f9/b589/e1dbb430d281/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/8940457' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jung_Min.html' target='_blank'>타이달 김정민 ( Tidal Kim Jung Min ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김정호(Kim Jung Ho)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/83625f4b/bcbd/483f/a292/7ab21623beec/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9693041' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/16791661' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jung_Ho.html' target='_blank'>타이달 김정호 ( Tidal Kim Jung Ho ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김조한(Johan Kim)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/ec43d8b1/b8a2/4108/9a4e/7f5527bd601e/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10495620' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Johan_Kim.html' target='_blank'>타이달 김조한 ( Tidal Johan Kim ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김종국(Kim Jong Kook)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/26de2707/6051/421d/b0c7/6ba4a0c8b908/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5487751' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/18037791' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jong_Kook.html' target='_blank'>타이달 김종국 ( Tidal Kim Jong Kook ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김종서(Kim Jong Seo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/e1572fd7/f2a9/47c9/addb/0db8a89f5f02/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/17478019' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jong_Seo.html' target='_blank'>타이달 김종서 ( Tidal Kim Jong Seo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김종완(Kim Jong Wan)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/f490bb10/408b/44f7/911a/399f4f3f62bf/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9606326' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jong_Wan.html' target='_blank'>타이달 김종완 ( Tidal Kim Jong Wan ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김종욱(Kim Jong Uk)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/b6b9e4fa/7f87/4604/8cf4/6d08f161eaba/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10809115' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Jong_Uk.html' target='_blank'>타이달 김종욱 ( Tidal Kim Jong Uk ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>김준수(xia)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/ced61072/45a5/4e3b/91a9/118edf44e2eb/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10611873' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a><a href='https://tidal.com/browse/artist/6290646' target='_blank' class='artist-btn'>Artist Link ▶️ 2</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/xia.html' target='_blank'>타이달 김준수 ( Tidal xia ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김지연(Kim Ji Yeon)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/31b85ea4/867c/4e38/be94/b6e049dd6277/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/16314260' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Ji_Yeon.html' target='_blank'>타이달 김지연 ( Tidal Kim Ji Yeon ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김태영(Kim Tae Yeong)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/bf161f21/0b3a/4275/aa32/f9f1676b8cea/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9830597' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Tae_Yeong.html' target='_blank'>타이달 김태영 ( Tidal Kim Tae Yeong ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김태우(Kim Tae Woo)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/bcfd1c91/2ae9/48d6/b728/a7a7dfee27f9/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5887971' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Tae_Woo.html' target='_blank'>타이달 김태우 ( Tidal Kim Tae Woo ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김필(Kim Feel)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/eee43a30/32cc/4f10/ad8e/b7456e5be52a/750x750.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9989377' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Feel.html' target='_blank'>타이달 김필 ( Tidal Kim Feel ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김현성(Kim Hyun Sung)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/bdd8ec40/8cbc/443d/acbb/7e0c48422d1f/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10819703' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyun_Sung.html' target='_blank'>타이달 김현성 ( Tidal Kim Hyun Sung ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김현식(Kim Hyun Sik)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/a24f98c2/2e76/40ff/9dd2/ab12984314e2/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/5687733' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyun_Sik.html' target='_blank'>타이달 김현식 ( Tidal Kim Hyun Sik ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김현정(Kim Hyun Jung)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/8994412e/705f/4bdd/b629/34eae5b99940/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9510680' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyun_Jung.html' target='_blank'>타이달 김현정 ( Tidal Kim Hyun Jung ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김현철(Kim Hyun Chul)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/4aeff7cf/e96f/4563/b797/9e63cd571a02/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/13122431' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyun_Chul.html' target='_blank'>타이달 김현철 ( Tidal Kim Hyun Chul ) &nbsp;▶️ Album Link</a></div></div>
-
-<div><div class='artist-block'><div class='artist-name'>김형석(Kim Hyung suk)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/5c1bdc6f/da66/4909/827e/5a381241d2e8/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/6212050' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyung_suk.html' target='_blank'>타이달 김형석 ( Tidal Kim Hyung suk ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김형중(Kim Hyung Jung)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/e995872d/c973/46c8/899f/f3b182f36df2/320x320.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/9571063' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyung_Jung.html' target='_blank'>타이달 김형중 ( Tidal Kim Hyung Jung ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김혜림(Kim Hyerim)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/bbd6578a/abda/4061/be65/a731cc7255c7/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/29683826' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Hyerim.html' target='_blank'>타이달 김혜림 ( Tidal Kim Hyerim ) &nbsp;▶️ Album Link</a></div></div>
-<div><div class='artist-block'><div class='artist-name'>김흥국(Kim Heung Guk)</div><div class='artist-image-wrapper'><div class='artist-img-box'><img src='https://resources.tidal.com/images/36943a68/129b/4d93/81cf/978d02597968/1280x1280.jpg' class='artist-img' loading='lazy' alt='Artist image'><div class='artist-link-overlay'><a href='https://tidal.com/browse/artist/10608678' target='_blank' class='artist-btn'>Artist Link ▶️ 1</a></div><div class='artist-credit-overlay'>Image courtesy of TIDAL</div></div></div></div></div>
-<div><div class='album-entry'><a class='btn' href='https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/Kim_Heung_Guk.html' target='_blank'>타이달 김흥국 ( Tidal Kim Heung Guk ) &nbsp;▶️ Album Link</a></div></div>
-
+<section class="shortcut-grid">
+    <a href="search.html?q=22N023160&label=Weekly%20New" class="shortcut-card">
+        <h3>🆕 Weekly New</h3>
+        <p>이번 주 새롭게 발매된 K-POP</p>
+    </a>
+    <a href="search.html?q=22T023160&label=Weekly%20Top" class="shortcut-card">
+        <h3>🔥 Weekly Top</h3>
+        <p>지금 가장 핫한 인기 차트</p>
+    </a>
+    <a href="search.html?q=22D023160&label=Monthly%20Debut" class="shortcut-card">
+        <h3>💎 Monthly Debut</h3>
+        <p>이달의 주목할만한 데뷔 앨범</p>
+    </a>
 </section>
 
-<section class="copyright-section">
-  <h2>데이터 출처 및 저작권 안내</h2>
-  <p>
-    본 사이트에 표시된 아티스트 이미지 및 음악 관련 정보는
-    타이달(TIDAL)을 포함한 공개 음악 플랫폼의 메타데이터를
-    기반으로 수집된 정보입니다.
-  </p>
-  <p>
-    모든 이미지 및 음악 저작권은 해당 아티스트와
-    음원 제공 플랫폼에 귀속되며, 
-    이를 무단으로 이용하는 경우 저작권법 등에 따라 
-    법적 책임을 질 수 있습니다.
-  </p>
-   <p>
-    본 사이트는 저작권 보호 콘텐츠를
-    직접 호스팅하거나 재배포하지 않습니다.
-  </p>
-</section>
+<article class="about-section">
+    <h2>Why YMPL?</h2>
+    <p>
+        YMPL은 전 세계 고음질 스트리밍 서비스인 TIDAL을 이용하는 K-POP 팬들을 위해 탄생했습니다. 
+        글로벌 플랫폼 특성상 한국 아티스트의 이름이 영문이나 오타로 등록되어 찾기 어려운 경우가 많습니다. 
+        저희는 정확한 매칭 데이터를 통해 아티스트의 공식 프로필과 최신 앨범을 연결합니다.
+    </p>
+    </article>
 
 <footer>
-  <p>
-    <a href="/privacy.html">개인정보처리방침</a>
-    <a href="/terms.html">이용약관</a>
-    <a href="/contact.html">문의하기</a>
-  </p>
-
-  <p class="footer-brand">
-    <img src="/images/icon80.png" alt="YMPL logo">
-    <span>YMPL</span>
-  </p>
-</footer>
+    </footer>
 
 </body>
 </html>
