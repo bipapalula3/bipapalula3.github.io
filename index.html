@@ -132,17 +132,17 @@
         </select>
     </div>
 </nav>
-
+    
 <header class="hero">
     <h1>K-POP TIDAL Artist Finder</h1>
     <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
     <div class="search-container">
-        <form onsubmit="return handleManualSearch(this);">
-            <input type="text" id="searchInput" placeholder="가수명 또는 앨범명을 입력하세요" required>
+        <form action="/YMPL/search.html" method="get" onsubmit="return handleManualSearch(this);">
+            <input type="text" name="q" id="searchInput" placeholder="가수명 또는 앨범명을 입력하세요" required>
         </form>
     </div>
 </header>
-
+    
 <section class="shortcut-grid">
     <div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
         <h3>🆕 Weekly New Kpop Releases</h3>
