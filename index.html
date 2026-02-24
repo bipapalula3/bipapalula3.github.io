@@ -158,7 +158,7 @@
 
 <script>
     /**
-     * 보상형 암호화 키 생성 알고리즘 (백엔드 파이썬 로직과 동일)
+     * 보상형 암호화 키 생성 알고리즘
      */
     function generateAppKey(rewardType) {
         const now = new Date();
@@ -181,23 +181,21 @@
     }
 
     /**
-     * 보상형 버튼 클릭 시 이동
+     * 보상형 버튼 클릭 시 이동 (상대경로 적용)
      */
     function processRewardSearch(type, displayText) {
         const encryptedKey = generateAppKey(type);
-        // GitHub Pages 환경에서는 절대경로보다 ./ 상대경로가 404 방지에 유리합니다.
         const searchUrl = `./search.html?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
         window.location.href = searchUrl;
     }
 
     /**
-     * 일반 검색 (엔터) 시 로직
+     * 일반 검색 (엔터) 시 로직 (상대경로 적용)
      */
     function handleManualSearch() {
         const query = document.getElementById('searchInput').value.trim();
         if (query === "") return;
         
-        // 검색어를 q 파라미터에 담아 search.html로 이동
         const searchUrl = `./search.html?q=${encodeURIComponent(query)}`;
         window.location.href = searchUrl;
     }
