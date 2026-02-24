@@ -130,7 +130,7 @@
     <h1>K-POP TIDAL Artist Finder</h1>
     <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
     <div class="search-container">
-        <form onsubmit="event.preventDefault(); handleManualSearch();">
+        <form action="/YMPL/search.html" method="get" onsubmit="return handleManualSearch();">
             <input type="text" id="searchInput" placeholder="가수명 또는 앨범명을 입력하세요" required autocomplete="off">
         </form>
     </div>
@@ -185,7 +185,7 @@
      */
     function processRewardSearch(type, displayText) {
         const encryptedKey = generateAppKey(type);
-        const searchUrl = `search.html?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
+        const searchUrl = `/YMPL/search.html?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
         window.location.href = searchUrl;
     }
 
@@ -197,7 +197,7 @@
         if (query === "") return;
         
         // 검색어를 q 파라미터에 담아 search.html로 이동
-        const searchUrl = `search.html?q=${encodeURIComponent(query)}`;
+        const searchUrl = `/YMPL/search.html?q=${encodeURIComponent(query)}`;
         window.location.href = searchUrl;
     }
 </script>
