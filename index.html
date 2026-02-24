@@ -125,17 +125,17 @@
         </select>
     </div>
 </nav>
-    
+
 <header class="hero">
     <h1>K-POP TIDAL Artist Finder</h1>
     <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
     <div class="search-container">
-        <form action="/YMPL/search.html" method="get" onsubmit="return handleManualSearch();">
+        <form onsubmit="handleManualSearch(); return false;">
             <input type="text" id="searchInput" placeholder="가수명 또는 앨범명을 입력하세요" required autocomplete="off">
         </form>
     </div>
 </header>
-    
+
 <section class="shortcut-grid">
     <div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
         <h3>🆕 Weekly New Kpop Releases</h3>
@@ -185,7 +185,8 @@
      */
     function processRewardSearch(type, displayText) {
         const encryptedKey = generateAppKey(type);
-        const searchUrl = `/YMPL/search.html?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
+        // GitHub Pages 환경에서는 절대경로보다 ./ 상대경로가 404 방지에 유리합니다.
+        const searchUrl = `./search.html?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
         window.location.href = searchUrl;
     }
 
@@ -197,7 +198,7 @@
         if (query === "") return;
         
         // 검색어를 q 파라미터에 담아 search.html로 이동
-        const searchUrl = `/YMPL/search.html?q=${encodeURIComponent(query)}`;
+        const searchUrl = `./search.html?q=${encodeURIComponent(query)}`;
         window.location.href = searchUrl;
     }
 </script>
