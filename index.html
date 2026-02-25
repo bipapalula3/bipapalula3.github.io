@@ -130,8 +130,8 @@
     <h1>K-POP TIDAL Artist Finder</h1>
     <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
     <div class="search-container">
-        <form action="/YMPL/search.html" method="get" onsubmit="return handleManualSearch();">
-            <input type="text" id="searchInput" placeholder="가수명 또는 앨범명을 입력하세요" required autocomplete="off">
+        <form onsubmit="handleManualSearch(); return false;">
+            <input type="text" id="searchInput" name="q" placeholder="가수명 또는 앨범명을 입력하세요" required autocomplete="off">
         </form>
     </div>
 </header>
@@ -190,10 +190,12 @@
 
     function handleManualSearch() {
         const query = document.getElementById('searchInput').value.trim();
-        if (query === "") return;
+        if (query === "") return false;
         
-        // 고정된 절대 경로 스타일로 이동
+        // TARGET_SEARCH_PAGE 변수를 활용하여 이동
+        // 앞에 /를 붙여 루트 경로임을 명시하거나 변수 설정에 맞게 조정하세요.
         window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
+        return false;
     }
 </script>
 
