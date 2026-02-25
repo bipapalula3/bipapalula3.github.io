@@ -25,7 +25,7 @@
             word-break: keep-all; 
         }
 
-        /* 1. 네비게이션 */
+        /* 1. 네비게이션 공통 */
         nav {
             background: #000;
             padding: 15px 5%;
@@ -35,22 +35,63 @@
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid #334155;
         }
-        .logo { font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        
+        /* 로고 모바일 최적화 */
+        .logo { 
+            font-weight: 700; 
+            font-size: 1.3rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            white-space: nowrap; 
+        }
+        
+        /* 셀렉트 박스 스타일링 */
         .nav-links select {
             background: #1f2933;
             color: #fff;
             border: 1px solid #4b5563;
-            padding: 8px 12px;
+            padding: 8px 10px;
             border-radius: 6px;
             cursor: pointer;
             max-width: 200px;
             width: 100%;
+            /* 기본 브라우저 스타일 간섭 최소화 */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none; 
         }
+        
+        /* 모바일 전용 설정 */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1.5rem; /* YMPL TIDAL 글자 크기 줄임 */
+            }
+            .logo img {
+                height: 30px;
+            }
+            
             .nav-links select {
-                font-size: 0.75rem; /* 절반보다 약간 큰 사이즈 */
-                padding: 8px 12px;
-                max-width: 140px; /* 창이 너무 커지지 않게 제한 */
+                font-size: 13px !important; /* 폰트 크기를 아주 작게 강제 적용 */
+                padding: 5px 8px;
+                max-width: 130px;
+                text-align: center;
+            }
+        
+            /* 드롭다운 목록 내부 글자 크기 (일부 브라우저 지원) */
+            .nav-links select option {
+                font-size: 13px;
+                background: #1f2933;
+                color: #fff;
+            }
+        
+            /* 4번 요청: 헤더 위 공간 줄이기 */
+            .hero {
+                padding: 40px 10px 120px !important; 
+            }
+            .hero h1 {
+                font-size: 2rem !important; /* 한 줄로 나오도록 조절 */
+                white-space: nowrap;
             }
         }
         /* 2. 메인 헤더 & 검색창 */
