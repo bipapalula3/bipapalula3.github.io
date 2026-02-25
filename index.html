@@ -130,11 +130,24 @@
         .hero { text-align: center; padding: 40px 20px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
         .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
         .search-container { max-width: 600px; margin: 40px auto 0; position: relative; }
+        /* 2. 메인 헤더 & 검색창 */
         .search-container input {
-            width: 100%; padding: 18px 25px; border-radius: 35px;
-            border: 2px solid #334155; background: #111827; color: #fff; 
-            font-size: 16px; 
-            outline: none; transition: 0.3s; box-sizing: border-box;
+            width: 100%; 
+            padding: 18px 25px; 
+            border-radius: 35px;
+            border: 2px solid #334155; 
+            background: #111827; 
+            color: #fff; 
+            font-size: 20px;        
+            font-weight: 600;             
+            outline: none; 
+            transition: 0.3s; 
+            box-sizing: border-box;
+        }  
+        /* (선택사항) 입력창 안의 '가수명 또는 앨범명을 입력하세요' 문구 크기도 맞추고 싶다면 아래를 추가하세요 */
+        .search-container input::placeholder {
+            font-size: 18px;          /* 플레이스홀더는 입력 글자보다 살짝 작게 하는 것이 예쁩니다 */
+            font-weight: 400;         /* 플레이스홀더는 너무 두꺼우면 답답해 보일 수 있어 400~500 추천 */
         }
         .search-container input:focus { 
             border-color: var(--primary-blue); box-shadow: 0 0 15px rgba(37,99,235,0.2); 
