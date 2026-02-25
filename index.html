@@ -2,15 +2,14 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>YMPL | K-POP TIDAL Archive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0f1115;
             --card-bg: #1a1d23;
             --gold-main: #ffd966;
-            --gold-bright: #fff6d5;
             --text-main: #e5e7eb;
             --primary-blue: #2563eb;
         }
@@ -21,108 +20,107 @@
             color: var(--text-main);
             margin: 0; padding: 0;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* 1. 네비게이션 */
+        /* 1. 네비게이션 (모바일 최적화) */
         nav {
             background: #000;
-            padding: 15px 5%;
+            padding: 12px 4%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid #334155;
         }
-        .logo { font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
+        .logo { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
         .nav-links select {
             background: #1f2933; color: #fff; border: 1px solid #4b5563;
-            padding: 8px 12px; border-radius: 6px; cursor: pointer;
+            padding: 6px 10px; border-radius: 6px; cursor: pointer;
+            font-size: 0.85rem; max-width: 140px;
         }
 
         /* 2. 메인 헤더 & 검색창 */
-        .hero { text-align: center; padding: 80px 20px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
-        .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
-        .search-container { max-width: 600px; margin: 40px auto 0; position: relative; }
+        .hero { 
+            text-align: center; 
+            padding: 50px 20px 80px; 
+            background: linear-gradient(to bottom, #1e293b, #0f1115); 
+        }
+        .hero h1 { font-size: 1.8rem; margin-bottom: 12px; word-break: keep-all; }
+        .hero p { font-size: 1rem; color: #9ca3af; word-break: keep-all; }
+        
+        .search-container { max-width: 600px; margin: 30px auto 0; position: relative; }
         .search-container input {
-            width: 100%; padding: 18px 25px; border-radius: 35px;
-            border: 2px solid #334155; background: #111827; color: #fff; font-size: 1.1rem;
+            width: 100%; padding: 16px 25px; border-radius: 35px;
+            border: 2px solid #334155; background: #111827; color: #fff; 
+            font-size: 16px; /* iOS 자동 줌 방지용 최소 크기 */
             outline: none; transition: 0.3s; box-sizing: border-box;
+            enterkeyhint: search;
         }
         .search-container input:focus { border-color: var(--primary-blue); box-shadow: 0 0 15px rgba(37,99,235,0.2); }
 
-        /* 3. 보상형 버튼 */
+        /* 3. 보상형 버튼 (그리드) */
         .shortcut-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr; /* 모바일 우선: 세로 한 줄 */
+            gap: 16px;
             max-width: 1200px;
-            margin: -60px auto 50px;
+            margin: -40px auto 50px;
             padding: 0 20px;
         }
+
         .reward-card {
             background: linear-gradient(145deg, #2a2414, #1c170c);
             border: 1.5px solid var(--gold-main);
-            border-radius: 16px;
-            padding: 35px 20px;
+            border-radius: 20px;
+            padding: 40px 25px;
             text-align: center;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transition: 0.2s;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
             animation: pulse 3.4s infinite ease-in-out;
+            -webkit-tap-highlight-color: transparent; /* 터치 시 파란 박스 제거 */
         }
-        .reward-card::before {
-            content: '';
-            position: absolute; top: -50%; left: -150%;
-            width: 50%; height: 200%;
-            background: linear-gradient(to right, transparent, rgba(255, 246, 213, 0.2), transparent);
-            transform: rotate(30deg);
-            animation: shimmer 5s infinite linear;
-        }
-        .reward-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(255, 217, 102, 0.2); }
-        .reward-card h3 { color: var(--gold-main); margin: 0 0 8px; font-size: 1.3rem; }
-        .reward-card p { color: #aaa; margin: 0; font-size: 1.2rem; }
 
-        @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
+        /* 터치했을 때 눌리는 효과 */
+        .reward-card:active { transform: scale(0.96); background: #1c170c; }
+
+        .reward-card h3 { color: var(--gold-main); margin: 0 0 10px; font-size: 1.4rem; }
+        .reward-card p { color: #fffb00; margin: 0; font-size: 1.15rem; font-weight: 500; }
+
+        /* PC/태블릿 화면용 스타일 */
+        @media (min-width: 768px) {
+            .hero { padding: 80px 20px 120px; }
+            .hero h1 { font-size: 2.5rem; }
+            .shortcut-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 25px;
+            }
+            .reward-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(255, 217, 102, 0.2); }
+        }
+
+        /* 기타 섹션 */
+        .about { max-width: 800px; margin: 60px auto; padding: 20px; text-align: center; color: #9ca3af; }
+        .about h2 { color: var(--text-main); }
+
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { border-color: #fffb00; } }
-
-        .about { max-width: 800px; margin: 80px auto; padding: 20px; line-height: 1.8; color: #9ca3af; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo">
-        <img src="YMPL/icon80.png" alt="YMPL" height="30" onerror="this.src='icon80.png'">
+        <img src="YMPL/icon80.png" alt="YMPL" height="28" onerror="this.src='icon80.png'">
         <span>YMPL TIDAL</span>
     </div>
     <div class="nav-links">
         <select onchange="if(this.value) window.open(this.value, '_self');">
-            <option value="">Kpop Artist Index (가나다/ABC)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣ Kpop Link (G,K)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣ Kpop Link (G,K)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣ Kpop Link (N)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣ Kpop Link (D)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣ Kpop Link (L,R)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣ Kpop Link (M)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣ Kpop Link (B,P,V)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣ Kpop Link (B,P,V)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣ Kpop Link (C,S)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣ Kpop Link (C,S)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣ Kpop Link (J,G)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣ Kpop Link (J,G))</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣ Kpop Link (Ch)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣ Kpop Link (C,K)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣TIDAL Kpop Link (T)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣TIDAL Kpop Link (F,P)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣ Kpop Link (H)</option>
-        </select>
+            <option value="">Artist Index</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ (G,K)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ (N)</option>
+            </select>
     </div>
 </nav>
 
@@ -131,22 +129,22 @@
     <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
     <div class="search-container">
         <form onsubmit="handleManualSearch(); return false;">
-            <input type="text" id="searchInput" name="q" placeholder="가수명 또는 앨범명을 입력하세요" required autocomplete="off">
+            <input type="text" id="searchInput" name="q" placeholder="가수명 또는 앨범명 입력" required autocomplete="off">
         </form>
     </div>
 </header>
 
 <section class="shortcut-grid">
     <div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
-        <h3>🆕 Weekly New Kpop Releases</h3>
+        <h3>🆕 Weekly New</h3>
         <p>이번 주 신규 발매 검색</p>
     </div>
     <div class="reward-card" onclick="processRewardSearch('WEEKLY_TOP', 'Ktop Chart - Newest First')">
-        <h3>🔥 Ktop Chart - Newest First</h3>
+        <h3>🔥 Ktop Chart</h3>
         <p>최신곡순 TOP 차트 검색</p>
     </div>
     <div class="reward-card" onclick="processRewardSearch('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
-        <h3>💎 Latest Kpop Debut Albums</h3>
+        <h3>💎 Latest Debut</h3>
         <p>최신 데뷔 앨범 검색</p>
     </div>
 </section>
@@ -157,43 +155,29 @@
 </article>
 
 <script>
-    /**
-     * 경로 설정: index.html이 루트에 있으므로 search.html은 항상 'YMPL/search.html'에 있습니다.
-     */
     const TARGET_SEARCH_PAGE = 'YMPL/search.html';
 
     function generateAppKey(rewardType) {
         const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const dateString = `${y}${m}${d}`;
-        
+        const dateString = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
         const digits = dateString.split('');
         let builder = "";
         for (let i = 0; i < digits.length; i += 2) builder += digits[i];
         for (let i = digits.length - 1; i >= 0; i--) if (i % 2 === 1) builder += digits[i];
-
-        let reordered = builder;
-        const dayFirstDigit = d[0];
-        let insertIndex = { '0': 0, '1': 1, '2': 2, '3': 3 }[dayFirstDigit] ?? 0;
-
+        
         const typeChar = { 'WEEKLY_NEW': 'N', 'WEEKLY_TOP': 'T', 'MONTHLY_DEBUT': 'D' }[rewardType];
-        return reordered.slice(0, insertIndex) + typeChar + reordered.slice(insertIndex);
+        let insertIndex = parseInt(dateString.slice(-2)[0]) % 4; // 날짜 기반 유동적 인덱스
+        return builder.slice(0, insertIndex) + typeChar + builder.slice(insertIndex);
     }
 
     function processRewardSearch(type, displayText) {
         const encryptedKey = generateAppKey(type);
-        // 고정된 절대 경로 스타일로 이동
         window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
     }
 
     function handleManualSearch() {
         const query = document.getElementById('searchInput').value.trim();
-        if (query === "") return false;
-        
-        // TARGET_SEARCH_PAGE 변수를 활용하여 이동
-        // 앞에 /를 붙여 루트 경로임을 명시하거나 변수 설정에 맞게 조정하세요.
+        if (!query) return false;
         window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
         return false;
     }
