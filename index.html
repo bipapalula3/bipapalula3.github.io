@@ -46,54 +46,86 @@
             white-space: nowrap; 
         }
         
-        /* 셀렉트 박스 스타일링 */
-        .nav-links select {
+        /* 커스텀 드롭다운 스타일링 */
+        .custom-select-container {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+            font-size: 14px;
+        }
+        .select-trigger {
             background: #1f2933;
             color: #fff;
             border: 1px solid #4b5563;
-            padding: 8px 10px;
+            padding: 8px 12px;
             border-radius: 6px;
             cursor: pointer;
-            max-width: 200px;
-            width: 100%;
-            /* 기본 브라우저 스타일 간섭 최소화 */
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none; 
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .select-options {
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            background: #1f2933;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            display: none;
+            z-index: 1001;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .select-options.show {
+            display: block;
+        }
+        .select-option {
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 1px solid #334155;
+            line-height: 1.4;
+        }
+        .select-option:last-child {
+            border-bottom: none;
+        }
+        .select-option:hover {
+            background: #2d3743;
         }
         
         /* 모바일 전용 설정 */
         @media (max-width: 768px) {
             .logo {
-                font-size: 1.5rem; /* YMPL TIDAL 글자 크기 줄임 */
+                font-size: 1.0rem; /* 로고 글자 한 줄 유지 위해 축소 */
             }
             .logo img {
-                height: 30px;
+                height: 24px;
             }
             
-            .nav-links select {
-                font-size: 13px !important; /* 폰트 크기를 아주 작게 강제 적용 */
-                padding: 5px 8px;
-                max-width: 130px;
-                text-align: center;
+            .custom-select-container {
+                max-width: 135px; /* 드롭다운 너비 축소 */
+            }
+            .select-trigger {
+                font-size: 11px;
+                padding: 6px 5px;
+            }
+            .select-option {
+                font-size: 11px; /* 모바일 목록 내부 글자 크기 확실히 축소 */
+                padding: 8px 10px;
             }
         
-            /* 드롭다운 목록 내부 글자 크기 (일부 브라우저 지원) */
-            .nav-links select option {
-                font-size: 13px;
-                background: #1f2933;
-                color: #fff;
-            }
-        
-            /* 4번 요청: 헤더 위 공간 줄이기 */
             .hero {
-                padding: 40px 10px 120px !important; 
+                padding: 20px 10px 80px !important; /* 상단 여백 대폭 축소 (자판 가림 방지) */
             }
             .hero h1 {
-                font-size: 2rem !important; /* 한 줄로 나오도록 조절 */
+                font-size: 1.4rem !important; /* 타이틀 한 줄 유지 */
                 white-space: nowrap;
             }
         }
+
         /* 2. 메인 헤더 & 검색창 */
         .hero { text-align: center; padding: 40px 10px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
         .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
@@ -107,6 +139,7 @@
         .search-container input:focus { 
             border-color: var(--primary-blue); box-shadow: 0 0 15px rgba(37,99,235,0.2); 
         }
+
         /* 3. 보상형 버튼 */
         .shortcut-grid {
             display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1200px; 
@@ -121,7 +154,6 @@
 
         .reward-card {
             background: linear-gradient(145deg, #2a2414, #1c170c);
-            /* 테두리 가늘게 (1px) */
             border: 1px solid var(--gold-dark); 
             border-radius: 16px;
             padding: 20px 20px; 
@@ -135,9 +167,7 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        .reward-card:active {
-            transform: scale(0.96);
-        }
+        .reward-card:active { transform: scale(0.96); }
 
         @keyframes borderPulse {
             0% { border-color: var(--gold-dark); }
@@ -155,19 +185,10 @@
         }
         
         .reward-card:hover { transform: translateY(-5px); }
-
         .reward-card h3 { color: var(--gold-main); margin: 0 0 5px; font-size: 1.3rem; }
-        
-        /* 한글 설명 글자 두께를 700(Bold)으로 수정 */
-        .reward-card p { 
-            color: #ddd; 
-            margin: 0; 
-            font-size: 1.2rem; 
-            font-weight: 600; 
-        }
+        .reward-card p { color: #ddd; margin: 0; font-size: 1.2rem; font-weight: 600; }
 
         @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
-
         .about { max-width: 800px; margin: 80px auto; padding: 20px; line-height: 1.8; color: #9ca3af; }
     </style>
 </head>
@@ -179,31 +200,33 @@
         <span>YMPL TIDAL</span>
     </div>
     <div class="nav-links">
-        <select onchange="if(this.value) window.open(this.value, '_self');">
-            <option value="">Artist Index (가나다)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣ Kpop Link (G,K)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣ Kpop Link (G,K)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣ Kpop Link (N)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣ Kpop Link (D)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣ Kpop Link (L,R)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣ Kpop Link (M)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣ Kpop Link (B,P,V)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣ Kpop Link (B,P,V)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣ Kpop Link (C,S)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣ Kpop Link (C,S)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣ Kpop Link (A,I,O, ...)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣ Kpop Link (J,G)</option>
-            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣ Kpop Link (J,G))</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣ Kpop Link (Ch)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣ Kpop Link (C,K)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣TIDAL Kpop Link (T)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣TIDAL Kpop Link (F,P)</option>
-            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣ Kpop Link (H)</option>
-        </select>
+        <div class="custom-select-container" id="customSelect">
+            <div class="select-trigger">Artist Index (가나다)</div>
+            <div class="select-options">
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣ Kpop Link (G,K)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣ Kpop Link (G,K)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣ Kpop Link (N)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣ Kpop Link (D)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣ Kpop Link (L,R)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣ Kpop Link (M)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣ Kpop Link (B,P,V)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣ Kpop Link (B,P,V)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣ Kpop Link (C,S)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣ Kpop Link (C,S)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣ Kpop Link (A,I,O, ...)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣ Kpop Link (A,I,O, ...)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣ Kpop Link (A,I,O, ...)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣ Kpop Link (A,I,O, ...)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣ Kpop Link (A,I,O, ...)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣ Kpop Link (J,G)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣ Kpop Link (J,G))</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣ Kpop Link (Ch)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣ Kpop Link (C,K)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣TIDAL Kpop Link (T)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣TIDAL Kpop Link (F,P)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣ Kpop Link (H)</div>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -240,6 +263,34 @@
 <script>
     const TARGET_SEARCH_PAGE = 'YMPL/search.html';
 
+    // 1. 커스텀 드롭다운 작동 로직
+    const customSelect = document.getElementById('customSelect');
+    const trigger = customSelect.querySelector('.select-trigger');
+    const optionsMenu = customSelect.querySelector('.select-options');
+    const options = customSelect.querySelectorAll('.select-option');
+
+    // 열기/닫기
+    trigger.addEventListener('click', (e) => {
+        optionsMenu.classList.toggle('show');
+    });
+
+    // 항목 클릭 시 이동
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            const url = option.getAttribute('data-value');
+            if(url) window.open(url, '_self');
+            optionsMenu.classList.remove('show');
+        });
+    });
+
+    // 외부 클릭 시 닫기
+    window.addEventListener('click', (e) => {
+        if (!customSelect.contains(e.target)) {
+            optionsMenu.classList.remove('show');
+        }
+    });
+
+    // 2. 검색 및 암호화 로직 (기존 유지)
     function generateAppKey(rewardType) {
         const now = new Date();
         const dateString = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
