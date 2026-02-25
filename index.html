@@ -11,7 +11,7 @@
             --card-bg: #1a1d23;
             --gold-main: #ffd966;
             --gold-bright: #fff6d5;
-            --gold-dark: #7c662d; /* 테두리 어두운 상태용 색상 추가 */
+            --gold-dark: #7c662d;
             --text-main: #e5e7eb;
             --primary-blue: #2563eb;
         }
@@ -57,7 +57,7 @@
         .shortcut-grid {
             display: grid;
             grid-template-columns: 1fr; 
-            gap: 20px; /* 버튼 간격 살짝 조정 */
+            gap: 20px;
             max-width: 1200px;
             margin: -60px auto 50px;
             padding: 0 20px;
@@ -71,10 +71,9 @@
 
         .reward-card {
             background: linear-gradient(145deg, #2a2414, #1c170c);
-            /* 초기 테두리 설정 */
-            border: 2px solid var(--gold-dark); 
+            /* 테두리 가늘게 (1px) */
+            border: 1px solid var(--gold-dark); 
             border-radius: 16px;
-            /* 상하 여백을 20px로 줄임 */
             padding: 20px 20px; 
             text-align: center;
             cursor: pointer;
@@ -82,7 +81,6 @@
             overflow: hidden;
             transition: transform 0.2s, box-shadow 0.2s, border-color 0.5s;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            /* 테두리가 밝아졌다 어두워졌다 하는 애니메이션 */
             animation: borderPulse 2.5s infinite ease-in-out;
             -webkit-tap-highlight-color: transparent; 
         }
@@ -91,26 +89,32 @@
             transform: scale(0.96);
         }
 
-        /* 테두리 애니메이션 핵심 로직 */
         @keyframes borderPulse {
-            0% { border-color: var(--gold-dark); box-shadow: 0 0 5px rgba(124, 102, 45, 0.2); }
-            50% { border-color: var(--gold-main); box-shadow: 0 0 20px rgba(255, 217, 102, 0.4); }
-            100% { border-color: var(--gold-dark); box-shadow: 0 0 5px rgba(124, 102, 45, 0.2); }
+            0% { border-color: var(--gold-dark); }
+            50% { border-color: var(--gold-main); }
+            100% { border-color: var(--gold-dark); }
         }
 
         .reward-card::before {
             content: '';
             position: absolute; top: -50%; left: -150%;
             width: 50%; height: 200%;
-            background: linear-gradient(to right, transparent, rgba(255, 246, 213, 0.2), transparent);
+            background: linear-gradient(to right, transparent, rgba(255, 246, 213, 0.15), transparent);
             transform: rotate(30deg);
             animation: shimmer 5s infinite linear;
         }
         
-        .reward-card:hover { transform: translateY(-5px) scale(1.01); }
+        .reward-card:hover { transform: translateY(-5px); }
 
         .reward-card h3 { color: var(--gold-main); margin: 0 0 5px; font-size: 1.3rem; }
-        .reward-card p { color: #aaa; margin: 0; font-size: 1.2rem; }
+        
+        /* 한글 설명 글자 두께를 700(Bold)으로 수정 */
+        .reward-card p { 
+            color: #ddd; 
+            margin: 0; 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+        }
 
         @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
 
@@ -188,22 +192,14 @@
 
     function generateAppKey(rewardType) {
         const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
-        const dateString = `${y}${m}${d}`;
-        
+        const dateString = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
         const digits = dateString.split('');
         let builder = "";
         for (let i = 0; i < digits.length; i += 2) builder += digits[i];
         for (let i = digits.length - 1; i >= 0; i--) if (i % 2 === 1) builder += digits[i];
-
-        let reordered = builder;
-        const dayFirstDigit = d[0];
-        let insertIndex = { '0': 0, '1': 1, '2': 2, '3': 3 }[dayFirstDigit] ?? 0;
-
         const typeChar = { 'WEEKLY_NEW': 'N', 'WEEKLY_TOP': 'T', 'MONTHLY_DEBUT': 'D' }[rewardType];
-        return reordered.slice(0, insertIndex) + typeChar + reordered.slice(insertIndex);
+        let insertIndex = parseInt(dateString.slice(-1)) % 4; 
+        return builder.slice(0, insertIndex) + typeChar + builder.slice(insertIndex);
     }
 
     function processRewardSearch(type, displayText) {
