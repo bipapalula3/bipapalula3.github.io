@@ -35,14 +35,14 @@
             position: sticky; top: 0; z-index: 1000;
             border-bottom: 1px solid #334155;
         }
-        .logo { font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+        .logo { font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
         .nav-links select {
             background: #1f2933; color: #fff; border: 1px solid #4b5563;
             padding: 8px 12px; border-radius: 6px; cursor: pointer;
         }
 
         /* 2. 메인 헤더 & 검색창 */
-        .hero { text-align: center; padding: 80px 20px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
+        .hero { text-align: center; padding: 40px 20px 80px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
         .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
         .search-container { max-width: 600px; margin: 40px auto 0; position: relative; }
         .search-container input {
@@ -53,56 +53,7 @@
         }
         .search-container input:focus { border-color: var(--primary-blue); box-shadow: 0 0 15px rgba(37,99,235,0.2); }
 
-        /* ------------------------------------------------ */
-        /* 📱 모바일 전용 최적화 (768px 미만) */
-        /* ------------------------------------------------ */
-        @media (max-width: 767px) {
-            /* 1. 상단 로고 글자 줄임 */
-            .logo { font-size: 1rem; gap: 6px; }
-            .logo img { height: 24px; }
-
-            /* 2. 드롭다운 내부 글자 축소 */
-            .nav-links select {
-                font-size: 0.75rem; /* 절반보다 약간 큰 사이즈 */
-                padding: 6px 8px;
-                max-width: 160px; /* 창이 너무 커지지 않게 제한 */
-            }
-
-            /* 3 & 4. 메인 타이틀 한 줄 처리 및 상단 여백 대폭 축소 */
-            .hero {
-                padding: 20px 15px 60px; /* 위쪽 여백을 최소화 (자판 가림 방지) */
-            }
-            .hero h1 {
-                font-size: 1.3rem; /* 한 줄로 나오도록 크기 조정 */
-                letter-spacing: -0.5px;
-                white-space: nowrap; /* 강제 한 줄 처리 */
-            }
-            .hero p {
-                font-size: 0.85rem;
-                margin-top: 5px;
-            }
-            .search-container {
-                margin-top: 20px;
-            }
-            .search-container input {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-
-            /* 버튼 섹션 위치 조정 */
-            .shortcut-grid {
-                margin: -35px auto 30px;
-                gap: 12px;
-            }
-            .reward-card {
-                padding: 15px;
-            }
-            .reward-card h3 { font-size: 1.1rem; }
-            .reward-card p { font-size: 0.95rem; }
-        }
-        /* ------------------------------------------------ */
-
-        /* 3. 보상형 버튼 공통 */
+        /* 3. 보상형 버튼 */
         .shortcut-grid {
             display: grid;
             grid-template-columns: 1fr; 
@@ -120,6 +71,7 @@
 
         .reward-card {
             background: linear-gradient(145deg, #2a2414, #1c170c);
+            /* 테두리 가늘게 (1px) */
             border: 1px solid var(--gold-dark); 
             border-radius: 16px;
             padding: 20px 20px; 
@@ -133,7 +85,9 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        .reward-card:active { transform: scale(0.96); }
+        .reward-card:active {
+            transform: scale(0.96);
+        }
 
         @keyframes borderPulse {
             0% { border-color: var(--gold-dark); }
@@ -151,10 +105,19 @@
         }
         
         .reward-card:hover { transform: translateY(-5px); }
+
         .reward-card h3 { color: var(--gold-main); margin: 0 0 5px; font-size: 1.3rem; }
-        .reward-card p { color: #ddd; margin: 0; font-size: 1.2rem; font-weight: 700; }
+        
+        /* 한글 설명 글자 두께를 700(Bold)으로 수정 */
+        .reward-card p { 
+            color: #ddd; 
+            margin: 0; 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+        }
 
         @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
+
         .about { max-width: 800px; margin: 80px auto; padding: 20px; line-height: 1.8; color: #9ca3af; }
     </style>
 </head>
@@ -167,15 +130,35 @@
     </div>
     <div class="nav-links">
         <select onchange="if(this.value) window.open(this.value, '_self');">
-            <option value="">Kpop Artist Index (가나다/ABC)</option>
+            <option value="">Artist Index (가나다)</option>
             <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣ Kpop Link (G,K)</option>
+            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣ Kpop Link (G,K)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣ Kpop Link (N)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣ Kpop Link (D)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣ Kpop Link (L,R)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣ Kpop Link (M)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣ Kpop Link (B,P,V)</option>
+            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣ Kpop Link (B,P,V)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣ Kpop Link (C,S)</option>
+            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣ Kpop Link (C,S)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣ Kpop Link (A,I,O, ...)</option>
+            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣ Kpop Link (A,I,O, ...)</option>
+            <option value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣ Kpop Link (A,I,O, ...)</option>
+            <option value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣ Kpop Link (A,I,O, ...)</option>
+            <option value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣ Kpop Link (A,I,O, ...)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣ Kpop Link (J,G)</option>
+            <option value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣ Kpop Link (J,G))</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣ Kpop Link (Ch)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣ Kpop Link (C,K)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣TIDAL Kpop Link (T)</option>
+            <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣TIDAL Kpop Link (F,P)</option>
             <option value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣ Kpop Link (H)</option>
         </select>
     </div>
 </nav>
 
 <header class="hero">
-    <h1>K-POP TIDAL Artist Finder</h1>
+    <h1>TIDAL K-POP Finder</h1>
     <p>타이달에서 가장 정확한 한국 아티스트 정보를 확인하세요.</p>
     <div class="search-container">
         <form onsubmit="handleManualSearch(); return false;">
