@@ -48,12 +48,13 @@
         }
         @media (max-width: 768px) {
             .nav-links select {
-                font-size: 14px;     /* 글자 크기 감소 */
-                padding: 6px 10px;   /* 여백도 줄이면 자연스러움 */
+                font-size: 0.75rem; /* 절반보다 약간 큰 사이즈 */
+                padding: 6px 8px;
+                max-width: 160px; /* 창이 너무 커지지 않게 제한 */
             }
         }
         /* 2. 메인 헤더 & 검색창 */
-        .hero { text-align: center; padding: 50px 10px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
+        .hero { text-align: center; padding: 40px 10px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
         .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
         .search-container { max-width: 600px; margin: 40px auto 0; position: relative; }
         .search-container input {
