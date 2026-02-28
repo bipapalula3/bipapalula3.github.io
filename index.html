@@ -132,6 +132,45 @@
         .select-option:hover {
             background: #2d3743;
         }
+
+        /* ✅ 1. 애니메이션 정의: 배경을 가로로 이동시켜 흐르는 효과 생성 */
+        @keyframes kpopNeonShimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%; /* 배경을 끝까지 이동 */
+            }
+        }
+        
+        /* ✅ 2. h1 태그에 효과 적용 */
+        .hero h1 {
+            font-size: 3.0rem; /* 모바일 등을 고려해 크기 키움 (기존 2.2rem에서 수정) */
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase; /* 네온 감성을 위해 대문자 변환 (선택사항) */
+            letter-spacing: 1px; /* 글자 간격 살짝 넓힘 (선택사항) */
+        
+            /* 💡 그라데이션 설정 (안드로이드 코드와 동일색상) */
+            /* -45도 사선, 시안 -> 마젠타 -> 옐로우 -> 다시 시안 */
+            background: linear-gradient(-45deg, #00D4FF, #FF007F, #FDE100, #00D4FF);
+            
+            /* 💡 그라데이션 영역을 텍스트로 제한 (핵심!) */
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* 💡 원래 텍스트 색상을 투명하게 하여 배경 그라데이션이 보이게 함 */
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        
+            /* 💡 애니메이션 활성화 */
+            /* 애니메이션이 끊기지 않게 하려면 배경 크기를 늘려야 함 */
+            background-size: 200% auto; 
+            animation: kpopNeonShimmer 4s linear infinite; /* 4초 동안 무한 반복 */
+            
+            /* 네온 느낌을 위한 약간의 그림자 (선택사항) */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }        
         
         /* 모바일 전용 설정 */
         @media (max-width: 768px) {
@@ -158,8 +197,8 @@
                 padding: 40px 20px 100px !important; /* 상단 여백 대폭 축소 (자판 가림 방지) */
             }
             .hero h1 {
-                font-size: 2.0rem !important; /* 타이틀 한 줄 유지 */
-                white-space: nowrap;
+                font-size: 2.0rem !important; /* 모바일에서는 크기 축소 */
+                white-space: nowrap; /* 한 줄 유지 */
             }
         }
 
@@ -333,7 +372,7 @@
 </header>
     
 <article class="about">
-    <h2 data-i18n="about_h2">Why YMPL?</h2>
+    <h2 data-i18n="about_h2">Why YMPL TIDAL?</h2>
     <p data-i18n="about_intro">YMPL is a professional K-POP archive platform...</p>
     
     <h3 data-i18n="why_header">Why should you use YMPL?</h3>
@@ -365,7 +404,7 @@
     // 1. 번역 사전 데이터
     const translations = {
         'en': {
-            'about_h2': 'Why YMPL?',
+            'about_h2': 'Why YMPL TIDAL?',
             'about_intro': 'Did you ever feel frustrated when you couldn\'t find the Korean artist or song you wanted on TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> is a professional K-POP archive platform for TIDAL users worldwide.',
             'why_header': 'Why should you use YMPL?',
             'f1_title': '<strong>Intuitive Search Environment:</strong>',
@@ -381,7 +420,7 @@
             'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.'
         },
         'ko': {
-            'about_h2': 'Why YMPL?',
+            'about_h2': 'Why YMPL TIDAL?',
             'about_intro': '한국 가수의 음원을 찾을 때 원하는 결과가 잘 나오지 않아 답답하셨나요? <strong>YMPL(Your Music Playlist Link)</strong>은 전 세계 고음질 스트리밍 서비스인 TIDAL 사용자를 위해 탄생한 K-POP 전문 아카이브 플랫폼입니다.',
             'why_header': '왜 YMPL을 사용해야 할까요?',
             'f1_title': '<strong>직관적인 검색 환경:</strong>',
@@ -397,7 +436,7 @@
             'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.'
         },
         'es': {
-            'about_h2': '¿Por qué YMPL?',
+            'about_h2': '¿Por qué YMPL TIDAL?',
             'about_intro': '¿Alguna vez te has sentido frustrado al buscar música de artistas coreanos en TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> es una plataforma de archivo profesional de K-POP diseñada para usuarios de TIDAL en todo el mundo.',
             'why_header': '¿Por qué deberías usar YMPL?',
             'f1_title': '<strong>Búsqueda intuitiva:</strong>',
@@ -413,7 +452,7 @@
             'footer_copyright': '© 2026 YMPL Music Database. Todos los derechos reservados.'
         },
         'zh': {
-            'about_h2': '为什么选择 YMPL?',
+            'about_h2': '为什么选择 YMPL TIDAL?',
             'about_intro': '当您在 TIDAL 上搜索韩国歌手的音乐时，是否曾因为找不到想要的结果而感到沮丧？<strong>YMPL (Your Music Playlist Link)</strong> 是一个面向全球 TIDAL 用户的专业 K-POP 档案搜索平台。',
             'why_header': '为什么您应该使用 YMPL?',
             'f1_title': '<strong>直观的搜索环境：</strong>',
