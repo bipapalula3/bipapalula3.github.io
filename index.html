@@ -43,10 +43,12 @@
         /* 2행 컨트롤 */
         .nav-bottom {
             display: flex;
-            justify-content: space-between; /* 양쪽으로 벌리기 */
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            gap: 15px; /* 기존 10px에서 15px로 살짝 늘리기 */
+            padding: 0 5px; /* 좌우 여백 확보 */
             width: 100%;
+            box-sizing: border-box;
         }
         
         /* 언어 버튼 스타일 */
@@ -317,13 +319,6 @@
         </div>
     </div>
 </nav>
-
-<div class="nav-links">
-    <button onclick="switchLanguage('en')">EN</button>
-    <button onclick="switchLanguage('ko')">KO</button>
-    <button onclick="switchLanguage('es')">ES</button>
-    <button onclick="switchLanguage('zh')">ZH</button>
-</div>    
 
 <header class="hero">
     <h1>TIDAL K-POP Finder</h1>
