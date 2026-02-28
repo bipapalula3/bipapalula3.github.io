@@ -323,6 +323,7 @@
 </section>
 
 <script>
+    // 1. 번역 사전 데이터
     const translations = {
         'en': {
             'about_h2': 'Why YMPL?',
@@ -335,9 +336,7 @@
             'f3_title': '<strong>Stay Ahead of Trends:</strong>',
             'f3_desc': 'Discover new releases, debut albums, and top charts updated weekly to keep up with the latest in K-POP.',
             'about_closing': 'Spend less time searching and more time enjoying TIDAL’s high-fidelity sound. YMPL aims to make your music listening experience more convenient and enriched.',
-            'nav_privacy': 'Privacy Policy',
-            'nav_terms': 'Terms of Service',
-            'nav_contact': 'Contact'
+            'nav_privacy': 'Privacy Policy', 'nav_terms': 'Terms of Service', 'nav_contact': 'Contact'
         },
         'ko': {
             'about_h2': 'Why YMPL?',
@@ -350,9 +349,7 @@
             'f3_title': '<strong>빠른 최신 트렌드 확인:</strong>',
             'f3_desc': '매주 업데이트되는 신규 발매곡, 최신 데뷔 앨범, TOP 차트 정보를 통해 놓치기 쉬운 K-POP 소식을 가장 빠르게 접할 수 있습니다.',
             'about_closing': '검색 시간을 줄이고, TIDAL만의 고음질 사운드를 즐기는 데 더 집중하세요. YMPL은 여러분의 음악 감상 경험을 더 편리하고 풍요롭게 만드는 것을 목표로 합니다.',
-            'nav_privacy': '개인정보처리방침',
-            'nav_terms': '이용약관',
-            'nav_contact': '문의하기'
+            'nav_privacy': '개인정보처리방침', 'nav_terms': '이용약관', 'nav_contact': '문의하기'
         },
         'es': {
             'about_h2': '¿Por qué YMPL?',
@@ -365,9 +362,7 @@
             'f3_title': '<strong>Mantente al día:</strong>',
             'f3_desc': 'Descubre nuevos lanzamientos, álbumes debut y listas de éxitos actualizadas semanalmente para no perderte nada del K-POP.',
             'about_closing': 'Pasa menos tiempo buscando y más tiempo disfrutando del sonido de alta fidelidad de TIDAL. YMPL tiene como objetivo hacer que tu experiencia musical sea más cómoda y enriquecedora.',
-            'nav_privacy': 'Política de privacidad',
-            'nav_terms': 'Términos de servicio',
-            'nav_contact': 'Contacto'
+            'nav_privacy': 'Política de privacidad', 'nav_terms': 'Términos de servicio', 'nav_contact': 'Contacto'
         },
         'zh': {
             'about_h2': '为什么选择 YMPL?',
@@ -380,77 +375,36 @@
             'f3_title': '<strong>快速获取最新趋势：</strong>',
             'f3_desc': '每周更新的新歌、出道专辑和热门榜单，让您不错过任何 K-POP 动态。',
             'about_closing': '减少搜索时间，将更多时间用于享受 TIDAL 的高保真音质。YMPL 旨在让您的音乐体验更加便捷和丰富。',
-            'nav_privacy': '隐私政策',
-            'nav_terms': '服务条款',
-            'nav_contact': '联系我们'
+            'nav_privacy': '隐私政策', 'nav_terms': '服务条款', 'nav_contact': '联系我们'
         }
     };
 
+    // 2. 검색 설정
+    const TARGET_SEARCH_PAGE = 'YMPL/search.html';
+
+    // 3. 주요 함수들
     function switchLanguage(lang) {
         if (!translations[lang]) lang = 'en';
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                element.innerHTML = translations[lang][key]; // innerHTML 사용
+                element.innerHTML = translations[lang][key];
             }
         });
         localStorage.setItem('preferredLang', lang);
     }
-    
+
     function initLanguage() {
-        // 1. 저장된 언어가 있으면 우선 적용
         const savedLang = localStorage.getItem('preferredLang');
         if (savedLang) {
             switchLanguage(savedLang);
             return;
         }
-
-        // 2. 브라우저 언어 감지
-        const browserLang = navigator.language.substring(0, 2); // 'ko-KR' -> 'ko'
+        const browserLang = navigator.language.substring(0, 2);
         const supportedLangs = ['en', 'ko', 'es', 'zh'];
-        
-        if (supportedLangs.includes(browserLang)) {
-            switchLanguage(browserLang);
-        } else {
-            switchLanguage('en'); // 그 외 언어는 영어
-        }
+        switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
     }
 
-    // 페이지 로드 시 자동 실행
-    window.onload = initLanguage;
-</script>
-
-<script>
-    const TARGET_SEARCH_PAGE = 'YMPL/search.html';
-
-    // 1. 커스텀 드롭다운 작동 로직
-    const customSelect = document.getElementById('customSelect');
-    const trigger = customSelect.querySelector('.select-trigger');
-    const optionsMenu = customSelect.querySelector('.select-options');
-    const options = customSelect.querySelectorAll('.select-option');
-
-    // 열기/닫기
-    trigger.addEventListener('click', (e) => {
-        optionsMenu.classList.toggle('show');
-    });
-
-    // 항목 클릭 시 이동
-    options.forEach(option => {
-        option.addEventListener('click', () => {
-            const url = option.getAttribute('data-value');
-            if(url) window.open(url, '_self');
-            optionsMenu.classList.remove('show');
-        });
-    });
-
-    // 외부 클릭 시 닫기
-    window.addEventListener('click', (e) => {
-        if (!customSelect.contains(e.target)) {
-            optionsMenu.classList.remove('show');
-        }
-    });
-
-    // 2. 검색 및 암호화 로직 (기존 유지)
     function generateAppKey(rewardType) {
         const now = new Date();
         const dateString = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
@@ -474,12 +428,38 @@
         window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
         return false;
     }
+
+    // 4. 페이지 초기화
+    document.addEventListener('DOMContentLoaded', () => {
+        initLanguage();
+
+        // 드롭다운 이벤트
+        const trigger = document.querySelector('.select-trigger');
+        const menu = document.querySelector('.select-options');
+        trigger?.addEventListener('click', () => menu.classList.toggle('show'));
+
+        document.querySelectorAll('.select-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                const url = opt.getAttribute('data-value');
+                if(url) window.open(url, '_self');
+                menu.classList.remove('show');
+            });
+        });
+
+        // 외부 클릭 시 드롭다운 닫기
+        window.addEventListener('click', (e) => {
+            const container = document.getElementById('customSelect');
+            if (container && !container.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+    });
 </script>
     <footer class="footer-container">
         <div class="footer-links">
-            <a href="/privacy.html">개인정보처리방침</a>
-            <a href="/terms.html">이용약관</a>
-            <a href="/contact.html">문의하기</a>
+            <a href="/privacy.html" data-i18n="nav_privacy">Privacy Policy</a>
+            <a href="/terms.html" data-i18n="nav_terms">Terms of Service</a>
+            <a href="/contact.html" data-i18n="nav_contact">Contact</a>
         </div>
         
         <div class="copyright">
