@@ -301,19 +301,103 @@
     </div>
 </section>
 
-<article class="about">
-    <h2>YMPL: TIDAL K-POP 검색을 위한 최적의 솔루션</h2>
-    <p>TIDAL에서 한국 가수의 음원을 찾을 때, 원하는 결과가 나오지 않아 답답하셨나요? <strong>YMPL(Your Music Playlist Link)</strong>은 전 세계 고음질 스트리밍 서비스인 TIDAL 사용자를 위해 탄생한 K-POP 전문 아카이브 플랫폼입니다.</p>
+<script>
+    const translations = {
+        'en': {
+            'about_h2': 'Why YMPL?',
+            'about_intro': 'Did you ever feel frustrated when you couldn\'t find the Korean artist or song you wanted on TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> is a professional K-POP archive platform for TIDAL users worldwide.',
+            'why_header': 'Why should you use YMPL?',
+            'f1_title': '<strong>Intuitive Search Environment:</strong>',
+            'f1_desc': 'Simply enter an artist name or song title to be instantly redirected to the album and tracklist pages on TIDAL.',
+            'f2_title': '<strong>Organized Database:</strong>',
+            'f2_desc': 'Our artist index, categorized by the Korean alphabet, lets you view an artist\'s entire discography at a glance.',
+            'f3_title': '<strong>Stay Ahead of Trends:</strong>',
+            'f3_desc': 'Discover new releases, debut albums, and top charts updated weekly to keep up with the latest in K-POP.',
+            'about_closing': 'Spend less time searching and more time enjoying TIDAL’s high-fidelity sound. YMPL aims to make your music listening experience more convenient and enriched.',
+            'nav_privacy': 'Privacy Policy',
+            'nav_terms': 'Terms of Service',
+            'nav_contact': 'Contact'
+        },
+        'ko': {
+            'about_h2': 'Why YMPL?',
+            'about_intro': '한국 가수의 음원을 찾을 때 원하는 결과가 잘 나오지 않아 답답하셨나요? <strong>YMPL(Your Music Playlist Link)</strong>은 전 세계 고음질 스트리밍 서비스인 TIDAL 사용자를 위해 탄생한 K-POP 전문 아카이브 플랫폼입니다.',
+            'why_header': '왜 YMPL을 사용해야 할까요?',
+            'f1_title': '<strong>직관적인 검색 환경:</strong>',
+            'f1_desc': '복잡한 검색어 없이 아티스트명이나 곡 제목만 입력하면, TIDAL의 앨범 및 수록곡 페이지로 즉시 연결됩니다.',
+            'f2_title': '<strong>체계적인 데이터베이스:</strong>',
+            'f2_desc': '가나다순으로 정렬된 아티스트 인덱스를 통해 내가 찾는 가수의 디스코그래피를 한눈에 확인할 수 있습니다.',
+            'f3_title': '<strong>빠른 최신 트렌드 확인:</strong>',
+            'f3_desc': '매주 업데이트되는 신규 발매곡, 최신 데뷔 앨범, TOP 차트 정보를 통해 놓치기 쉬운 K-POP 소식을 가장 빠르게 접할 수 있습니다.',
+            'about_closing': '검색 시간을 줄이고, TIDAL만의 고음질 사운드를 즐기는 데 더 집중하세요. YMPL은 여러분의 음악 감상 경험을 더 편리하고 풍요롭게 만드는 것을 목표로 합니다.',
+            'nav_privacy': '개인정보처리방침',
+            'nav_terms': '이용약관',
+            'nav_contact': '문의하기'
+        },
+        'es': {
+            'about_h2': '¿Por qué YMPL?',
+            'about_intro': '¿Alguna vez te has sentido frustrado al buscar música de artistas coreanos en TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> es una plataforma de archivo profesional de K-POP diseñada para usuarios de TIDAL en todo el mundo.',
+            'why_header': '¿Por qué deberías usar YMPL?',
+            'f1_title': '<strong>Búsqueda intuitiva:</strong>',
+            'f1_desc': 'Simplemente introduce el nombre del artista o el título de la canción para ser redirigido al instante a las páginas de álbumes y pistas en TIDAL.',
+            'f2_title': '<strong>Base de datos organizada:</strong>',
+            'f2_desc': 'Nuestro índice de artistas te permite ver la discografía completa de un artista de un vistazo.',
+            'f3_title': '<strong>Mantente al día:</strong>',
+            'f3_desc': 'Descubre nuevos lanzamientos, álbumes debut y listas de éxitos actualizadas semanalmente para no perderte nada del K-POP.',
+            'about_closing': 'Pasa menos tiempo buscando y más tiempo disfrutando del sonido de alta fidelidad de TIDAL. YMPL tiene como objetivo hacer que tu experiencia musical sea más cómoda y enriquecedora.',
+            'nav_privacy': 'Política de privacidad',
+            'nav_terms': 'Términos de servicio',
+            'nav_contact': 'Contacto'
+        },
+        'zh': {
+            'about_h2': '为什么选择 YMPL?',
+            'about_intro': '当您在 TIDAL 上搜索韩国歌手的音乐时，是否曾因为找不到想要的结果而感到沮丧？<strong>YMPL (Your Music Playlist Link)</strong> 是一个面向全球 TIDAL 用户的专业 K-POP 档案搜索平台。',
+            'why_header': '为什么您应该使用 YMPL?',
+            'f1_title': '<strong>直观的搜索环境：</strong>',
+            'f1_desc': '只需输入艺人姓名或歌曲名称，即可立即跳转至 TIDAL 的专辑及曲目页面。',
+            'f2_title': '<strong>系统化的数据库：</strong>',
+            'f2_desc': '通过分类索引，您可以一目了然地查看艺人的完整作品集。',
+            'f3_title': '<strong>快速获取最新趋势：</strong>',
+            'f3_desc': '每周更新的新歌、出道专辑和热门榜单，让您不错过任何 K-POP 动态。',
+            'about_closing': '减少搜索时间，将更多时间用于享受 TIDAL 的高保真音质。YMPL 旨在让您的音乐体验更加便捷和丰富。',
+            'nav_privacy': '隐私政策',
+            'nav_terms': '服务条款',
+            'nav_contact': '联系我们'
+        }
+    };
+
+    function switchLanguage(lang) {
+        if (!translations[lang]) lang = 'en';
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                element.innerHTML = translations[lang][key]; // innerHTML 사용
+            }
+        });
+        localStorage.setItem('preferredLang', lang);
+    }
     
-    <h3>왜 YMPL을 사용해야 할까요?</h3>
-    <ul>
-        <li><strong>직관적인 검색 환경:</strong> 복잡한 검색어 없이 아티스트명이나 곡 제목만 입력하면, TIDAL의 앨범 및 수록곡 페이지로 즉시 연결됩니다.</li>
-        <li><strong>체계적인 데이터베이스:</strong> 가나다순으로 정렬된 아티스트 인덱스를 통해 내가 찾는 가수의 디스코그래피를 한눈에 확인할 수 있습니다.</li>
-        <li><strong>빠른 최신 트렌드 확인:</strong> 매주 업데이트되는 신규 발매곡, 최신 데뷔 앨범, TOP 차트 정보를 통해 놓치기 쉬운 K-POP 소식을 가장 빠르게 접할 수 있습니다.</li>
-    </ul>
-    
-    <p>검색 시간을 줄이고, TIDAL만의 고음질 사운드를 즐기는 데 더 집중하세요. YMPL은 여러분의 음악 감상 경험을 더 편리하고 풍요롭게 만드는 것을 목표로 합니다.</p>
-</article>
+    function initLanguage() {
+        // 1. 저장된 언어가 있으면 우선 적용
+        const savedLang = localStorage.getItem('preferredLang');
+        if (savedLang) {
+            switchLanguage(savedLang);
+            return;
+        }
+
+        // 2. 브라우저 언어 감지
+        const browserLang = navigator.language.substring(0, 2); // 'ko-KR' -> 'ko'
+        const supportedLangs = ['en', 'ko', 'es', 'zh'];
+        
+        if (supportedLangs.includes(browserLang)) {
+            switchLanguage(browserLang);
+        } else {
+            switchLanguage('en'); // 그 외 언어는 영어
+        }
+    }
+
+    // 페이지 로드 시 자동 실행
+    window.onload = initLanguage;
+</script>
 
 <script>
     const TARGET_SEARCH_PAGE = 'YMPL/search.html';
