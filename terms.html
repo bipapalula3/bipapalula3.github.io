@@ -3,33 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이용약관 | YMPL</title>
+    <title data-i18n="terms_title">Terms of Service | YMPL</title>
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #0f1115; color: #e5e7eb; line-height: 1.8; margin: 0; padding: 40px 20px; }
         .container { max-width: 800px; margin: 0 auto; }
         h1 { color: #ffd966; text-align: center; }
         h2 { color: #fff; margin-top: 40px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
         p { color: #9ca3af; }
+        /* 언어 버튼 스타일 */
+        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; }
+        .lang-switcher button { background: #1f2933; border: 1px solid #4b5563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>이용약관</h1>
-        <p>YMPL은 전 세계 음원 스트리밍 서비스 TIDAL 사용자를 위한 K-POP 검색 및 링크 큐레이션 서비스를 제공합니다. 본 사이트를 이용함으로써 귀하는 아래 약관에 동의하는 것으로 간주됩니다.</p>
+        <div class="lang-switcher">
+            <button onclick="switchLanguage('en')">EN</button>
+            <button onclick="switchLanguage('ko')">KO</button>
+            <button onclick="switchLanguage('es')">ES</button>
+            <button onclick="switchLanguage('zh')">ZH</button>
+        </div>
 
-        <h2>1. 서비스의 목적</h2>
-        <p>본 사이트는 음악 데이터를 체계적으로 분류하여 사용자가 보다 쉽게 원하는 K-POP 음원을 찾을 수 있도록 돕는 검색 보조 도구입니다.</p>
+        <h1 data-i18n="terms_h1">Terms of Service</h1>
+        <p data-i18n="terms_intro">YMPL provides K-POP search and link curation services for TIDAL users worldwide. By using this site, you agree to the terms below.</p>
 
-        <h2>2. 책임의 한계</h2>
-        <p>본 사이트는 사용자가 검색한 정보를 외부 플랫폼(TIDAL)으로 연결합니다. <strong>본 사이트는 음원 콘텐츠를 직접 호스팅하거나 배포하지 않으며</strong>, 연결된 외부 사이트의 콘텐츠, 서비스 안정성, 저작권 상태에 대하여 어떠한 법적 책임도 지지 않습니다.</p>
+        <h2 data-i18n="terms_h2_1">1. Purpose of Service</h2>
+        <p data-i18n="terms_p1">This site is a search assistance tool that systematically organizes music data to help users find their desired K-POP music more easily.</p>
 
-        <h2>3. 저작권 안내</h2>
-        <p>사이트 내에 표시된 아티스트 정보, 앨범 커버, 음악 메타데이터의 저작권은 각 원저작권자와 해당 음원 플랫폼에 있습니다. 모든 콘텐츠의 권리는 해당 기관에 귀속됩니다.</p>
+        <h2 data-i18n="terms_h2_2">2. Limitation of Liability</h2>
+        <p data-i18n="terms_p2">This site connects the information searched by users to external platforms (TIDAL). <strong>This site does not host or distribute music content directly</strong> and assumes no legal responsibility for the content, service stability, or copyright status of linked external sites.</p>
 
-        <h2>4. 약관의 개정</h2>
-        <p>본 약관은 운영상의 필요에 따라 사전 고지 없이 변경될 수 있으며, 변경된 내용은 사이트에 게재됨으로써 효력이 발생합니다.</p>
+        <h2 data-i18n="terms_h2_3">3. Copyright Notice</h2>
+        <p data-i18n="terms_p3">The copyright of artist information, album covers, and music metadata displayed on this site belongs to the respective original copyright holders and the relevant music platforms. All rights to the content are reserved by the respective organizations.</p>
 
-        <p style="margin-top:50px; text-align:center;"><a href="index.html" style="color: #ffd966;">메인으로 돌아가기</a></p>
+        <h2 data-i18n="terms_h2_4">4. Amendment of Terms</h2>
+        <p data-i18n="terms_p4">These terms may be changed without prior notice based on operational needs, and the changes will become effective upon being posted on the site.</p>
+        
+        <p style="margin-top:50px; text-align:center;"><a href="index.html" data-i18n="terms_back" style="color: #ffd966;">Back to Main</a></p>
     </div>
+
+    <script>
+        const translations = {
+            'en': {
+                'terms_title': 'Terms of Service | YMPL', 'terms_h1': 'Terms of Service',
+                'terms_intro': 'YMPL provides K-POP search and link curation services for TIDAL users worldwide. By using this site, you agree to the terms below.',
+                'terms_h2_1': '1. Purpose of Service', 'terms_p1': 'This site is a search assistance tool that systematically organizes music data to help users find their desired K-POP music more easily.',
+                'terms_h2_2': '2. Limitation of Liability', 'terms_p2': 'This site connects the information searched by users to external platforms (TIDAL). <strong>This site does not host or distribute music content directly</strong> and assumes no legal responsibility for the content, service stability, or copyright status of linked external sites.',
+                'terms_h2_3': '3. Copyright Notice', 'terms_p3': 'The copyright of artist information, album covers, and music metadata displayed on this site belongs to the respective original copyright holders and the relevant music platforms. All rights to the content are reserved by the respective organizations.',
+                'terms_h2_4': '4. Amendment of Terms', 'terms_p4': 'These terms may be changed without prior notice based on operational needs, and the changes will become effective upon being posted on the site.',
+                'terms_back': 'Back to Main'
+            },
+            'ko': {
+                'terms_title': '이용약관 | YMPL', 'terms_h1': '이용약관',
+                'terms_intro': 'YMPL은 전 세계 음원 스트리밍 서비스 TIDAL 사용자를 위한 K-POP 검색 및 링크 큐레이션 서비스를 제공합니다. 본 사이트를 이용함으로써 귀하는 아래 약관에 동의하는 것으로 간주됩니다.',
+                'terms_h2_1': '1. 서비스의 목적', 'terms_p1': '본 사이트는 음악 데이터를 체계적으로 분류하여 사용자가 보다 쉽게 원하는 K-POP 음원을 찾을 수 있도록 돕는 검색 보조 도구입니다.',
+                'terms_h2_2': '2. 책임의 한계', 'terms_p2': '본 사이트는 사용자가 검색한 정보를 외부 플랫폼(TIDAL)으로 연결합니다. <strong>본 사이트는 음원 콘텐츠를 직접 호스팅하거나 배포하지 않으며</strong>, 연결된 외부 사이트의 콘텐츠, 서비스 안정성, 저작권 상태에 대하여 어떠한 법적 책임도 지지 않습니다.',
+                'terms_h2_3': '3. 저작권 안내', 'terms_p3': '사이트 내에 표시된 아티스트 정보, 앨범 커버, 음악 메타데이터의 저작권은 각 원저작권자와 해당 음원 플랫폼에 있습니다. 모든 콘텐츠의 권리는 해당 기관에 귀속됩니다.',
+                'terms_h2_4': '4. 약관의 개정', 'terms_p4': '본 약관은 운영상의 필요에 따라 사전 고지 없이 변경될 수 있으며, 변경된 내용은 사이트에 게재됨으로써 효력이 발생합니다.',
+                'terms_back': '메인으로 돌아가기'
+            },
+            'es': {
+                'terms_title': 'Términos de servicio | YMPL', 'terms_h1': 'Términos de servicio',
+                'terms_intro': 'YMPL ofrece servicios de búsqueda y curación de enlaces de K-POP para usuarios de TIDAL en todo el mundo. Al utilizar este sitio, usted acepta los términos a continuación.',
+                'terms_h2_1': '1. Propósito del servicio', 'terms_p1': 'Este sitio es una herramienta de asistencia de búsqueda que organiza sistemáticamente datos musicales para ayudar a los usuarios a encontrar más fácilmente la música K-POP que desean.',
+                'terms_h2_2': '2. Limitación de responsabilidad', 'terms_p2': 'Este sitio conecta la información buscada por los usuarios con plataformas externas (TIDAL). <strong>Este sitio no aloja ni distribuye contenido musical directamente</strong> y no asume ninguna responsabilidad legal por el contenido, la estabilidad del servicio o el estado de los derechos de autor de los sitios externos vinculados.',
+                'terms_h2_3': '3. Aviso de derechos de autor', 'terms_p3': 'Los derechos de autor de la información del artista, las portadas de los álbumes y los metadatos musicales mostrados en este sitio pertenecen a los titulares de los derechos de autor originales y a las plataformas de música pertinentes. Todos los derechos sobre el contenido están reservados por las organizaciones respectivas.',
+                'terms_h2_4': '4. Modificación de los términos', 'terms_p4': 'Estos términos pueden cambiarse sin previo aviso según las necesidades operativas, y los cambios entrarán en vigor una vez publicados en el sitio.',
+                'terms_back': 'Volver al inicio'
+            },
+            'zh': {
+                'terms_title': '服务条款 | YMPL', 'terms_h1': '服务条款',
+                'terms_intro': 'YMPL 为全球 TIDAL 用户提供 K-POP 搜索和链接策展服务。使用本网站即表示您同意以下条款。',
+                'terms_h2_1': '1. 服务目的', 'terms_p1': '本网站是一个搜索辅助工具，通过系统地整理音乐数据，帮助用户更轻松地找到想要的 K-POP 音乐。',
+                'terms_h2_2': '2. 责任限制', 'terms_p2': '本网站将用户搜索的信息连接到外部平台 (TIDAL)。<strong>本网站不直接托管或分发音乐内容</strong>，对所链接的外部网站的内容、服务稳定性或版权状态不承担任何法律责任。',
+                'terms_h2_3': '3. 版权说明', 'terms_p3': '本网站上显示的艺人信息、专辑封面和音乐元数据的版权归各自的原版权所有者及相关音乐平台所有。所有内容权利由相关机构保留。',
+                'terms_h2_4': '4. 条款修订', 'terms_p4': '本条款可能根据运营需要进行修改，恕不另行通知，修改内容自发布在网站上之日起生效。',
+                'terms_back': '返回主页'
+            }
+        };
+
+        function switchLanguage(lang) {
+            if (!translations[lang]) lang = 'en';
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang) {
+                switchLanguage(savedLang);
+                return;
+            }
+            const browserLang = navigator.language.substring(0, 2);
+            const supportedLangs = ['en', 'ko', 'es', 'zh'];
+            switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+        }
+
+        document.addEventListener('DOMContentLoaded', initLanguage);
+    </script>
 </body>
 </html>
