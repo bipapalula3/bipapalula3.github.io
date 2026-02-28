@@ -436,10 +436,16 @@
     // 3. 주요 함수들
     function switchLanguage(lang) {
         if (!translations[lang]) lang = 'en';
+        
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                element.innerHTML = translations[lang][key];
+                // footer_copyright 키인 경우에만 연도를 실시간으로 삽입
+                if (key === 'footer_copyright') {
+                    element.innerHTML = `© ${new Date().getFullYear()} YMPL Music Database. All rights reserved.`;
+                } else {
+                    element.innerHTML = translations[lang][key];
+                }
             }
         });
         localStorage.setItem('preferredLang', lang);
@@ -496,6 +502,9 @@
                 menu.classList.remove('show');
             });
         });
+
+        // 하단 Copyright 자동 연도 업데이트 예시
+        document.querySelector('[data-i18n="footer_copyright"]').innerHTML = `© ${new Date().getFullYear()} YMPL Music Database. All rights reserved.`;
 
         // 외부 클릭 시 드롭다운 닫기
         window.addEventListener('click', (e) => {
