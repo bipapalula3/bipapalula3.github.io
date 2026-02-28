@@ -486,9 +486,9 @@
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                // footer_copyright 키인 경우에만 연도를 실시간으로 삽입
-                if (key === 'footer_copyright') {
-                    element.innerHTML = `© ${new Date().getFullYear()} YMPL Music Database. All rights reserved.`;
+                // input 태그인 경우 placeholder 속성을 수정
+                if (element.tagName === 'INPUT') {
+                    element.placeholder = translations[lang][key];
                 } else {
                     element.innerHTML = translations[lang][key];
                 }
