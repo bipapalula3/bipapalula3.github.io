@@ -194,7 +194,7 @@
             }
         
             .hero {
-                padding: 40px 20px 100px !important; /* 상단 여백 대폭 축소 (자판 가림 방지) */
+                padding: 20px 20px 100px !important; /* 상단 여백 대폭 축소 (자판 가림 방지) */
             }
             .hero h1 {
                 font-size: 2.0rem !important; /* 모바일에서는 크기 축소 */
@@ -203,7 +203,7 @@
         }
 
         /* 2. 메인 헤더 & 검색창 */
-        .hero { text-align: center; padding: 40px 20px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
+        .hero { text-align: center; padding: 20px 20px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
         .hero h1 { font-size: 2.2rem; margin-bottom: 10px; }
         .search-container { max-width: 600px; margin: 40px auto 0; position: relative; }
         /* 2. 메인 헤더 & 검색창 */
@@ -306,7 +306,7 @@
         
         .reward-card:hover { transform: translateY(-5px); }
         .reward-card h3 { color: var(--gold-main); margin: 0 0 5px; font-size: 1.3rem; }
-        .reward-card p { color: #ddd; margin: 0; font-size: 1.2rem; font-weight: 600; }
+        .reward-card p { color: #ddd; margin: 0; font-size: 1.2rem; font-weight: 500; }
 
         @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
         .about { max-width: 800px; margin: 80px auto; padding: 20px; line-height: 1.8; color: #9ca3af; }
@@ -361,12 +361,11 @@
 
 <header class="hero">
     <h1>TIDAL K-POP Finder</h1>
-    <p>
-        Discover K-POP on TIDAL at a glance.<br>
-    </p>
+    <p data-i18n="hero_desc">Discover K-POP on TIDAL at a glance.</p>
+    
     <div class="search-container">
         <form onsubmit="handleManualSearch(); return false;">
-            <input type="text" id="searchInput" name="q" placeholder="Enter artist or song title" required autocomplete="off">
+            <input type="text" id="searchInput" name="q" data-i18n="search_placeholder" placeholder="Enter artist or song title" required autocomplete="off">
         </form>
     </div>
 </header>
@@ -404,6 +403,8 @@
     // 1. 번역 사전 데이터
     const translations = {
         'en': {
+            'hero_desc': 'Discover K-POP on TIDAL at a glance.',
+            'search_placeholder': 'Enter artist or song title',
             'about_h2': 'Why YMPL TIDAL?',
             'about_intro': 'Did you ever feel frustrated when you couldn\'t find the Korean artist or song you wanted on TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> is a professional K-POP archive platform for TIDAL users worldwide.',
             'why_header': 'Why should you use YMPL?',
@@ -420,6 +421,8 @@
             'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.'
         },
         'ko': {
+            'hero_desc': 'TIDAL에서 K-POP을 한눈에 찾아보세요.',
+            'search_placeholder': '아티스트나 곡 제목을 입력하세요',
             'about_h2': 'Why YMPL TIDAL?',
             'about_intro': '한국 가수의 음원을 찾을 때 원하는 결과가 잘 나오지 않아 답답하셨나요? <strong>YMPL(Your Music Playlist Link)</strong>은 전 세계 고음질 스트리밍 서비스인 TIDAL 사용자를 위해 탄생한 K-POP 전문 아카이브 플랫폼입니다.',
             'why_header': '왜 YMPL을 사용해야 할까요?',
@@ -436,6 +439,8 @@
             'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.'
         },
         'es': {
+            'hero_desc': 'Descubra K-POP en TIDAL de un vistazo.',
+            'search_placeholder': 'Ingrese artista o título de canción',
             'about_h2': '¿Por qué YMPL TIDAL?',
             'about_intro': '¿Alguna vez te has sentido frustrado al buscar música de artistas coreanos en TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> es una plataforma de archivo profesional de K-POP diseñada para usuarios de TIDAL en todo el mundo.',
             'why_header': '¿Por qué deberías usar YMPL?',
@@ -452,6 +457,8 @@
             'footer_copyright': '© 2026 YMPL Music Database. Todos los derechos reservados.'
         },
         'zh': {
+            'hero_desc': '一目了然地探索 TIDAL 上的 K-POP。',
+            'search_placeholder': '输入艺人或歌曲名称',
             'about_h2': '为什么选择 YMPL TIDAL?',
             'about_intro': '当您在 TIDAL 上搜索韩国歌手的音乐时，是否曾因为找不到想要的结果而感到沮丧？<strong>YMPL (Your Music Playlist Link)</strong> 是一个面向全球 TIDAL 用户的专业 K-POP 档案搜索平台。',
             'why_header': '为什么您应该使用 YMPL?',
