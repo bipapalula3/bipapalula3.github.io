@@ -310,6 +310,16 @@
 
         @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
         .about { max-width: 800px; margin: 80px auto; padding: 20px; line-height: 1.8; color: #9ca3af; }
+
+        /* 매거진 섹션 스타일 */
+        .magazine-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
+        .magazine-section h2 { color: #fff; font-size: 1.8rem; margin-bottom: 30px; border-left: 4px solid var(--gold-main); padding-left: 15px; }
+        .magazine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .magazine-card { background: #1a1d23; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.3s; cursor: pointer; }
+        .magazine-card:hover { border-color: var(--gold-main); transform: translateY(-5px); }
+        .magazine-card h3 { color: var(--gold-bright); margin-top: 0; font-size: 1.2rem; }
+        .magazine-card p { color: #9ca3af; font-size: 0.95rem; margin: 10px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .magazine-card .date { color: #4b5563; font-size: 0.8rem; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -475,6 +485,24 @@
             'footer_copyright': '© 2026 YMPL Music Database. 保留所有权利。'
         }
     };
+
+    <section class="magazine-section">
+        <h2 data-i18n="magazine_title">YMPL K-POP Magazine</h2>
+        <div class="magazine-grid">
+            <a href="posts/first-post.html" style="text-decoration: none;">
+                <div class="magazine-card">
+                    <h3>이번 주 K-POP 차트 신곡 분석</h3>
+                    <p>이번 주차트 진입한 곡의 비트와 대중성을 분석했습니다. 왜 이 곡이 지금 가장 핫한지, TIDAL에서 감상하면 좋은 이유를 확인해보세요.</p>
+                    <div class="date">2026.03.03</div>
+                </div>
+            </a>
+            <div class="magazine-card">
+                <h3>곧 업데이트 예정입니다.</h3>
+                <p>더 알찬 K-POP 소식으로 찾아오겠습니다.</p>
+                <div class="date">2026.03.03</div>
+            </div>
+        </div>
+    </section>
 
     // 2. 검색 설정
     const TARGET_SEARCH_PAGE = 'YMPL/search.html';
