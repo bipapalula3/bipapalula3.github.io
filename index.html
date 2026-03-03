@@ -323,7 +323,40 @@
 
         /* 매거진 섹션 스타일 */
         .magazine-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
-        .magazine-section h2 { color: #fff; font-size: 1.5rem; margin-bottom: 30px; border-left: 4px solid var(--gold-main); padding-left: 15px; }
+        
+        /* ✅ 매거진 제목 스타일 수정 */
+        .magazine-section h2 { 
+            /* color: #fff; <- 그라데이션 적용을 위해 주석 처리 또는 삭제 */
+            font-size: 2.0rem; /* h1처럼 크게 키움 */
+            margin-bottom: 30px; 
+            /* border-left: 4px solid var(--gold-main); <- 왼쪽 기호 삭제 */
+            padding-left: 0; /* 패딩 초기화 */
+            font-weight: 700;
+            text-align: center; /* 가운데 정렬 (선택사항, h1과 맞춤) */
+
+            /* 💡 h1과 동일한 그라데이션 & 애니메이션 효과 적용 */
+            /* 노란색 계통(Yellow, Gold)을 많이 넣은 그라데이션 구성 */
+            background: linear-gradient(-45deg, #FDE100, #ffd966, #fff6d5, #ffd966, #FDE100);
+            
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+
+            background-size: 200% auto; 
+            animation: kpopNeonShimmer 4s linear infinite;
+            
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 모바일에서 매거진 제목 크기 조절 */
+        @media (max-width: 768px) {
+            .magazine-section h2 {
+                font-size: 1.6rem;
+            }
+        }
+
         .magazine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .magazine-card { background: #1a1d23; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.3s; cursor: pointer; }
         .magazine-card:hover { border-color: var(--gold-main); transform: translateY(-5px); }
@@ -418,7 +451,7 @@
 </article>
     
 <section class="magazine-section">
-    <h2 data-i18n="magazine_title">YMPL K-POP Magazine</h2>
+    <h2 data-i18n="magazine_title">✨ YMPL K-POP Magazine ✨</h2>
     <div class="magazine-grid">
         <a href="posts/first-post.html" style="text-decoration: none;">
              <div class="magazine-card">
