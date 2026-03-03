@@ -325,7 +325,7 @@
         .magazine-section { max-width: 1200px; margin: 80px auto; padding: 0 20px; }
         
         /* ✅ 매거진 제목 스타일 수정 */
-        .magazine-section h2 { 
+         
             /* color: #fff; <- 그라데이션 적용을 위해 주석 처리 또는 삭제 */
             font-size: 2.0rem; /* h1처럼 크게 키움 */
             margin-bottom: 30px; 
@@ -349,14 +349,37 @@
             
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
-        
-        /* 모바일에서 매거진 제목 크기 조절 */
-        @media (max-width: 768px) {
-            .magazine-section h2 {
-                font-size: 1.6rem;
-            }
-        }
 
+        /* ✅ 매거진 제목 그라데이션 및 애니메이션 */
+        .magazine-section h2 { 
+            font-size: 1.5rem;
+            margin-bottom: 30px; 
+            font-weight: 700;
+            text-align: center;
+            
+            /* h1과 동일한 그라데이션 적용 */
+            background: linear-gradient(-45deg, #00D4FF, #FF007F, #FDE100, #00D4FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            background-size: 200% auto; 
+            animation: kpopNeonShimmer 4s linear infinite;
+        }
+        
+        /* ✅ 이모지 애니메이션 (커졌다 작아졌다) */
+        .star-emoji {
+            display: inline-block;
+            animation: pulse-emoji 1.5s infinite ease-in-out;
+            -webkit-text-fill-color: initial; /* 이모지는 그라데이션 영향을 받지 않게 초기화 */
+            color: initial;
+        }
+        
+        @keyframes pulse-emoji {
+            0%, 100% { transform: scale(0.9); }
+            50% { transform: scale(1.1); } /* 1.1배까지 커짐 */
+        }
+                
         .magazine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .magazine-card { background: #1a1d23; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.3s; cursor: pointer; }
         .magazine-card:hover { border-color: var(--gold-main); transform: translateY(-5px); }
