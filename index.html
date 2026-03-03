@@ -349,7 +349,7 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
 
-        /* ✅ 매거진 제목 그라데이션 및 애니메이션 */
+        /* 매거진 섹션 h2 스타일 통합 */
         .magazine-section h2 { 
             font-size: 1.8rem;
             margin-bottom: 30px; 
@@ -366,19 +366,19 @@
             animation: kpopNeonShimmer 4s linear infinite;
         }
         
-        /* ✅ 이모지 애니메이션 (커졌다 작아졌다) */
+        /* 별 이모지용 애니메이션 (커졌다 작아졌다) */
         .star-emoji {
             display: inline-block;
             animation: pulse-emoji 1.5s infinite ease-in-out;
-            -webkit-text-fill-color: initial; /* 이모지는 그라데이션 영향을 받지 않게 초기화 */
-            color: initial;
+            -webkit-text-fill-color: initial; /* 그라데이션 적용 해제 */
+            color: initial; /* 이모지 원래 색상 유지 */
         }
         
         @keyframes pulse-emoji {
-            0%, 100% { transform: scale(0.9); }
-            50% { transform: scale(1.1); } /* 1.1배까지 커짐 */
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); } /* 커짐 */
         }
-                
+                        
         .magazine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         .magazine-card { background: #1a1d23; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.3s; cursor: pointer; }
         .magazine-card:hover { border-color: var(--gold-main); transform: translateY(-5px); }
