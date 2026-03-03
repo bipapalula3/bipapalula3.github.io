@@ -353,6 +353,11 @@
             -webkit-text-fill-color: initial; /* 이모지는 그라데이션에서 제외 */
             color: initial; /* 이모지 원래 색상 유지 */
         }
+
+        .small-icon {
+            font-size: 0.8em; /* 이모지 크기 조절 */
+            margin-right: 5px;
+        }
         
         @keyframes pulse-emoji {
             0%, 100% { transform: scale(1); }
@@ -453,7 +458,7 @@
 </article>
 
 <section class="magazine-section">
-    <h2><span class="star-emoji">🏆</span> Chart Decoded</h2>
+    <h2><span class="small-icon">🏆</span> Chart Decoded</h2>
     <div class="magazine-grid">
         <a href="posts/chart-decoded.html" style="text-decoration: none;">
             <div class="magazine-card">
