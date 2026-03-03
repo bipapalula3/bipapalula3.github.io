@@ -346,18 +346,19 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
-        /* 별 이모지용 애니메이션 (커졌다 작아졌다) */
-        .star-emoji {
+        /* 이모지(트로피, 별 등) 크기 및 색상 설정 */
+        .small-icon, .star-emoji {
             display: inline-block;
-            animation: pulse-emoji 1.5s infinite ease-in-out;
-            -webkit-text-fill-color: initial; /* 이모지는 그라데이션에서 제외 */
-            color: initial; /* 이모지 원래 색상 유지 */
-        }
-
-        .small-icon {
-            font-size: 0.9em;      /* 크기 줄이기 */
-            color: initial;        /* 글자 색상 영향 무시 (이게 핵심!) */
-            display: inline-block; /* 위치 정렬을 위해 추가 */
+            vertical-align: middle;
+            
+            /* 핵심: 부모 h2의 그라데이션 및 투명 효과 강제 해제 */
+            -webkit-text-fill-color: initial !important; 
+            background: none !important;
+            background-clip: unset !important;
+            color: initial !important; 
+            
+            /* 원하시는 크기 설정 */
+            font-size: 0.95em;
         }
         
         @keyframes pulse-emoji {
