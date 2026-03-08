@@ -692,10 +692,14 @@
         const menu = document.querySelector('.select-options');
         trigger?.addEventListener('click', () => menu.classList.toggle('show'));
 
+        // 드롭다운 메뉴 선택 시 URL 이동 전 확인 로직
         document.querySelectorAll('.select-option').forEach(opt => {
-            opt.addEventListener('click', () => {
+            opt.addEventListener('click', (e) => {
                 const url = opt.getAttribute('data-value');
-                if(url) window.open(url, '_self');
+                if (url) {
+                    // 현재 페이지와 동일한 도메인인지 확인 후 이동
+                    window.location.href = url; 
+                }
                 menu.classList.remove('show');
             });
         });
