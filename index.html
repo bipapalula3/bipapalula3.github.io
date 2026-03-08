@@ -715,10 +715,11 @@
         // 하단 Copyright 자동 연도 업데이트 예시
         document.querySelector('[data-i18n="footer_copyright"]').innerHTML = `© ${new Date().getFullYear()} YMPL Music Database. All rights reserved.`;
 
-        // 외부 클릭 시 드롭다운 닫기
+        // 외부 클릭 시 드롭다운 닫기 부분 수정 제안
         window.addEventListener('click', (e) => {
             const container = document.getElementById('customSelect');
-            if (container && !container.contains(e.target)) {
+            // menu 변수가 상단에 정의되어 있으므로 menu가 존재할 때만 show 클래스 제거
+            if (container && !container.contains(e.target) && menu) {
                 menu.classList.remove('show');
             }
         });
