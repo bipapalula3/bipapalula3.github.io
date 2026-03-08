@@ -380,6 +380,14 @@
         .magazine-card h3 { color: var(--gold-bright); margin-top: 0; font-size: 1.2rem; }
         .magazine-card p { color: #9ca3af; font-size: 0.95rem; margin: 10px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         .magazine-card .date { color: #4b5563; font-size: 0.8rem; margin-top: 10px; }
+        /* 3. 더보기(placeholder) 카드 전용 스타일 */
+        .magazine-card.placeholder-more {
+            display: flex; align-items: center; justify-content: center;
+            border: 2px dashed var(--gold-dark) !important;
+            background: transparent !important;
+            height: 100%; min-height: 150px;
+        }
+        .magazine-card.placeholder-more h3 { color: var(--gold-main) !important; margin: 0; }
     </style>
 </head>
 <body>
