@@ -1310,37 +1310,17 @@ YMPL New 아티스트 프로필 아카이브
     
 <script>
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-/* 도움말 업데이트 (언어 변경 시) */
-function updateHelpPopup(){
+console.log("YMPL help system loaded")
 
-let popup=document.querySelector(".mag-help-popup")
-if(!popup) return
+document.body.addEventListener("click", function(e){
 
-let help=popup.parentElement
-
-let titleKey=help.dataset.i18nTitle
-let descKey=help.dataset.i18nDesc
-
-let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || ""
-let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || ""
-
-popup.innerHTML=
-"<strong>"+titleText+"</strong>"
-+"<div>"+descText+"</div>"
-
-}
-
-/* 언어 토글 이벤트 */
-document.addEventListener("languageChanged",updateHelpPopup)
-
-
-/* 도움말 클릭 */
-
-document.addEventListener("click",function(e){
+/* ❔ 클릭 확인 */
 
 if(e.target.classList.contains("mag-help")){
+
+console.log("help icon clicked")
 
 let old=document.querySelector(".mag-help-popup")
 if(old) old.remove()
@@ -1348,15 +1328,21 @@ if(old) old.remove()
 let titleKey=e.target.dataset.i18nTitle
 let descKey=e.target.dataset.i18nDesc
 
-let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || ""
-let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || ""
+console.log("titleKey:",titleKey)
+console.log("descKey:",descKey)
+
+let titleEl=document.querySelector('[data-i18n="'+titleKey+'"]')
+let descEl=document.querySelector('[data-i18n="'+descKey+'"]')
+
+let titleText=titleEl ? titleEl.innerText : ""
+let descText=descEl ? descEl.innerText : ""
 
 let popup=document.createElement("div")
 popup.className="mag-help-popup"
 
 popup.innerHTML=
-"<strong>"+titleText+"</strong>"
-+"<div>"+descText+"</div>"
+"<strong>"+titleText+"</strong>"+
+"<div>"+descText+"</div>"
 
 e.target.appendChild(popup)
 
@@ -1365,7 +1351,7 @@ popup.style.display="block"
 return
 }
 
-/* 다른 곳 클릭하면 닫기 */
+/* 다른 곳 클릭 → 팝업 닫기 */
 
 let popup=document.querySelector(".mag-help-popup")
 
