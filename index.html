@@ -513,18 +513,22 @@ margin-bottom:25px;
 .mag-more{
 
 color:#ffd966;
-font-weight:600;
+font-weight:700;
+font-size:18px;   /* ✅ 글자 키움 */
+
 text-decoration:none;
+
+position:relative;
+z-index:10;       /* ✅ 버튼 위로 올림 */
 
 }
 
 .mag-more:hover{
+
 text-decoration:underline;
 }
-
-
+    
 /* help */
-
 .mag-help{
 
 margin-left:8px;
@@ -583,6 +587,8 @@ width:40px;
 height:40px;
 
 cursor:pointer;
+
+z-index:1;   /* ✅ more보다 아래 */
 
 }
 
