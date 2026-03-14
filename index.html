@@ -336,7 +336,7 @@ text-shadow:0 0 10px rgba(255,255,255,0.2);
 
 }
 
-.magazine-section h2 span{
+.magazine-section h2 span.small-icon{
 
 -webkit-text-fill-color:initial;
 background:none;
@@ -534,25 +534,46 @@ text-decoration:underline;
 .mag-help{
 
 margin-left:8px;
+
 cursor:pointer;
 
-font-size:15px;
-line-height:1;
+font-size:13px;
+font-weight:700;
 
-display:inline-block;
+width:20px;
+height:20px;
+
+display:inline-flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:#1f2933;
+color:#fff;
+
+border:1px solid #4b5563;
+
 position:relative;
 
-z-index:50;              /* 클릭 우선순위 */
-pointer-events:auto;     /* 클릭 허용 */
+z-index:50;
+pointer-events:auto;
+
+line-height:1;
 
 animation:none !important;
 transform:none !important;
-transition:none !important;
+transition:background .2s, border-color .2s;
 
 }
-    
+
+/* hover 효과 */
+
 .mag-help:hover{
-opacity:0.7;
+
+background:#2d3743;
+border-color:#ffd966;
+
 }
 
 /* =========================
