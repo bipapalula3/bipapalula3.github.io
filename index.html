@@ -535,12 +535,17 @@ margin-left:8px;
 
 cursor:pointer;
 
-font-size:19px;  
+font-size:19px;
 line-height:1;
 
 display:inline-block;
 
 position:relative;
+
+/* ❔ 아이콘 애니메이션 차단 */
+animation:none !important;
+transform:none !important;
+transition:none !important;
 
 }
 
@@ -1304,7 +1309,35 @@ YMPL New 아티스트 프로필 아카이브
 <!-- NEWVOICES_END -->
     
 <script>
-document.addEventListener("languageChanged",updateHelpPopup)    
+
+document.addEventListener("DOMContentLoaded",function(){
+
+/* 도움말 업데이트 (언어 변경 시) */
+function updateHelpPopup(){
+
+let popup=document.querySelector(".mag-help-popup")
+if(!popup) return
+
+let help=popup.parentElement
+
+let titleKey=help.dataset.i18nTitle
+let descKey=help.dataset.i18nDesc
+
+let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || ""
+let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || ""
+
+popup.innerHTML=
+"<strong>"+titleText+"</strong>"
++"<div>"+descText+"</div>"
+
+}
+
+/* 언어 토글 이벤트 */
+document.addEventListener("languageChanged",updateHelpPopup)
+
+
+/* 도움말 클릭 */
+
 document.addEventListener("click",function(e){
 
 if(e.target.classList.contains("mag-help")){
@@ -1332,10 +1365,15 @@ popup.style.display="block"
 return
 }
 
+/* 다른 곳 클릭하면 닫기 */
+
 let popup=document.querySelector(".mag-help-popup")
+
 if(popup){
 popup.remove()
 }
+
+})
 
 })
 
