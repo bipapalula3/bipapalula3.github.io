@@ -536,7 +536,7 @@ text-decoration:underline;
 margin-left:8px;
 cursor:pointer;
 
-font-size:19px;
+font-size:15px;
 line-height:1;
 
 display:inline-block;
@@ -1316,29 +1316,39 @@ YMPL New 아티스트 프로필 아카이브
 
 document.addEventListener("click",function(e){
 
-if(e.target.classList.contains("mag-help")){
+const help = e.target.closest(".mag-help");
 
-let old=document.querySelector(".mag-help-popup")
-if(old) old.remove()
+if(help){
 
-let titleKey=e.target.dataset.i18nTitle
-let descKey=e.target.dataset.i18nDesc
+let old=document.querySelector(".mag-help-popup");
+if(old) old.remove();
 
-let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || ""
-let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || ""
+let titleKey=help.dataset.i18nTitle;
+let descKey=help.dataset.i18nDesc;
 
-let popup=document.createElement("div")
-popup.className="mag-help-popup"
+let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || "";
+let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || "";
 
-popup.innerHTML="<strong>"+titleText+"</strong><div>"+descText+"</div>"
+let popup=document.createElement("div");
+popup.className="mag-help-popup";
 
-e.target.appendChild(popup)
+popup.innerHTML="<strong>"+titleText+"</strong><div>"+descText+"</div>";
 
-popup.style.display="block"
+help.appendChild(popup);
 
+popup.style.display="block";
+
+return;
 }
 
-})
+/* 다른 곳 클릭하면 닫기 */
+
+let popup=document.querySelector(".mag-help-popup");
+if(popup){
+popup.remove();
+}
+
+});
 
 </script>
     
