@@ -506,6 +506,9 @@ align-items:center;
 
 margin-bottom:25px;
 
+position:relative;   /* 클릭 레이어 기준 */
+z-index:40;          /* 캐러셀보다 위 */
+
 }
 
 /* more */
@@ -528,27 +531,26 @@ z-index:10;       /* ✅ 버튼 위로 올림 */
 text-decoration:underline;
 }
     
-/* help */
 .mag-help{
 
 margin-left:8px;
-
 cursor:pointer;
 
 font-size:19px;
 line-height:1;
 
 display:inline-block;
-
 position:relative;
 
-/* ❔ 아이콘 애니메이션 차단 */
+z-index:50;              /* 클릭 우선순위 */
+pointer-events:auto;     /* 클릭 허용 */
+
 animation:none !important;
 transform:none !important;
 transition:none !important;
 
 }
-
+    
 .mag-help:hover{
 opacity:0.7;
 }
@@ -602,9 +604,8 @@ CAROUSEL
 ================================ */
 
 .mag-carousel{
-
 position:relative;
-
+z-index:1;
 }
 
 .mag-track{
@@ -615,6 +616,9 @@ gap:20px;
 overflow:hidden;
 
 scroll-behavior:smooth;
+
+position:relative;
+z-index:1;
 
 }
 
@@ -1310,17 +1314,9 @@ YMPL New 아티스트 프로필 아카이브
     
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
-
-console.log("YMPL help system loaded")
-
-document.body.addEventListener("click", function(e){
-
-/* ❔ 클릭 확인 */
+document.addEventListener("click",function(e){
 
 if(e.target.classList.contains("mag-help")){
-
-console.log("help icon clicked")
 
 let old=document.querySelector(".mag-help-popup")
 if(old) old.remove()
@@ -1328,38 +1324,19 @@ if(old) old.remove()
 let titleKey=e.target.dataset.i18nTitle
 let descKey=e.target.dataset.i18nDesc
 
-console.log("titleKey:",titleKey)
-console.log("descKey:",descKey)
-
-let titleEl=document.querySelector('[data-i18n="'+titleKey+'"]')
-let descEl=document.querySelector('[data-i18n="'+descKey+'"]')
-
-let titleText=titleEl ? titleEl.innerText : ""
-let descText=descEl ? descEl.innerText : ""
+let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || ""
+let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || ""
 
 let popup=document.createElement("div")
 popup.className="mag-help-popup"
 
-popup.innerHTML=
-"<strong>"+titleText+"</strong>"+
-"<div>"+descText+"</div>"
+popup.innerHTML="<strong>"+titleText+"</strong><div>"+descText+"</div>"
 
 e.target.appendChild(popup)
 
 popup.style.display="block"
 
-return
 }
-
-/* 다른 곳 클릭 → 팝업 닫기 */
-
-let popup=document.querySelector(".mag-help-popup")
-
-if(popup){
-popup.remove()
-}
-
-})
 
 })
 
