@@ -375,7 +375,18 @@
         }
                         
         .magazine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .magazine-card { background: #1a1d23; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.3s; cursor: pointer; }
+        .magazine-card {
+            background: #1a1d23;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.3s;
+            cursor: pointer;
+        
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
         .magazine-card:hover { border-color: var(--gold-main); transform: translateY(-5px); }
         .magazine-card h3 { color: var(--gold-bright); margin-top: 0; font-size: 1.2rem; }
         .magazine-card p { color: #9ca3af; font-size: 0.95rem; margin: 10px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
