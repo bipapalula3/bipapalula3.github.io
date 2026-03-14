@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YMPL | K-POP TIDAL Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #1a1d23;
+            --gold-main: #ffd966;
+            --gold-bright: #fff6d5;
+            --gold-dark: #7c662d;
+            --text-main: #e5e7eb;
+            --primary-blue: #2563eb;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+            word-break: keep-all; 
+        }
+
+        /* 기존 nav 스타일 수정 */
+        nav {
+            display: flex;
+            flex-direction: column; /* 세로 정렬 */
+            padding: 10px 5%;
+            gap: 10px; /* 로고줄과 컨트롤줄 사이 간격 */
+        }
+        
+        /* 1행 로고 */
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        /* 2행 컨트롤 */
+        .nav-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px; /* 기존 10px에서 15px로 살짝 늘리기 */
+            padding: 0 5px; /* 좌우 여백 확보 */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* 언어 버튼 스타일 */
+        .lang-switcher {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .lang-switcher button {
+            background: #1f2933;
+            border: 1px solid #4b5563;
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        /* 드롭다운 컨테이너 너비 조정 */
+        .custom-select-container {
+            flex-grow: 1; /* 남은 공간을 드롭다운이 차지하게 함 */
+            max-width: 200px; /* 너무 커지지 않게 제한 */
+        }
+                
+        /* 로고 모바일 최적화 */
+        .logo { 
+            font-weight: 700; 
+            font-size: 1.3rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            white-space: nowrap; 
+        }
+        
+        /* 커스텀 드롭다운 스타일링 */
+        .custom-select-container {
+            position: relative;
+            width: 100%;
+            max-width: 180px;
+            font-size: 14px;
+        }
+        .select-trigger {
+            background: #1f2933;
+            color: #fff;
+            border: 1px solid #4b5563;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .select-options {
+            position: absolute;
+            top: 105%;
+            left: 0;
+            right: 0;
+            background: #1f2933;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            display: none;
+            z-index: 1001;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .select-options.show {
+            display: block;
+        }
+        .select-option {
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            border-bottom: 1px solid #334155;
+            line-height: 1.4;
+        }
+        .select-option:last-child {
+            border-bottom: none;
+        }
+        .select-option:hover {
+            background: #2d3743;
+        }
+
+        /* ✅ 1. 애니메이션 정의: 배경을 가로로 이동시켜 흐르는 효과 생성 */
+        @keyframes kpopNeonShimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 200% 50%; /* 배경을 끝까지 이동 */
+            }
+        }
+        
+        /* ✅ 2. h1 태그에 효과 적용 */
+        .hero h1 {
+            font-size: 3.0rem; /* 모바일 등을 고려해 크기 키움 (기존 2.2rem에서 수정) */
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase; /* 네온 감성을 위해 대문자 변환 (선택사항) */
+            letter-spacing: 1px; /* 글자 간격 살짝 넓힘 (선택사항) */
+        
+            /* 💡 그라데이션 설정 (안드로이드 코드와 동일색상) */
+            /* -20도 사선, 시안 -> 마젠타 -> 옐로우 -> 다시 시안 */
+            background: linear-gradient(-20deg, #00D4FF, #FF007F, #FDE100, #00D4FF);
+            
+            /* 💡 그라데이션 영역을 텍스트로 제한 (핵심!) */
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* 💡 원래 텍스트 색상을 투명하게 하여 배경 그라데이션이 보이게 함 */
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        
+            /* 💡 애니메이션 활성화 */
+            /* 애니메이션이 끊기지 않게 하려면 배경 크기를 늘려야 함 */
+            background-size: 200% auto; 
+            animation: kpopNeonShimmer 10s linear infinite; /* 4초 동안 무한 반복 */
+            
+            /* 네온 느낌을 위한 약간의 그림자 (선택사항) */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }        
+        
+        /* 모바일 전용 설정 */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.3rem; /* 로고 글자 한 줄 유지 위해 축소 */
+            }
+            .logo img {
+                height: 24px;
+            }
+            
+            .custom-select-container {
+                max-width: 180px; /* 드롭다운 너비 축소 */
+            }
+            .select-trigger {
+                font-size: 15px;
+                padding: 6px 5px;
+            }
+            .select-option {
+                font-size: 15px; /* 모바일 목록 내부 글자 크기 확실히 축소 */
+                padding: 8px 10px;
+            }
+        
+            .hero {
+                padding: 20px 20px 100px !important; /* 상단 여백 대폭 축소 (자판 가림 방지) */
+            }
+            .hero h1 {
+                font-size: 2.0rem !important; /* 모바일에서는 크기 축소 */
+                white-space: nowrap; /* 한 줄 유지 */
+            }
+        }
+
+        /* 2. 메인 헤더 & 검색창 */
+        .hero { text-align: center; padding: 20px 20px 120px; background: linear-gradient(to bottom, #1e293b, #0f1115); }
+        .hero h1 { margin-bottom: 10px; }
+        .search-container { max-width: 600px; margin: 40px auto 0; position: relative; }
+        /* 2. 메인 헤더 & 검색창 */
+        .search-container input {
+            width: 100%; 
+            padding: 18px 25px; 
+            border-radius: 35px;
+            border: 2px solid #334155; 
+            background: #111827; 
+            color: #fff; 
+            font-size: 22px;        
+            font-weight: 500;             
+            outline: none; 
+            transition: 0.3s; 
+            box-sizing: border-box;
+        }  
+        /* (선택사항) 입력창 안의 '가수명 또는 앨범명을 입력하세요' 문구 크기도 맞추고 싶다면 아래를 추가하세요 */
+        .search-container input::placeholder {
+            font-size: 22px;          /* 플레이스홀더는 입력 글자보다 살짝 작게 하는 것이 예쁩니다 */
+            font-weight: 400;         /* 플레이스홀더는 너무 두꺼우면 답답해 보일 수 있어 400~500 추천 */
+        }
+        .search-container input:focus { 
+            border-color: var(--primary-blue); box-shadow: 0 0 15px rgba(37,99,235,0.2); 
+        }
+
+        /* 3. 보상형 버튼 */
+        .shortcut-grid {
+            display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 1200px; 
+            margin: -60px auto 50px; padding: 0 20px;
+        }
+
+        @media (min-width: 768px) {
+            .shortcut-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+
+        /* .about 섹션 안에 있는 h2 태그만 따로 크기 조절 */
+        .about h2 {
+            font-size: 1.5rem; /* 원하는 크기로 수정하세요 (예: 1.2rem, 20px 등) */
+        }
+
+        .about ul {
+            padding-left: 0;            /* 1. 왼쪽 여백을 없애서 텍스트와 딱 맞게 정렬 */
+            list-style-position: inside; /* 2. 글머리 기호(점)를 텍스트 안쪽으로 넣음 */
+        }
+       
+        /* 푸터 및 저작권 섹션 스타일 */
+        .footer-container {
+            padding: 40px 20px;
+            border-top: 1px solid #334155;
+            margin-top: 80px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            background-color: #0f1115;
+        }
+        
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ffd966; /* 골드 색상으로 포인트 */
+        }
+        
+        .copyright {
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        .reward-card {
+            background: linear-gradient(145deg, #2a2414, #1c170c);
+            border: 1px solid var(--gold-dark); 
+            border-radius: 16px;
+            padding: 20px 20px; 
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.5s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            animation: borderPulse 2.5s infinite ease-in-out;
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        .reward-card:active { transform: scale(0.96); }
+
+        @keyframes borderPulse {
+            0% { border-color: var(--gold-dark); }
+            50% { border-color: var(--gold-main); }
+            100% { border-color: var(--gold-dark); }
+        }
+
+        .reward-card::before {
+            content: '';
+            position: absolute; top: -50%; left: -150%;
+            width: 50%; height: 200%;
+            background: linear-gradient(to right, transparent, rgba(255, 246, 213, 0.15), transparent);
+            transform: rotate(30deg);
+            animation: shimmer 5s infinite linear;
+        }
+        
+        .reward-card:hover { transform: translateY(-5px); }
+        .reward-card h3 { color: var(--gold-main); margin: 0 0 5px; font-size: 1.3rem; }
+        .reward-card p { color: #ddd; margin: 0; font-size: 1.2rem; font-weight: 500; }
+
+        @keyframes shimmer { 0% { left: -150%; } 100% { left: 150%; } }
+        .about { max-width: 800px; margin: 80px auto; padding: 20px; line-height: 1.8; color: #9ca3af; }
+
+        /* 매거진 섹션 전체 스타일 */
+        .magazine-section { 
+            max-width: 1200px; 
+            margin: 80px auto; 
+            padding: 0 20px; 
+        }
+        
+        /* 매거진 제목 스타일 (통합) */
+        .magazine-section h2 { 
+            font-size: 1.6rem; 
+            margin-bottom: 30px; 
+            font-weight: 700;
+            text-align: left;
+            
+            /* 그라데이션 적용 */
+            background: linear-gradient(-45deg, #00D4FF, #FF007F, #FDE100, #00D4FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            background-size: 200% auto; 
+            animation: kpopNeonShimmer 4s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 이모지(트로피, 별 등) 크기 및 색상 설정 */
+        .small-icon, .star-emoji {
+            display: inline-block;
+            vertical-align: middle;
+            
+            /* 핵심: 부모 h2의 그라데이션 및 투명 효과 강제 해제 */
+            -webkit-text-fill-color: initial !important; 
+            background: none !important;
+            background-clip: unset !important;
+            color: initial !important; 
+            
+            /* 원하시는 크기 설정 */
+            animation: pulse-emoji 1.8s infinite ease-in-out;
+
+            /* 3. 살짝 위로 올리기 (값이 클수록 더 올라감) */
+            position: relative;
+            top: -5px;
+        }
+
+        .small-icon {
+            font-size: 0.9em;      /* 크기 줄이기 */
+        }
+        
+        @keyframes pulse-emoji {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); } /* 1.3배까지 커짐 */
+        }
+                        
+        .magazine-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .magazine-card { background: #1a1d23; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.3s; cursor: pointer; }
+        .magazine-card:hover { border-color: var(--gold-main); transform: translateY(-5px); }
+        .magazine-card h3 { color: var(--gold-bright); margin-top: 0; font-size: 1.2rem; }
+        .magazine-card p { color: #9ca3af; font-size: 0.95rem; margin: 10px 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .magazine-card .date { color: #4b5563; font-size: 0.8rem; margin-top: 10px; }
+        /* 3. 더보기(placeholder) 카드 전용 스타일 */
+        .magazine-card.placeholder-more {
+            display: flex; align-items: center; justify-content: center;
+            border: 2px dashed var(--gold-dark) !important;
+            background: transparent !important;
+            height: 100%; min-height: 150px;
+        }
+        .magazine-card.placeholder-more h3 { color: var(--gold-main) !important; margin: 0; }
+        /* 매거진 카드 내 이미지 스타일 */
+        .mag-card-img {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .mag-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .magazine-card:hover .mag-card-img img {
+            transform: scale(1.05);
+        }
+        .mag-card-content h3 {
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* 메인 카드와 구분하기 위한 스타일 예시 */
+        .archive-card {
+            background-color: #252525 !important; /* 메인보다 살짝 어둡게 */
+            border: 1px dashed #4a4a4a !important; /* 점선 테두리로 '보관소' 느낌 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .archive-card:hover {
+            background-color: #333333 !important;
+            border-style: solid !important;
+        }
+        
+        .archive-card h3 {
+            color: #93c5fd; /* 테마 컬러 유지 */
+            margin-bottom: 8px;
+        }
+        
+        .archive-card p {
+            font-size: 14px;
+            color: #a0a0a0; /* 본문보다 연하게 */
+            margin-bottom: 15px;
+        }
+        
+        .btn-more {
+            font-size: 13px;
+            font-weight: bold;
+            color: #ffffff;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-top">
+        <div class="logo">
+            <img src="YMPL/icon80.png" alt="YMPL" height="30" onerror="this.src='icon80.png'">
+            <span>YMPL</span>
+        </div>
+    </div>
+
+    <div class="nav-bottom">
+        <div class="lang-switcher">
+            <button onclick="switchLanguage('en')">EN</button>
+            <button onclick="switchLanguage('ko')">KO</button>
+            <button onclick="switchLanguage('es')">ES</button>
+            <button onclick="switchLanguage('zh')">ZH</button>
+        </div>
+        <div class="custom-select-container" id="customSelect">
+            <div class="select-trigger">Kpop Artist Index (가나다)</div>
+            <div class="select-options">
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣(G,K) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣(G,K) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣(N) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣(D) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣(L,R) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣(M) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣(B,P,V) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣(B,P,V) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣(C,S) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣(C,S) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣(A,I,O) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣(A,I,O) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣(A,I,O) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣(A,I,O) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣(A,I,O) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣(J,G) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣(J,G) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣(Ch) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣(C,K Link)</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣(T) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣(F,P) Link</div>
+                <div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣(H) Link</div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <h1>TIDAL K-POP Finder</h1>
+    <p data-i18n="hero_desc">Discover K-POP on TIDAL at a glance.</p>
+    
+    <div class="search-container">
+        <form onsubmit="handleManualSearch(); return false;">
+            <input type="text" id="searchInput" name="q" data-i18n="search_placeholder" placeholder="Enter artist or song title" required autocomplete="off">
+        </form>
+    </div>
+</header>
+
+<section class="shortcut-grid">
+    <div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
+        <h3>🆕 Weekly New Kpop Releases</h3>
+        <p>이번 주 신규 발매 검색</p>
+    </div>
+    <div class="reward-card" onclick="processRewardSearch('WEEKLY_TOP', 'Ktop Chart - Newest First')">
+        <h3>🔥 Ktop Chart - Newest First</h3>
+        <p>최신곡순 TOP 차트 검색</p>
+    </div>
+    <div class="reward-card" onclick="processRewardSearch('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
+        <h3>💎 Latest Kpop Debut Albums</h3>
+        <p>최신 데뷔 앨범 검색</p>
+    </div>
+</section>    
+    
+<article class="about">
+    <h2 data-i18n="about_h2">Why should you use YMPL?</h2>
+    <p data-i18n="about_intro">YMPL is a professional K-POP archive platform...</p>
+    <ul>
+        <li><span data-i18n="f1_title">Intuitive Search:</span> <span data-i18n="f1_desc">Description...</span></li>
+        <li><span data-i18n="f2_title">Database:</span> <span data-i18n="f2_desc">Description...</span></li>
+        <li><span data-i18n="f3_title">Trends:</span> <span data-i18n="f3_desc">Description...</span></li>
+    </ul>
+    
+    <p data-i18n="about_closing">Closing statement...</p>
+</article>
+
+<!-- CHART_START -->
+
+<section class="magazine-section" id="sec-chart">
+    <h2><span class="small-icon">🏆</span> Chart Decoded</h2>
+    <div class="magazine-grid">
+
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_KTop_Chart_-_Newest_First/YMPL_KTop_Chart_-_Newest_First.html" style="text-decoration:none;">
+            <div class="magazine-card">
+                
+                <div class="mag-card-content">
+                    <h3 data-i18n="post_20260311_0_title">20260228 Ktop Chart - Newest First</h3>
+                    <p data-i18n="post_20260311_0_desc">20260228 Ktop Chart - Newest First</p>
+                    <div class="date">2026.03.11</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_KTop_Chart_-_Newest_First/YMPL_KTop_Chart_-_Newest_First.html" style="text-decoration:none;">
+            <div class="magazine-card">
+                
+                <div class="mag-card-content">
+                    <h3 data-i18n="post_20260311_1_title">20260308 Ktop Chart - Newest First</h3>
+                    <p data-i18n="post_20260311_1_desc">20260308 Ktop Chart - Newest First</p>
+                    <div class="date">2026.03.11</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://bipapalula3.github.io/YMPL/posts/chart-archive.html" style="text-decoration:none;">
+            <div class="magazine-card placeholder-more">
+                <h3 data-i18n="mag_chart_arc_title">주간 K-POP 차트 신곡 분석 아카이브</h3>
+                <p data-i18n="mag_chart_arc_desc">탑차트 신곡의 음악적 가치를 깊이 있게 분석하여 찾아오겠습니다.</p>
+                <div class="more-btn" data-i18n="view_more">+ 더보기</div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- CHART_END -->
+
+<!-- MBTI_START -->
+
+<section class="magazine-section" id="sec-mbti">
+    <h2><span class="star-emoji">🧬</span> MBTI Vibe Lab</h2>
+    <div class="magazine-grid">
+
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_Weekly_New_KPop_Releases/YMPL_Weekly_New_KPop_Releases.html" style="text-decoration:none;">
+            <div class="magazine-card">
+                
+                <div class="mag-card-content">
+                    <h3 data-i18n="post_20260311_0_title">20260228 Weekly New Kpop Releases</h3>
+                    <p data-i18n="post_20260311_0_desc">20260228 Weekly New Kpop Releases</p>
+                    <div class="date">2026.03.11</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://bipapalula3.github.io/YMPL/posts/mbti-archive.html" style="text-decoration:none;">
+            <div class="magazine-card placeholder-more">
+                <h3 data-i18n="mag_mbti_arc_title">주간 신곡 MBTI 감성 분석 아카이브</h3>
+                <p data-i18n="mag_mbti_arc_desc">당신의 감성과 어울리는 MBTI 분석 플레이리스트를 찾아보세요.</p>
+                <div class="more-btn" data-i18n="view_more">+ 더보기</div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- MBTI_END -->
+
+<!-- DEBUT_START -->
+
+<section class="magazine-section" id="sec-debut">
+    <h2><span class="star-emoji">✨</span> Debut Artist Spotlight</h2>
+    <div class="magazine-grid">
+
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html" style="text-decoration:none;">
+            <div class="magazine-card">
+                
+                <div class="mag-card-content">
+                    <h3 data-i18n="post_20260311_0_title">20260228 Latest Kpop Debut Albums</h3>
+                    <p data-i18n="post_20260311_0_desc">20260228 Latest Kpop Debut Albums</p>
+                    <div class="date">2026.03.11</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://bipapalula3.github.io/YMPL/posts/debut-archive.html" style="text-decoration:none;">
+            <div class="magazine-card placeholder-more">
+                <h3 data-i18n="mag_debut_arc_title">이번 달 데뷔 아티스트 프로필 아카이브</h3>
+                <p data-i18n="mag_debut_arc_desc">새롭게 데뷔한 아티스트의 프로필과 비하인드 스토리로 찾아오겠습니다.</p>
+                <div class="more-btn" data-i18n="view_more">+ 더보기</div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- DEBUT_END -->
+
+<!-- NEWVOICES_START -->
+
+<section class="magazine-section" id="sec-newvoices">
+    <h2><span class="star-emoji">🎤</span> New Voices on YMPL</h2>
+    <div class="magazine-grid">
+
+        <a href="https://bipapalula3.github.io/YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html" style="text-decoration:none;">
+            <div class="magazine-card">
+                
+                <div class="mag-card-content">
+                    <h3 data-i18n="post_20260311_0_title">나몰라패밀리(namolla family)</h3>
+                    <p data-i18n="post_20260311_0_desc">타이달 나몰라패밀리 ( Tidal namolla family )</p>
+                    <div class="date">2026.03.11</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://bipapalula3.github.io/YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html" style="text-decoration:none;">
+            <div class="magazine-card">
+                
+                <div class="mag-card-content">
+                    <h3 data-i18n="post_20260311_1_title">나미(Nami)</h3>
+                    <p data-i18n="post_20260311_1_desc">타이달 나미 ( Tidal Nami )</p>
+                    <div class="date">2026.03.11</div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://bipapalula3.github.io/YMPL/posts/newvoices-archive.html" style="text-decoration:none;">
+            <div class="magazine-card placeholder-more">
+                <h3 data-i18n="mag_voice_arc_title">YMPL New 아티스트 프로필 아카이브</h3>
+                <p data-i18n="mag_voice_arc_desc">새롭게 업데이트된 아티스트들의 프로필과 숨어 있는 앨범을 만나보세요.</p>
+                <div class="more-btn" data-i18n="view_more">+ 더보기</div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<!-- NEWVOICES_END -->
+
+<footer class="footer-container">
+    <div class="footer-links">
+        <a href="/privacy.html" data-i18n="nav_privacy">Privacy Policy</a>
+        <a href="/terms.html" data-i18n="nav_terms">Terms of Service</a>
+        <a href="/contact.html" data-i18n="nav_contact">Contact</a>
+    </div>
+        
+    <div class="copyright">
+        <p data-i18n="footer_notice_1">This site is a curation service that organizes information from external platforms such as TIDAL.</p>
+        <p data-i18n="footer_notice_2">All copyrights belong to their respective owners, and this site does not host any content directly.</p>
+        <p data-i18n="footer_copyright">© 2026 YMPL Music Database. All rights reserved.</p>
+    </div>
+</footer>
+    
+<script>
+    // 1. 번역 사전 데이터
+    const translations = {
+        'en': {
+            'hero_desc': 'Discover K-POP on TIDAL at a glance.',
+            'search_placeholder': 'Enter artist or song title',
+            'about_h2': 'Why should you use YMPL?',
+            'about_intro': 'Did you ever feel frustrated when you couldn\'t find the Korean artist or song you wanted on TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> is a professional K-POP archive platform for TIDAL users worldwide.',
+            'f1_title': '<strong>Intuitive Search Environment:</strong>',
+            'f1_desc': 'Simply enter an artist name or song title to be instantly redirected to the album and tracklist pages on TIDAL.',
+            'f2_title': '<strong>Organized Database:</strong>',
+            'f2_desc': 'Our artist index, categorized by the Korean alphabet, lets you view an artist\'s entire discography at a glance.',
+            'f3_title': '<strong>Stay Ahead of Trends:</strong>',
+            'f3_desc': 'Discover new releases, debut albums, and top charts updated weekly to keep up with the latest in K-POP.',
+            'about_closing': 'Spend less time searching and more time enjoying TIDAL’s high-fidelity sound. YMPL aims to make your music listening experience more convenient and enriched.',
+            'nav_privacy': 'Privacy Policy', 'nav_terms': 'Terms of Service', 'nav_contact': 'Contact',
+            'footer_notice_1': 'This site is a curation service that organizes information from external platforms such as TIDAL.',
+            'footer_notice_2': 'All copyrights belong to their respective owners, and this site does not host any content directly.',
+            'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.',
+            'view_more': '+ View More',
+            'mag_chart_arc_title': 'Weekly K-POP Chart Analysis',
+            'mag_chart_arc_desc': 'We will return with deeper musical analysis of top chart hits.',
+            'mag_mbti_arc_title': 'Weekly New Song MBTI Analysis',
+            'mag_mbti_arc_desc': 'Find the MBTI analysis playlist that matches your vibe.',
+            'mag_debut_arc_title': 'Monthly Debut Artist Profiles',
+            'mag_debut_arc_desc': 'Stay tuned for new debut artist profiles and stories.',
+            'mag_voice_arc_title': 'YMPL New Artist Archive',
+            'mag_voice_arc_desc': 'Discover updated profiles and hidden gems of new artists.'
+        },
+        'ko': {
+            'hero_desc': 'TIDAL에서 K-POP을 한눈에 찾아보세요.',
+            'search_placeholder': '아티스트나 곡 제목을 입력하세요',
+            'about_h2': '왜 YMPL을 사용해야 할까요?',
+            'about_intro': '한국 가수의 음원을 찾을 때 원하는 결과가 잘 나오지 않아 답답하셨나요? <strong>YMPL(Your Music Playlist Link)</strong>은 전 세계 고음질 스트리밍 서비스인 TIDAL 사용자를 위해 탄생한 K-POP 전문 아카이브 플랫폼입니다.',
+            'f1_title': '<strong>직관적인 검색 환경:</strong>',
+            'f1_desc': '복잡한 검색어 없이 아티스트명이나 곡 제목만 입력하면, TIDAL의 앨범 및 수록곡 페이지로 즉시 연결됩니다.',
+            'f2_title': '<strong>체계적인 데이터베이스:</strong>',
+            'f2_desc': '가나다순으로 정렬된 아티스트 인덱스를 통해 내가 찾는 가수의 디스코그래피를 한눈에 확인할 수 있습니다.',
+            'f3_title': '<strong>빠른 최신 트렌드 확인:</strong>',
+            'f3_desc': '매주 업데이트되는 신규 발매곡, 최신 데뷔 앨범, TOP 차트 정보를 통해 놓치기 쉬운 K-POP 소식을 가장 빠르게 접할 수 있습니다.',
+            'about_closing': '검색 시간을 줄이고, TIDAL만의 고음질 사운드를 즐기는 데 더 집중하세요. YMPL은 여러분의 음악 감상 경험을 더 편리하고 풍요롭게 만드는 것을 목표로 합니다.',
+            'nav_privacy': '개인정보처리방침', 'nav_terms': '이용약관', 'nav_contact': '문의하기',
+            'footer_notice_1': '본 사이트는 TIDAL 등 외부 플랫폼의 정보를 정리한 큐레이션 서비스입니다.',
+            'footer_notice_2': '모든 저작권은 각 권리자에게 있으며, 본 사이트는 콘텐츠를 직접 호스팅하지 않습니다.',
+            'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.',
+            'view_more': '+ 더보기',
+            'mag_chart_arc_title': '주간 K-POP 차트 신곡 분석',
+            'mag_chart_arc_desc': '탑차트 신곡의 음악적 가치를 깊이 있게 분석하여 찾아오겠습니다.',
+            'mag_mbti_arc_title': '주간 신곡 MBTI 감성 분석',
+            'mag_mbti_arc_desc': '당신의 감성과 어울리는 MBTI 분석 플레이리스트를 찾아보세요.',
+            'mag_debut_arc_title': '이번 달 데뷔 아티스트 프로필',
+            'mag_debut_arc_desc': '새롭게 데뷔한 아티스트의 프로필과 비하인드 스토리로 찾아오겠습니다.',
+            'mag_voice_arc_title': 'YMPL New 아티스트 프로필',
+            'mag_voice_arc_desc': '새롭게 업데이트된 아티스트들의 프로필과 숨어 있는 앨범을 만나보세요.'
+        },
+        'es': {
+            'hero_desc': 'Descubra K-POP en TIDAL de un vistazo.',
+            'search_placeholder': 'Ingrese artista o título de canción',
+            'about_h2': '¿Por qué deberías usar YMPL?',
+            'about_intro': '¿Alguna vez te has sentido frustrado al buscar música de artistas coreanos en TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> es una plataforma de archivo profesional de K-POP diseñada para usuarios de TIDAL en todo el mundo.',
+            'f1_title': '<strong>Búsqueda intuitiva:</strong>',
+            'f1_desc': 'Simplemente introduce el nombre del artista o el título de la canción para ser redirigido al instante a las páginas de álbumes y pistas en TIDAL.',
+            'f2_title': '<strong>Base de datos organizada:</strong>',
+            'f2_desc': 'Nuestro índice de artistas te permite ver la discografía completa de un artista de un vistazo.',
+            'f3_title': '<strong>Mantente al día:</strong>',
+            'f3_desc': 'Descubre nuevos lanzamientos, álbumes debut y listas de éxitos actualizadas semanalmente para no perderte nada del K-POP.',
+            'about_closing': 'Pasa menos tiempo buscando y más tiempo disfrutando del sonido de alta fidelidad de TIDAL. YMPL tiene como objetivo hacer que tu experiencia musical sea más cómoda y enriquecedora.',
+            'nav_privacy': 'Política de privacidad', 'nav_terms': 'Términos de servicio', 'nav_contact': 'Contacto',
+            'footer_notice_1': 'Este sitio es un servicio de curación que organiza información de plataformas externas como TIDAL.',
+            'footer_notice_2': 'Todos los derechos de autor pertenecen a sus respectivos propietarios y este sitio no aloja contenido directamente.',
+            'footer_copyright': '© 2026 YMPL Music Database. Todos los derechos reservados.',
+            'view_more': '+ Ver más',
+            'mag_chart_arc_title': 'Análisis de listas K-POP',
+            'mag_chart_arc_desc': 'Volveremos con análisis musicales más profundos de los éxitos.',
+            'mag_mbti_arc_title': 'Análisis MBTI de nuevas canciones',
+            'mag_mbti_arc_desc': 'Encuentra la lista de reproducción MBTI que mejor se adapte a ti.',
+            'mag_debut_arc_title': 'Perfiles de artistas debutantes del mes',
+            'mag_debut_arc_desc': 'Mantente al tanto para nuevos perfiles e historias de debuts.',
+            'mag_voice_arc_title': 'Archivo de nuevos artistas YMPL',
+            'mag_voice_arc_desc': 'Descubre perfiles actualizados y tesoros ocultos de nuevos artistas.'
+        },
+        'zh': {
+            'hero_desc': '一目了然地探索 TIDAL 上的 K-POP。',
+            'search_placeholder': '输入艺人或歌曲名称',
+            'about_h2': '为什么您应该使用 YMPL?',
+            'about_intro': '当您在 TIDAL 上搜索韩国歌手的音乐时，是否曾因为找不到想要的结果而感到沮丧？<strong>YMPL (Your Music Playlist Link)</strong> 是一个面向全球 TIDAL 用户的专业 K-POP 档案搜索平台。',
+            'f1_title': '<strong>直观的搜索环境：</strong>',
+            'f1_desc': '只需输入艺人姓名或歌曲名称，即可立即跳转至 TIDAL 的专辑及曲目页面。',
+            'f2_title': '<strong>系统化的数据库：</strong>',
+            'f2_desc': '通过分类索引，您可以一目了然地查看艺人的完整作品集。',
+            'f3_title': '<strong>快速获取最新趋势：</strong>',
+            'f3_desc': '每周更新的新歌、出道专辑和热门榜单，让您不错过任何 K-POP 动态。',
+            'about_closing': '减少搜索时间，将更多时间用于享受 TIDAL 的高保真音质。YMPL 旨在让您的音乐体验更加便捷和丰富。',
+            'nav_privacy': '隐私政策', 'nav_terms': '服务条款', 'nav_contact': '联系我们',
+            'footer_notice_1': '本网站是一个整理 TIDAL 等外部平台信息的策展服务。',
+            'footer_notice_2': '所有版权归各自权利人所有，本网站不直接托管任何内容。',
+            'footer_copyright': '© 2026 YMPL Music Database. 保留所有权利。',
+            'view_more': '+ 查看更多',
+            'mag_chart_arc_title': '每周 K-POP 榜单分析',
+            'mag_chart_arc_desc': '我们将带来更深入的热门歌曲音乐价值分析。',
+            'mag_mbti_arc_title': '每周新歌 MBTI 情感分析',
+            'mag_mbti_arc_desc': '寻找与您的情感相契合的 MBTI 分析歌单。',
+            'mag_debut_arc_title': '本月出道艺人档案',
+            'mag_debut_arc_desc': '敬请期待更多精彩的新人艺人资料与故事。',
+            'mag_voice_arc_title': 'YMPL 新晋艺人档案库',
+            'mag_voice_arc_desc': '探索新晋艺人的最新档案及其隐藏专辑。'
+        }
+    };
+
+   
+    // 2. 검색 설정
+    const TARGET_SEARCH_PAGE = 'YMPL/search.html';
+
+    // 3. 주요 함수들
+    function switchLanguage(lang) {
+        if (!translations[lang]) lang = 'en';
+        
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                // input 태그인 경우 placeholder 속성을 수정
+                if (element.tagName === 'INPUT') {
+                    element.placeholder = translations[lang][key];
+                } else {
+                    element.innerHTML = translations[lang][key];
+                }
+            }
+        });
+        localStorage.setItem('preferredLang', lang);
+    }
+
+    function initLanguage() {
+        const savedLang = localStorage.getItem('preferredLang');
+        if (savedLang) {
+            switchLanguage(savedLang);
+            return;
+        }
+        const browserLang = navigator.language.substring(0, 2);
+        const supportedLangs = ['en', 'ko', 'es', 'zh'];
+        switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+    }
+
+    function generateAppKey(rewardType) {
+        const now = new Date();
+        const dateString = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+        const digits = dateString.split('');
+        let builder = "";
+        for (let i = 0; i < digits.length; i += 2) builder += digits[i];
+        for (let i = digits.length - 1; i >= 0; i--) if (i % 2 === 1) builder += digits[i];
+        const typeChar = { 'WEEKLY_NEW': 'N', 'WEEKLY_TOP': 'T', 'MONTHLY_DEBUT': 'D' }[rewardType];
+        let insertIndex = parseInt(dateString.slice(-1)) % 4; 
+        return builder.slice(0, insertIndex) + typeChar + builder.slice(insertIndex);
+    }
+
+    function processRewardSearch(type, displayText) {
+        const encryptedKey = generateAppKey(type);
+        window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
+    }
+
+    function handleManualSearch() {
+        const query = document.getElementById('searchInput').value.trim();
+        if (query === "") return false;
+        window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
+        return false;
+    }
+
+    // 4. 페이지 초기화
+    document.addEventListener('DOMContentLoaded', () => {
+        initLanguage();
+
+        // 드롭다운 이벤트
+        const trigger = document.querySelector('.select-trigger');
+        const menu = document.querySelector('.select-options');
+        trigger?.addEventListener('click', () => menu.classList.toggle('show'));
+
+        // 드롭다운 메뉴 선택 시 URL 이동 전 확인 로직
+        document.querySelectorAll('.select-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                const url = opt.getAttribute('data-value');
+                if (url) {
+                    // 현재 페이지와 동일한 도메인인지 확인 후 이동
+                    window.location.href = url; 
+                }
+                menu.classList.remove('show');
+            });
+        });
+
+        // 하단 Copyright 자동 연도 업데이트 예시
+        document.querySelector('[data-i18n="footer_copyright"]').innerHTML = `© ${new Date().getFullYear()} YMPL Music Database. All rights reserved.`;
+
+        // 외부 클릭 시 드롭다운 닫기 부분 수정 제안
+        window.addEventListener('click', (e) => {
+            const container = document.getElementById('customSelect');
+            // menu 변수가 상단에 정의되어 있으므로 menu가 존재할 때만 show 클래스 제거
+            if (container && !container.contains(e.target) && menu) {
+                menu.classList.remove('show');
+            }
+        });
+    });
+</script>    
+</body>
+</html>
