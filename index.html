@@ -537,11 +537,8 @@ margin-left:8px;
 
 cursor:pointer;
 
-font-size:13px;
-font-weight:700;
-
-width:20px;
-height:20px;
+width:22px;
+height:22px;
 
 display:inline-flex;
 align-items:center;
@@ -550,22 +547,28 @@ justify-content:center;
 border-radius:50%;
 
 background:#1f2933;
-color:#fff;
-
 border:1px solid #4b5563;
 
 position:relative;
+top:-3px;
 
 z-index:50;
-pointer-events:auto;
-
-line-height:1;
-
-animation:none !important;
-transform:none !important;
-transition:background .2s, border-color .2s;
 
 }
+
+/* ? 표시 */
+
+.mag-help::before{
+
+content:"?";
+
+color:#ffffff;
+
+font-size:15px;
+font-weight:700;
+
+}
+
 
 /* hover 효과 */
 
@@ -1073,9 +1076,7 @@ Chart Decoded
 
 <span class="mag-help"
 data-i18n-title="mag_chart_arc_title"
-data-i18n-desc="mag_chart_arc_desc">
-❔
-</span>
+data-i18n-desc="mag_chart_arc_desc"></span>
 
 </h2>
 
@@ -1347,8 +1348,9 @@ if(old) old.remove();
 let titleKey=help.dataset.i18nTitle;
 let descKey=help.dataset.i18nDesc;
 
-let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || "";
-let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || "";
+/* 현재 번역 시스템에서 텍스트 읽기 */
+let titleText = window.i18n?.[titleKey] || "";
+let descText = window.i18n?.[descKey] || "";
 
 let popup=document.createElement("div");
 popup.className="mag-help-popup";
