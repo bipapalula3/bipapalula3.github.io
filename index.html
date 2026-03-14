@@ -493,6 +493,101 @@ font-size:.8rem;
 margin-top:auto;
 
 }
+
+/* ================================
+MAGAZINE HEADER
+================================ */
+
+.mag-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+/* more */
+
+.mag-more{
+
+color:#ffd966;
+font-weight:600;
+text-decoration:none;
+
+}
+
+.mag-more:hover{
+text-decoration:underline;
+}
+
+
+/* help */
+
+.mag-help{
+
+margin-left:8px;
+cursor:pointer;
+opacity:.7;
+
+}
+
+.mag-help:hover{
+opacity:1;
+}
+
+
+/* ================================
+CAROUSEL
+================================ */
+
+.mag-carousel{
+
+position:relative;
+
+}
+
+.mag-track{
+
+display:flex;
+gap:20px;
+
+overflow:hidden;
+
+scroll-behavior:smooth;
+
+}
+
+.mag-slide{
+
+min-width:320px;
+text-decoration:none;
+color:inherit;
+
+}
+
+.mag-prev,
+.mag-next{
+
+position:absolute;
+top:40%;
+
+background:#000;
+border:none;
+
+color:#fff;
+font-size:28px;
+
+width:40px;
+height:40px;
+
+cursor:pointer;
+
+}
+
+.mag-prev{ left:-20px; }
+.mag-next{ right:-20px; }    
     
 /* =========================================================
 MAGAZINE PREMIUM UPGRADE
@@ -1137,7 +1232,53 @@ YMPL New 아티스트 프로필 아카이브
 </div>
 </section>
 <!-- NEWVOICES_END -->
+    
+<script>
 
+/* help popup */
+
+document.addEventListener("click",function(e){
+
+if(e.target.classList.contains("mag-help")){
+
+alert(
+e.target.dataset.title +
+"\n\n" +
+e.target.dataset.desc
+)
+
+}
+
+})
+
+/* carousel */
+
+document.querySelectorAll(".mag-carousel").forEach(carousel=>{
+
+const track=carousel.querySelector(".mag-track")
+
+carousel.querySelector(".mag-next").onclick=()=>{
+
+track.scrollBy({
+left:340,
+behavior:"smooth"
+})
+
+}
+
+carousel.querySelector(".mag-prev").onclick=()=>{
+
+track.scrollBy({
+left:-340,
+behavior:"smooth"
+})
+
+}
+
+})
+
+</script>
+    
 <footer class="footer-container">
     <div class="footer-links">
         <a href="/privacy.html" data-i18n="nav_privacy">Privacy Policy</a>
