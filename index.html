@@ -544,9 +544,8 @@ position:relative;
 
 }
 
-
 .mag-help:hover{
-opacity:1;
+opacity:0.7;
 }
 
 /* =========================
@@ -1303,24 +1302,26 @@ YMPL New 아티스트 프로필 아카이브
 <!-- NEWVOICES_END -->
     
 <script>
-
+document.addEventListener("languageChanged",updateHelpPopup)    
 document.addEventListener("click",function(e){
-
-/* help icon 클릭 */
 
 if(e.target.classList.contains("mag-help")){
 
 let old=document.querySelector(".mag-help-popup")
-
 if(old) old.remove()
 
-let popup=document.createElement("div")
+let titleKey=e.target.dataset.i18nTitle
+let descKey=e.target.dataset.i18nDesc
 
+let titleText=document.querySelector('[data-i18n="'+titleKey+'"]')?.innerText || ""
+let descText=document.querySelector('[data-i18n="'+descKey+'"]')?.innerText || ""
+
+let popup=document.createElement("div")
 popup.className="mag-help-popup"
 
 popup.innerHTML=
-"<strong>"+e.target.dataset.title+"</strong>"
-+"<div>"+e.target.dataset.desc+"</div>"
+"<strong>"+titleText+"</strong>"
++"<div>"+descText+"</div>"
 
 e.target.appendChild(popup)
 
@@ -1329,14 +1330,9 @@ popup.style.display="block"
 return
 }
 
-/* 다른 곳 클릭하면 닫기 */
-
 let popup=document.querySelector(".mag-help-popup")
-
 if(popup){
-
 popup.remove()
-
 }
 
 })
