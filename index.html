@@ -532,14 +532,63 @@ text-decoration:underline;
 .mag-help{
 
 margin-left:8px;
+
 cursor:pointer;
-opacity:.7;
+
+font-size:19px;  
+line-height:1;
+
+display:inline-block;
+
+position:relative;
 
 }
+
 
 .mag-help:hover{
 opacity:1;
 }
+
+/* =========================
+HELP POPUP
+========================= */
+
+.mag-help-popup{
+
+position:absolute;
+
+bottom:35px;
+left:0;
+
+width:260px;
+
+background:#111;
+color:#fff;
+
+padding:12px 14px;
+
+border-radius:8px;
+
+box-shadow:0 4px 14px rgba(0,0,0,0.4);
+
+font-size:14px;
+
+z-index:1000;
+
+display:none;
+
+}
+
+.mag-help-popup strong{
+
+display:block;
+margin-bottom:6px;
+
+font-size:15px;
+
+color:#ffd966;
+
+}    
 
 
 /* ================================
@@ -1253,43 +1302,38 @@ YMPL New 아티스트 프로필 아카이브
     
 <script>
 
-/* help popup */
-
 document.addEventListener("click",function(e){
+
+/* help icon 클릭 */
 
 if(e.target.classList.contains("mag-help")){
 
-alert(
-e.target.dataset.title +
-"\n\n" +
-e.target.dataset.desc
-)
+let old=document.querySelector(".mag-help-popup")
 
+if(old) old.remove()
+
+let popup=document.createElement("div")
+
+popup.className="mag-help-popup"
+
+popup.innerHTML=
+"<strong>"+e.target.dataset.title+"</strong>"
++"<div>"+e.target.dataset.desc+"</div>"
+
+e.target.appendChild(popup)
+
+popup.style.display="block"
+
+return
 }
 
-})
+/* 다른 곳 클릭하면 닫기 */
 
-/* carousel */
+let popup=document.querySelector(".mag-help-popup")
 
-document.querySelectorAll(".mag-carousel").forEach(carousel=>{
+if(popup){
 
-const track=carousel.querySelector(".mag-track")
-
-carousel.querySelector(".mag-next").onclick=()=>{
-
-track.scrollBy({
-left:340,
-behavior:"smooth"
-})
-
-}
-
-carousel.querySelector(".mag-prev").onclick=()=>{
-
-track.scrollBy({
-left:-340,
-behavior:"smooth"
-})
+popup.remove()
 
 }
 
