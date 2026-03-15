@@ -533,15 +533,15 @@ text-decoration:underline;
     
 .mag-help{
 
-margin-left:8px;
+margin-left:6px;
 cursor:pointer;
 
-width:22px;
-height:22px;
-
-display:flex;
+display:inline-flex;
 align-items:center;
 justify-content:center;
+
+width:20px;
+height:20px;
 
 border-radius:50%;
 
@@ -549,11 +549,21 @@ background:transparent;
 border:1px solid #4b5563;
 
 font-size:15px;
+font-weight:700;
+
+color:#ffd966; /* 강조 색 */
+
+vertical-align:middle;
 
 position:relative;
-top:-2px;
+top:-1px;
 
 z-index:50;
+
+/* 강조 효과 */
+text-shadow:0 0 6px rgba(255,217,102,0.6);
+
+transition:all 0.18s ease;
 
 }
 
@@ -563,6 +573,12 @@ z-index:50;
 
 background:#2d3743;
 border-color:#ffd966;
+
+transform:scale(1.25);
+
+color:#fff;
+
+text-shadow:0 0 10px rgba(255,217,102,0.9);
 
 }
 
@@ -1325,13 +1341,9 @@ YMPL New 아티스트 프로필 아카이브
     
 <script>
 
-document.addEventListener("click", function (e) {
+document.addEventListener("DOMContentLoaded", function () {
 
-const help = e.target.closest(".mag-help");
-
-if (help) {
-
-document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
+document.querySelectorAll(".mag-help").forEach(help => {
 
 const titleKey = help.dataset.i18nTitle;
 const descKey = help.dataset.i18nDesc;
@@ -1340,28 +1352,16 @@ const descKey = help.dataset.i18nDesc;
 const lang = window.currentLang || "en";
 
 /* 번역 읽기 */
-const titleText = translations?.[lang]?.[titleKey] || "[title missing]";
-const descText = translations?.[lang]?.[descKey] || "[desc missing]";
+const titleText = translations?.[lang]?.[titleKey] || "";
+const descText = translations?.[lang]?.[descKey] || "";
 
-/* 팝업 생성 */
-const popup = document.createElement("div");
-popup.className = "mag-help-popup";
-
-popup.innerHTML =
-"<strong>" + titleText + "</strong>" +
-"<div>" + descText + "</div>";
-
-help.appendChild(popup);
-popup.style.display = "block";
-
-e.stopPropagation();
-return;
-}
-
-/* 외부 클릭시 닫기 */
-document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
+/* 브라우저 기본 tooltip */
+help.title = titleText + (descText ? " - " + descText : "");
 
 });
+
+});
+
 </script>
     
 <footer class="footer-container">
