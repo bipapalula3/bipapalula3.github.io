@@ -446,19 +446,32 @@
 			color: inherit;
 		}
 		.mag-prev, .mag-next {
-			position: absolute;
-			top: 40%;
-			background: #000;
-			border: none;
-			color: #fff;
-			font-size: 28px;
-			width: 40px;
-			height: 40px;
-			cursor: pointer;
-			z-index: 1;
+		    position: absolute;
+		    top: 50%; /* 중앙 정렬 */
+		    transform: translateY(-50%); /* 정확한 수직 중앙 */
+		    background: rgba(0, 0, 0, 0.7); /* 반투명 검정으로 카드 위에서도 잘 보이게 */
+		    border: 1px solid var(--gold-dark); /* 테두리를 주어 구분감 확보 */
+		    color: var(--gold-main); /* 화살표 색상을 골드로 */
+		    font-size: 24px;
+		    width: 44px;
+		    height: 44px;
+		    border-radius: 50%; /* 동그란 버튼으로 변경 */
+		    cursor: pointer;
+		    z-index: 100; /* [중요] 카드보다 훨씬 높은 숫자를 주어 위로 올림 */
+		    transition: all 0.3s ease;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
 		}
-		.mag-prev { left: -20px; }
-		.mag-next { right: -20px; }
+		
+		.mag-prev { left: 5px; }  /* 카드 안쪽으로 살짝 들어오게 배치 */
+		.mag-next { right: 5px; }
+		
+		.mag-prev:hover, .mag-next:hover {
+		    background: var(--gold-main);
+		    color: #000;
+		    border-color: var(--gold-main);
+		}
 		.mag-overlay {
 			position: absolute;
 			top: 0;
