@@ -450,20 +450,21 @@
 		    display:block;
 		}
 		
-		.mag-track{
+		.mag-track {
 		    display:flex;
 		    gap:20px;
 		    overflow-x:auto;
 		    overflow-y:visible;
 		    scroll-behavior:smooth;
-		    padding:2px 4px 4px 4px;   /* 좌우 + 위 여백 */
+		    padding:2px 4px 8px 8px;   /* 좌우 + 위 여백 */
 		}
 		
 		.mag-slide {
-		    min-width: 320px;
+		    flex: 0 0 calc((100% - 40px) / 3);
+		    max-width: calc((100% - 40px) / 3);
 		    text-decoration: none;
 		    color: inherit;
-			padding-top:8px;
+		    padding-top:8px;
 		}
 		
 		.mag-prev, .mag-next {
@@ -534,11 +535,11 @@
 		        overflow-y:visible;
 		        scroll-snap-type:x mandatory;
 		        -webkit-overflow-scrolling: touch;
-		        padding:2px 4px 4px 4px;   /* 좌우 여백 추가 */
+		        padding:2px 4px 8px 8px;   /* 좌우 여백 추가 */
 		    }
 		    
 		    .mag-slide {
-		        min-width:280px;               /* 카드 폭 증가 */
+		        min-width:300px;               /* 카드 폭 증가 */
 		        scroll-snap-align:start;
 		    }
 		    
@@ -979,6 +980,41 @@
 		    }
 		    // 바깥 클릭 시 팝업 닫기
 		    document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
+		});
+	</script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(){
+		
+		    document.querySelectorAll(".mag-carousel").forEach(carousel => {
+		
+		        const track = carousel.querySelector(".mag-track");
+		        const prev = carousel.querySelector(".mag-prev");
+		        const next = carousel.querySelector(".mag-next");
+		
+		        if(!track || !prev || !next) return;
+		
+		        function getSlideWidth(){
+		            const slide = track.querySelector(".mag-slide");
+		            const gap = 20;
+		            return slide.offsetWidth + gap;
+		        }
+		
+		        next.addEventListener("click", () => {
+		            track.scrollBy({
+		                left: getSlideWidth() * 3,
+		                behavior: "smooth"
+		            });
+		        });
+		
+		        prev.addEventListener("click", () => {
+		            track.scrollBy({
+		                left: -getSlideWidth() * 3,
+		                behavior: "smooth"
+		            });
+		        });
+		
+		    });
+		
 		});
 	</script>
     
