@@ -359,24 +359,23 @@
 		    z-index: 40;
 		}
 		
-		/* 카드 아래 배치되는 영역 */
 		.mag-footer {
-		    display: block !important; /* flex 대신 block으로 선언하여 한 줄을 다 차지하게 함 */
+		    display: block;              /* !important 제거 */
 		    width: 100%;
-		    clear: both;               /* 위쪽 요소와 겹침 방지 */
-		    padding-top: 20px;         /* 캐러셀과의 최소 간격 */
-		    text-align: left;          /* 좌측 정렬 */
-		    position: relative;        /* 위치 고정 */
-		    z-index: 10;
+		    clear: both;                 /* 캐러셀과 완전히 분리 */
+		    margin-top: 30px;            /* 카드와 간격 확보 */
+		    text-align: left;
+		    position: relative;
+		    z-index: 5;
 		}
 		
 		.mag-more {
-		    display: inline-block !important;
-		    color: #ffd966 !important;
+		    display: inline-block;
+		    color: #ffd966;
 		    font-weight: 700;
 		    font-size: 19px;
 		    text-decoration: none;
-		    margin-left: 5px;          /* 카드 시작 라인에 맞춤 */
+		    margin-left: 5px;
 		}
 		
 		.mag-more:hover {
@@ -403,9 +402,9 @@
 		    position: relative;
 		    top: -2px;
 		    z-index: 50;
-		    -webkit-text-fill-color: #ffd966 !important; 
-		    background-clip: border-box !important;
-		    text-shadow: none !important;
+		    -webkit-text-fill-color: #ffd966;
+		    background-clip: border-box;
+		    text-shadow: none;
 		    transition: all 0.18s ease;
 		}
 		
@@ -432,8 +431,8 @@
 		    z-index: 1000;
 		    line-height: 1.5;
 		    word-break: keep-all;
-		    -webkit-text-fill-color: #fff !important;
-		    text-shadow: none !important;
+		    -webkit-text-fill-color: #fff;
+		    text-shadow: none;
 		    backdrop-filter: blur(4px);
 		}
 		
@@ -444,12 +443,12 @@
 		    color: #ffd966;
 		}
 		
-		.mag-carousel {
+		.mag-carousel{
 		    position: relative;
-		    z-index: 1;
-		    margin-bottom: 40px; /* 아래쪽 더보기와 간격을 넉넉히 확보 */
+		    margin-bottom: 40px;
 		    width: 100%;
-		    overflow: visible;   /* 화살표가 잘리지 않도록 */
+		    overflow: visible;
+		    display:block;
 		}
 		
 		.mag-track {
@@ -527,11 +526,6 @@
 		    color: #ffd966;
 		}
 
-		.mag-footer{
-		    display:block;
-		    width:100%;
-		    margin-top:20px;
-		}
 		/* =========================================================
 		9. PLACEHOLDER / ARCHIVE CARD
 		========================================================= */
