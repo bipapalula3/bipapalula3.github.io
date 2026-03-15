@@ -294,7 +294,7 @@
 		
 		.magazine-card:hover {
 		    border-color: var(--gold-main);
-		    transform: translateY(-6px);
+		    transform: translateY(-6px) scale(1.02);
 		    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 12px rgba(255,217,102,0.15);
 		}
 		
@@ -363,7 +363,7 @@
 		    display: block;              /* !important 제거 */
 		    width: 100%;
 		    clear: both;                 /* 캐러셀과 완전히 분리 */
-		    margin-top: 30px;            /* 카드와 간격 확보 */
+		    margin-top: 10px;            /* 카드와 간격 확보 */
 		    text-align: left;
 		    position: relative;
 		    z-index: 5;
@@ -443,18 +443,18 @@
 		    color: #ffd966;
 		}
 		
-		.mag-carousel{
+		.mag-carousel {
 		    position: relative;
-		    margin-bottom: 40px;
+		    margin-bottom: 5px;
 		    width: 100%;
-		    overflow: visible;
+		    overflow: hidden;
 		    display:block;
 		}
 		
 		.mag-track {
 		    display: flex;
 		    gap: 20px;
-		    overflow: hidden;
+		    overflow: visible;
 		    scroll-behavior: smooth;
 		    position: relative;
 		    z-index: 1;
@@ -464,6 +464,7 @@
 		    min-width: 320px;
 		    text-decoration: none;
 		    color: inherit;
+			padding-top:8px;
 		}
 		
 		.mag-prev, .mag-next {
