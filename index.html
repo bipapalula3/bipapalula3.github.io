@@ -539,36 +539,28 @@ cursor:pointer;
 width:22px;
 height:22px;
 
-display:inline-flex;
+display:flex;
 align-items:center;
 justify-content:center;
 
 border-radius:50%;
 
-background:#1f2933;
+background:transparent;
 border:1px solid #4b5563;
+
+font-size:13px;
+font-weight:700;
+
+color:#ffffff;
 
 position:relative;
 top:-2px;
 
 z-index:50;
 
-font-size:12px;
-font-weight:700;
-color:#ffffff;
-
 }
 
-/* ? 표시 */
-
-.mag-help::before{
-
-content:"?";
-line-height:1;
-
-}
-
-/* hover 효과 */
+/* hover */
 
 .mag-help:hover{
 
@@ -1074,9 +1066,7 @@ Chart Decoded
 
 <span class="mag-help"
 data-i18n-title="mag_chart_arc_title"
-data-i18n-desc="mag_chart_arc_desc">
-❔
-</span>
+data-i18n-desc="mag_chart_arc_desc">?</span>
 
 </h2>
 
@@ -1340,43 +1330,39 @@ document.addEventListener("click", function (e) {
 
 const help = e.target.closest(".mag-help");
 
-/* HELP 아이콘 클릭 */
 if (help) {
 
-    /* 기존 팝업 제거 */
-    document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
+document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 
-    /* 번역 키 */
-    const titleKey = help.dataset.i18nTitle;
-    const descKey = help.dataset.i18nDesc;
+const titleKey = help.dataset.i18nTitle;
+const descKey = help.dataset.i18nDesc;
 
-    /* 현재 번역 텍스트 읽기 */
-    const titleText = (window.i18n && window.i18n[titleKey]) ? window.i18n[titleKey] : "";
-    const descText = (window.i18n && window.i18n[descKey]) ? window.i18n[descKey] : "";
+const lang = window.currentLang || "en";
 
-    /* 새 팝업 생성 */
-    const popup = document.createElement("div");
-    popup.className = "mag-help-popup";
+const titleText =
+window.translations?.[lang]?.[titleKey] || "[title missing]";
 
-    popup.innerHTML =
-        "<strong>" + titleText + "</strong>" +
-        "<div>" + descText + "</div>";
+const descText =
+window.translations?.[lang]?.[descKey] || "[desc missing]";
 
-    /* 버튼 안에 삽입 */
-    help.appendChild(popup);
+const popup = document.createElement("div");
+popup.className = "mag-help-popup";
 
-    /* 표시 */
-    popup.style.display = "block";
+popup.innerHTML =
+"<strong>"+titleText+"</strong>"+
+"<div>"+descText+"</div>";
 
-    e.stopPropagation();
-    return;
+help.appendChild(popup);
+
+popup.style.display="block";
+
+e.stopPropagation();
+return;
 }
 
-/* 다른 곳 클릭하면 팝업 닫기 */
 document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 
 });
-
 </script>
     
 <footer class="footer-container">
