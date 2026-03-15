@@ -299,23 +299,20 @@
 		}
 		
 		.mag-card-img {
-		    width: 100%;
-		    height: 180px;
-		    overflow: hidden;
-		    border-radius: 8px;
-		    margin-bottom: 15px;
-		    flex-shrink: 0;
+		    width:100%;
+		    aspect-ratio:1/1;
+		    background:#111;
+		    overflow:hidden;
+		    border-radius:8px;
+		    margin-bottom:15px;
+			transform:none;
 		}
 		
 		.mag-card-img img {
-		    width: 100%;
-		    height: 100%;
-		    object-fit: cover;
-		    transition: transform .35s;
-		}
-		
-		.magazine-card:hover .mag-card-img img {
-		    transform: scale(1.05);
+		    width:100%;
+		    height:100%;
+		    object-fit:contain;
+			transform:none;
 		}
 		
 		.mag-card-content {
@@ -451,13 +448,13 @@
 		    display:block;
 		}
 		
-		.mag-track {
-		    display: flex;
-		    gap: 20px;
-		    overflow: visible;
-		    scroll-behavior: smooth;
-		    position: relative;
-		    z-index: 1;
+		.mag-track{
+		    display:flex;
+		    gap:20px;
+		    overflow-x:auto;
+		    overflow-y:visible;
+		    scroll-behavior:smooth;
+		    padding:12px 20px 20px 20px;   /* 좌우 + 위 여백 */
 		}
 		
 		.mag-slide {
@@ -538,7 +535,7 @@
 			}
 			
 			.mag-slide{
-				min-width:85px;
+				min-width:160px;
 			    scroll-snap-align:start;
 			}
 			
@@ -563,7 +560,7 @@
 			justify-content: center;
 			border: 2px dashed var(--gold-dark) !important;
 			background: transparent !important;
-			height: 380px;
+			height: 420px;
 			box-sizing: border-box;
 		}
 		.magazine-card.placeholder-more h3 {
