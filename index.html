@@ -1341,22 +1341,41 @@ YMPL New 아티스트 프로필 아카이브
     
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("click", function (e) {
 
-document.querySelectorAll(".mag-help").forEach(help => {
+const help = e.target.closest(".mag-help");
+
+if (help) {
+
+document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 
 const titleKey = help.dataset.i18nTitle;
 const descKey = help.dataset.i18nDesc;
 
-/* 현재 언어 */
 const lang = window.currentLang || "en";
 
-/* 번역 읽기 */
-const titleText = translations?.[lang]?.[titleKey] || "";
-const descText = translations?.[lang]?.[descKey] || "";
+const titleText =
+window.translations?.[lang]?.[titleKey] || "[title missing]";
 
-/* 브라우저 기본 tooltip */
-help.title = titleText + (descText ? " - " + descText : "");
+const descText =
+window.translations?.[lang]?.[descKey] || "[desc missing]";
+
+const popup = document.createElement("div");
+popup.className = "mag-help-popup";
+
+popup.innerHTML =
+"<strong>"+titleText+"</strong>"+
+"<div>"+descText+"</div>";
+
+help.appendChild(popup);
+
+popup.style.display="block";
+
+e.stopPropagation();
+return;
+}
+
+document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 
 });
 </script>
