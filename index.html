@@ -548,10 +548,7 @@ border-radius:50%;
 background:transparent;
 border:1px solid #4b5563;
 
-font-size:13px;
-font-weight:700;
-
-color:#ffffff;
+font-size:15px;
 
 position:relative;
 top:-2px;
@@ -1066,9 +1063,7 @@ Chart Decoded
 
 <span class="mag-help"
 data-i18n-title="mag_chart_arc_title"
-data-i18n-desc="mag_chart_arc_desc">
-❔
-</span>
+data-i18n-desc="mag_chart_arc_desc">❔</span>
 
 </h2>
 
@@ -1339,29 +1334,29 @@ document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 const titleKey = help.dataset.i18nTitle;
 const descKey = help.dataset.i18nDesc;
 
+/* 현재 언어 */
 const lang = window.currentLang || "en";
 
-const titleText =
-window.translations?.[lang]?.[titleKey] || "[title missing]";
+/* 번역 읽기 */
+const titleText = translations?.[lang]?.[titleKey] || "[title missing]";
+const descText = translations?.[lang]?.[descKey] || "[desc missing]";
 
-const descText =
-window.translations?.[lang]?.[descKey] || "[desc missing]";
-
+/* 팝업 생성 */
 const popup = document.createElement("div");
 popup.className = "mag-help-popup";
 
 popup.innerHTML =
-"<strong>"+titleText+"</strong>"+
-"<div>"+descText+"</div>";
+"<strong>" + titleText + "</strong>" +
+"<div>" + descText + "</div>";
 
 help.appendChild(popup);
-
-popup.style.display="block";
+popup.style.display = "block";
 
 e.stopPropagation();
 return;
 }
 
+/* 외부 클릭시 닫기 */
 document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 
 });
