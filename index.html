@@ -527,6 +527,32 @@
 		    color: #ffd966;
 		}
 
+		@media (max-width: 768px){
+
+			.mag-track{
+				scroll-behavior:smooth;
+			    overflow-x:auto;
+			    overflow-y:visible;
+			    scroll-snap-type:x mandatory;
+			    -webkit-overflow-scrolling: touch;
+			}
+			
+			.mag-slide{
+				min-width:85px;
+			    scroll-snap-align:start;
+			}
+			
+			.mag-track::-webkit-scrollbar{
+			    display:none;
+			}
+
+			.mag-prev,
+			.mag-next{
+				display:none;
+			}
+		
+		}
+
 		/* =========================================================
 		9. PLACEHOLDER / ARCHIVE CARD
 		========================================================= */
