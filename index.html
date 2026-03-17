@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>YMPL | K-POP TIDAL Archive</title>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-	<style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YMPL | K-POP TIDAL Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
 		/* =========================================================
 		1. ROOT / GLOBAL
 		========================================================= */
@@ -689,342 +690,264 @@
 		}
 	</style>
 </head>
-    
 <body>
-	<nav>
-		<div class="nav-top">
-			<div class="logo">
-				<img src="YMPL/icon80.png" alt="YMPL" height="30" onerror="this.src='icon80.png'">
-				<span>YMPL</span>
-			</div>
-		</div>
-		<div class="nav-bottom">
-			<div class="lang-switcher">
-				<button onclick="switchLanguage('en')">EN</button>
-				<button onclick="switchLanguage('ko')">KO</button>
-				<button onclick="switchLanguage('es')">ES</button>
-				<button onclick="switchLanguage('zh')">ZH</button>
-			</div>
-			<div class="custom-select-container" id="customSelect">
-				<div class="select-trigger">Kpop Artist Index (가나다)</div>
-				<div class="select-options">
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣(G,K) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣(G,K) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣(N) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣(D) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣(L,R) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣(M) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣(B,P,V) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣(B,P,V) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣(C,S) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣(C,S) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣(A,I,O) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣(A,I,O) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣(A,I,O) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣(A,I,O) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣(A,I,O) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣(J,G) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣(J,G) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣(Ch) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣(C,K Link)</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣(T) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣(F,P) Link</div>
-					<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣(H) Link</div>
-				</div>
-			</div>
-		</div>
-	</nav>
-
-	<header class="hero">
-		<h1>TIDAL K-POP Finder</h1>
-		<p data-i18n="hero_desc">Discover K-POP on TIDAL at a glance.</p>
-		<div class="search-container">
-			<form onsubmit="handleManualSearch(); return false;">
-				<input type="text" id="searchInput" name="q" data-i18n="search_placeholder" placeholder="Enter artist or song title" required autocomplete="off">
-			</form>
-		</div>
-	</header>
-
-	<section class="shortcut-grid">
-		<div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
-			<h3>🆕 Weekly New Kpop Releases</h3>
-			<p>이번 주 신규 발매 검색</p>
-		</div>
-		<div class="reward-card" onclick="processRewardSearch('WEEKLY_TOP', 'Ktop Chart - Newest First')">
-			<h3>🔥 Ktop Chart - Newest First</h3>
-			<p>최신곡순 TOP 차트 검색</p>
-		</div>
-		<div class="reward-card" onclick="processRewardSearch('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
-			<h3>💎 Latest Kpop Debut Albums</h3>
-			<p>최신 데뷔 앨범 검색</p>
-		</div>
-	</section>
-
-	<article class="about">
-		<h2 data-i18n="about_h2">Why should you use YMPL?</h2>
-		<p data-i18n="about_intro">YMPL is a professional K-POP archive platform...</p>
-		<ul>
-			<li><span data-i18n="f1_title">Intuitive Search:</span> <span data-i18n="f1_desc">Description...</span></li>
-			<li><span data-i18n="f2_title">Database:</span> <span data-i18n="f2_desc">Description...</span></li>
-			<li><span data-i18n="f3_title">Trends:</span> <span data-i18n="f3_desc">Description...</span></li>
-		</ul>
-		<p data-i18n="about_closing">Closing statement...</p>
-	</article>
-	<!-- CHART_START -->
+<nav>
+<div class="nav-top">
+<div class="logo">
+<img alt="YMPL" height="30" onerror="this.src='icon80.png'" src="YMPL/icon80.png"/>
+<span>YMPL</span>
+</div>
+</div>
+<div class="nav-bottom">
+<div class="lang-switcher">
+<button onclick="switchLanguage('en')">EN</button>
+<button onclick="switchLanguage('ko')">KO</button>
+<button onclick="switchLanguage('es')">ES</button>
+<button onclick="switchLanguage('zh')">ZH</button>
+</div>
+<div class="custom-select-container" id="customSelect">
+<div class="select-trigger">Kpop Artist Index (가나다)</div>
+<div class="select-options">
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣(G,K) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣(G,K) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣(N) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣(D) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣(L,R) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣(M) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣(B,P,V) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣(B,P,V) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣(C,S) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣(C,S) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣(J,G) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣(J,G) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣(Ch) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣(C,K Link)</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣(T) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣(F,P) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣(H) Link</div>
+</div>
+</div>
+</div>
+</nav>
+<header class="hero">
+<h1>TIDAL K-POP Finder</h1>
+<p data-i18n="hero_desc">Discover K-POP on TIDAL at a glance.</p>
+<div class="search-container">
+<form onsubmit="handleManualSearch(); return false;">
+<input autocomplete="off" data-i18n="search_placeholder" id="searchInput" name="q" placeholder="Enter artist or song title" required="" type="text"/>
+</form>
+</div>
+</header>
+<section class="shortcut-grid">
+<div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
+<h3>🆕 Weekly New Kpop Releases</h3>
+<p>이번 주 신규 발매 검색</p>
+</div>
+<div class="reward-card" onclick="processRewardSearch('WEEKLY_TOP', 'Ktop Chart - Newest First')">
+<h3>🔥 Ktop Chart - Newest First</h3>
+<p>최신곡순 TOP 차트 검색</p>
+</div>
+<div class="reward-card" onclick="processRewardSearch('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
+<h3>💎 Latest Kpop Debut Albums</h3>
+<p>최신 데뷔 앨범 검색</p>
+</div>
+</section>
+<article class="about">
+<h2 data-i18n="about_h2">Why should you use YMPL?</h2>
+<p data-i18n="about_intro">YMPL is a professional K-POP archive platform...</p>
+<ul>
+<li><span data-i18n="f1_title">Intuitive Search:</span> <span data-i18n="f1_desc">Description...</span></li>
+<li><span data-i18n="f2_title">Database:</span> <span data-i18n="f2_desc">Description...</span></li>
+<li><span data-i18n="f3_title">Trends:</span> <span data-i18n="f3_desc">Description...</span></li>
+</ul>
+<p data-i18n="about_closing">Closing statement...</p>
+</article>
+<!-- CHART_START -->
 <section class="magazine-section">
-        <div class="mag-header">
-            <h2>
-                <span class="small-icon">🏆</span>
+<div class="mag-header">
+<h2>
+<span class="small-icon">🏆</span>
                 Chart Decoded
-                <span class="mag-help"
-                    data-i18n-title="mag_chart_arc_title"
-                    data-i18n-desc="mag_chart_arc_desc">
+                <span class="mag-help" data-i18n-desc="mag_chart_arc_desc" data-i18n-title="mag_chart_arc_title">
                     ❔
                 </span>
-            </h2>
-        </div>
-
-        <div class="mag-carousel">
-            <button class="mag-prev">‹</button>
-
-            <div class="mag-track">
-    
-                <a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260228 Ktop Chart - Newest First.html" class="mag-slide">
-                    <div class="magazine-card">
-
-                        <div class="mag-card-img">
-                            <img src="https://resources.tidal.com/images/5368bded/01c4/44b6/90ff/5bb44e280575/1080x1080.jpg" loading="lazy">
-                        </div>
-
-                        <div class="mag-card-content">
-                            <h3>20260228 Ktop Chart - Newest First</h3>
-                            <p>20260228 Ktop Chart - Newest First</p>
-
-                            <div class="date">
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track">
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260228 Ktop Chart - Newest First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/5368bded/01c4/44b6/90ff/5bb44e280575/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260228 Ktop Chart - Newest First</h3>
+<p>20260228 Ktop Chart - Newest First</p>
+<div class="date">
                                 2026.03.16
                             </div>
-                        </div>
-
-                    </div>
-                </a>
-    
-                <a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260308 Ktop Chart - Newest First.html" class="mag-slide">
-                    <div class="magazine-card">
-
-                        <div class="mag-card-img">
-                            <img src="https://resources.tidal.com/images/1dd66125/f269/4f55/8945/d34c9d676250/1080x1080.jpg" loading="lazy">
-                        </div>
-
-                        <div class="mag-card-content">
-                            <h3>20260308 Ktop Chart - Newest First</h3>
-                            <p>20260308 Ktop Chart - Newest First</p>
-
-                            <div class="date">
+</div>
+</div>
+</a>
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260308 Ktop Chart - Newest First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/1dd66125/f269/4f55/8945/d34c9d676250/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260308 Ktop Chart - Newest First</h3>
+<p>20260308 Ktop Chart - Newest First</p>
+<div class="date">
                                 2026.03.16
                             </div>
-                        </div>
-
-                    </div>
-                </a>
-    
-            </div>
-
-            <button class="mag-next">›</button>
-        </div>
-
-        <div class="mag-footer">
-            <a class="mag-more"
-               href="https://bipapalula3.github.io/YMPL/YMPL_KTop_Chart_-_Newest_First/YMPL_KTop_Chart_-_Newest_First.html"
-               data-i18n="view_more">
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_KTop_Chart_-_Newest_First/YMPL_KTop_Chart_-_Newest_First.html">
                 + 더보기
             </a>
-        </div>
-
-    </section>
+</div>
+</section>
 <!-- CHART_END -->
-	
-	<!-- NEWVOICES_START -->
+<!-- NEWVOICES_START -->
 <section class="magazine-section">
-        <div class="mag-header">
-            <h2>
-                <span class="small-icon">🎤</span>
+<div class="mag-header">
+<h2>
+<span class="small-icon">🎤</span>
                 New Voices on YMPL
-                <span class="mag-help"
-                    data-i18n-title="mag_voice_arc_title"
-                    data-i18n-desc="mag_voice_arc_desc">
+                <span class="mag-help" data-i18n-desc="mag_voice_arc_desc" data-i18n-title="mag_voice_arc_title">
                     ❔
                 </span>
-            </h2>
-        </div>
-
-        <div class="mag-carousel">
-            <button class="mag-prev">‹</button>
-
-            <div class="mag-track">
-    
-                <a href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/나몰라패밀리 (namolla family).html" class="mag-slide">
-                    <div class="magazine-card">
-
-                        <div class="mag-card-img">
-                            <img src="https://resources.tidal.com/images/ba92eb21/3399/4def/8acc/e6d6e111c741/1280x1280.jpg" loading="lazy">
-                        </div>
-
-                        <div class="mag-card-content">
-                            <h3>나몰라패밀리(namolla family)</h3>
-                            <p>타이달 나몰라패밀리 ( Tidal namolla family )</p>
-
-                            <div class="date">
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track">
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/나몰라패밀리 (namolla family).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/ba92eb21/3399/4def/8acc/e6d6e111c741/1280x1280.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>나몰라패밀리(namolla family)</h3>
+<p>타이달 나몰라패밀리 ( Tidal namolla family )</p>
+<div class="date">
                                 2026.03.17
                             </div>
-                        </div>
-
-                    </div>
-                </a>
-    
-                <a href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/나미 (Nami).html" class="mag-slide">
-                    <div class="magazine-card">
-
-                        <div class="mag-card-img">
-                            <img src="https://resources.tidal.com/images/bd973c2f/2595/4272/920e/a57d6abc8768/1280x1280.jpg" loading="lazy">
-                        </div>
-
-                        <div class="mag-card-content">
-                            <h3>나미(Nami)</h3>
-                            <p>타이달 나미 ( Tidal Nami )</p>
-
-                            <div class="date">
+</div>
+</div>
+</a>
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/나미 (Nami).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/bd973c2f/2595/4272/920e/a57d6abc8768/1280x1280.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>나미(Nami)</h3>
+<p>타이달 나미 ( Tidal Nami )</p>
+<div class="date">
                                 2026.03.17
                             </div>
-                        </div>
-
-                    </div>
-                </a>
-    
-            </div>
-
-            <button class="mag-next">›</button>
-        </div>
-
-        <div class="mag-footer">
-            <a class="mag-more"
-               href="https://bipapalula3.github.io/YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html"
-               data-i18n="view_more">
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">
                 + 더보기
             </a>
-        </div>
-
-    </section>
+</div>
+</section>
 <!-- NEWVOICES_END -->
-
-	<!-- MBTI_START -->
+<!-- MBTI_START -->
 <section class="magazine-section">
-        <div class="mag-header">
-            <h2>
-                <span class="small-icon">🧬</span>
+<div class="mag-header">
+<h2>
+<span class="small-icon">🧬</span>
                 MBTI Vibe Lab
-                <span class="mag-help"
-                    data-i18n-title="mag_mbti_arc_title"
-                    data-i18n-desc="mag_mbti_arc_desc">
+                <span class="mag-help" data-i18n-desc="mag_mbti_arc_desc" data-i18n-title="mag_mbti_arc_title">
                     ❔
                 </span>
-            </h2>
-        </div>
-
-        <div class="mag-carousel">
-            <button class="mag-prev">‹</button>
-
-            <div class="mag-track">
-    
-                <a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260228 Weekly New Kpop Releases.html" class="mag-slide">
-                    <div class="magazine-card">
-
-                        <div class="mag-card-img">
-                            <img src="https://resources.tidal.com/images/c9463fca/41f6/4265/a107/f1595f9abfed/1080x1080.jpg" loading="lazy">
-                        </div>
-
-                        <div class="mag-card-content">
-                            <h3>20260228 Weekly New Kpop Releases</h3>
-                            <p>20260228 Weekly New Kpop Releases</p>
-
-                            <div class="date">
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track">
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260228 Weekly New Kpop Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/c9463fca/41f6/4265/a107/f1595f9abfed/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260228 Weekly New Kpop Releases</h3>
+<p>20260228 Weekly New Kpop Releases</p>
+<div class="date">
                                 2026.03.16
                             </div>
-                        </div>
-
-                    </div>
-                </a>
-    
-            </div>
-
-            <button class="mag-next">›</button>
-        </div>
-
-        <div class="mag-footer">
-            <a class="mag-more"
-               href="https://bipapalula3.github.io/YMPL/YMPL_Weekly_New_KPop_Releases/YMPL_Weekly_New_KPop_Releases.html"
-               data-i18n="view_more">
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_Weekly_New_KPop_Releases/YMPL_Weekly_New_KPop_Releases.html">
                 + 더보기
             </a>
-        </div>
-
-    </section>
+</div>
+</section>
 <!-- MBTI_END -->
-
-	<!-- DEBUT_START -->
+<!-- DEBUT_START -->
 <section class="magazine-section">
-        <div class="mag-header">
-            <h2>
-                <span class="small-icon">✨</span>
+<div class="mag-header">
+<h2>
+<span class="small-icon">✨</span>
                 Debut Artist Spotlight
-                <span class="mag-help"
-                    data-i18n-title="mag_debut_arc_title"
-                    data-i18n-desc="mag_debut_arc_desc">
+                <span class="mag-help" data-i18n-desc="mag_debut_arc_desc" data-i18n-title="mag_debut_arc_title">
                     ❔
                 </span>
-            </h2>
-        </div>
-
-        <div class="mag-carousel">
-            <button class="mag-prev">‹</button>
-
-            <div class="mag-track">
-    
-                <a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260228 Latest Kpop Debut Albums.html" class="mag-slide">
-                    <div class="magazine-card">
-
-                        <div class="mag-card-img">
-                            <img src="https://resources.tidal.com/images/ebf20ab7/bc2e/4f93/8d60/d39c4c0cd57d/1080x1080.jpg" loading="lazy">
-                        </div>
-
-                        <div class="mag-card-content">
-                            <h3>20260228 Latest Kpop Debut Albums</h3>
-                            <p>20260228 Latest Kpop Debut Albums</p>
-
-                            <div class="date">
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track">
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260228 Latest Kpop Debut Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/ebf20ab7/bc2e/4f93/8d60/d39c4c0cd57d/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260228 Latest Kpop Debut Albums</h3>
+<p>20260228 Latest Kpop Debut Albums</p>
+<div class="date">
                                 2026.03.17
                             </div>
-                        </div>
-
-                    </div>
-                </a>
-    
-            </div>
-
-            <button class="mag-next">›</button>
-        </div>
-
-        <div class="mag-footer">
-            <a class="mag-more"
-               href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html"
-               data-i18n="view_more">
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html">
                 + 더보기
             </a>
-        </div>
-
-    </section>
+</div>
+</section>
 <!-- DEBUT_END -->
-
-	<script>
+<script>
 		document.addEventListener("click", function (e) {
 	    	const help = e.target.closest(".mag-help");
 		    if (help) {
@@ -1054,7 +977,7 @@
 		    document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
 		});
 	</script>
-	<script>
+<script>
 		document.addEventListener("DOMContentLoaded", function(){
 		
 		    document.querySelectorAll(".mag-carousel").forEach(carousel => {
@@ -1089,21 +1012,19 @@
 		
 		});
 	</script>
-    
 <footer class="footer-container">
-		<div class="footer-links">
-			<a href="/privacy.html" data-i18n="nav_privacy">Privacy Policy</a>
-			<a href="/terms.html" data-i18n="nav_terms">Terms of Service</a>
-			<a href="/contact.html" data-i18n="nav_contact">Contact</a>
-		</div>
-		<div class="copyright">
-			<p data-i18n="footer_notice_1">This site is a curation service that organizes information from external platforms such as TIDAL.</p>
-			<p data-i18n="footer_notice_2">All copyrights belong to their respective owners, and this site does not host any content directly.</p>
-			<p data-i18n="footer_copyright">© 2026 YMPL Music Database. All rights reserved.</p>
-		</div>
-	</footer>
-
-	<script>
+<div class="footer-links">
+<a data-i18n="nav_privacy" href="/privacy.html">Privacy Policy</a>
+<a data-i18n="nav_terms" href="/terms.html">Terms of Service</a>
+<a data-i18n="nav_contact" href="/contact.html">Contact</a>
+</div>
+<div class="copyright">
+<p data-i18n="footer_notice_1">This site is a curation service that organizes information from external platforms such as TIDAL.</p>
+<p data-i18n="footer_notice_2">All copyrights belong to their respective owners, and this site does not host any content directly.</p>
+<p data-i18n="footer_copyright">© 2026 YMPL Music Database. All rights reserved.</p>
+</div>
+</footer>
+<script>
 		// 1. 번역 사전 데이터
 		const translations = {
 			'en': {
@@ -1296,22 +1217,84 @@
 			});
 		});
 	</script>
+<div id="magazine-container">
+<!-- CHART_START -->
+<!-- CHART_END -->
+<!-- NEWVOICES_START -->
+<!-- NEWVOICES_END -->
+<!-- MBTI_START -->
+<!-- MBTI_END -->
+<!-- DEBUT_START -->
+<!-- DEBUT_END -->
 
-    <div id="magazine-container">
+&lt;!-- NEWVOICES_START --&gt;
 
-    <!-- CHART_START -->
-    <!-- CHART_END -->
+<section class="magazine-section">
+<div class="mag-header">
+<h2>
+<span class="small-icon">🎤</span>
+                New Voices on YMPL
+                <span class="mag-help" data-i18n-desc="mag_voice_arc_desc" data-i18n-title="mag_voice_arc_title">
+                    ❔
+                </span>
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track">
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/20260308 Ktop Chart - Newest First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://bipapalula3.github.io/YMPL/icon80.png"/>
+</div>
+<div class="mag-card-content">
+<h3>20260308 Ktop Chart - Newest First(20260308 Ktop Chart - Newest First)</h3>
+<p> 타이달 20260308 Ktop Chart - Newest First ( Tidal 20260308_Ktop_Chart_-_Newest_First )</p>
+<div class="date">
+                                2026.03.18
+                            </div>
+</div>
+</div>
+</a>
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/가비엔제이 (gavy nj).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/15aef1eb/d7d8/4089/bc91/28544ba81279/1280x1280.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>가비엔제이(gavy nj)</h3>
+<p> 타이달 가비엔제이 ( Tidal gavy nj )</p>
+<div class="date">
+                                2026.03.18
+                            </div>
+</div>
+</div>
+</a>
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/가호 (GaHo).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/6b43eaaf/9f4e/4275/8899/bb6450779761/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>가호(GaHo)</h3>
+<p> 타이달 가호 ( Tidal GaHo )</p>
+<div class="date">
+                                2026.03.18
+                            </div>
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">
+                + 더보기
+            </a>
+</div>
+</section>
 
-    <!-- NEWVOICES_START -->
-    <!-- NEWVOICES_END -->	
-
-    <!-- MBTI_START -->
-    <!-- MBTI_END -->
-
-    <!-- DEBUT_START -->
-    <!-- DEBUT_END -->
-
-    </div>
-    
+&lt;!-- NEWVOICES_END --&gt;
+</div>
 </body>
 </html>
