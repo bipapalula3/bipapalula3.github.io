@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bipapalula3.github.io/sitemap.xml
-Host: bipapalula3.github.io
+Sitemap: https://bipapalula3.github.io/sitemap_index.xml
