@@ -848,7 +848,7 @@
 }
 .translate-btn-wrapper {
                 position: relative;
-                margin-top: 20px;
+                margin-top: 1px;
                 padding: 10px;
                 background: transparent !important;
                 display: flex;
@@ -856,9 +856,24 @@
             }
 .translate-btn {
                 position: relative;
-                max-width: 100%;
-                width: 100%;
+                max-width: 80%;
+                width: 60%;
                 margin: 0 auto;
+
+                background: rgba(59,130,246,0.15) !important;  /* 블루 + 투명 */
+                color: #cbd5e1 !important;
+
+                border: 1px solid rgba(148,163,184,0.25) !important; /* 그레이 섞기 */
+                border-radius: 12px;
+
+                font-size: 15px;
+                font-weight: 500;
+
+                backdrop-filter: blur(6px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
+
+                transition: all 0.2s ease;
+                animation: none !important;
             }
 .translate-btn:visited { color: #ffd966 !important; }
 .translate-btn:hover {
@@ -894,6 +909,12 @@
 .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
 .test-ad-body { font-size:15px; color:#e5e7eb; }
   
+            .translate-btn.btn {
+                background: rgba(59,130,246,0.15) !important;
+                color: #cbd5e1 !important;
+                border: 1px solid rgba(148,163,184,0.25) !important;
+            }
+            
 </style>
 
 <div style="
