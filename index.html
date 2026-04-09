@@ -847,34 +847,43 @@
   touch-action: manipulation;
 }
 .translate-btn-wrapper {
-                position: relative;
-                margin-top: 1px;
-                padding: 10px;
-                background: transparent !important;
-                display: flex;
-                justify-content: center;
-            }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 10px 4px 10px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
 .translate-btn {
-                position: relative;
-                max-width: 80%;
-                width: 60%;
-                margin: 0 auto;
-
-                background: rgba(59,130,246,0.15) !important;  /* 블루 + 투명 */
-                color: #cbd5e1 !important;
-
-                border: 1px solid rgba(148,163,184,0.25) !important; /* 그레이 섞기 */
-                border-radius: 12px;
-
-                font-size: 15px;
-                font-weight: 500;
-
-                backdrop-filter: blur(6px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
-
-                transition: all 0.2s ease;
-                animation: none !important;
-            }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 15px 20px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 1.5;
+  min-height: 85px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 .translate-btn:visited { color: #ffd966 !important; }
 .translate-btn:hover {
   transform: scale(1.02);
@@ -909,10 +918,56 @@
 .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
 .test-ad-body { font-size:15px; color:#e5e7eb; }
   
+            /* =========================
+               Translate Button Override
+               ========================= */
+
+            .translate-btn-wrapper {
+                position: relative !important;
+                margin-top: 10px !important;
+                padding: 10px !important;
+                background: transparent !important;
+                display: flex !important;
+                justify-content: center !important;
+            }
+
+            /* 기존 .btn 영향 차단 */
+            .translate-btn,
             .translate-btn.btn {
+                position: relative !important;
+
+                max-width: 80% !important;
+                width: 60% !important;
+                margin: 0 auto !important;
+
                 background: rgba(59,130,246,0.15) !important;
                 color: #cbd5e1 !important;
+
                 border: 1px solid rgba(148,163,184,0.25) !important;
+                border-radius: 12px !important;
+
+                font-size: 15px !important;
+                font-weight: 500 !important;
+
+                backdrop-filter: blur(6px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
+
+                transition: all 0.2s ease !important;
+                animation: none !important;
+            }
+
+            /* hover */
+            .translate-btn:hover {
+                background: rgba(59,130,246,0.25) !important;
+                color: #e2e8f0 !important;
+                transform: scale(1.01);
+            }
+
+            /* 🔥 밑줄 문제 해결 (핵심) */
+            .translate-btn,
+            .translate-btn:hover,
+            .translate-btn:visited {
+                text-decoration: none !important;
             }
             
 </style>
