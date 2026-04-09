@@ -745,314 +745,20 @@
 </header>
 <section class="shortcut-grid">
 <div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
-<h3 data-i18n="shortcut_weekly_new">🆕 Weekly New Kpop Releases</h3>
+<h3>🆕 Weekly New Kpop Releases</h3>
+<p>이번 주 신규 발매 검색</p>
 </div>
 <div class="reward-card" onclick="processRewardSearch('WEEKLY_TOP', 'Ktop Chart - Newest First')">
-<h3 data-i18n="shortcut_ktop_chart">🔥 Ktop Chart - Newest First</h3>
+<h3>🔥 Ktop Chart - Newest First</h3>
+<p>최신곡순 TOP 차트 검색</p>
 </div>
 <div class="reward-card" onclick="processRewardSearch('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
-<h3 data-i18n="shortcut_debut">💎 Latest Kpop Debut Albums</h3>
+<h3>💎 Latest Kpop Debut Albums</h3>
+<p>최신 데뷔 앨범 검색</p>
 </div>
 </section>
-<!-- BLOG_CHART_START -->
-<!-- BLOG_CHART_END -->
-<!-- BLOG_MBTI_START -->
-<!-- BLOG_MBTI_END -->
-<!-- BLOG_DEBUT_START -->
-<style>
-
-    html { background:#111217; }
-    body {
-      opacity: 1;
-      transition: opacity 0.12s ease;
-    }
-    body.page-fade-out { opacity: 0; }
-    body {
-      background:#111217;
-      color:#e6eef6;
-      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
-      font-size:16px;
-      padding:16px;
-      padding-bottom: 70px !important;      line-height:1.6;
-      text-align:left;
-      word-break:break-word;
-      line-break:strict;
-    }
-    a { color:#93c5fd; text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
-    .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
-    .album-entry { margin:8px 0 8px; }
-    img {
-      max-width:100%;
-      height:auto;
-      display:block;
-      border-radius:12px;
-      box-shadow:0 0 8px rgba(0,0,0,0.5);
-      transition: transform 0.25s ease, filter 0.25s ease;
-    }
-    img:hover { transform: scale(1.03); filter: brightness(1.05); }
-    .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
-    .btn {
-      display:inline-block;
-      padding:10px 16px;
-      background:#1f6feb;
-      color:#fff;
-      border-radius:10px;
-      margin-top:10px;
-      margin-right:20px;
-      font-size:16px;
-      text-align:center;
-    }
-    .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
-    .artist-img-box { position: relative; overflow: hidden; }
-    .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
-    .artist-credit-overlay { position:absolute; right:10px; bottom:8px; font-size:12px; color:#f3f4f6; padding:6px 10px; border-radius:8px; backdrop-filter:blur(4px); }
-    .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
-    .artist-btn { padding:12px 20px; font-size:15px; color:#fff; background:rgba(37,99,235,0.6); border:1px solid rgba(147,197,253,0.6); border-radius:14px; backdrop-filter:blur(6px); transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease; }
-    .artist-btn:hover { background:rgba(29,78,216,0.8); transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,64,175,0.6); }
-/* =========================
-   Index Page Artist Media
-   ========================= */
-.index-page .artist-image-wrapper {
-  max-width: 420px;
-  margin: 16px 0 8px 0;
-}
-.index-page .album-entry {
-  margin-bottom: 48px;
-}
-.index-page .artist-img {
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-}
-/* =========================
-   Mobile Tap / Click Smooth
-   ========================= */
-.index-page a,
-.index-page img {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  tap-highlight-color: rgba(0,0,0,0);
-}
-.index-page a,
-.index-page .artist-img {
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-.index-page a:active,
-.index-page .artist-img:active {
-  transform: scale(0.97);
-  opacity: 0.85;
-}
-.index-page a {
-  touch-action: manipulation;
-}
-.translate-btn-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px 10px 4px 10px;
-  background: #111217 !important;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-}
-.translate-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 900px;
-  width: calc(100% - 30px);
-  margin: 0 auto !important;
-  padding: 15px 20px;
-  background: linear-gradient(145deg, #3d341a, #1f1a0d);
-  color: #ffd966 !important;
-  text-decoration: none !important;
-  border: 0.4px solid #ffd966;
-  border-radius: 8px;
-  text-align: center;
-  line-height: 1.5;
-  min-height: 85px;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-weight: 700;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
-  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
-  animation: pulseTranslate 3s infinite ease-in-out;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.translate-btn:visited { color: #ffd966 !important; }
-.translate-btn:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
-}
-.translate-btn::after {
-  content: '';
-  position: absolute; top: -50%; left: -150%;
-  width: 50%; height: 200%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
-  transform: rotate(30deg);
-  -webkit-animation: shimmerTranslate 5s infinite linear;
-  animation: shimmerTranslate 5s infinite linear;
-}
-@keyframes shimmerTranslate {
-  0% { left: -150%; }
-  100% { left: 150%; }
-}
-@keyframes pulseTranslate {
-  0%, 100% {
-    transform: scale(1);
-    border-color: #ffd966;
-    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
-  }
-  50% {
-    transform: scale(1.01);
-    border-color: #fffb00;
-    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
-  }
-}
-.test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
-.test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
-.test-ad-body { font-size:15px; color:#e5e7eb; }
-  
-            /* =========================
-               Translate Button Override
-               ========================= */
-
-            .translate-btn-wrapper {
-                position: relative !important;
-                margin-top: 10px !important;
-                padding: 10px !important;
-                background: transparent !important;
-                display: flex !important;
-                justify-content: center !important;
-            }
-
-            /* 기존 .btn 영향 차단 */
-            .translate-btn,
-            .translate-btn.btn {
-                position: relative !important;
-
-                max-width: 80% !important;
-                width: 60% !important;
-                margin: 0 auto !important;
-
-                background: rgba(59,130,246,0.15) !important;
-                color: #cbd5e1 !important;
-
-                border: 1px solid rgba(148,163,184,0.25) !important;
-                border-radius: 12px !important;
-
-                font-size: 15px !important;
-                font-weight: 500 !important;
-
-                backdrop-filter: blur(6px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset;
-
-                transition: all 0.2s ease !important;
-                animation: none !important;
-            }
-
-            /* hover */
-            .translate-btn:hover {
-                background: rgba(59,130,246,0.25) !important;
-                color: #e2e8f0 !important;
-                transform: scale(1.01);
-            }
-
-            /* 🔥 밑줄 문제 해결 (핵심) */
-            .translate-btn,
-            .translate-btn:hover,
-            .translate-btn:visited {
-                text-decoration: none !important;
-            }
-            
-</style>
-
-<div style="
-    width:80%;
-    margin:40px auto;
-    background:#1a1d24;
-    border-radius:20px;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.6);
-">
-
-    <div style="margin-bottom:20px;">
-        <h1 style='font-size:1.5em;'>20260331 Latest Kpop Debut Albums</h1>
-    </div>
-
-    <div class="index-page">
-        <div class="artist-card">
-<div class="artist-media">
-<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/26add46c-2076-4851-a516-bb65fa7cb021" target="_blank">TIDAL KDebut ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
-</div>
-<div class="ai-kpop-info">
-<div class="ai-content debut-spotlight"><div class="artist-subtitle">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">새로운 물결, 다채로운 색깔로 물들이다: 5월 데뷔 신인 집중 탐구</div><div class="artist-subtitle" style="margin-top:8px;">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">A Fresh Wave of Colors: Exploring the May Debuts</div><p>5월, 가요계는 다양한 장르와 개성을 지닌 신인 아티스트들의 데뷔로 활기를 띠었습니다. 힙합, R&amp;B, 팝 등 각자의 색깔을 담은 음악들이 쏟아져 나오며 리스너들의 귀를 즐겁게 했습니다. 실험적인 사운드와 진솔한 감성으로 무장한 신인들의 등장에 앞으로의 K팝 씬은 더욱 풍성해질 것으로 기대됩니다.</p><p>May marks a vibrant influx of rookie artists into the K-pop scene, each boasting unique genres and personalities. From hip-hop and R&amp;B to pop, these artists are captivating listeners with their diverse sounds. With experimental approaches and sincere emotions, these newcomers promise a richer and more exciting future for K-pop.</p><p>✧</p><p>이달의 데뷔 흐름</p><p>5월 데뷔 시장은 다채로운 음악적 스펙트럼을 보여주었습니다. 힙합 기반의 강렬한 에너지, 섬세한 감성을 담은 R&amp;B, 트렌디한 팝 사운드가 두드러졌습니다. 특히, 프로듀싱 능력을 겸비한 싱어송라이터형 아티스트들의 약진이 돋보이며, 자신만의 색깔을 확고히 하려는 시도가 엿보입니다. 장르의 경계를 허물고 새로운 시도를 감행하는 실험적인 음악들이 다수 등장하며, 앞으로의 K팝 시장에 신선한 바람을 불어넣을 것으로 예상됩니다.</p><p>Debut Trend</p><p>May's debut scene showcased a diverse musical spectrum, highlighting energetic hip-hop, delicate R&amp;B, and trendy pop sounds. Notably, singer-songwriter artists with production skills excelled, demonstrating a desire to establish their unique identities. Numerous experimental tracks, blurring genre boundaries, suggest a fresh wind blowing through the K-pop market.</p><p>✧</p><p>신인 아티스트의 매력</p><p>이번 달 데뷔한 아티스트들의 공통적인 매력은 '솔직함'과 '개성'입니다. 꾸며지지 않은 날 것의 감정을 음악에 녹여내어 듣는 이들의 공감을 얻고, 자신만의 스타일을 확고히 하려는 노력이 돋보입니다. 첫인상은 강렬하면서도 친근하며, 대중과의 소통을 중시하는 콘셉트를 보여줍니다. 음악을 통해 자신의 이야기를 진솔하게 전달하고자 하는 열정이 느껴집니다.</p><p>Rookie Appeal</p><p>The common appeal of this month's debuting artists lies in their 'honesty' and 'individuality'. They resonate with listeners by weaving raw, unadorned emotions into their music and showcase efforts to solidify their unique styles. Their first impression is strong yet approachable, emphasizing a concept that values communication with the public. Their passion for conveying their stories genuinely through music is palpable.</p><p>✧</p><p>음악 &amp; 앨범 스타일</p><p>전체적으로 트렌디한 사운드 디자인이 돋보이며, Lo-fi 힙합, 몽환적인 R&amp;B, 청량한 팝 등 다양한 장르를 아우릅니다. 사운드적인 특징으로는 섬세한 악기 배치와 공간감을 활용한 믹싱이 돋보이며, 감성적인 방향으로는 청춘의 고민, 사랑의 설렘, 이별의 아픔 등 누구나 공감할 수 있는 보편적인 감정을 다룹니다. 실험적인 시도를 통해 자신만의 독창적인 음악 세계를 구축하려는 노력이 엿보입니다.</p><p>Music &amp; Album Style</p><p>Overall, trendy sound design is prominent, encompassing diverse genres such as Lo-fi hip-hop, dreamy R&amp;B, and refreshing pop. Sound features include delicate instrument arrangements and mixing that utilizes spatial awareness. Emotionally, they address universal emotions that anyone can relate to, such as the anxieties of youth, the excitement of love, and the pain of separation. They strive to build their own unique musical worlds through experimental endeavors.</p><p>✧</p><p>성장 가능성과 기대</p><p>5월 데뷔 신인들은 자신만의 색깔을 찾기 위한 끊임없는 노력과 음악에 대한 진정성을 보여주었습니다. 다양한 장르를 소화하는 능력과 뛰어난 프로듀싱 역량을 바탕으로 앞으로 더욱 성장할 가능성이 높습니다. 대중과의 소통을 통해 팬덤을 구축하고, 꾸준한 음악 활동을 통해 자신만의 입지를 다져나간다면 K팝 씬의 미래를 이끌어갈 주역이 될 수 있을 것입니다.</p><p>Future Potential</p><p>May's debuting artists have demonstrated a constant effort to find their unique colors and a sincerity towards music. With the ability to handle various genres and excellent production skills, they have a high potential for future growth. By building a fandom through communication with the public and establishing their own position through consistent musical activity, they can become leading figures in the future of the K-pop scene.</p></div><p># 20260331 Latest Kpop Debut Albums</p>
-</div>
-</div>
-    </div>
-
-    <div style="margin-top:10px;">
-        <p style="margin-top:10px;">
-<a href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html" onmousedown="this.style.transform='scale(0.96)';" onmouseout="
-                       this.style.color='#94a3b8';
-                       this.querySelector('.icon').style.transform='scale(1)';
-                   " onmouseover="
-                       this.style.color='#e2e8f0';
-                       this.querySelector('.icon').style.transform='scale(1.2)';
-                   " onmouseup="this.style.transform='scale(1)';" style="
-                       color:#94a3b8; 
-                       font-size:0.95em;
-                       line-height:1.6;
-                       display:inline-block;
-                       cursor:pointer;
-                       transition:color 0.2s ease, transform 0.1s ease;
-                       text-decoration:underline;
-                       text-decoration-thickness:1px;
-                       text-underline-offset:4px;
-                       margin-bottom:4em;
-                   ">
-<span class="icon" style="
-                        display:inline-block; 
-                        transition:transform 0.2s ease;
-                    ">
-                    📚
-                    </span>
-<span style="margin-left:6px;">
-                    INDEX: YMPL Latest KPop Debut Albums
-                    </span>
-</a>
-</p>
-<div class="translate-btn-wrapper">
-<a class="btn translate-btn" data-en="🌐 Track Translation (EN/KO/ES/ZH)&lt;br&gt;▶ Open translation page.&lt;br&gt;" data-ko="📖 트랙 번역 열기 (한/영/스페인/중)&lt;br&gt;▶ 번역 페이지로 이동&lt;br&gt;" href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums_trk.html" id="translateBtn">
-                 🌐 Track Translation (EN/KO/ES/ZH)<br/>
-                 ▶ Open translation page.<br/>
-</a>
-</div>
-<script>
-            (function () {
-                const btn = document.getElementById("translateBtn");
-                if (!btn) return;
-
-                let isKo = false;
-
-                // 🔁 버튼 문구 자동 토글 (3초마다)
-                setInterval(() => {
-                    btn.innerHTML = isKo ? btn.dataset.en : btn.dataset.ko;
-                    isKo = !isKo;
-                }, 3000);
-            })();
-            </script>
-    </div>
-
-</div>
-<!-- BLOG_DEBUT_END -->
 <article class="about">
-<h2 data-i18n="about_h2">YMPL – Data-Driven K-POP Insights Platform</h2>
+<h2 data-i18n="about_h2">Why should you use YMPL?</h2>
 <p data-i18n="about_intro">YMPL is a professional K-POP archive platform...</p>
 <ul>
 <li><span data-i18n="f1_title">Intuitive Search:</span> <span data-i18n="f1_desc">Description...</span></li>
@@ -1076,20 +782,6 @@
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
 <div class="mag-track">
-<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260329 Ktop Chart - Newest First.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/daea404c/d8f1/4d88/8c19/0c9ab01fe55f/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260329 Ktop Chart - Newest First</h3>
-<p>BTS comeback, various collaborations and new attempts stand out in the K-POP chart ...</p>
-<div class="date">
-                                2026.04.06
-                            </div>
-</div>
-</div>
-</a>
 <a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260322 Ktop Chart - Newest First.html">
 <div class="magazine-card">
 <div class="mag-card-img">
@@ -1099,7 +791,7 @@
 <h3>20260322 Ktop Chart - Newest First</h3>
 <p>K-POP Chart for the Fourth Week of March 2026: Strong Comebacks from Major Groups and Diverse Collaborations ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1113,7 +805,7 @@
 <h3>20260315 Ktop Chart - Newest First</h3>
 <p>A week's chart highlighted by diverse collaborations, genre expansions, and welcome comebacks ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1127,7 +819,7 @@
 <h3>20260308 Ktop Chart - Newest First</h3>
 <p>This week's chart features idol group comebacks, diverse collaborations, and notable solo activities ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1141,7 +833,7 @@
 <h3>20260228 Ktop Chart - Newest First</h3>
 <p>A week of generational shifts, collaborations, and a blend of diverse genres ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1169,20 +861,7 @@
 </div>
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
-<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/%EA%B9%80%EA%B1%B4%EB%AA%A8%20(Kim%20Gun%20Mo).html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/ce879351/755f/4e71/975d/bfd5c5d0ff54/1280x1280.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>김건모 (Kim Gun Mo)</h3>
-<p>A Timeless National Singer ...</p>
-<div class="date">
-                                2026.04.09
-                            </div>
-</div>
-</div>
-</a>
+<div class="mag-track">
 <a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/타블로 (Tablo).html">
 <div class="magazine-card">
 <div class="mag-card-img">
@@ -1190,9 +869,9 @@
 </div>
 <div class="mag-card-content">
 <h3>타블로(Tablo)</h3>
-<p>No description available</p>
+<p>A Timeless Storyteller, Crafting Self Through Music ...</p>
 <div class="date">
-                                2026.04.07
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1204,9 +883,9 @@
 </div>
 <div class="mag-card-content">
 <h3>타이거제이케이(Tiger JK)</h3>
-<p>No description available</p>
+<p>A Living Legend of Korean Hip Hop, Capturing the Spirit of the Times ...</p>
 <div class="date">
-                                2026.04.07
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1218,9 +897,9 @@
 </div>
 <div class="mag-card-content">
 <h3>타이푼(TYPHOON)</h3>
-<p>No description available</p>
+<p>A Group That Touches Hearts with Emotional Melodies and Sincere Lyrics ...</p>
 <div class="date">
-                                2026.04.07
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1232,9 +911,23 @@
 </div>
 <div class="mag-card-content">
 <h3>타히티(Tahiti)</h3>
-<p>No description available</p>
+<p>Tahiti: An Island Shining with Diverse Charms ...</p>
 <div class="date">
-                                2026.04.07
+                                2026.03.29
+                            </div>
+</div>
+</div>
+</a>
+<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/탑 (TOP).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/009b522e/3d0f/49e5/9c29/a4d8e0e07cce/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>탑(T.O.P)</h3>
+<p>T.O.P: A Fusion of Art and Experimentation ...</p>
+<div class="date">
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1246,9 +939,9 @@
 </div>
 <div class="mag-card-content">
 <h3>태민(TAEMIN)</h3>
-<p>No description available</p>
+<p>A Delicate Performer Transcending Genres ...</p>
 <div class="date">
-                                2026.04.07
+                                2026.03.29
                             </div>
 </div>
 </div>
@@ -1277,20 +970,6 @@
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
 <div class="mag-track">
-<a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260329 Weekly New Kpop Releases.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/d7241222/5a58/4a32/8dcf/2e9e95c18653/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260329 Weekly New Kpop Releases</h3>
-<p>A musical journey to discover inner emotions and individuality ...</p>
-<div class="date">
-                                2026.04.06
-                            </div>
-</div>
-</div>
-</a>
 <a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260322 Weekly New Kpop Releases.html">
 <div class="magazine-card">
 <div class="mag-card-img">
@@ -1300,7 +979,7 @@
 <h3>20260322 Weekly New Kpop Releases</h3>
 <p>A Feast of Diverse Emotions: A Musical Journey to Discover Your Inner Colors ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.25
                             </div>
 </div>
 </div>
@@ -1314,7 +993,7 @@
 <h3>20260315 Weekly New Kpop Releases</h3>
 <p>A diverse musical palette exploring inner emotions and individuality ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.25
                             </div>
 </div>
 </div>
@@ -1328,7 +1007,7 @@
 <h3>20260308 Weekly New Kpop Releases</h3>
 <p>A Symphony of Emotions: Inner Exploration and Messages of Hope ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.25
                             </div>
 </div>
 </div>
@@ -1342,7 +1021,7 @@
 <h3>20260228 Weekly New Kpop Releases</h3>
 <p>A Feast of Diverse Emotions: A Musical Journey to Discover Hidden Sensibilities ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.25
                             </div>
 </div>
 </div>
@@ -1356,7 +1035,7 @@
 <h3>20260222 Weekly New Kpop Releases</h3>
 <p>A diverse musical journey exploring inner emotions: Personalized healing melodies by MBTI ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.25
                             </div>
 </div>
 </div>
@@ -1384,20 +1063,7 @@
 </div>
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
-<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260331 Latest Kpop Debut Albums</h3>
-<p>A Fresh Wave of Colors: Exploring the May Debuts ...</p>
-<div class="date">
-                                2026.04.09
-                            </div>
-</div>
-</div>
-</a>
+<div class="mag-track">
 <a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260228 Latest Kpop Debut Albums.html">
 <div class="magazine-card">
 <div class="mag-card-img">
@@ -1407,7 +1073,7 @@
 <h3>20260228 Latest Kpop Debut Albums</h3>
 <p>The emergence of K-POP rookies colored with diverse colors ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.27
                             </div>
 </div>
 </div>
@@ -1421,7 +1087,7 @@
 <h3>20260131 Latest Kpop Debut Albums</h3>
 <p>May's Rising Stars: A glimpse into infinite possibilities with diverse colors ...</p>
 <div class="date">
-                                2026.04.06
+                                2026.03.27
                             </div>
 </div>
 </div>
@@ -1519,18 +1185,15 @@
 			'en': {
 				'hero_desc': 'Discover K-POP on TIDAL at a glance.',
 				'search_placeholder': 'Enter artist or song title',
-				'shortcut_weekly_new': '🆕 Weekly New Kpop Releases',
-				'shortcut_ktop_chart': '🔥 Ktop Chart - Newest First',
-				'shortcut_debut': '💎 Latest Kpop Debut Albums',
-				'about_h2': 'YMPL – Data-Driven K-POP Insights Platform',
-				'about_intro': 'YMPL (Your Music Playlist Link) is a data-driven K-POP curation platform designed to help users explore and understand music more deeply. It goes beyond simple link aggregation by combining structured music data with trend analysis to provide meaningful insights and a richer discovery experience.',
-				'f1_title': '<strong>🎧 Data-Driven Music Archive:</strong>',
-				'f1_desc': 'YMPL organizes a vast collection of K-POP artists and discographies into a structured database. With an intuitive index, users can quickly find artists and explore their music in a clear and efficient way.',
-				'f2_title': '<strong>📊 Trend Analysis & Curated Content:</strong>',
-				'f2_desc': 'Beyond raw data, YMPL analyzes weekly releases and charts to uncover music trends. Content such as Weekly New Kpop Releases, Ktop Chart, and Debut Artist Spotlight helps users understand styles, emotions, and evolving patterns in K-POP.',
-				'f3_title': '<strong>🔗 Seamless Music Access:</strong>',
-				'f3_desc': 'All content is connected to the global high-quality streaming platform TIDAL, allowing users to instantly access and listen to music after discovery, creating a smooth and uninterrupted experience.',
-				'about_closing': 'YMPL is not just a database. By combining Data, Insight, and Access, it enables users to discover music faster, understand trends deeper, and enjoy K-POP more efficiently.',				
+				'about_h2': 'Why should you use YMPL?',
+				'about_intro': 'Did you ever feel frustrated when you couldn\'t find the Korean artist or song you wanted on TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> is a professional K-POP archive platform for TIDAL users worldwide.',
+				'f1_title': '<strong>Intuitive Search Environment:</strong>',
+				'f1_desc': 'Simply enter an artist name or song title to be instantly redirected to the album and tracklist pages on TIDAL.',
+				'f2_title': '<strong>Organized Database:</strong>',
+				'f2_desc': 'Our artist index, categorized by the Korean alphabet, lets you view an artist\'s entire discography at a glance.',
+				'f3_title': '<strong>Stay Ahead of Trends:</strong>',
+				'f3_desc': 'Discover new releases, debut albums, and top charts updated weekly to keep up with the latest in K-POP.',
+				'about_closing': 'Spend less time searching and more time enjoying TIDAL’s high-fidelity sound. YMPL aims to make your music listening experience more convenient and enriched.',
 				'nav_privacy': 'Privacy Policy', 'nav_terms': 'Terms of Service', 'nav_contact': 'Contact',
 				'footer_notice_1': 'This site is a curation service that organizes information from external platforms such as TIDAL.',
 				'footer_notice_2': 'All copyrights belong to their respective owners, and this site does not host any content directly.',
@@ -1548,18 +1211,15 @@
 			'ko': {
 				'hero_desc': 'TIDAL에서 K-POP을 한눈에 찾아보세요.',
 				'search_placeholder': '아티스트나 곡 제목을 입력하세요',
-				'shortcut_weekly_new': '🆕 이번 주 신규 K-POP 발매',
-				'shortcut_ktop_chart': '🔥 최신곡 기준 K-POP 차트',
-				'shortcut_debut': '💎 최신 데뷔 앨범',
-				'about_h2': 'YMPL – 데이터 기반 K-POP 인사이트 플랫폼',
-				'about_intro': 'YMPL(Your Music Playlist Link)은 K-POP 음악을 더 깊이 이해하고 탐색할 수 있도록 설계된 데이터 기반 큐레이션 플랫폼입니다. 단순한 링크 모음이 아니라, 음악 데이터와 트렌드 분석을 결합하여 사용자에게 새로운 관점과 인사이트를 제공합니다.',				
-				'f1_title': '<strong>🎧 데이터 기반 아카이브:</strong>',
-				'f1_desc': 'YMPL은 방대한 K-POP 아티스트와 디스코그래피 데이터를 체계적으로 정리하여 제공합니다. 가나다순 아티스트 인덱스를 통해 원하는 가수를 빠르게 찾고, 음악 정보를 한눈에 확인할 수 있는 효율적인 탐색 환경을 제공합니다.',				
-				'f2_title': '<strong>📊 트렌드 분석 & 큐레이션 콘텐츠:</strong>',
-				'f2_desc': '단순한 데이터 제공을 넘어, 매주 업데이트되는 신곡과 차트를 기반으로 음악 트렌드를 분석합니다. Weekly New Kpop Releases, Ktop Chart, Debut Artist Spotlight 등의 콘텐츠를 통해 감성, 스타일, 흐름을 해석하여 K-POP을 더 깊이 이해할 수 있도록 돕습니다.',				
-				'f3_title': '<strong>🔗 빠르고 직관적인 음악 연결:</strong>',
-				'f3_desc': '모든 콘텐츠는 글로벌 고음질 스트리밍 플랫폼인 TIDAL과 연결되어 있어, 아티스트나 곡을 찾은 뒤 즉시 감상으로 이어질 수 있습니다. 검색부터 감상까지 끊김 없는 경험을 제공합니다.',
-				'about_closing': 'YMPL은 단순한 데이터베이스가 아닌, 데이터(Data)·분석(Insight)·연결(Access)을 결합한 음악 탐색 플랫폼입니다. 사용자가 K-POP을 더 빠르게 발견하고, 더 깊이 이해하며, 더 편리하게 즐길 수 있도록 돕는 것을 목표로 합니다.',								
+				'about_h2': '왜 YMPL을 사용해야 할까요?',
+				'about_intro': '한국 가수의 음원을 찾을 때 원하는 결과가 잘 나오지 않아 답답하셨나요? <strong>YMPL(Your Music Playlist Link)</strong>은 전 세계 고음질 스트리밍 서비스인 TIDAL 사용자를 위해 탄생한 K-POP 전문 아카이브 플랫폼입니다.',
+				'f1_title': '<strong>직관적인 검색 환경:</strong>',
+				'f1_desc': '복잡한 검색어 없이 아티스트명이나 곡 제목만 입력하면, TIDAL의 앨범 및 수록곡 페이지로 즉시 연결됩니다.',
+				'f2_title': '<strong>체계적인 데이터베이스:</strong>',
+				'f2_desc': '가나다순으로 정렬된 아티스트 인덱스를 통해 내가 찾는 가수의 디스코그래피를 한눈에 확인할 수 있습니다.',
+				'f3_title': '<strong>빠른 최신 트렌드 확인:</strong>',
+				'f3_desc': '매주 업데이트되는 신규 발매곡, 최신 데뷔 앨범, TOP 차트 정보를 통해 놓치기 쉬운 K-POP 소식을 가장 빠르게 접할 수 있습니다.',
+				'about_closing': '검색 시간을 줄이고, TIDAL만의 고음질 사운드를 즐기는 데 더 집중하세요. YMPL은 여러분의 음악 감상 경험을 더 편리하고 풍요롭게 만드는 것을 목표로 합니다.',
 				'nav_privacy': '개인정보처리방침', 'nav_terms': '이용약관', 'nav_contact': '문의하기',
 				'footer_notice_1': '본 사이트는 TIDAL 등 외부 플랫폼의 정보를 정리한 큐레이션 서비스입니다.',
 				'footer_notice_2': '모든 저작권은 각 권리자에게 있으며, 본 사이트는 콘텐츠를 직접 호스팅하지 않습니다.',
@@ -1577,18 +1237,15 @@
 			'es': {
 				'hero_desc': 'Descubra K-POP en TIDAL de un vistazo.',
 				'search_placeholder': 'Ingrese artista o título de canción',
-				'shortcut_weekly_new': '🆕 Nuevos lanzamientos K-POP de la semana',
-				'shortcut_ktop_chart': '🔥 Ranking K-POP - Más recientes primero',
-				'shortcut_debut': '💎 Últimos álbumes debut de K-POP',
-				'about_h2': 'YMPL – Plataforma de Insights K-POP basada en datos',
-				'about_intro': 'YMPL (Your Music Playlist Link) es una plataforma de curación de K-POP basada en datos, diseñada para ayudar a los usuarios a explorar y comprender la música de forma más profunda. No es solo una colección de enlaces, sino una combinación de datos musicales estructurados y análisis de tendencias que ofrece una experiencia de descubrimiento más rica.',
-				'f1_title': '<strong>🎧 Archivo musical basado en datos:</strong>',
-				'f1_desc': 'YMPL organiza una amplia colección de artistas y discografías de K-POP en una base de datos estructurada. Gracias a su índice intuitivo, los usuarios pueden encontrar artistas rápidamente y explorar su música de manera eficiente.',
-				'f2_title': '<strong>📊 Análisis de tendencias y contenido curado:</strong>',
-				'f2_desc': 'Más allá de los datos, YMPL analiza lanzamientos semanales y rankings para identificar tendencias musicales. Contenidos como Weekly New Kpop Releases, Ktop Chart y Debut Artist Spotlight ayudan a comprender estilos, emociones y cambios en el K-POP.',
-				'f3_title': '<strong>🔗 Acceso inmediato a la música:</strong>',
-				'f3_desc': 'Todo el contenido está conectado con la plataforma global de streaming de alta calidad TIDAL, permitiendo a los usuarios escuchar música al instante después de descubrirla.',
-				'about_closing': 'YMPL no es solo una base de datos. Al combinar Datos, Análisis y Acceso, permite descubrir música más rápido, entender tendencias en profundidad y disfrutar del K-POP de manera más eficiente.',
+				'about_h2': '¿Por qué deberías usar YMPL?',
+				'about_intro': '¿Alguna vez te has sentido frustrado al buscar música de artistas coreanos en TIDAL? <strong>YMPL (Your Music Playlist Link)</strong> es una plataforma de archivo profesional de K-POP diseñada para usuarios de TIDAL en todo el mundo.',
+				'f1_title': '<strong>Búsqueda intuitiva:</strong>',
+				'f1_desc': 'Simplemente introduce el nombre del artista o el título de la canción para ser redirigido al instante a las páginas de álbumes y pistas en TIDAL.',
+				'f2_title': '<strong>Base de datos organizada:</strong>',
+				'f2_desc': 'Nuestro índice de artistas te permite ver la discografía completa de un artista de un vistazo.',
+				'f3_title': '<strong>Mantente al día:</strong>',
+				'f3_desc': 'Descubre nuevos lanzamientos, álbumes debut y listas de éxitos actualizadas semanalmente para no perderte nada del K-POP.',
+				'about_closing': 'Pasa menos tiempo buscando y más tiempo disfrutando del sonido de alta fidelidad de TIDAL. YMPL tiene como objetivo hacer que tu experiencia musical sea más cómoda y enriquecedora.',
 				'nav_privacy': 'Política de privacidad', 'nav_terms': 'Términos de servicio', 'nav_contact': 'Contacto',
 				'footer_notice_1': 'Este sitio es un servicio de curación que organiza información de plataformas externas como TIDAL.',
 				'footer_notice_2': 'Todos los derechos de autor pertenecen a sus respectivos propietarios y este sitio no aloja contenido directamente.',
@@ -1606,18 +1263,15 @@
 			'zh': {
 				'hero_desc': '一目了然地探索 TIDAL 上的 K-POP。',
 				'search_placeholder': '输入艺人或歌曲名称',
-				'shortcut_weekly_new': '🆕 本周K-POP新曲发布',
-				'shortcut_ktop_chart': '🔥 K-POP排行榜（最新优先）',
-				'shortcut_debut': '💎 最新出道专辑',
-				'about_h2': 'YMPL – 数据驱动的K-POP音乐洞察平台',
-				'about_intro': 'YMPL（Your Music Playlist Link）是一个基于数据的K-POP音乐策展平台，旨在帮助用户更深入地探索和理解音乐。它不仅是一个链接集合，而是将结构化音乐数据与趋势分析相结合，提供更有价值的音乐发现体验。',
-				'f1_title': '<strong>🎧 数据驱动的音乐档案库：</strong>',
-				'f1_desc': 'YMPL系统化整理了大量K-POP艺人及其作品信息。通过直观的索引结构，用户可以快速查找艺人并高效浏览其音乐内容。',
-				'f2_title': '<strong>📊 趋势分析与内容策展：</strong>',
-				'f2_desc': '不仅提供数据，YMPL还基于每周新歌和排行榜进行趋势分析。通过 Weekly New Kpop Releases、Ktop Chart 和 Debut Artist Spotlight 等内容，帮助用户理解音乐风格、情绪以及K-POP的发展趋势。',
-				'f3_title': '<strong>🔗 无缝音乐访问体验：</strong>',
-				'f3_desc': '所有内容均连接至高品质流媒体平台TIDAL，用户在发现音乐后可以立即收听，实现流畅无缝的使用体验。',
-				'about_closing': 'YMPL不仅是一个数据库。通过结合数据（Data）、洞察（Insight）与连接（Access），帮助用户更快发现音乐、更深入理解趋势，并更高效地享受K-POP。',
+				'about_h2': '为什么您应该使用 YMPL?',
+				'about_intro': '当您在 TIDAL 上搜索韩国歌手의 音乐时，是否曾因为找不到想要的结果而感到沮丧？<strong>YMPL (Your Music Playlist Link)</strong> 是一个面向全球 TIDAL 用户的专业 K-POP 档案搜索平台。',
+				'f1_title': '<strong>直观的搜索环境：</strong>',
+				'f1_desc': '只需输入艺人姓名或歌曲名称，即可立即跳转至 TIDAL 的专辑及曲目页面。',
+				'f2_title': '<strong>系统化的数据库：</strong>',
+				'f2_desc': '通过分类索引，您可以一目了然地查看艺人的完整作品集。',
+				'f3_title': '<strong>快速获取最新趋势：</strong>',
+				'f3_desc': '每周更新的新歌、出道专辑和热门榜单，让您不错过任何 K-POP 动态。',
+				'about_closing': '减少搜索时间，将更多时间用于享受 TIDAL 的高保真音质。YMPL 旨在让您的音乐体验更加便捷和丰富。',
 				'nav_privacy': '隐私政策', 'nav_terms': '服务条款', 'nav_contact': '联系我们',
 				'footer_notice_1': '本网站是一个整理 TIDAL 等外部平台信息的策展服务。',
 				'footer_notice_2': '所有版权归各自权利人所有，本网站不直接托管任何内容。',
