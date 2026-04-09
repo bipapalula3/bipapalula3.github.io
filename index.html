@@ -765,7 +765,291 @@
 	
 <!-- BLOG_MBTI_END --> 		
 <!-- BLOG_DEBUT_START -->
-	
+<style>
+    .index-page html { background:#111217; }
+.index-page body {
+      opacity: 1;
+      transition: opacity 0.12s ease;
+    }
+.index-page body.page-fade-out { opacity: 0; }
+.index-page body {
+      background:#111217;
+      color:#e6eef6;
+      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
+      font-size:16px;
+      padding:16px;
+      padding-bottom: 70px !important;      line-height:1.6;
+      text-align:left;
+      word-break:break-word;
+      line-break:strict;
+    }
+.index-page a { color:#93c5fd; text-decoration:none; }
+.index-page a:hover { text-decoration:underline; }
+.index-page h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
+.index-page .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
+.index-page .album-entry { margin:8px 0 8px; }
+.index-page img {
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 0 8px rgba(0,0,0,0.5);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+.index-page img:hover { transform: scale(1.03); filter: brightness(1.05); }
+.index-page .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
+.index-page .btn {
+      display:inline-block;
+      padding:10px 16px;
+      background:#1f6feb;
+      color:#fff;
+      border-radius:10px;
+      margin-top:10px;
+      margin-right:20px;
+      font-size:16px;
+      text-align:center;
+    }
+.index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
+.index-page .artist-img-box { position: relative; overflow: hidden; }
+.index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+.index-page .artist-credit-overlay { position:absolute; right:10px; bottom:8px; font-size:12px; color:#f3f4f6; padding:6px 10px; border-radius:8px; backdrop-filter:blur(4px); }
+.index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
+.index-page .artist-btn { padding:12px 20px; font-size:15px; color:#fff; background:rgba(37,99,235,0.6); border:1px solid rgba(147,197,253,0.6); border-radius:14px; backdrop-filter:blur(6px); transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { background:rgba(29,78,216,0.8); transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,64,175,0.6); }
+.index-page /* =========================
+   Index Page Artist Media
+   ========================= */
+.index-page .artist-image-wrapper {
+  max-width: 420px;
+  margin: 16px 0 8px 0;
+}
+.index-page .index-page .album-entry {
+  margin-bottom: 48px;
+}
+.index-page .index-page .artist-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.index-page /* =========================
+   Mobile Tap / Click Smooth
+   ========================= */
+.index-page a, .index-page .index-page img {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+.index-page .index-page a, .index-page .index-page .artist-img {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.index-page .index-page a:active, .index-page .index-page .artist-img:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.index-page .index-page a {
+  touch-action: manipulation;
+}
+.index-page .translate-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 10px 4px 10px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.index-page .translate-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 15px 20px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 1.5;
+  min-height: 85px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.index-page .translate-btn:visited { color: #ffd966 !important; }
+.index-page .translate-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
+}
+.index-page .translate-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -150%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg);
+  -webkit-animation: shimmerTranslate 5s infinite linear;
+  animation: shimmerTranslate 5s infinite linear;
+}
+
+@keyframes shimmerTranslate {
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
+
+@keyframes pulseTranslate {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #ffd966;
+    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  }
+.index-page 50% {
+    transform: scale(1.01);
+    border-color: #fffb00;
+    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
+  }
+.index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
+.index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
+.index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
+    /* =========================
+       Translate Button Override
+       ========================= */
+
+    .index-page .translate-btn-wrapper {
+        position: relative !important;
+        margin-top: 10px !important;
+        padding: 10px !important;
+        background: transparent !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .index-page .translate-btn,
+    .index-page .translate-btn.btn,
+    .index-page a.translate-btn {
+        position: relative !important;
+
+        max-width: 80% !important;
+        width: 60% !important;
+        margin: 0 auto !important;
+
+        background: rgba(59,130,246,0.15) !important;
+        color: #cbd5e1 !important;
+
+        border: 1px solid rgba(148,163,184,0.25) !important;
+        border-radius: 12px !important;
+
+        font-size: 15px !important;
+        font-weight: 500 !important;
+
+        backdrop-filter: blur(6px) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25) inset !important;
+
+        transition: all 0.2s ease !important;
+        animation: none !important;
+    }
+
+    .index-page .translate-btn:hover {
+        background: rgba(59,130,246,0.25) !important;
+        color: #e2e8f0 !important;
+        transform: scale(1.01);
+        text-decoration: none !important;
+    }
+
+    .index-page a.translate-btn,
+    .index-page a.translate-btn:hover,
+    .index-page a.translate-btn:visited {
+        text-decoration: none !important;
+    }
+    
+    </style>
+
+    <div style="
+        width:80%;
+        margin:40px auto;
+        background:#1a1d24;
+        border-radius:20px;
+        padding:30px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    ">
+
+        <div style="margin-bottom:20px;">
+            <h1 style='font-size:1.5em;'>20260331 Latest Kpop Debut Albums</h1>
+        </div>
+
+        <div class="index-page">
+            <div class="artist-card">
+<div class="artist-media">
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/26add46c-2076-4851-a516-bb65fa7cb021" target="_blank">TIDAL KDebut ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
+</div>
+<div class="ai-kpop-info">
+<div class="ai-content debut-spotlight"><div class="artist-subtitle">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">새로운 물결, 다채로운 색깔로 물들이다: 5월 데뷔 신인 집중 탐구</div><div class="artist-subtitle" style="margin-top:8px;">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">A Fresh Wave of Colors: Exploring the May Debuts</div><p>5월, 가요계는 다양한 장르와 개성을 지닌 신인 아티스트들의 데뷔로 활기를 띠었습니다. 힙합, R&amp;B, 팝 등 각자의 색깔을 담은 음악들이 쏟아져 나오며 리스너들의 귀를 즐겁게 했습니다. 실험적인 사운드와 진솔한 감성으로 무장한 신인들의 등장에 앞으로의 K팝 씬은 더욱 풍성해질 것으로 기대됩니다.</p><p>May marks a vibrant influx of rookie artists into the K-pop scene, each boasting unique genres and personalities. From hip-hop and R&amp;B to pop, these artists are captivating listeners with their diverse sounds. With experimental approaches and sincere emotions, these newcomers promise a richer and more exciting future for K-pop.</p><p>✧</p><p>이달의 데뷔 흐름</p><p>5월 데뷔 시장은 다채로운 음악적 스펙트럼을 보여주었습니다. 힙합 기반의 강렬한 에너지, 섬세한 감성을 담은 R&amp;B, 트렌디한 팝 사운드가 두드러졌습니다. 특히, 프로듀싱 능력을 겸비한 싱어송라이터형 아티스트들의 약진이 돋보이며, 자신만의 색깔을 확고히 하려는 시도가 엿보입니다. 장르의 경계를 허물고 새로운 시도를 감행하는 실험적인 음악들이 다수 등장하며, 앞으로의 K팝 시장에 신선한 바람을 불어넣을 것으로 예상됩니다.</p><p>Debut Trend</p><p>May's debut scene showcased a diverse musical spectrum, highlighting energetic hip-hop, delicate R&amp;B, and trendy pop sounds. Notably, singer-songwriter artists with production skills excelled, demonstrating a desire to establish their unique identities. Numerous experimental tracks, blurring genre boundaries, suggest a fresh wind blowing through the K-pop market.</p><p>✧</p><p>신인 아티스트의 매력</p><p>이번 달 데뷔한 아티스트들의 공통적인 매력은 '솔직함'과 '개성'입니다. 꾸며지지 않은 날 것의 감정을 음악에 녹여내어 듣는 이들의 공감을 얻고, 자신만의 스타일을 확고히 하려는 노력이 돋보입니다. 첫인상은 강렬하면서도 친근하며, 대중과의 소통을 중시하는 콘셉트를 보여줍니다. 음악을 통해 자신의 이야기를 진솔하게 전달하고자 하는 열정이 느껴집니다.</p><p>Rookie Appeal</p><p>The common appeal of this month's debuting artists lies in their 'honesty' and 'individuality'. They resonate with listeners by weaving raw, unadorned emotions into their music and showcase efforts to solidify their unique styles. Their first impression is strong yet approachable, emphasizing a concept that values communication with the public. Their passion for conveying their stories genuinely through music is palpable.</p><p>✧</p><p>음악 &amp; 앨범 스타일</p><p>전체적으로 트렌디한 사운드 디자인이 돋보이며, Lo-fi 힙합, 몽환적인 R&amp;B, 청량한 팝 등 다양한 장르를 아우릅니다. 사운드적인 특징으로는 섬세한 악기 배치와 공간감을 활용한 믹싱이 돋보이며, 감성적인 방향으로는 청춘의 고민, 사랑의 설렘, 이별의 아픔 등 누구나 공감할 수 있는 보편적인 감정을 다룹니다. 실험적인 시도를 통해 자신만의 독창적인 음악 세계를 구축하려는 노력이 엿보입니다.</p><p>Music &amp; Album Style</p><p>Overall, trendy sound design is prominent, encompassing diverse genres such as Lo-fi hip-hop, dreamy R&amp;B, and refreshing pop. Sound features include delicate instrument arrangements and mixing that utilizes spatial awareness. Emotionally, they address universal emotions that anyone can relate to, such as the anxieties of youth, the excitement of love, and the pain of separation. They strive to build their own unique musical worlds through experimental endeavors.</p><p>✧</p><p>성장 가능성과 기대</p><p>5월 데뷔 신인들은 자신만의 색깔을 찾기 위한 끊임없는 노력과 음악에 대한 진정성을 보여주었습니다. 다양한 장르를 소화하는 능력과 뛰어난 프로듀싱 역량을 바탕으로 앞으로 더욱 성장할 가능성이 높습니다. 대중과의 소통을 통해 팬덤을 구축하고, 꾸준한 음악 활동을 통해 자신만의 입지를 다져나간다면 K팝 씬의 미래를 이끌어갈 주역이 될 수 있을 것입니다.</p><p>Future Potential</p><p>May's debuting artists have demonstrated a constant effort to find their unique colors and a sincerity towards music. With the ability to handle various genres and excellent production skills, they have a high potential for future growth. By building a fandom through communication with the public and establishing their own position through consistent musical activity, they can become leading figures in the future of the K-pop scene.</p></div><p># 20260331 Latest Kpop Debut Albums</p>
+</div>
+</div>
+        </div>
+
+        <div style="margin-top:10px;">
+            <p style="margin-top:10px;">
+<a href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html" onmousedown="this.style.transform='scale(0.96)';" onmouseout="
+                       this.style.color='#94a3b8';
+                       this.querySelector('.icon').style.transform='scale(1)';
+                   " onmouseover="
+                       this.style.color='#e2e8f0';
+                       this.querySelector('.icon').style.transform='scale(1.2)';
+                   " onmouseup="this.style.transform='scale(1)';" style="
+                       color:#94a3b8; 
+                       font-size:0.95em;
+                       line-height:1.6;
+                       display:inline-block;
+                       cursor:pointer;
+                       transition:color 0.2s ease, transform 0.1s ease;
+                       text-decoration:underline;
+                       text-decoration-thickness:1px;
+                       text-underline-offset:4px;
+                       margin-bottom:4em;
+                   ">
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL Latest KPop Debut Albums
+                    </span>
+</a>
+</p>
+<div class="translate-btn-wrapper">
+<a class="btn translate-btn" data-en="🌐 Track Translation (EN/KO/ES/ZH)&lt;br&gt;▶ Open translation page.&lt;br&gt;" data-ko="📖 트랙 번역 열기 (한/영/스페인/중)&lt;br&gt;▶ 번역 페이지로 이동&lt;br&gt;" href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums_trk.html" id="translateBtn">
+                 🌐 Track Translation (EN/KO/ES/ZH)<br/>
+                 ▶ Open translation page.<br/>
+</a>
+</div>
+<script>
+            (function () {
+                const btn = document.getElementById("translateBtn");
+                if (!btn) return;
+
+                let isKo = false;
+
+                // 🔁 버튼 문구 자동 토글 (3초마다)
+                setInterval(() => {
+                    btn.innerHTML = isKo ? btn.dataset.en : btn.dataset.ko;
+                    isKo = !isKo;
+                }, 3000);
+            })();
+            </script>
+        </div>
+
+    </div>
 <!-- BLOG_DEBUT_END -->
 	
 <article class="about">
@@ -956,7 +1240,6 @@
 </div>
 </div>
 </a>
-
 </div>
 <button class="mag-next">›</button>
 </div>
