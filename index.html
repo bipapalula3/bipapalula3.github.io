@@ -913,10 +913,6 @@ h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; lette
 .index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
 .index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
 .index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
-/* =========================
-   INDEX BUTTON (CLEAN)
-   ========================= */
-
 .index-buttons {
     display: flex;
     flex-direction: column;
@@ -927,8 +923,10 @@ h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; lette
 
 .index-link {
     color: #94a3b8;
-    font-size: 0.9em;
+    font-size: 0.95em;
+    line-height: 1.6;
     text-decoration: underline;
+    text-underline-offset: 4px;
     transition: all 0.2s ease;
 }
 
@@ -949,8 +947,9 @@ h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; lette
 
     padding: 10px;
 
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
 
     backdrop-filter: blur(6px);
     box-shadow: inset 0 4px 12px rgba(0,0,0,0.25);
@@ -961,7 +960,7 @@ h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; lette
 .translate-btn-clean:hover {
     background: rgba(59,130,246,0.25);
     color: #e2e8f0;
-    transform: scale(1.02);
+    transform: scale(1.01);
     text-decoration: none;
 }
 
@@ -995,15 +994,45 @@ h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; lette
 <div class="index-buttons">
 
     <a href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html" class="index-link">
-        📚 INDEX 보기
+        
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL Latest KPop Debut Albums
+                    </span>
+
     </a>
 
-    <a href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums_trk.html" class="translate-btn-clean">
-        🌐 Track Translation<br>
-        ▶ Open translation page
+    <a class="translate-btn-clean"
+       href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums_trk.html"
+       id="translateBtn"
+       data-en="🌐 Track Translation (EN/KO/ES/ZH)<br>▶ Open translation page.<br>"
+       data-ko="📖 트랙 번역 열기 (한/영/스페인/중)<br>▶ 번역 페이지로 이동<br>">
+       
+                 🌐 Track Translation (EN/KO/ES/ZH)<br/>
+                 ▶ Open translation page.<br/>
+
     </a>
 
 </div>
+
+<script>
+(function () {
+    const btn = document.getElementById("translateBtn");
+    if (!btn) return;
+
+    let isKo = false;
+
+    setInterval(() => {
+        btn.innerHTML = isKo ? btn.dataset.en : btn.dataset.ko;
+        isKo = !isKo;
+    }, 3000);
+})();
+</script>
 
 
 </div>
