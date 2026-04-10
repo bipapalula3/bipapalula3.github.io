@@ -969,9 +969,17 @@ a:hover { text-decoration:underline; }
     text-align: left;
 }
 
-/* 🔥 hover 시 밑줄 생기는 효과 제거 */
-.index-page a:hover {
+/* 기본 링크 밑줄 제거 */
+.index-page a,
+.index-page a:hover,
+.index-page a:focus,
+.index-page a:active {
     text-decoration: none !important;
+}
+
+/* INDEX만 밑줄 유지 */
+.index-link {
+    text-decoration: underline !important;
 }
 
 </style>
