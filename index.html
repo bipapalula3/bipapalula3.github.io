@@ -1058,7 +1058,7 @@ a:hover { text-decoration:underline; }
             </div>
 
             <div class="index-page card-wrapper">
-                <div id="blogContent" class="blog-inner blog-collapsed">
+                <div class="blogContent blog-inner blog-collapsed">
                     <div class="artist-card">
 <div class="artist-media">
 <div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/26add46c-2076-4851-a516-bb65fa7cb021" target="_blank">TIDAL KDebut ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
@@ -1070,7 +1070,7 @@ a:hover { text-decoration:underline; }
                 </div>
             </div>
 
-            <div id="toggleBtn" class="blog-toggle-btn">⏬</div>
+            <div class="toggleBtn blog-toggle-btn">⏬</div>
 
             
         <div class="index-buttons">
@@ -1123,27 +1123,31 @@ a:hover { text-decoration:underline; }
         <script>
         (function () {
 
-            const content = document.getElementById("blogContent");
-            const btn = document.getElementById("toggleBtn");
+            document.querySelectorAll(".card-wrapper").forEach(card => {
 
-            if (!content || !btn) return;
+                const content = card.querySelector(".blogContent");
+                const btn = card.querySelector(".toggleBtn");
 
-            let expanded = false;
+                if (!content || !btn) return;
 
-            btn.addEventListener("click", function () {
-                expanded = !expanded;
+                let expanded = false;
 
-                if (expanded) {
-                    content.classList.remove("blog-collapsed");
-                    content.classList.add("blog-expanded");
-                    btn.innerHTML = "⏫";
-                } else {
-                    content.classList.remove("blog-expanded");
-                    content.classList.add("blog-collapsed");
-                    btn.innerHTML = "⏬";
+                btn.addEventListener("click", function () {
+                    expanded = !expanded;
 
-                    content.scrollIntoView({ behavior: "smooth" });
-                }
+                    if (expanded) {
+                        content.classList.remove("blog-collapsed");
+                        content.classList.add("blog-expanded");
+                        btn.innerHTML = "⏫";
+                    } else {
+                        content.classList.remove("blog-expanded");
+                        content.classList.add("blog-collapsed");
+                        btn.innerHTML = "⏬";
+
+                        content.scrollIntoView({ behavior: "smooth" });
+                    }
+                });
+
             });
 
         })();
