@@ -969,16 +969,13 @@ a:hover { text-decoration:underline; }
     text-align: left;
 }
 
-/* 기본 링크 밑줄 제거 */
-.index-page a,
-.index-page a:hover,
-.index-page a:focus,
-.index-page a:active {
-    text-decoration: none !important;
+/* BLOG 내부는 기본 밑줄 없음 */
+.blog-scope a {
+    text-decoration: none;
 }
 
-/* INDEX만 밑줄 유지 */
-.index-link {
+/* hover 시만 밑줄 */
+.blog-scope a:hover {
     text-decoration: underline !important;
 }
 
@@ -997,7 +994,7 @@ a:hover { text-decoration:underline; }
         <h1 style='font-size:1.5em;'>20260331 Latest Kpop Debut Albums</h1>
     </div>
 
-    <div class="index-page">
+    <div class="index-page blog-scope">
         <div class="artist-card">
 <div class="artist-media">
 <div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/26add46c-2076-4851-a516-bb65fa7cb021" target="_blank">TIDAL KDebut ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
