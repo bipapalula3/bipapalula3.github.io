@@ -676,44 +676,54 @@
 		   ========================================================= */
 		/* 1. INDEX 링크: 우유빛 파란색 + 커지는 효과 */
 		.index-link {
-			display: block;
-			color: #a5ccff !important; /* 우유빛 파란색 */
-			font-size: 0.95em;
-			line-height: 1.6;
-			text-decoration: none !important;
-			transition: all 0.3s ease-in-out !important;
+		    display: block;
+		    color: #a5ccff !important;
+		    font-size: 0.95em;
+		    line-height: 1.6;
+		    text-decoration: none !important;
+		    /* transform 제거, 부드러운 색상 전환만 유지 */
+		    transition: color 0.3s ease-in-out, filter 0.3s ease-in-out !important;
 		}
-
+		
 		.index-link:hover {
-			color: #ffffff !important; /* 호버 시 흰색 */
-			transform: scale(1.15) !important; /* 확실히 커짐 */
-			filter: drop-shadow(0 0 8px rgba(165, 204, 255, 0.6)) !important; /* 광채 */
+		    color: #ffffff !important;
+		    /* ✅ 크기 변화(scale)를 삭제하고 밝기 효과만 남김 */
+		    filter: drop-shadow(0 0 8px rgba(165, 204, 255, 0.6)) brightness(1.2) !important;
 		}
-
-		/* 2. 번역 버튼: 우유빛 파란색 + 밝아지는 효과 */
+		
+		/* 2. 번역 버튼: 크기 변화 제거 */
 		.translate-btn-clean {
-			display: block;
-			width: 65%;
-			margin: 0 auto;
-			text-align: center;
-			background: rgba(165, 204, 255, 0.1) !important;
-			color: #a5ccff !important;
-			border: 1px solid rgba(165, 204, 255, 0.3) !important;
-			border-radius: 12px;
-			padding: 10px;
-			font-size: 15px;
-			font-weight: 500;
-			backdrop-filter: blur(6px);
-			transition: all 0.3s ease-in-out !important;
-			text-decoration: none !important;
+		    display: block;
+		    width: 65%;
+		    margin: 0 auto;
+		    text-align: center;
+		    background: rgba(165, 204, 255, 0.1) !important;
+		    color: #a5ccff !important;
+		    border: 1px solid rgba(165, 204, 255, 0.3) !important;
+		    border-radius: 12px;
+		    padding: 10px;
+		    font-size: 15px;
+		    font-weight: 500;
+		    backdrop-filter: blur(6px);
+		    transition: all 0.3s ease-in-out !important;
+		    text-decoration: none !important;
 		}
-
+		
 		.translate-btn-clean:hover {
-			background: rgba(165, 204, 255, 0.25) !important;
-			color: #ffffff !important;
-			transform: scale(1.05) !important;
-			filter: brightness(1.2) !important;
-			border-color: rgba(165, 204, 255, 0.6) !important;
+		    background: rgba(165, 204, 255, 0.25) !important;
+		    color: #ffffff !important;
+		    /* ✅ transform: scale(...) 를 삭제하여 크기 고정 */
+		    filter: brightness(1.2) !important; 
+		    border-color: rgba(165, 204, 255, 0.6) !important;
+		}
+		
+		/* 3. 버튼들 사이의 공간 (요청하신 간격 조절) */
+		.index-buttons {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    gap: 20px; /* ✅ 링크와 버튼 사이의 수직 공간 */
+		    margin-top: 15px;
 		}
 
 		/* 3. 공통: 밑줄 절대 금지 */
