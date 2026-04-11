@@ -1063,17 +1063,27 @@ function toggleExpand() {
     const mask = document.getElementById('maskLayer');
     const arrow = document.getElementById('arrowIcon');
     
-    // 스타일 직접 제어로 오작동 방지
+    // 이 카드의 가장 상단 요소 (전체 컨테이너의 부모)
+    const wrapper = container.parentElement;
+
     if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+        // 펼치기 (MORE -> LESS)
         container.style.maxHeight = '5000px';
         text.innerText = 'LESS';
         mask.style.opacity = '0';
         arrow.style.transform = 'rotate(180deg)';
     } else {
+        // 접기 (LESS -> MORE)
         container.style.maxHeight = '280px';
         text.innerText = 'MORE';
         mask.style.opacity = '1';
         arrow.style.transform = 'rotate(0deg)';
+
+        // ✅ 화면을 카드의 시작 위치로 부드럽게 이동
+        // 약간의 시간 차(300ms)를 주어 애니메이션이 겹치지 않게 합니다.
+        setTimeout(() => {
+            wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
     }
 }
 </script>
