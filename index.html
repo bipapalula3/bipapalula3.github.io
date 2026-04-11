@@ -978,13 +978,13 @@ body {
 /* 카드 높이 제한 및 강제 가림 */
 .expandable-container {
     position: relative;
-    max-height: 250px !important; /* 👈 짧은 글도 가려지게 설정 */
+    max-height: 100px !important; /* 👈 짧은 글도 가려지게 설정 */
     overflow: hidden !important;
     transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expandable-container.expanded {
-    max-height: 5000px !important; /* 펼쳐졌을 때 충분한 높이 */
+    max-height: 4000px !important; /* 펼쳐졌을 때 충분한 높이 */
 }
 
 /* 2. 아래쪽 그라데이션 마스크 (더 짙게) */
