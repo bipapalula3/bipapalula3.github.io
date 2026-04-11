@@ -978,64 +978,73 @@ body {
 /* 카드 높이 제한 및 강제 가림 */
 .expandable-container {
     position: relative;
-    max-height: 250px; /* 짧은 글도 가려지게 설정 */
-    overflow: hidden;
+    max-height: 250px !important; /* 👈 짧은 글도 가려지게 설정 */
+    overflow: hidden !important;
     transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expandable-container.expanded {
-    max-height: 5000px; /* 펼쳐졌을 때 충분한 높이 */
+    max-height: 5000px !important; /* 펼쳐졌을 때 충분한 높이 */
 }
 
-/* 아래쪽 그라데이션 (더 짙게) */
+/* 2. 아래쪽 그라데이션 마스크 (더 짙게) */
 .content-mask {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 120px;
-    background: linear-gradient(transparent, rgba(26, 29, 36, 0.8), #1a1d24);
+    height: 120px !important;
+    background: linear-gradient(transparent, rgba(26, 29, 36, 0.8), #1a1d24) !important;
     pointer-events: none;
     transition: opacity 0.3s;
     z-index: 10;
 }
 
 .expandable-container.expanded .content-mask {
-    opacity: 0;
+    opacity: 0 !important;
 }
 
-/* 작아진 화살표 버튼 (색상 수정) */
+/* 3. 펼치기 버튼 (텍스트+화살표) */
 .expand-toggle-btn {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 👈 세로로 쌓기 (MORE 아래 화살표) */
     align-items: center;
+    justify-content: center;
     cursor: pointer;
-    padding: 15px 0;
+    padding: 15px 0 !important;
+    margin-top: 10px !important;
     
-    /* 🔽 여기 색상을 우유 빛깔 파란색으로 변경했습니다 */
-    color: #a5ccff; 
+    /* 🔽 색상: 우유 빛깔 파란색 (#a5ccff) 강제 적용 */
+    color: #a5ccff !important; 
     
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 12px !important; /* 👈 글자 크기 축소 */
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    text-align: center;
     transition: color 0.3s;
 }
 
-/* 마우스 올렸을 때 더 밝게 */
+/* 마우스 올렸을 때 순백색으로 */
 .expand-toggle-btn:hover {
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
+/* 4. 작아진 화살표 아이콘 (px 단위 고정 및 강제 적용) */
 .arrow-icon {
-    width: 16px; /* 화살표 크기 축소 */
-    height: 16px;
-    margin-top: 4px;
+    /* 🔽 크기: 16px로 하드코딩 */
+    width: 16px !important; 
+    height: 16px !important;
+    
+    margin-top: 4px !important; /* MORE 텍스트와의 간격 */
     transition: transform 0.3s;
-    fill: currentColor; /* 부모의 color 속성을 따름 */
+    
+    /* 🔽 색상: 부모의 color 속성을 따르거나 강제로 채움 */
+    fill: currentColor !important; 
 }
 
+/* 펼쳐졌을 때 화살표 뒤집기 */
 .expandable-container.expanded + .expand-toggle-btn .arrow-icon {
-    transform: rotate(180deg);
+    transform: rotate(180deg) !important;
 }
 
 </style>
@@ -1107,9 +1116,7 @@ body {
     </div>
 
     <div class="expand-toggle-btn" onclick="toggleExpand()">
-        <span id="toggleText">MORE</span>
-        <svg class="arrow-icon" viewBox="0 0 24 24">
-            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        <span id="toggleText">MORE</span> <svg class="arrow-icon" viewBox="0 0 24 24"> <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
         </svg>
     </div>
 
