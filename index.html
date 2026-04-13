@@ -971,16 +971,16 @@ body {
     text-align: left;
 }
 
- /* 기존 블로그의 카드 디자인(네온, 폰트 등) 유지 */
+
 </style>
 
-<div style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
 
     <div style="margin-bottom:20px;">
         <h1 style='font-size:1.5em;'>20260405 Ktop Chart - Newest First</h1>
     </div>
 
-    <div id="blogContainer" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
         <div class="index-page blog-scope">
             <div class="artist-card">
 <div class="artist-media">
@@ -1039,13 +1039,13 @@ body {
 </script>
 
 
-        <div id="maskLayer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
     </div>
 
-    <div onclick="toggleExpand()" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
-        <span id="toggleText" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
         
-        <svg id="arrowIcon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
             <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
         </svg>
     </div>
@@ -1053,34 +1053,34 @@ body {
 </div>
 
 <script>
-function toggleExpand() {
-    const container = document.getElementById('blogContainer');
-    const text = document.getElementById('toggleText');
-    const mask = document.getElementById('maskLayer');
-    const arrow = document.getElementById('arrowIcon');
-    
-    // 이 카드의 가장 상단 요소 (전체 컨테이너의 부모)
-    const wrapper = container.parentElement;
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+        
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+        } else {
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
 
-    if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
-        // 펼치기 (MORE -> LESS)
-        container.style.maxHeight = '5000px';
-        text.innerText = 'LESS';
-        mask.style.opacity = '0';
-        arrow.style.transform = 'rotate(180deg)';
-    } else {
-        // 접기 (LESS -> MORE)
-        container.style.maxHeight = '280px';
-        text.innerText = 'MORE';
-        mask.style.opacity = '1';
-        arrow.style.transform = 'rotate(0deg)';
-
-        // ✅ 화면을 카드의 시작 위치로 부드럽게 이동
-        // 약간의 시간 차(300ms)를 주어 애니메이션이 겹치지 않게 합니다.
-        setTimeout(() => {
-            wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-    }
+            setTimeout(() => {
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    };
 }
 </script>
 <!-- BLOG_CHART_END -->
@@ -1250,16 +1250,16 @@ body {
     text-align: left;
 }
 
- /* 기존 블로그의 카드 디자인(네온, 폰트 등) 유지 */
+
 </style>
 
-<div style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
 
     <div style="margin-bottom:20px;">
         <h1 style='font-size:1.5em;'>20260405 Weekly New Kpop Releases</h1>
     </div>
 
-    <div id="blogContainer" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
         <div class="index-page blog-scope">
             <div class="artist-card">
 <div class="artist-media">
@@ -1322,13 +1322,13 @@ body {
 </script>
 
 
-        <div id="maskLayer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
     </div>
 
-    <div onclick="toggleExpand()" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
-        <span id="toggleText" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
         
-        <svg id="arrowIcon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
             <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
         </svg>
     </div>
@@ -1336,34 +1336,34 @@ body {
 </div>
 
 <script>
-function toggleExpand() {
-    const container = document.getElementById('blogContainer');
-    const text = document.getElementById('toggleText');
-    const mask = document.getElementById('maskLayer');
-    const arrow = document.getElementById('arrowIcon');
-    
-    // 이 카드의 가장 상단 요소 (전체 컨테이너의 부모)
-    const wrapper = container.parentElement;
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+        
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+        } else {
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
 
-    if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
-        // 펼치기 (MORE -> LESS)
-        container.style.maxHeight = '5000px';
-        text.innerText = 'LESS';
-        mask.style.opacity = '0';
-        arrow.style.transform = 'rotate(180deg)';
-    } else {
-        // 접기 (LESS -> MORE)
-        container.style.maxHeight = '280px';
-        text.innerText = 'MORE';
-        mask.style.opacity = '1';
-        arrow.style.transform = 'rotate(0deg)';
-
-        // ✅ 화면을 카드의 시작 위치로 부드럽게 이동
-        // 약간의 시간 차(300ms)를 주어 애니메이션이 겹치지 않게 합니다.
-        setTimeout(() => {
-            wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-    }
+            setTimeout(() => {
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    };
 }
 </script>
 <!-- BLOG_MBTI_END -->
@@ -1533,16 +1533,16 @@ body {
     text-align: left;
 }
 
- /* 기존 블로그의 카드 디자인(네온, 폰트 등) 유지 */
+
 </style>
 
-<div style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
 
     <div style="margin-bottom:20px;">
         <h1 style='font-size:1.5em;'>20260331 Latest Kpop Debut Albums</h1>
     </div>
 
-    <div id="blogContainer" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
         <div class="index-page blog-scope">
             <div class="artist-card">
 <div class="artist-media">
@@ -1601,13 +1601,13 @@ body {
 </script>
 
 
-        <div id="maskLayer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
     </div>
 
-    <div onclick="toggleExpand()" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
-        <span id="toggleText" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
         
-        <svg id="arrowIcon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
             <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
         </svg>
     </div>
@@ -1615,34 +1615,34 @@ body {
 </div>
 
 <script>
-function toggleExpand() {
-    const container = document.getElementById('blogContainer');
-    const text = document.getElementById('toggleText');
-    const mask = document.getElementById('maskLayer');
-    const arrow = document.getElementById('arrowIcon');
-    
-    // 이 카드의 가장 상단 요소 (전체 컨테이너의 부모)
-    const wrapper = container.parentElement;
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+        
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+        } else {
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
 
-    if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
-        // 펼치기 (MORE -> LESS)
-        container.style.maxHeight = '5000px';
-        text.innerText = 'LESS';
-        mask.style.opacity = '0';
-        arrow.style.transform = 'rotate(180deg)';
-    } else {
-        // 접기 (LESS -> MORE)
-        container.style.maxHeight = '280px';
-        text.innerText = 'MORE';
-        mask.style.opacity = '1';
-        arrow.style.transform = 'rotate(0deg)';
-
-        // ✅ 화면을 카드의 시작 위치로 부드럽게 이동
-        // 약간의 시간 차(300ms)를 주어 애니메이션이 겹치지 않게 합니다.
-        setTimeout(() => {
-            wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-    }
+            setTimeout(() => {
+                wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    };
 }
 </script>
 <!-- BLOG_DEBUT_END -->
