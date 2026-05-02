@@ -853,10 +853,13 @@ body {
 .index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
 .index-page .artist-img-box { position: relative; overflow: hidden; }
 .index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
-.index-page .artist-credit-overlay { position:absolute; right:10px; bottom:8px; font-size:12px; color:#f3f4f6; padding:6px 10px; border-radius:8px; backdrop-filter:blur(4px); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
 .index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
-.index-page .artist-btn { padding:12px 20px; font-size:15px; color:#fff; background:rgba(37,99,235,0.6); border:1px solid rgba(147,197,253,0.6); border-radius:14px; backdrop-filter:blur(6px); transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease; }
-.index-page .artist-btn:hover { background:rgba(29,78,216,0.8); transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,64,175,0.6); }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
 .index-page /* =========================
    Index Page Artist Media
    ========================= */
@@ -977,17 +980,17 @@ body {
 <div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
 
     <div style="margin-bottom:20px;">
-        <h1 style='font-size:1.5em;'>20260412 Ktop Chart - Newest First</h1>
+        <h1 style='font-size:1.5em;'>20260426 Ktop Chart - Newest First</h1>
     </div>
 
     <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
         <div class="index-page blog-scope">
             <div class="artist-card">
 <div class="artist-media">
-<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/e496f605/2763/492d/97d0/3c999e8398dc/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/df1b15ed-dfe1-4659-a9fa-a07157f410f5" target="_blank" style='text-decoration:none;'>TIDAL KChart ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/716c7074/7d48/44a6/8575/be1447c2b41e/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/abdd1adc-b9db-442e-ad67-8156c8ac6ae2" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
 </div>
 <div class="ai-kpop-info">
-<div class="ai-content chart-analysis"><div class="artist-subtitle">🎧 YMPL Chart</div><div class="artist-subtitle" style="font-size:16px;">감성적인 악뮤의 컴백과 BTS의 숨겨진 트랙 공개, 아이브와 블랙핑크의 강렬한 존재감이 돋보이는 한 주, 추억과 새로움이 공존하는 음악 여정.</div><div class="artist-subtitle" style="margin-top:8px;">🎧 YMPL Chart</div><div class="artist-subtitle" style="font-size:16px;">This week features AKMU's emotional comeback, the release of hidden BTS tracks, and the strong presence of IVE and BLACKPINK, creating a musical journey where nostalgia and novelty coexist.</div><p>이번 주 K-POP 차트는 악뮤, BTS 등 베테랑 아티스트들의 컴백과 아이브, 블랙핑크와 같은 걸그룹들의 새로운 시도가 돋보입니다. 다양한 장르와 스타일이 공존하며, 팬들에게 풍성한 음악적 경험을 제공하고 있습니다. 특히 과거의 향수를 자극하는 곡들과 실험적인 사운드를 담은 곡들이 함께 등장하며 다채로운 스펙트럼을 보여줍니다.</p><p>This week's K-POP chart is highlighted by the comebacks of veteran artists like AKMU and BTS, along with new attempts from girl groups such as IVE and BLACKPINK. Various genres and styles coexist, providing fans with a rich musical experience. In particular, songs that evoke nostalgia for the past and those with experimental sounds appear together, showcasing a diverse spectrum.</p><p>✧</p><p>이번 주 차트 흐름</p><p>이번 주 차트는 과거 히트곡들의 새로운 해석과 아티스트들의 다양한 콜라보레이션이 주를 이룹니다. 특히 BTS의 숨겨진 트랙 공개와 악뮤의 컴백은 팬들의 큰 관심을 받고 있으며, 아이브와 블랙핑크는 기존의 스타일에서 벗어난 새로운 시도를 통해 음악적 스펙트럼을 넓히고 있습니다. 트렌디한 사운드와 감성적인 멜로디의 조화가 돋보이는 곡들이 강세를 보이는 추세입니다.</p><p>Chart Trend</p><p>This week's chart is dominated by new interpretations of past hits and various artist collaborations. In particular, the release of hidden tracks by BTS and the comeback of AKMU are receiving great attention from fans. IVE and BLACKPINK are expanding their musical spectrum through new attempts beyond their existing styles. Songs that blend trendy sounds with emotional melodies are showing a strong trend.</p><p>✧</p><p>주목해야 할 핵심 곡</p><p>가장 주목할 곡은 악뮤의 'Paradise of Rumors'입니다. 특유의 감성과 독특한 스토리텔링이 돋보이며, 듣는 이로 하여금 깊은 생각에 잠기게 합니다. 또한, BTS의 'Hooligan'은 그들의 숨겨진 음악적 역량을 확인할 수 있는 트랙으로, 팬들에게 특별한 선물이 될 것입니다. 아이브의 'BLACKHOLE'은 강렬한 퍼포먼스와 중독성 있는 멜로디로 대중의 이목을 사로잡을 것으로 예상됩니다.</p><p>Key Tracks to Watch</p><p>The most noteworthy song is AKMU's 'Paradise of Rumors.' Its unique sensibility and distinctive storytelling stand out, leading listeners to deep contemplation. Also, BTS's 'Hooligan' is a track that allows you to check their hidden musical capabilities and will be a special gift for fans. IVE's 'BLACKHOLE' is expected to captivate the public with its intense performance and addictive melody.</p><p>✧</p><p>총평</p><p>이번 주 차트는 신구 아티스트들의 조화와 다양한 장르의 융합이 돋보이는 한 주였습니다. 다음 주에는 또 어떤 새로운 시도와 음악적 발견이 있을지 기대됩니다. 특히 콜라보레이션 트랙들의 인기가 계속될 것으로 예상되며, 숨겨진 실력파 아티스트들의 등장 또한 주목할 만한 부분입니다.</p><p>Conclusion</p><p>This week's chart was a week of harmony between new and old artists and the fusion of various genres. It is expected that the popularity of collaboration tracks will continue next week, and the emergence of hidden talented artists is also noteworthy.</p></div>
+<div class="ai-content chart-analysis"><div class="artist-subtitle">🎧 YMPL Chart</div><div class="artist-subtitle" style="font-size:16px;">세대와 장르를 아우르는 다채로운 음악 향연, AKMU의 깊이 있는 음악 세계와 BTS의 새로운 시도가 돋보이는 한 주입니다. / A diverse musical feast transcending generations and genres, with AKMU's profound musical world and BTS's new attempts standing out this week.</div><div class="artist-subtitle" style="margin-top:8px;">🎧 YMPL Chart</div><div class="artist-subtitle" style="font-size:16px;">A diverse musical feast transcending generations and genres, with AKMU's profound musical world and BTS's new attempts standing out this week.</div><p>이번 주 차트는 다양한 아티스트들의 컴백과 새로운 시도가 돋보입니다. 특히 AKMU의 깊이 있는 음악 세계와 BTS의 색다른 매력을 느낄 수 있는 곡들이 눈에 띕니다. 또한, 신인 그룹들의 활약도 기대되는 한 주입니다. / This week's chart is remarkable for the comebacks and new attempts of various artists. In particular, AKMU's profound musical world and BTS's songs showcasing a different charm stand out. Also, it is a week to look forward to the activities of new groups.</p><p>This week's chart is notable for the comebacks and fresh attempts of various artists. Tracks from AKMU, showcasing their profound musical depth, and BTS, revealing a different charm, are particularly prominent. Additionally, the activities of rising rookie groups are something to look forward to this week.</p><p>✧</p><p>이번 주 차트 흐름</p><p>이번 주 차트는 솔로 아티스트들의 컴백과 그룹들의 새로운 시도가 두드러집니다. 다양한 장르의 음악들이 공존하며, 리스너들에게 폭넓은 선택지를 제공하고 있습니다. 특히, 팝, 힙합, R&amp;B 등 다양한 장르가 혼합된 곡들이 인기를 얻고 있습니다. / This week's chart is characterized by solo artists' comebacks and groups' new attempts. Various genres of music coexist, providing listeners with a wide range of choices. In particular, songs that blend various genres such as pop, hip-hop, and R&amp;B are gaining popularity.</p><p>Chart Trend</p><p>This week's chart showcases comebacks from solo artists and innovative approaches from various groups. Diverse musical genres coexist, offering listeners a wide selection of choices. Tracks blending genres like pop, hip-hop, and R&amp;B are particularly gaining traction.</p><p>✧</p><p>주목해야 할 핵심 곡</p><p>AKMU의 여러 곡들은 특유의 감성과 깊이 있는 메시지를 담고 있어 주목할 만합니다. BTS의 'Body to Body'와 'SWIM'은 기존 스타일과는 다른 새로운 시도를 보여줍니다. IVE의 'BLACKHOLE'과 'BANG BANG'은 강렬한 퍼포먼스와 중독성 있는 멜로디로 팬들을 사로잡을 것으로 예상됩니다. / AKMU's several songs are notable for their unique sensibility and profound messages. BTS's 'Body to Body' and 'SWIM' show new attempts that are different from their existing style. IVE's 'BLACKHOLE' and 'BANG BANG' are expected to captivate fans with their intense performances and addictive melodies.</p><p>Key Tracks to Watch</p><p>AKMU's multiple tracks deserve attention for their unique sensibility and profound messages. BTS's 'Body to Body' and 'SWIM' showcase new experimental sounds distinct from their typical style. IVE's 'BLACKHOLE' and 'BANG BANG' are expected to captivate audiences with their powerful performances and catchy melodies.</p><p>✧</p><p>총평</p><p>이번 주 차트는 다양한 아티스트들의 활약으로 풍성한 음악을 즐길 수 있었습니다. 다음 주에는 또 어떤 새로운 음악들이 차트를 장식할지 기대됩니다. 특히, 신인 그룹들의 성장과 기존 아티스트들의 꾸준한 활동이 기대됩니다. / This week's chart allowed us to enjoy rich music thanks to the activities of various artists. I'm looking forward to seeing what new music will decorate the chart next week. In particular, the growth of new groups and the steady activities of existing artists are expected.</p><p>Conclusion</p><p>This week's chart provided a rich musical experience thanks to the diverse activities of various artists. Anticipation is high for the new music that will grace the charts next week. Notably, the growth of emerging groups and the continued activities of established artists are highly anticipated.</p></div>
 </div>
 </div>
         </div>
@@ -1012,13 +1015,13 @@ body {
     <br>
     <div class="translate-btn-wrapper-clean">
         <a class="translate-btn-clean"
-           href="https://bipapalula3.github.io/YMPL/trk/YMPL_KTop_Chart_-_Newest_First/untitled/20260412%20Ktop%20Chart%20-%20Newest%20First_trk.html"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_KTop_Chart_-_Newest_First/untitled/20260426%20Ktop%20Chart%20-%20Newest%20First_trk.html"
            id="translateBtn"
-           data-en="🌐 Track Translation (EN/KO/ES/ZH)<br>▶ Open translation page.<br>"
-           data-ko="📖 트랙 번역 열기 (한/영/스페인/중)<br>▶ 번역 페이지로 이동<br>">
+           data-en="🌐 Translation (EN/KO/ES/ZH)<br>▶ Open Track Page<br>"
+           data-ko="📖 번역하기 (한/영/스페인/중)<br>▶ 트랙 페이지 열기<br>">
            
-                 🌐 Track Translation (EN/KO/ES/ZH)<br/>
-                 ▶ Open translation page.<br/>
+                 🌐 Translation (EN/KO/ES/ZH)<br/>
+                 ▶ Open Track Page<br/>
 
         </a>
     </div>
@@ -1132,10 +1135,13 @@ body {
 .index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
 .index-page .artist-img-box { position: relative; overflow: hidden; }
 .index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
-.index-page .artist-credit-overlay { position:absolute; right:10px; bottom:8px; font-size:12px; color:#f3f4f6; padding:6px 10px; border-radius:8px; backdrop-filter:blur(4px); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
 .index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
-.index-page .artist-btn { padding:12px 20px; font-size:15px; color:#fff; background:rgba(37,99,235,0.6); border:1px solid rgba(147,197,253,0.6); border-radius:14px; backdrop-filter:blur(6px); transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease; }
-.index-page .artist-btn:hover { background:rgba(29,78,216,0.8); transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,64,175,0.6); }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
 .index-page /* =========================
    Index Page Artist Media
    ========================= */
@@ -1256,21 +1262,19 @@ body {
 <div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
 
     <div style="margin-bottom:20px;">
-        <h1 style='font-size:1.5em;'>20260412 Weekly New Kpop Releases</h1>
+        <h1 style='font-size:1.5em;'>20260419 Weekly New Kpop Releases</h1>
     </div>
 
     <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
         <div class="index-page blog-scope">
             <div class="artist-card">
 <div class="artist-media">
-<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/0584a37f/fc92/4b54/8e63/7b33d99bb458/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/d151f2f4-08d0-48c8-8755-a3531641add7" target="_blank" style='text-decoration:none;'>TIDAL KTrack ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/cb0e7b98/ba73/4d9d/88d2/d436a001fdd5/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/7242e61a-8dfe-40e5-9f72-65b60be6234d" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
 </div>
 <div class="ai-kpop-info">
-<div class="ai-content mbti-analysis"><div class="artist-subtitle">🧬 MBTI Vibe</div><div class="artist-subtitle" style="font-size:16px;">이번 주는 'INFP의 새벽 감성'처럼 섬세하고 내면적인 울림을 주는 곡들이 많네요. ILLIT의 'Bubee'는 몽환적인 사운드로 INFP의 상상력을 자극합니다.</div><div class="artist-subtitle" style="margin-top:8px;">🧬 MBTI Vibe</div><div class="artist-subtitle" style="font-size:16px;">This week is full of delicate and introspective songs, like 'INFP's dawn emotions.' ILLIT's 'Bubee' stimulates INFP's imagination with its dreamy sound.</div><p>이번 주 신곡들은 전반적으로 잔잔하고 감성적인 분위기가 주를 이루며, 개인의 내면을 탐구하고 위로하는 메시지를 담은 곡들이 돋보입니다. 특히 새벽 감성을 자극하는 몽환적인 사운드와 서정적인 가사가 인상적이며, 리스너들에게 깊은 공감과 위안을 선사할 것으로 기대됩니다.</p><p>This week's new releases are generally calm and emotional, with songs that explore and comfort the inner self. Especially, the dreamy sounds and lyrical lyrics that stimulate dawn emotions are impressive, and it is expected to provide deep empathy and comfort to listeners.</p><p>✧</p><p>이번 주 MBTI 흐름</p><p>이번 주는 내향적(I) 성향의 감성이 두드러집니다. 특히 INFP, INFJ 유형에게 깊은 공감을 불러일으킬 만한 섬세하고 감성적인 곡들이 많습니다. 사랑, 이별, 그리움 등 다양한 감정을 다루면서도, 자기 성찰과 내면의 성장에 대한 메시지를 담고 있어 더욱 의미있게 다가옵니다.</p><p>MBTI Trend</p><p>This week, the emotions of introverted (I) types stand out. In particular, there are many delicate and emotional songs that will deeply resonate with INFP and INFJ types. While dealing with various emotions such as love, parting, and longing, it also contains messages of self-reflection and inner growth, making it even more meaningful.</p><p>✧</p><p>대표 MBTI 분석</p><p>이번 주의 대표 MBTI는 INFP입니다. INFP는 내성적이고 감성적이며, 자신만의 독특한 세계관을 가지고 있습니다. 이번 주 신곡들은 INFP의 이러한 특징을 잘 반영하고 있으며, 특히 몽환적인 사운드와 서정적인 가사는 INFP의 상상력을 자극하고 깊은 감동을 선사할 것입니다. 예를 들어, ILLIT의 'Bubee'는 몽환적인 사운드와 신비로운 분위기로 INFP의 감성을 자극합니다.</p><p>Dominant MBTI</p><p>This week's representative MBTI is INFP. INFPs are introverted, emotional, and have their own unique worldview. This week's new songs reflect these characteristics of INFPs, and especially the dreamy sounds and lyrical lyrics will stimulate the imagination of INFPs and provide deep emotion. For example, ILLIT's 'Bubee' stimulates INFP's emotions with its dreamy sound and mysterious atmosphere.</p><p>✧</p><p>감성 유형별 분류</p><p>- 감성적인 ISFP/INFP: 섬세한 감정 표현과 서정적인 멜로디가 돋보이는 곡들을 추천합니다. Panini Brunch의 '사랑할지도 몰라', Shin Hae Gyeong의 'Barely There'처럼 잔잔하고 따뜻한 분위기의 곡들은 ISFP/INFP의 감성을 충족시켜 줄 것입니다.
-- 사색적인 INFJ/INTJ: 깊이 있는 가사와 철학적인 메시지를 담은 곡들을 추천합니다. Jeong Hongil의 'Tumbleweed', SURYEON, Kim Oki - swallowing a lock (feat. KimOki)와 같이 생각을 자극하는 곡들은 INFJ/INTJ의 지적 호기심을 충족시켜 줄 것입니다.
-- 활발한 ESFP/ENFP: 신나고 트렌디한 곡들을 추천합니다. YOUNG POSSE - we don't go to bed tonight, DONGHAE, Jay Park, 1iL - Good Day (Feat. Jay Park, 1iL)처럼 에너제틱한 곡들은 ESFP/ENFP의 흥을 돋울 것입니다.</p><p>MBTI Clusters</p><p>- Emotional ISFP/INFP: Recommend songs with delicate emotional expression and lyrical melodies. Songs with a calm and warm atmosphere like Panini Brunch's '사랑할지도 몰라' and Shin Hae Gyeong's 'Barely There' will satisfy the emotions of ISFP/INFP.
-- Thoughtful INFJ/INTJ: Recommend songs with deep lyrics and philosophical messages. Songs that stimulate thought like Jeong Hongil's 'Tumbleweed' and SURYEON, Kim Oki - swallowing a lock (feat. KimOki) will satisfy the intellectual curiosity of INFJ/INTJ.
-- Active ESFP/ENFP: Recommend exciting and trendy songs. Energetic songs like YOUNG POSSE - we don't go to bed tonight and DONGHAE, Jay Park, 1iL - Good Day (Feat. Jay Park, 1iL) will boost the excitement of ESFP/ENFP.</p><p>✧</p><p>총평</p><p>이번 주 신곡들은 내면의 감성을 섬세하게 표현하고 싶어하는 분들, 특히 INFP 유형에게 추천합니다. 잔잔한 새벽 감성을 느끼며, 자신만의 상상력을 펼치고 싶은 분들에게 좋은 선물이 될 것입니다. 또한, 다양한 감정을 다룬 곡들을 통해 자신을 돌아보고 위로받는 시간을 가질 수 있을 것입니다.</p><p>Conclusion</p><p>This week's new songs are recommended for those who want to express their inner emotions delicately, especially INFP types. It will be a good gift for those who want to feel the calm dawn emotions and unleash their imagination. In addition, you will be able to look back on yourself and be comforted through songs that deal with various emotions.</p></div>
+<div class="ai-content mbti-analysis"><div class="artist-subtitle">🧬 MBTI Vibe</div><div class="artist-subtitle" style="font-size:16px;">이번 주는 내면의 감정을 탐색하는 INFJ형의 한 주: 깊은 사유와 다채로운 감성이 공존하는 음악 세계
+플래이브(PLAVE)의 'Born Savage'는 강렬한 퍼포먼스와 대비되는 섬세한 감정선으로, 엑스디너리 히어로즈(Xdinary Heroes)의 'Voyager'는 새로운 시작을 향한 불안과 설렘을 담아냈습니다.</div><div class="artist-subtitle" style="margin-top:8px;">🧬 MBTI Vibe</div><div class="artist-subtitle" style="font-size:16px;">This week is an INFJ type exploring inner emotions: A musical world where deep contemplation and diverse emotions coexist.
+PLAVE's 'Born Savage' features intense performance contrasted with delicate emotional lines, while Xdinary Heroes' 'Voyager' captures the anxiety and excitement of a new beginning.</div><p>이번 주 신곡들은 내면의 감정을 깊이 탐구하고 다양한 자아를 표현하는 음악들이 주를 이룹니다. 갈등과 고뇌, 희망과 설렘 등 인간의 복잡한 감정을 섬세하게 담아낸 곡들이 많습니다. 특히, 아이돌 그룹들의 음악에서 더욱 성숙해진 감정 표현과 실험적인 시도가 돋보입니다.</p><p>This week's new releases primarily consist of songs that deeply explore inner emotions and express various selves. Many songs delicately capture complex human emotions such as conflict, anguish, hope, and excitement. In particular, the music from idol groups stands out with more mature emotional expressions and experimental attempts.</p><p>✧</p><p>이번 주 MBTI 흐름</p><p>이번 주 음악들은 전반적으로 내향적(I) 성향이 강하게 드러납니다. 감정을 깊이 성찰하고 자아를 탐구하는 곡들이 많으며, 직관(N)적인 가사와 몽환적인 분위기가 특징입니다. 또한, 감정(F)적인 공감대를 형성하고 개인적인 가치관을 반영하는 음악들이 주를 이루며, 인식(P)적인 유연성을 바탕으로 다양한 장르와 스타일을 시도하는 경향을 보입니다. 따라서 이번 주는 INFJ, INFP, INTJ 유형의 사람들에게 특히 깊은 공감을 불러일으킬 수 있는 음악들이 많습니다.</p><p>MBTI Trend</p><p>This week's music generally shows a strong inclination towards introversion (I). There are many songs that deeply reflect on emotions and explore the self, characterized by intuitive (N) lyrics and dreamy atmospheres. Furthermore, music that forms emotional (F) empathy and reflects personal values is dominant, and there is a tendency to experiment with various genres and styles based on perceptive (P) flexibility. Therefore, this week has many songs that can especially resonate with people of INFJ, INFP, and INTJ types.</p><p>✧</p><p>대표 MBTI 분석</p><p>이번 주 대표 MBTI는 INFJ입니다. INFJ는 내향적 직관(Ni)을 주 기능으로 사용하며, 깊은 통찰력과 이상주의적인 성향을 지니고 있습니다. 이들은 예술과 음악을 통해 자신의 감정을 표현하고 세상에 긍정적인 영향을 미치고자 합니다. 이번 주 음악 중에는 내면의 갈등과 고뇌를 섬세하게 표현하면서도 희망을 잃지 않는 곡들이 INFJ의 감성을 자극할 것입니다. 예를 들어, 'Hollow Young - Looking Back'은 과거를 회상하며 현재의 자신을 돌아보는 INFJ의 모습을 담고 있으며, 'The Ade - Aching Memory'는 INFJ의 깊은 감수성을 자극하는 서정적인 발라드입니다.</p><p>Dominant MBTI</p><p>This week's dominant MBTI is INFJ. INFJs use introverted intuition (Ni) as their main function and possess deep insight and idealistic tendencies. They seek to express their emotions and positively impact the world through art and music. Among this week's music, songs that delicately express inner conflict and anguish while not losing hope will stimulate the emotions of INFJs. For example, 'Hollow Young - Looking Back' captures the INFJ's reflection on their current self while reminiscing about the past, and 'The Ade - Aching Memory' is a lyrical ballad that stimulates the INFJ's deep sensitivity.</p><p>✧</p><p>감성 유형별 분류</p><p>1. INFP &amp; ISFP: 감성적이고 예술적인 곡들을 선호하는 유형입니다. 'way2bliss'의 곡들과 'yeoun - Terribly'는 섬세한 감정 표현과 아름다운 멜로디로 이들의 감성을 자극할 것입니다. 2. INTJ &amp; INTP: 분석적이고 지적인 곡들을 선호하는 유형입니다. 'NIve - mono thinking'은 깊이 있는 가사와 실험적인 사운드로 이들의 지적 호기심을 충족시켜 줄 것입니다. 3. ENFJ &amp; ENFP: 활발하고 긍정적인 에너지를 주는 곡들을 선호하는 유형입니다. 'Xdinary Heroes - Voyager'와 'LEEPARAN - Easy Go!'는 희망찬 메시지와 신나는 분위기로 이들의 활력을 북돋아 줄 것입니다.</p><p>MBTI Clusters</p><p>1. INFP &amp; ISFP: These types prefer emotional and artistic songs. 'way2bliss' songs and 'yeoun - Terribly' will stimulate their emotions with delicate emotional expressions and beautiful melodies. 2. INTJ &amp; INTP: These types prefer analytical and intellectual songs. 'NIve - mono thinking' will satisfy their intellectual curiosity with insightful lyrics and experimental sounds. 3. ENFJ &amp; ENFP: These types prefer songs that provide active and positive energy. 'Xdinary Heroes - Voyager' and 'LEEPARAN - Easy Go!' will boost their vitality with hopeful messages and exciting atmospheres.</p><p>✧</p><p>총평</p><p>이번 주 신곡들은 내면의 감정을 탐구하고 다양한 자아를 표현하고자 하는 모든 분들에게 추천합니다. 특히, INFJ 유형의 분들에게는 깊은 공감과 위로를 선사할 것입니다. 플래이브(PLAVE)의 'Born Savage'와 엑스디너리 히어로즈(Xdinary Heroes)의 'Voyager'를 통해 새로운 감성을 경험하고, 자신만의 음악적 취향을 발견해 보세요.</p><p>Conclusion</p><p>This week's new songs are recommended for anyone who wants to explore their inner emotions and express various selves. In particular, they will offer deep empathy and comfort to those of the INFJ type. Experience new emotions through PLAVE's 'Born Savage' and Xdinary Heroes' 'Voyager', and discover your own musical tastes.</p></div>
 </div>
 </div>
         </div>
@@ -1295,13 +1299,13 @@ body {
     <br>
     <div class="translate-btn-wrapper-clean">
         <a class="translate-btn-clean"
-           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Weekly_New_KPop_Releases/untitled/20260412%20Weekly%20New%20Kpop%20Releases_trk.html"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Weekly_New_KPop_Releases/untitled/20260419%20Weekly%20New%20Kpop%20Releases_trk.html"
            id="translateBtn"
-           data-en="🌐 Track Translation (EN/KO/ES/ZH)<br>▶ Open translation page.<br>"
-           data-ko="📖 트랙 번역 열기 (한/영/스페인/중)<br>▶ 번역 페이지로 이동<br>">
+           data-en="🌐 Translation (EN/KO/ES/ZH)<br>▶ Open Track Page<br>"
+           data-ko="📖 번역하기 (한/영/스페인/중)<br>▶ 트랙 페이지 열기<br>">
            
-                 🌐 Track Translation (EN/KO/ES/ZH)<br/>
-                 ▶ Open translation page.<br/>
+                 🌐 Translation (EN/KO/ES/ZH)<br/>
+                 ▶ Open Track Page<br/>
 
         </a>
     </div>
@@ -1415,10 +1419,13 @@ body {
 .index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
 .index-page .artist-img-box { position: relative; overflow: hidden; }
 .index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
-.index-page .artist-credit-overlay { position:absolute; right:10px; bottom:8px; font-size:12px; color:#f3f4f6; padding:6px 10px; border-radius:8px; backdrop-filter:blur(4px); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
 .index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
-.index-page .artist-btn { padding:12px 20px; font-size:15px; color:#fff; background:rgba(37,99,235,0.6); border:1px solid rgba(147,197,253,0.6); border-radius:14px; backdrop-filter:blur(6px); transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease; }
-.index-page .artist-btn:hover { background:rgba(29,78,216,0.8); transform:translateY(-2px); box-shadow:0 6px 16px rgba(30,64,175,0.6); }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
 .index-page /* =========================
    Index Page Artist Media
    ========================= */
@@ -1539,17 +1546,17 @@ body {
 <div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
 
     <div style="margin-bottom:20px;">
-        <h1 style='font-size:1.5em;'>20260331 Latest Kpop Debut Albums</h1>
+        <h1 style='font-size:1.5em;'>20260430 Latest Kpop Debut Albums</h1>
     </div>
 
     <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
         <div class="index-page blog-scope">
             <div class="artist-card">
 <div class="artist-media">
-<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/26add46c-2076-4851-a516-bb65fa7cb021" target="_blank" style='text-decoration:none;'>TIDAL KDebut ▶️ 1</a></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div></div>
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/1e730e02/479c/4316/a3f3/78bf30c477c8/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/4b9064af-d821-43ee-879a-e53525ac0df9" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
 </div>
 <div class="ai-kpop-info">
-<div class="ai-content debut-spotlight"><div class="artist-subtitle">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">새로운 시작을 알리는 다채로운 색깔들, 리스너들의 마음속 정원을 다채로운 음악으로 물들일 신예 아티스트들의 향연: 'Red Flowers In My Garden'처럼 강렬하게, 'Free Falling'처럼 자유롭게.</div><div class="artist-subtitle" style="margin-top:8px;">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">A kaleidoscope of colors signaling new beginnings, a feast of emerging artists ready to fill the listener's heart garden with diverse music: as intense as 'Red Flowers In My Garden', as free as 'Free Falling'.</div><p>이번 달에는 각양각색의 매력을 지닌 신인 아티스트들이 대거 데뷔하며 K-POP 씬에 신선한 바람을 불어넣고 있습니다. 몽환적인 분위기부터 강렬한 퍼포먼스, 그리고 감성적인 보컬까지, 다양한 음악적 스펙트럼을 선보이며 리스너들의 취향을 저격할 준비를 마쳤습니다. 새로운 가능성을 품은 이들의 첫 시작을 함께 응원하며, 앞으로 펼쳐질 활약을 기대해 봅니다.</p><p>This month sees the debut of numerous new artists with diverse charms, bringing a fresh breeze to the K-POP scene. From dreamy atmospheres to intense performances and emotional vocals, they are ready to cater to listeners' tastes with a wide range of musical spectrums. Let's support the beginning of these artists with new possibilities and look forward to their future performances.</p><p>✧</p><p>이달의 데뷔 흐름</p><p>이번 달 데뷔 흐름은 솔로 아티스트의 강세와 다채로운 장르의 융합이 두드러집니다. 힙합, R&amp;B, 팝, 록 등 다양한 장르를 기반으로 자신만의 개성을 드러내는 아티스트들이 많으며, 특히 몽환적이면서도 트렌디한 사운드를 추구하는 경향이 돋보입니다. 실험적인 시도와 독특한 콘셉트를 통해 기존 K-POP과는 차별화된 음악적 경험을 선사하고자 하는 신인들의 열정이 느껴집니다.</p><p>Debut Trend</p><p>This month's debut trend is characterized by the strength of solo artists and the fusion of diverse genres. Many artists base their music on various genres such as hip-hop, R&amp;B, pop, and rock to express their individuality, and a tendency to pursue dreamy yet trendy sounds is particularly noticeable. The passion of newcomers who want to deliver a musical experience differentiated from existing K-POP through experimental attempts and unique concepts can be felt.</p><p>✧</p><p>신인 아티스트의 매력</p><p>이번 달 데뷔한 신인 아티스트들의 공통적인 매력은 '자기다움'을 강조한다는 점입니다. 획일화된 이미지에서 벗어나 솔직하고 개성 넘치는 모습을 보여주며, 음악뿐만 아니라 패션, 스타일 등 다양한 영역에서 자신만의 색깔을 드러냅니다. 첫인상은 신선함과 잠재력으로 가득하며, 각자의 스토리를 담은 콘셉트를 통해 팬들과 소통하고자 하는 진정성이 느껴집니다.</p><p>Rookie Appeal</p><p>The common attraction of the new artists who debuted this month is that they emphasize 'self-likeness'. Breaking away from standardized images, they show honest and unique appearances, and reveal their own colors in various fields such as fashion and style as well as music. The first impression is full of freshness and potential, and there is a sense of sincerity to communicate with fans through concepts that contain their own stories.</p><p>✧</p><p>음악 &amp; 앨범 스타일</p><p>이번 달 신인 아티스트들의 음악은 트렌디한 사운드와 실험적인 시도가 돋보입니다. 힙합, R&amp;B, 팝 등 다양한 장르를 융합하여 독창적인 사운드를 만들어내며, 특히 몽환적인 신스 사운드와 감성적인 멜로디를 활용한 곡들이 많습니다. 앨범 스타일은 솔직한 감정을 표현하는 데 집중하며, 사랑, 이별, 성장 등 다양한 주제를 자신만의 시각으로 풀어냅니다. 전반적으로 감성적이면서도 트렌디한 음악 스타일이 주를 이룹니다.</p><p>Music &amp; Album Style</p><p>The music of this month's new artists features trendy sounds and experimental attempts. They create original sounds by fusing various genres such as hip-hop, R&amp;B, and pop, and in particular, there are many songs that utilize dreamy synth sounds and emotional melodies. The album style focuses on expressing honest emotions, and expresses various themes such as love, parting, and growth from their own perspective. Overall, emotional yet trendy music styles are the main focus.</p><p>✧</p><p>성장 가능성과 기대</p><p>이번 달 데뷔한 신인 아티스트들은 뛰어난 음악적 역량과 개성 넘치는 매력을 바탕으로 K-POP 씬에 새로운 활력을 불어넣을 것으로 기대됩니다. 자신만의 음악적 색깔을 확고히 하고 팬들과 적극적으로 소통하며 성장해 나간다면, 앞으로 더욱 큰 사랑을 받는 아티스트로 발돋움할 수 있을 것입니다. 특히 실험적인 시도와 독창적인 콘셉트를 통해 자신만의 영역을 구축해 나가는 아티스트들을 주목해야 합니다.</p><p>Future Potential</p><p>The new artists who debuted this month are expected to inject new vitality into the K-POP scene based on their outstanding musical capabilities and unique charms. If they establish their own musical colors and actively communicate with fans, they will be able to grow into artists who are even more loved in the future. In particular, attention should be paid to artists who are building their own territory through experimental attempts and original concepts.</p></div>
+<div class="ai-content debut-spotlight"><div class="artist-subtitle">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">이달의 신인, 새로운 시작의 순간</div><div class="artist-subtitle" style="margin-top:8px;">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">Rookies of the Month, The Beginning of New Sounds</div><p>AI 생성 오류</p><p>AI generation error</p></div><p># 20260430 Latest Kpop Debut Albums</p>
 </div>
 </div>
         </div>
@@ -1574,13 +1581,13 @@ body {
     <br>
     <div class="translate-btn-wrapper-clean">
         <a class="translate-btn-clean"
-           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums_trk.html"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260430%20Latest%20Kpop%20Debut%20Albums_trk.html"
            id="translateBtn"
-           data-en="🌐 Track Translation (EN/KO/ES/ZH)<br>▶ Open translation page.<br>"
-           data-ko="📖 트랙 번역 열기 (한/영/스페인/중)<br>▶ 번역 페이지로 이동<br>">
+           data-en="🌐 Translation (EN/KO/ES/ZH)<br>▶ Open Track Page<br>"
+           data-ko="📖 번역하기 (한/영/스페인/중)<br>▶ 트랙 페이지 열기<br>">
            
-                 🌐 Track Translation (EN/KO/ES/ZH)<br/>
-                 ▶ Open translation page.<br/>
+                 🌐 Translation (EN/KO/ES/ZH)<br/>
+                 ▶ Open Track Page<br/>
 
         </a>
     </div>
@@ -1670,7 +1677,33 @@ if (typeof toggleExpandCard === 'undefined') {
 </div>
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
-<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260412%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260426%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/716c7074/7d48/44a6/8575/be1447c2b41e/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260426 Ktop Chart - Newest First</h3>
+<p>A diverse musical feast transcending generations and genres, with AKMU's profound musical world and BTS's new attempts standing out this week. ...</p>
+<div class="date">
+                                2026.05.02
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260419%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/d18cee57/695b/4089/9b82/9281eb00b8e2/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260419 Ktop Chart - Newest First</h3>
+<p>This week's chart is colored with diverse emotions, where AKMU's profound music and IVE's intense energy coexist to captivate listeners. ...</p>
+<div class="date">
+                                2026.05.02
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260412%20Ktop%20Chart%20-%20Newest%20First.html">
 <div class="magazine-card">
 <div class="mag-card-img">
 <img loading="lazy" src="https://resources.tidal.com/images/e496f605/2763/492d/97d0/3c999e8398dc/1080x1080.jpg"/>
@@ -1717,32 +1750,6 @@ if (typeof toggleExpandCard === 'undefined') {
 <div class="mag-card-content">
 <h3>20260322 Ktop Chart - Newest First</h3>
 <p>A week where BTS's intensity and IVE's variety coexist, a K-POP feast blending memories and novelty! ...</p>
-<div class="date">
-                                2026.04.13
-                            </div>
-</div>
-</div>
-</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260315%20Ktop%20Chart%20-%20Newest%20First.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/5ef0893c/539f/41f9/822a/e6c51fff1726/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260315 Ktop Chart - Newest First</h3>
-<p>A week where nostalgia-inducing remakes and new attempts coexist, IVE's 'BLACKHOLE' captivates listeners with its intense presence. ...</p>
-<div class="date">
-                                2026.04.13
-                            </div>
-</div>
-</div>
-</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260308%20Ktop%20Chart%20-%20Newest%20First.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/1dd66125/f269/4f55/8945/d34c9d676250/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260308 Ktop Chart - Newest First</h3>
-<p>IVE's diverse charms and ZICO's trendy sensibilities shine this week, creating a musical feast where nostalgia and novelty coexist. ...</p>
 <div class="date">
                                 2026.04.13
                             </div>
@@ -1874,7 +1881,34 @@ if (typeof toggleExpandCard === 'undefined') {
 </div>
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
-<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260412%20Weekly%20New%20Kpop%20Releases.html">
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260419%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/cb0e7b98/ba73/4d9d/88d2/d436a001fdd5/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260419 Weekly New Kpop Releases</h3>
+<p>This week is an INFJ type exploring inner emotions: A musical world where deep contemplation and diverse emotions coexist.
+PLAVE's 'Born Savage' features intense performance contrasted with delicate emotional lines, while Xdinary Heroes' 'Voyager' captures the anxiety and excitement of a new beginning. ...</p>
+<div class="date">
+                                2026.05.02
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260426%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/12bd8d2a/62e9/447a/862b/767a164e09a9/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260426 Weekly New Kpop Releases</h3>
+<p>This week feels like INFP music, exploring complex inner worlds. LE SSERAFIM's 'CELEBRATION' brings positive energy, while BILL STAX's 'MDMA' represents harsh reality. ...</p>
+<div class="date">
+                                2026.05.02
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260412%20Weekly%20New%20Kpop%20Releases.html">
 <div class="magazine-card">
 <div class="mag-card-img">
 <img loading="lazy" src="https://resources.tidal.com/images/0584a37f/fc92/4b54/8e63/7b33d99bb458/1080x1080.jpg"/>
@@ -1926,32 +1960,6 @@ if (typeof toggleExpandCard === 'undefined') {
                             </div>
 </div>
 </div>
-</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260315%20Weekly%20New%20Kpop%20Releases.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/fd36673c/5b8f/4283/b604/c5a3815ad77b/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260315 Weekly New Kpop Releases</h3>
-<p>A diverse musical feast awakening the deep night and dawn emotions of INFP: Warm comfort like Vincent Blue's 'I’m not cold', and intense resonance like Younha's 'Karma'! ...</p>
-<div class="date">
-                                2026.04.13
-                            </div>
-</div>
-</div>
-</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260308%20Weekly%20New%20Kpop%20Releases.html">
-<div class="magazine-card">
-<div class="mag-card-img">
-<img loading="lazy" src="https://resources.tidal.com/images/8e95aefa/d261/4622/8bbf/eb64a5ccca74/1080x1080.jpg"/>
-</div>
-<div class="mag-card-content">
-<h3>20260308 Weekly New Kpop Releases</h3>
-<p>A week highlighted by ISFP's delicate emotions, with the ENTP's free-spirited vibe shining through aespa's 'ATTITUDE'! ...</p>
-<div class="date">
-                                2026.04.13
-                            </div>
-</div>
-</div>
 </a>
 </div>
 <button class="mag-next">›</button>
@@ -1976,7 +1984,20 @@ if (typeof toggleExpandCard === 'undefined') {
 </div>
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
-<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260430%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/1e730e02/479c/4316/a3f3/78bf30c477c8/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260430 Latest Kpop Debut Albums</h3>
+<p>Rookies of the Month, The Beginning of New Sounds ...</p>
+<div class="date">
+                                2026.05.02
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums.html">
 <div class="magazine-card">
 <div class="mag-card-img">
 <img loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/>
