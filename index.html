@@ -739,9 +739,26 @@
 			.hero { padding: 20px 20px 100px !important; }
 			.hero h1 { font-size: 2rem !important; white-space: nowrap; }
 		}
+		/* =========================
+		   APP MODE
+		========================= */		
+		.app-mode footer {
+		    display: none !important;
+		}
 	</style>
 </head>
 <body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("app") === "1") {
+
+        document.body.classList.add("app-mode");
+    }
+});
+</script>	
 <nav>
 <div class="nav-top">
 <div class="logo">
