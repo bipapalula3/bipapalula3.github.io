@@ -802,15 +802,76 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 </div>
 </nav>
+	
 <header class="hero">
 <h1>TIDAL K-POP Finder</h1>
-<p data-i18n="hero_desc">Discover K-POP on TIDAL at a glance.</p>
+
+<p data-i18n="hero_desc">
+Discover K-POP on TIDAL at a glance.
+</p>
+
 <div class="search-container">
-<form onsubmit="handleManualSearch(); return false;">
-<input autocomplete="off" data-i18n="search_placeholder" id="searchInput" name="q" placeholder="Enter artist or song title" required="" type="text"/>
+
+<form
+    id="searchForm"
+    onsubmit="handleManualSearch(); return false;"
+>
+
+<input
+    autocomplete="off"
+    data-i18n="search_placeholder"
+    id="searchInput"
+    name="q"
+    placeholder="Enter artist or song title"
+    required=""
+    type="text"
+/>
+
 </form>
+
 </div>
 </header>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const input =
+        document.getElementById("searchInput");
+
+    const form =
+        document.getElementById("searchForm");
+
+    // =============================
+    // 앱 환경 감지
+    // =============================
+    const isApp =
+        window.location.search.includes("app=1");
+
+    if (isApp) {
+
+        // 입력 막기
+        input.readOnly = true;
+
+        // 클릭 가능한 느낌
+        input.style.cursor = "pointer";
+
+        // 폼 submit 막기
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+        });
+
+        // 검색창 클릭
+        input.addEventListener("click", function () {
+
+            window.location.href =
+                "ympl://open-search";
+        });
+    }
+});
+
+</script>
+	
 <section class="shortcut-grid">
 <div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
 <h3 data-i18n="shortcut_weekly_new">🆕 Weekly New Kpop Releases</h3>
