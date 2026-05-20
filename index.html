@@ -6,7 +6,10 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>YMPL | K-POP TIDAL Archive</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
-<style>
+<link
+rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap">
+	<style>
 		/* =========================================================
 		1. ROOT / GLOBAL
 		========================================================= */
@@ -312,7 +315,7 @@
 
 	line-height: 1.25;
 
-	letter-spacing: 0.3px;
+	letter-spacing: 0.2px;
 
 	position: relative;
 	z-index: 2;
@@ -323,16 +326,20 @@
 
 	width: 100%;
 
-	color: #ffe082;
-
 	text-align: center;
 
+	color: #ffe082;
+
+	font-family:
+		'Poppins',
+		'Noto Sans KR',
+		sans-serif;
+
 	text-shadow:
-		0 0 6px rgba(255,217,102,0.45),
-		0 0 14px rgba(255,217,102,0.25);
+		0 0 10px rgba(255,217,102,0.18);
 
 	animation:
-		rewardTextPulse 2.2s ease-in-out infinite;
+		floatText 3.2s ease-in-out infinite;
 }
 		
 		/* 모바일 */
@@ -375,21 +382,18 @@
 			}
 		}
 
-	@keyframes rewardTextPulse {
+	@keyframes floatText {
 
 	0% {
-		transform: scale(1);
-		filter: brightness(1);
+		transform: translateY(0px);
 	}
 
 	50% {
-		transform: scale(1.04);
-		filter: brightness(1.18);
+		transform: translateY(-2px);
 	}
 
 	100% {
-		transform: scale(1);
-		filter: brightness(1);
+		transform: translateY(0px);
 	}
 }
 		/* =========================================================
@@ -2531,9 +2535,9 @@ PLAVE's 'Born Savage' features intense performance contrasted with delicate emot
 			'en': {
 				'hero_desc': 'Discover K-POP on TIDAL at a glance.',
 				'search_placeholder': 'Enter artist or song title',
-				'shortcut_weekly_new_en': '🆕 Weekly New Albums',
-			    'shortcut_ktop_chart_en': '🔥 New Song Priority Chart',
-			    'shortcut_debut_en': '💎 Latest Debut Albums',
+				'shortcut_weekly_new': '🆕 Weekly New Albums',
+			    'shortcut_ktop_chart': '🔥 New Song Priority Chart',
+			    'shortcut_debut': '💎 Latest Debut Albums',
 				'about_h2': 'YMPL – Data-Driven K-POP Insights Platform',
 				'about_intro': 'YMPL (Your Music Playlist Link) is a data-driven K-POP curation platform designed to help users explore and understand music more deeply. It goes beyond simple link aggregation by combining structured music data with trend analysis to provide meaningful insights and a richer discovery experience.',
 				'f1_title': '<strong>🎧 Data-Driven Music Archive:</strong>',
@@ -2589,9 +2593,9 @@ PLAVE's 'Born Savage' features intense performance contrasted with delicate emot
 			'es': {
 				'hero_desc': 'Descubra K-POP en TIDAL de un vistazo.',
 				'search_placeholder': 'Ingrese artista o título de canción',
-				'shortcut_weekly_new_es': '🆕 Álbumes Nuevos Semanales',
-			    'shortcut_ktop_chart_es': '🔥 Lista Prioritaria de Nuevas Canciones',
-			    'shortcut_debut_es': '💎 Álbumes de Debut Recientes',
+				'shortcut_weekly_new': '🆕 Álbumes Nuevos Semanales',
+			    'shortcut_ktop_chart': '🔥 Lista Prioritaria de Nuevas Canciones',
+			    'shortcut_debut': '💎 Álbumes de Debut Recientes',
 				'about_h2': 'YMPL – Plataforma de Insights K-POP basada en datos',
 				'about_intro': 'YMPL (Your Music Playlist Link) es una plataforma de curación de K-POP basada en datos, diseñada para ayudar a los usuarios a explorar y comprender la música de forma más profunda. No es solo una colección de enlaces, sino una combinación de datos musicales estructurados y análisis de tendencias que ofrece una experiencia de descubrimiento más rica.',
 				'f1_title': '<strong>🎧 Archivo musical basado en datos:</strong>',
@@ -2618,9 +2622,9 @@ PLAVE's 'Born Savage' features intense performance contrasted with delicate emot
 			'zh': {
 				'hero_desc': '一目了然地探索 TIDAL 上的 K-POP。',
 				'search_placeholder': '输入艺人或歌曲名称',
-				'shortcut_weekly_new_zh': '🆕 每周新专辑',
-			    'shortcut_ktop_chart_zh': '🔥 新歌优先排行榜',
-			    'shortcut_debut_zh': '💎 最新出道专辑',
+				'shortcut_weekly_new': '🆕 每周新专辑',
+			    'shortcut_ktop_chart': '🔥 新歌优先排行榜',
+			    'shortcut_debut': '💎 最新出道专辑',
 				'about_h2': 'YMPL – 数据驱动的K-POP音乐洞察平台',
 				'about_intro': 'YMPL（Your Music Playlist Link）是一个基于数据的K-POP音乐策展平台，旨在帮助用户更深入地探索和理解音乐。它不仅是一个链接集合，而是将结构化音乐数据与趋势分析相结合，提供更有价值的音乐发现体验。',
 				'f1_title': '<strong>🎧 数据驱动的音乐档案库：</strong>',
