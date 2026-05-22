@@ -1133,7 +1133,6 @@ body {
   overflow: hidden;
   width: 100%;
   position: relative;
-  /* ✅ 좌우 자연스러운 페이드 */
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -1152,64 +1151,43 @@ body {
 .index-page .translate-marquee {
   display: flex;
   width: max-content;
-  /* ✅ 전체 반복 */
   animation: marqueeFlow 24s linear infinite;
 }
 .index-page .translate-track {
   flex-shrink: 0;
   white-space: nowrap;
-  /* ✅ 문장 간격 */
   padding-right: 40px;
-  /* ✅ 시작/끝 페이드 */
   opacity: 0;
-  /* ✅ 텍스트 애니메이션 */
   animation: textFade 24s linear infinite;
 }
 
 @keyframes marqueeFlow {
-  /* -------------------------
-     1️⃣ 처음 정지
-  ------------------------- */
   0% {
     transform: translateX(0);
   }
-  10% {
+.index-page 10% {
     transform: translateX(0);
   }
-  /* -------------------------
-     2️⃣ 좌측 흐름
-  ------------------------- */
-  82% {
+.index-page 82% {
     transform: translateX(calc(-33.333%));
   }
-  /* -------------------------
-     3️⃣ 마지막 정지
-  ------------------------- */
-  100% {
+.index-page 100% {
     transform: translateX(calc(-33.333%));
   }
-}
-/* =========================================
-   ✅ 페이드 인/아웃
-========================================= */
+
 @keyframes textFade {
-  /* 시작 투명 */
   0% {
     opacity: 0;
   }
-  /* 페이드 인 */
-  8% {
+.index-page 8% {
     opacity: 1;
   }
-  /* 유지 */
-  68% {
+.index-page 68% {
     opacity: 1;
   }
-  /* 페이드 아웃 */
-  100% {
+.index-page 100% {
     opacity: 0;
   }
-}
 .index-page .translate-btn:visited { color: #ffd966 !important; }
 .index-page .translate-btn:hover {
   transform: scale(1.02);
@@ -1293,38 +1271,38 @@ body {
         </a>
     </div>
     <br>
-    <div class="translate-btn-wrapper-clean">
-        <a class="translate-btn-clean"
+    <div class="translate-btn-wrapper">
+        <a class="btn translate-btn"
            href="https://bipapalula3.github.io/YMPL/trk/YMPL_KTop_Chart_-_Newest_First/untitled/20260517%20Ktop%20Chart%20-%20Newest%20First_trk.html">
-           
-<div class="translate-marquee-wrapper">
-<div class="translate-marquee">
-<div class="translate-track">
-                          🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
-                          ▶ Open Track Page
-                              
-                          🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
-                          ▶ 트랙 페이지 열기
-                        </div>
-<div class="translate-track">
-                          🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
-                          ▶ Open Track Page
-                              
-                          🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
-                          ▶ 트랙 페이지 열기
-                        </div>
-<div class="translate-track">
-                          🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
-                          ▶ Open Track Page
-                              
-                          🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
-                          ▶ 트랙 페이지 열기
-                        </div>
-</div>
-</div>
-
+           <div class="translate-marquee-wrapper">
+              <div class="translate-marquee">
+                <div class="translate-track">
+                  🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
+                  ▶ Open Track Page
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
+                  ▶ 트랙 페이지 열기
+                </div>
+                <div class="translate-track">
+                  🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
+                  ▶ Open Track Page
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
+                  ▶ 트랙 페이지 열기
+                </div>
+                <div class="translate-track">
+                  🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
+                  ▶ Open Track Page
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
+                  ▶ 트랙 페이지 열기
+                </div>
+              </div> 
+            </div>
         </a>
     </div>
+</div>
+
 
         <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
     </div>
@@ -1640,56 +1618,37 @@ body {
         </a>
     </div>
     <br>
-    <div class="translate-btn-wrapper-clean">
-        <a class="translate-btn-clean"
-           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Weekly_New_KPop_Releases/untitled/20260517%20Weekly%20New%20Kpop%20Releases_trk.html"
-           id="translateBtn"
-           data-en=""
-           data-ko="">
-           
-<div class="translate-marquee-wrapper">
-<div class="translate-marquee">
-<div class="translate-track">
-                          🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
-                          ▶ Open Track Page
-                              
-                          🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
-                          ▶ 트랙 페이지 열기
-                        </div>
-<div class="translate-track">
-                          🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
-                          ▶ Open Track Page
-                              
-                          🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
-                          ▶ 트랙 페이지 열기
-                        </div>
-<div class="translate-track">
-                          🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
-                          ▶ Open Track Page
-                              
-                          🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
-                          ▶ 트랙 페이지 열기
-                        </div>
-</div>
-</div>
-
+    <div class="translate-btn-wrapper">
+        <a class="btn translate-btn"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Weekly_New_KPop_Releases/untitled/20260517%20Weekly%20New%20Kpop%20Releases_trk.html">
+           <div class="translate-marquee-wrapper">
+              <div class="translate-marquee">
+                <div class="translate-track">
+                  🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
+                  ▶ Open Track Page
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
+                  ▶ 트랙 페이지 열기
+                </div>
+                <div class="translate-track">
+                  🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
+                  ▶ Open Track Page
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
+                  ▶ 트랙 페이지 열기
+                </div>
+                <div class="translate-track">
+                  🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)
+                  ▶ Open Track Page
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  🎵 가사보기 링크 / 📥 트랙 리스트 다운로드 / 🌐 번역하기 (한/영/스페인/중)
+                  ▶ 트랙 페이지 열기
+                </div>
+              </div> 
+            </div>
         </a>
     </div>
 </div>
-
-<script>
-(function () {
-    const btn = document.getElementById("translateBtn");
-    if (!btn) return;
-
-    let isKo = false;
-
-    setInterval(() => {
-        btn.innerHTML = isKo ? btn.dataset.en : btn.dataset.ko;
-        isKo = !isKo;
-    }, 3000);
-})();
-</script>
 
 
         <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
@@ -2052,7 +2011,7 @@ if (typeof toggleExpandCard === 'undefined') {
 <h3>20260517 Ktop Chart - Newest First</h3>
 <p>Amidst a strong wave of generational change, it's a week where AKMU's deepened musical world and BTS's diverse charms coexist, offering a diverse musical experience with new attempts and familiar emotions. ...</p>
 <div class="date">
-                                2026.05.20
+                                2026.05.22
                             </div>
 </div>
 </div>
@@ -2256,7 +2215,7 @@ if (typeof toggleExpandCard === 'undefined') {
 <h3>20260517 Weekly New Kpop Releases</h3>
 <p>A Delicate Emotional Palette for INFPs: From Dreamy Dawns to Intense Self-Exploration. ...</p>
 <div class="date">
-                                2026.05.20
+                                2026.05.22
                             </div>
 </div>
 </div>
