@@ -1133,6 +1133,7 @@ body {
   overflow: hidden;
   width: 100%;
   position: relative;
+  /* ✅ 좌우 자연스러운 페이드 */
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -1151,43 +1152,64 @@ body {
 .index-page .translate-marquee {
   display: flex;
   width: max-content;
+  /* ✅ 전체 반복 */
   animation: marqueeFlow 24s linear infinite;
 }
 .index-page .translate-track {
   flex-shrink: 0;
   white-space: nowrap;
+  /* ✅ 문장 간격 */
   padding-right: 40px;
+  /* ✅ 시작/끝 페이드 */
   opacity: 0;
+  /* ✅ 텍스트 애니메이션 */
   animation: textFade 24s linear infinite;
 }
 
 @keyframes marqueeFlow {
+  /* -------------------------
+     1️⃣ 처음 정지
+  ------------------------- */
   0% {
     transform: translateX(0);
   }
-.index-page 10% {
+  10% {
     transform: translateX(0);
   }
-.index-page 82% {
+  /* -------------------------
+     2️⃣ 좌측 흐름
+  ------------------------- */
+  82% {
     transform: translateX(calc(-33.333%));
   }
-.index-page 100% {
+  /* -------------------------
+     3️⃣ 마지막 정지
+  ------------------------- */
+  100% {
     transform: translateX(calc(-33.333%));
   }
-
+}
+/* =========================================
+   ✅ 페이드 인/아웃
+========================================= */
 @keyframes textFade {
+  /* 시작 투명 */
   0% {
     opacity: 0;
   }
-.index-page 8% {
+  /* 페이드 인 */
+  8% {
     opacity: 1;
   }
-.index-page 68% {
+  /* 유지 */
+  68% {
     opacity: 1;
   }
-.index-page 100% {
+  /* 페이드 아웃 */
+  100% {
     opacity: 0;
   }
+}
 .index-page .translate-btn:visited { color: #ffd966 !important; }
 .index-page .translate-btn:hover {
   transform: scale(1.02);
