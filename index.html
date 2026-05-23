@@ -883,34 +883,43 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
 
     // 앱(WebView) 감지
     const isApp =
-        /wv/i.test(ua) ||                  // Android WebView
-        /YMPL_APP/i.test(ua) ||            // 커스텀 앱 UA
-        window.ReactNativeWebView ||       // RN WebView
-        window.location.search.includes("app=1");
+        /wv/i.test(ua) ||
+        /YMPL_APP/i.test(ua) ||
+        window.ReactNativeWebView;
 
-    // PC면 허용
+    // PC 허용
     if (!isMobile) return;
 
-    // 모바일 앱이면 허용
+    // 앱 허용
     if (isApp) return;
 
+    // =============================
     // 모바일 브라우저 차단
+    // =============================
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.margin = "0";
+    document.body.style.overflow = "hidden";
+
     document.body.innerHTML = `
         <div style="
+            position:fixed;
+            inset:0;
+            z-index:999999;
+            background:#111;
+            color:white;
             display:flex;
             align-items:center;
             justify-content:center;
             flex-direction:column;
-            height:100vh;
-            background:#111;
-            color:white;
             font-family:sans-serif;
             text-align:center;
             padding:30px;
         ">
-            <h1>YMPL App Required</h1>
+            <h1 style="margin-bottom:10px;">
+                YMPL App Required
+            </h1>
 
-            <p>
+            <p style="line-height:1.6;">
                 Mobile browser access is restricted.<br>
                 Please use the YMPL app.
             </p>
