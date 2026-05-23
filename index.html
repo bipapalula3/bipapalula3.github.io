@@ -1165,29 +1165,31 @@ body {
   0% {
     transform: translateX(0);
   }
-10% {
+  10% {
     transform: translateX(0);
   }
-82% {
+  82% {
     transform: translateX(calc(-33.333%));
   }
-100% {
+  100% {
     transform: translateX(calc(-33.333%));
   }
+}
 
 @keyframes textFade {
   0% {
     opacity: 0;
   }
-8% {
+  8% {
     opacity: 1;
   }
-68% {
+  68% {
     opacity: 1;
   }
-100% {
+  100% {
     opacity: 0;
   }
+}
 .index-page .translate-btn:visited { color: #ffd966 !important; }
 .index-page .translate-btn:hover {
   transform: scale(1.02);
@@ -1204,8 +1206,13 @@ body {
 }
 
 @keyframes shimmerTranslate {
-  0% { left: -150%; }
-.index-page 100% { left: 150%; }
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
 
 @keyframes pulseTranslate {
   0%, 100% {
@@ -1213,11 +1220,13 @@ body {
     border-color: #ffd966;
     box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
   }
-.index-page 50% {
+
+  50% {
     transform: scale(1.01);
     border-color: #fffb00;
     box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
   }
+}
 .index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
 .index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
 .index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
