@@ -871,6 +871,55 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
 	</style>
 </head>
 <body>
+
+<!-- 모바일 브라우저 차단 -->
+<script>
+(function () {
+
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+    const isMobile =
+        /android|iphone|ipad|ipod/i.test(ua);
+
+    // 앱(WebView) 감지
+    const isApp =
+        /wv/i.test(ua) ||                  // Android WebView
+        /YMPL_APP/i.test(ua) ||            // 커스텀 앱 UA
+        window.ReactNativeWebView ||       // RN WebView
+        window.location.search.includes("app=1");
+
+    // PC면 허용
+    if (!isMobile) return;
+
+    // 모바일 앱이면 허용
+    if (isApp) return;
+
+    // 모바일 브라우저 차단
+    document.body.innerHTML = `
+        <div style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            height:100vh;
+            background:#111;
+            color:white;
+            font-family:sans-serif;
+            text-align:center;
+            padding:30px;
+        ">
+            <h1>YMPL App Required</h1>
+
+            <p>
+                Mobile browser access is restricted.<br>
+                Please use the YMPL app.
+            </p>
+        </div>
+    `;
+
+})();
+</script>
+	
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
