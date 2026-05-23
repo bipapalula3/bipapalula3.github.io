@@ -1057,11 +1057,20 @@ body {
 .index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
 .index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
 
-    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
-.index-page 50% { transform: scale(1.05); opacity: 1; }
+    @keyframes pulseBtn {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
 .index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
 .index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
-.index-page /* =========================
+/* =========================
    Index Page Artist Media
    ========================= */
 .index-page .artist-image-wrapper {
@@ -1076,7 +1085,7 @@ body {
   object-fit: cover;
   display: block;
 }
-.index-page /* =========================
+/* =========================
    Mobile Tap / Click Smooth
    ========================= */
 .index-page a, .index-page .index-page img {
@@ -1244,7 +1253,7 @@ body {
 
 </style>
 
-<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow: visible;">
 
     <div style="margin-bottom:20px;">
         <h1 style='font-size:1.5em;'>20260517 Ktop Chart - Newest First</h1>
