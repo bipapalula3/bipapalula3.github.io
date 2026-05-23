@@ -1057,20 +1057,11 @@ body {
 .index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
 .index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
 
-    @keyframes pulseBtn {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-}
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
 .index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
 .index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
-/* =========================
+.index-page /* =========================
    Index Page Artist Media
    ========================= */
 .index-page .artist-image-wrapper {
@@ -1085,7 +1076,7 @@ body {
   object-fit: cover;
   display: block;
 }
-/* =========================
+.index-page /* =========================
    Mobile Tap / Click Smooth
    ========================= */
 .index-page a, .index-page .index-page img {
@@ -1174,31 +1165,29 @@ body {
   0% {
     transform: translateX(0);
   }
-  10% {
+.index-page 10% {
     transform: translateX(0);
   }
-  82% {
+.index-page 82% {
     transform: translateX(calc(-33.333%));
   }
-  100% {
+.index-page 100% {
     transform: translateX(calc(-33.333%));
   }
-}
 
 @keyframes textFade {
   0% {
     opacity: 0;
   }
-  8% {
+.index-page 8% {
     opacity: 1;
   }
-  68% {
+.index-page 68% {
     opacity: 1;
   }
-  100% {
+.index-page 100% {
     opacity: 0;
   }
-}
 .index-page .translate-btn:visited { color: #ffd966 !important; }
 .index-page .translate-btn:hover {
   transform: scale(1.02);
@@ -1215,13 +1204,8 @@ body {
 }
 
 @keyframes shimmerTranslate {
-  0% {
-    left: -150%;
-  }
-  100% {
-    left: 150%;
-  }
-}
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
 
 @keyframes pulseTranslate {
   0%, 100% {
@@ -1229,13 +1213,11 @@ body {
     border-color: #ffd966;
     box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
   }
-
-  50% {
+.index-page 50% {
     transform: scale(1.01);
     border-color: #fffb00;
     box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
   }
-}
 .index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
 .index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
 .index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
@@ -2029,7 +2011,7 @@ if (typeof toggleExpandCard === 'undefined') {
 <h3>20260517 Ktop Chart - Newest First</h3>
 <p>Amidst a strong wave of generational change, it's a week where AKMU's deepened musical world and BTS's diverse charms coexist, offering a diverse musical experience with new attempts and familiar emotions. ...</p>
 <div class="date">
-                                2026.05.22
+                                2026.05.23
                             </div>
 </div>
 </div>
@@ -2233,7 +2215,7 @@ if (typeof toggleExpandCard === 'undefined') {
 <h3>20260517 Weekly New Kpop Releases</h3>
 <p>A Delicate Emotional Palette for INFPs: From Dreamy Dawns to Intense Self-Exploration. ...</p>
 <div class="date">
-                                2026.05.22
+                                2026.05.23
                             </div>
 </div>
 </div>
