@@ -884,7 +884,6 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
     // 모바일 기기 체크
     const isMobile = /android|iphone|ipad|ipod/i.test(ua);
     const isAndroid = /android/i.test(ua);
-    const isIOS = /iphone|ipad|ipod/i.test(ua);
 
     // 앱(WebView) 감지
     const isApp =
@@ -899,45 +898,33 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
     if (isApp) return;
 
     // =============================
-    // 모바일 브라우저 차단 및 기기별/언어별 맞춤 안내
+    // 모바일 브라우저 차단 및 통합 다국어 안내
     // =============================
     document.documentElement.style.overflow = "hidden";
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden";
 
-    // 1. 각 언어별 다국어 데이터 정의
+    // 1. 제안해주신 핵심 문구를 글로벌 4개 국어로 최적화 번역한 데이터
     const langData = {
-        en: {
-            androidTitle: "YMPL App Required",
-            androidBody: "Mobile browser access is restricted.<br>Enjoy a faster and more convenient experience with our official app!",
-            btnText: "Get it on Google Play",
-            iosTitle: "YMPL Studio",
-            iosBody: "Our service is currently optimized for PC browsers and Android devices.<br>For the best experience, please visit us on a <strong>PC/Desktop</strong> environment.",
-            iosSub: "(The iOS app is currently under development.)"
-        },
         ko: {
-            androidTitle: "YMPL 앱 설치 필요",
-            androidBody: "모바일 브라우저 접근이 제한됩니다.<br>더 빠르고 편리한 YMPL 공식 앱을 이용해 보세요!",
-            btnText: "구글 플레이스토어에서 열기",
-            iosTitle: "YMPL 스튜디오",
-            iosBody: "현재 서비스는 PC 브라우저 및 안드로이드 기기에 최적화되어 있습니다.<br>원활한 이용을 위해 <strong>PC/데스크톱 환경</strong>으로 접속해 주세요!",
-            iosSub: "(iOS 앱은 현재 준비 중입니다.)"
+            title: "YMPL 스튜디오",
+            body: "현재 YMPL K-POP 검색 서비스는 안드로이드 앱 및 PC 웹 브라우저 환경에 최적화되어 있습니다.<br><br>아이폰 앱은 준비 중이오니, 원활한 이용을 위해 <strong>PC(화면 너비가 넓은 환경)로 접속</strong>하거나 더 빠르고 편리한 <strong>YMPL 공식 앱</strong>을 이용해 보세요!",
+            btnText: "구글 플레이스토어에서 앱 열기"
+        },
+        en: {
+            title: "YMPL Studio",
+            body: "Currently, the YMPL K-POP search service is optimized for the Android app and PC web browser environments.<br><br>The iOS app is under development. For the best experience, please <strong>visit us on a PC/Desktop</strong> or use the faster and more convenient <strong>official YMPL app</strong>!",
+            btnText: "Get it on Google Play"
         },
         es: {
-            androidTitle: "Se requiere la aplicación YMPL",
-            androidBody: "El acceso desde el navegador móvil está restringido.<br>¡Disfruta de una experiencia más rápida y cómoda con nuestra aplicación oficial!",
-            btnText: "Disponible en Google Play",
-            iosTitle: "YMPL Studio",
-            iosBody: "Actualmente, nuestro servicio está optimizado para navegadores de PC y dispositivos Android.<br>Para una mejor experiencia, visítanos desde una <strong>PC/Computadora de escritorio</strong>.",
-            iosSub: "(La aplicación para iOS está actualmente en desarrollo.)"
+            title: "YMPL Studio",
+            body: "Actualmente, el servicio de búsqueda YMPL K-POP está optimizado para la aplicación Android y el navegador web de PC.<br><br>La aplicación para iOS está en desarrollo. Para una mejor experiencia, ¡<strong>visítanos desde una PC</strong> o utiliza la <strong>aplicación oficial de YMPL</strong>, que es más rápida y cómoda!",
+            btnText: "Disponible en Google Play"
         },
         zh: {
-            androidTitle: "需要安装 YMPL 应用",
-            androidBody: "限制移动浏览器访问。<br>下载我们的官方应用，享受更快捷、更方便的体验！",
-            btnText: "在 Google Play 下载",
-            iosTitle: "YMPL Studio",
-            iosBody: "目前我们的服务已针对 PC 浏览器和 Android 设备进行了优化。<br>为了获得最佳体验，请在 <strong>PC/电脑端</strong> 访问我们。",
-            iosSub: "(iOS 应用目前正在开发中。)"
+            title: "YMPL Studio",
+            body: "目前，YMPL K-POP 搜索服务已针对 Android 应用和 PC 网页浏览器环境进行了优化。<br><br>iOS 应用正在开发中。为了获得最佳体验，请<strong>使用 PC（宽屏环境）访问</strong>，或使用更快捷、更方便的 <strong>YMPL 官方应用</strong>！",
+            btnText: "在 Google Play 下载"
         }
     };
 
@@ -949,34 +936,28 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
     else if (userLang.startsWith('es')) defaultLang = 'es';
     else if (userLang.startsWith('zh')) defaultLang = 'zh';
 
-    // 3. 언어 전환 및 화면 렌더링 함수 선언
+    // 3. 화면 렌더링 함수
     window.updateMobileScreen = function(lang) {
         const data = langData[lang] || langData['en'];
-        let titleText = isAndroid ? data.androidTitle : data.iosTitle;
-        let bodyContent = "";
-
+        
+        // 안드로이드 사용자에게만 플레이스토어 버튼을 보여줍니다.
+        let actionButton = "";
         if (isAndroid) {
-            bodyContent = `
-                <p style="line-height:1.6; margin-bottom:25px; font-size:15px; color:#ccc;">${data.androidBody}</p>
+            actionButton = `
                 <a href="https://play.google.com/store/apps/details?id=com.ympl.ympl_tidal" target="_blank" style="
                     display:inline-block; background:#2196F3; color:white; text-decoration:none;
-                    padding:12px 24px; border-radius:25px; font-weight:bold; font-size:15px;
+                    padding:13px 26px; border-radius:25px; font-weight:bold; font-size:15px; margin-top:10px;
                     box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background 0.2s;
                 ">${data.btnText}</a>
             `;
-        } else {
-            bodyContent = `
-                <p style="line-height:1.6; margin-bottom:20px; font-size:15px; color:#ccc;">${data.iosBody}</p>
-                <span style="font-size:13px; color:#888;">${data.iosSub}</span>
-            `;
         }
 
-        // 전체 차단 화면 출력 (상단 멀티 랭귀지 토글 포함)
+        // 전체 차단 화면 구성 (상단 멀티 랭귀지 토글 포함)
         document.body.innerHTML = `
             <div style="
                 position:fixed; inset:0; z-index:999999; background:#111; color:white;
                 display:flex; align-items:center; justify-content:center; flex-direction:column;
-                font-family:sans-serif; text-align:center; padding:30px;
+                font-family:sans-serif; text-align:center; padding:30px; box-sizing:border-box;
             ">
                 <!-- 상단 언어 수동 선택 버튼 -->
                 <div style="position:absolute; top:20px; display:flex; gap:8px;">
@@ -986,17 +967,31 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
                     <button onclick="updateMobileScreen('zh')" style="background:${lang==='zh'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ZH</button>
                 </div>
 
-                <h1 style="margin-bottom:15px; font-size:26px; font-weight:bold;">
-                    ${titleText}
+                <h1 style="margin-bottom:20px; font-size:26px; font-weight:bold; background: linear-gradient(-20deg, #00D4FF, #FF007F, #FDE100, #00D4FF); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto;">
+                    ${data.title}
                 </h1>
-                ${bodyContent}
+                
+                <p style="line-height:1.7; margin-bottom:25px; font-size:15px; color:#ddd; max-width:450px; word-break:keep-all;">
+                    ${data.body}
+                </p>
+                
+                ${actionButton}
             </div>
         `;
     };
 
-    // 첫 진입 시 사용자의 자동 감지된 언어로 화면 그리기
+    // 첫 진입 시 자동 감지된 언어로 실행
     window.updateMobileScreen(defaultLang);
 })();
+</script>
+	
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("app") === "1") {
+        document.body.classList.add("app-mode");
+    }
+});
 </script>
 	
 <script>
