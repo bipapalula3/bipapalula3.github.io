@@ -876,19 +876,20 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
 </head>
 <body>
 
-<!-- 모바일 브라우저 차단 -->
+<!-- 모바일 브라우저 차단 및 글로벌 안내 -->
 <script>
 (function () {
+    const ua = navigator.userAgent.toLowerCase();
 
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-    const isMobile =
-        /android|iphone|ipad|ipod/i.test(ua);
+    // 모바일 기기 체크
+    const isMobile = /android|iphone|ipad|ipod/i.test(ua);
+    const isAndroid = /android/i.test(ua);
+    const isIOS = /iphone|ipad|ipod/i.test(ua);
 
     // 앱(WebView) 감지
     const isApp =
         /wv/i.test(ua) ||
-        /YMPL_APP/i.test(ua) ||
+        /ympl_app/i.test(ua) ||
         window.ReactNativeWebView;
 
     // PC 허용
@@ -898,52 +899,114 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
     if (isApp) return;
 
     // =============================
-    // 모바일 브라우저 차단
+    // 모바일 브라우저 차단 및 기기별/언어별 맞춤 안내
     // =============================
     document.documentElement.style.overflow = "hidden";
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden";
 
-    document.body.innerHTML = `
-        <div style="
-            position:fixed;
-            inset:0;
-            z-index:999999;
-            background:#111;
-            color:white;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            flex-direction:column;
-            font-family:sans-serif;
-            text-align:center;
-            padding:30px;
-        ">
-            <h1 style="margin-bottom:10px;">
-                YMPL App Required
-            </h1>
+    // 1. 각 언어별 다국어 데이터 정의
+    const langData = {
+        en: {
+            androidTitle: "YMPL App Required",
+            androidBody: "Mobile browser access is restricted.<br>Enjoy a faster and more convenient experience with our official app!",
+            btnText: "Get it on Google Play",
+            iosTitle: "YMPL Studio",
+            iosBody: "Our service is currently optimized for PC browsers and Android devices.<br>For the best experience, please visit us on a <strong>PC/Desktop</strong> environment.",
+            iosSub: "(The iOS app is currently under development.)"
+        },
+        ko: {
+            androidTitle: "YMPL 앱 설치 필요",
+            androidBody: "모바일 브라우저 접근이 제한됩니다.<br>더 빠르고 편리한 YMPL 공식 앱을 이용해 보세요!",
+            btnText: "구글 플레이스토어에서 열기",
+            iosTitle: "YMPL 스튜디오",
+            iosBody: "현재 서비스는 PC 브라우저 및 안드로이드 기기에 최적화되어 있습니다.<br>원활한 이용을 위해 <strong>PC/데스크톱 환경</strong>으로 접속해 주세요!",
+            iosSub: "(iOS 앱은 현재 준비 중입니다.)"
+        },
+        es: {
+            androidTitle: "Se requiere la aplicación YMPL",
+            androidBody: "El acceso desde el navegador móvil está restringido.<br>¡Disfruta de una experiencia más rápida y cómoda con nuestra aplicación oficial!",
+            btnText: "Disponible en Google Play",
+            iosTitle: "YMPL Studio",
+            iosBody: "Actualmente, nuestro servicio está optimizado para navegadores de PC y dispositivos Android.<br>Para una mejor experiencia, visítanos desde una <strong>PC/Computadora de escritorio</strong>.",
+            iosSub: "(La aplicación para iOS está actualmente en desarrollo.)"
+        },
+        zh: {
+            androidTitle: "需要安装 YMPL 应用",
+            androidBody: "限制移动浏览器访问。<br>下载我们的官方应用，享受更快捷、更方便的体验！",
+            btnText: "在 Google Play 下载",
+            iosTitle: "YMPL Studio",
+            iosBody: "目前我们的服务已针对 PC 浏览器和 Android 设备进行了优化。<br>为了获得最佳体验，请在 <strong>PC/电脑端</strong> 访问我们。",
+            iosSub: "(iOS 应用目前正在开发中。)"
+        }
+    };
 
-            <p style="line-height:1.6;">
-                Mobile browser access is restricted.<br>
-                Please use the YMPL app.
-            </p>
-        </div>
-    `;
+    // 2. 사용자 시스템/브라우저 설정 언어 자동 감지
+    const userLang = navigator.language || navigator.userLanguage || 'en';
+    let defaultLang = 'en';
+    
+    if (userLang.startsWith('ko')) defaultLang = 'ko';
+    else if (userLang.startsWith('es')) defaultLang = 'es';
+    else if (userLang.startsWith('zh')) defaultLang = 'zh';
 
+    // 3. 언어 전환 및 화면 렌더링 함수 선언
+    window.updateMobileScreen = function(lang) {
+        const data = langData[lang] || langData['en'];
+        let titleText = isAndroid ? data.androidTitle : data.iosTitle;
+        let bodyContent = "";
+
+        if (isAndroid) {
+            bodyContent = `
+                <p style="line-height:1.6; margin-bottom:25px; font-size:15px; color:#ccc;">${data.androidBody}</p>
+                <a href="https://play.google.com/store/apps/details?id=com.ympl.ympl_tidal" target="_blank" style="
+                    display:inline-block; background:#2196F3; color:white; text-decoration:none;
+                    padding:12px 24px; border-radius:25px; font-weight:bold; font-size:15px;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background 0.2s;
+                ">${data.btnText}</a>
+            `;
+        } else {
+            bodyContent = `
+                <p style="line-height:1.6; margin-bottom:20px; font-size:15px; color:#ccc;">${data.iosBody}</p>
+                <span style="font-size:13px; color:#888;">${data.iosSub}</span>
+            `;
+        }
+
+        // 전체 차단 화면 출력 (상단 멀티 랭귀지 토글 포함)
+        document.body.innerHTML = `
+            <div style="
+                position:fixed; inset:0; z-index:999999; background:#111; color:white;
+                display:flex; align-items:center; justify-content:center; flex-direction:column;
+                font-family:sans-serif; text-align:center; padding:30px;
+            ">
+                <!-- 상단 언어 수동 선택 버튼 -->
+                <div style="position:absolute; top:20px; display:flex; gap:8px;">
+                    <button onclick="updateMobileScreen('en')" style="background:${lang==='en'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">EN</button>
+                    <button onclick="updateMobileScreen('ko')" style="background:${lang==='ko'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">KR</button>
+                    <button onclick="updateMobileScreen('es')" style="background:${lang==='es'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ES</button>
+                    <button onclick="updateMobileScreen('zh')" style="background:${lang==='zh'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ZH</button>
+                </div>
+
+                <h1 style="margin-bottom:15px; font-size:26px; font-weight:bold;">
+                    ${titleText}
+                </h1>
+                ${bodyContent}
+            </div>
+        `;
+    };
+
+    // 첫 진입 시 사용자의 자동 감지된 언어로 화면 그리기
+    window.updateMobileScreen(defaultLang);
 })();
 </script>
 	
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-
     const params = new URLSearchParams(window.location.search);
-
     if (params.get("app") === "1") {
-
         document.body.classList.add("app-mode");
     }
 });
-</script>	
+</script>
 <nav>
 <div class="nav-top">
 <div class="logo">
