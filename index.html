@@ -904,9 +904,6 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
     document.body.style.margin = "0";
     document.body.style.overflow = "hidden";
 
-    // 제공해주신 정확한 이미지 절대 경로로 적용했습니다.
-    const logoUrl = "https://bipapalula3.github.io/YMPL/icon80.png";
-
     const langData = {
         ko: {
             title: "YMPL 스튜디오",
@@ -954,7 +951,7 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
             `;
         }
 
-        // 전체 차단 화면 구성 (상단 멀티 랭귀지 토글 + 로고 포함)
+        // 전체 차단 화면 구성 (상단 멀티 랭귀지 토글 + 음표 이모지 포함)
         document.body.innerHTML = `
             <div style="
                 position:fixed; inset:0; z-index:999999; background:#111; color:white;
@@ -969,9 +966,9 @@ href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&disp
                     <button onclick="updateMobileScreen('zh')" style="background:${lang==='zh'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ZH</button>
                 </div>
 
-                <!-- 로고 + 타이틀 결합 영역 -->
-                <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:20px;">
-                    <img src="${logoUrl}" alt="YMPL Logo" style="width:36px; height:36px; object-fit:contain; border-radius:6px;" onerror="this.style.display='none';">
+                <!-- 텍스트 아이콘 + 타이틀 영역 -->
+                <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:20px;">
+                    <span style="font-size:28px;">🎵</span>
                     <h1 style="margin:0; font-size:26px; font-weight:bold; background: linear-gradient(-20deg, #00D4FF, #FF007F, #FDE100, #00D4FF); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto;">
                         ${data.title}
                     </h1>
