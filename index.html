@@ -2129,6 +2129,371 @@ if (typeof toggleExpandCard === 'undefined') {
 </script>
 <!-- BLOG_DEBUT_END -->
 <!-- BLOG_OST_START -->
+<style>
+html { background:#111217; }
+body {
+      opacity: 1;
+      transition: opacity 0.12s ease;
+    }
+body.page-fade-out { opacity: 0; }
+body {
+      background:#111217;
+      color:#e6eef6;
+      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
+      font-size:16px;
+      padding:16px;
+      padding-bottom: 70px !important;      line-height:1.6;
+      text-align:left;
+      word-break:break-word;
+      line-break:strict;
+    }
+.index-page a { color:#93c5fd; text-decoration:none; }
+.index-page a:hover { text-decoration:underline; }
+.index-page h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
+.index-page .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
+.index-page .album-entry { margin:8px 0 8px; }
+.index-page img {
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 0 8px rgba(0,0,0,0.5);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+.index-page img:hover { transform: scale(1.03); filter: brightness(1.05); }
+.index-page .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
+.index-page .btn {
+      display:inline-block;
+      padding:10px 16px;
+      background:#1f6feb;
+      color:#fff;
+      border-radius:10px;
+      margin-top:10px;
+      margin-right:20px;
+      font-size:16px;
+      text-align:center;
+    }
+.index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
+.index-page .artist-img-box { position: relative; overflow: hidden; }
+.index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
+.index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
+.index-page /* =========================
+   Index Page Artist Media
+   ========================= */
+.index-page .artist-image-wrapper {
+  max-width: 420px;
+  margin: 16px 0 8px 0;
+}
+.index-page .index-page .album-entry {
+  margin-bottom: 48px;
+}
+.index-page .index-page .artist-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.index-page /* =========================
+   Mobile Tap / Click Smooth
+   ========================= */
+.index-page a, .index-page .index-page img {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+.index-page .index-page a, .index-page .index-page .artist-img {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.index-page .index-page a:active, .index-page .index-page .artist-img:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.index-page .index-page a {
+  touch-action: manipulation;
+}
+.index-page .translate-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 6px 6px 6px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.index-page .translate-btn {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 10px 16px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.index-page .translate-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+.index-page .translate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeFlow 24s linear infinite;
+}
+.index-page .translate-track {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-right: 40px;
+  opacity: 0;
+  animation: textFade 24s linear infinite;
+}
+
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+.index-page 10% {
+    transform: translateX(0);
+  }
+.index-page 82% {
+    transform: translateX(calc(-33.333%));
+  }
+.index-page 100% {
+    transform: translateX(calc(-33.333%));
+  }
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+.index-page 8% {
+    opacity: 1;
+  }
+.index-page 68% {
+    opacity: 1;
+  }
+.index-page 100% {
+    opacity: 0;
+  }
+.index-page .translate-btn:visited { color: #ffd966 !important; }
+.index-page .translate-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
+}
+.index-page .translate-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -150%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg);
+  -webkit-animation: shimmerTranslate 5s infinite linear;
+  animation: shimmerTranslate 5s infinite linear;
+}
+
+@keyframes shimmerTranslate {
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
+
+@keyframes pulseTranslate {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #ffd966;
+    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  }
+.index-page 50% {
+    transform: scale(1.01);
+    border-color: #fffb00;
+    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
+  }
+.index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
+.index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
+.index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
+.index-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.index-page h1 {
+    text-align: left;
+}
+
+
+</style>
+
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+
+    <div style="margin-bottom:20px;">
+        <h1 style='font-size:1.5em;'>20260410 Kdrama OST - 21세기 대군부인 ( 21st Century Grand Royal Mistress )</h1>
+    </div>
+
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+        <div class="index-page blog-scope">
+            <div class="artist-card">
+<div class="artist-media">
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/be649802/4488/4c38/86dd/aeeaa23f5076/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/aa2828dc-46e9-41a9-ab4c-e787e1111377" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
+</div>
+<div class="ai-kpop-info">
+<div class="ai-content ost-analysis"><div class="artist-subtitle">🎵 OST Story</div><div class="artist-subtitle" style="font-size:16px; font-weight:bold;">시간을 초월한 사랑, '21세기 대군부인' OST가 빚어낸 판타지</div><div class="artist-subtitle" style="margin-top:8px;">🎵 OST Story</div><div class="artist-subtitle" style="font-size:14px; color:#888;">Timeless Love, The Fantasy Woven by '21st Century Grand Royal Mistress' OST</div><p>'21세기 대군부인'이 안방극장을 뜨겁게 달구며 신드롬을 일으켰습니다. 특히 드라마의 감정선을 섬세하게 그려낸 OST는 시청자들의 깊은 공감을 자아내며 폭발적인 인기를 얻었죠. 마치 타임슬립처럼, 드라마와 OST는 우리를 현실 너머의 황홀경으로 안내합니다.</p><p>'21st Century Grand Royal Mistress' has ignited the small screen, creating a sensation. The OST, in particular, which delicately depicted the drama's emotional arc, has garnered immense popularity by evoking deep empathy from viewers. Like time travel, the drama and its OST guide us to a realm beyond reality.</p><p>✧</p><p>🎬 운명처럼 펼쳐진 애절한 로맨스, OST가 완성한 결정적 명장면</p><p>드라마 '21세기 대군부인'은 시대를 초월하는 애절한 로맨스로 시청자들의 심금을 울렸습니다. 'Wooseok Byeon'의 'Fate Line'은 남녀 주인공이 운명처럼 서로에게 이끌리는 순간, 그 얽히고설킨 운명의 실타래를 애절하게 풀어냈습니다. 'SAM KIM'의 'If You Were My World'는 서로의 존재가 세상의 전부가 되는 벅찬 순간, 가슴 벅찬 사랑의 감정을 폭발시키며 시청자들의 눈물샘을 자극했습니다. 또한 'RIIZE'의 'Behind The Shine'은 화려함 뒤에 숨겨진 인물들의 고독과 서로를 향한 애틋한 마음을 극적으로 그려내며, 단순한 로맨스를 넘어선 깊은 울림을 선사했습니다.</p><p>🎬 The Crucial Scene Perfected by Music</p><p>The drama '21st Century Grand Royal Mistress' resonated deeply with viewers through its timeless, poignant romance. Wooseok Byeon's 'Fate Line' poignantly depicted the intertwined threads of destiny as the male and female leads were drawn to each other like fate itself. SAM KIM's 'If You Were My World' amplified the overwhelming emotions of love during moments when each other became their entire world, prompting tears from the audience. Furthermore, RIIZE's 'Behind The Shine' dramatically portrayed the loneliness hidden behind splendor and the tender feelings towards one another, delivering a profound resonance beyond a simple romance.</p><p>✧</p><p>🎤 아티스트의 음색과 캐릭터의 겹쳐지는 서사</p><p>'21세기 대군부인'의 OST는 각 아티스트의 독보적인 음색과 캐릭터의 내면 심리를 절묘하게 엮어냈습니다. 'Im Joongwon'의 'In Your Orbit'은 몽환적이면서도 애절한 보컬로, 거대한 운명 속에서 서로를 갈망하는 두 인물의 아슬아슬한 관계를 섬세하게 표현했습니다. 'WOODZ'의 'EVERGLOW'는 허스키하면서도 강렬한 음색으로, 험난한 현실 속에서도 희망을 잃지 않고 빛나고자 하는 인물의 의지를 역동적으로 그려냈습니다. 'so soo bin'의 'My Favorite Part'는 맑고 청아한 음색으로, 사소한 순간에도 서로에게서 발견하는 특별함과 사랑의 설렘을 따뜻하게 담아냈죠.</p><p>🎤 Artist's Voice and Character Narrative</p><p>The OST for '21st Century Grand Royal Mistress' exquisitely intertwined the unique vocal colors of each artist with the inner psyche of the characters. Im Joongwon's 'In Your Orbit,' with its dreamy yet sorrowful vocals, delicately expressed the precarious relationship of two characters yearning for each other within a grand destiny. WOODZ's 'EVERGLOW,' featuring a husky yet powerful tone, dynamically portrayed a character's will to shine and never lose hope amidst harsh realities. so soo bin's 'My Favorite Part,' with its clear and pure voice, warmly captured the specialness found in each other and the thrill of love even in trivial moments.</p><p>✧</p><p>💔 시청자들의 '인생 OST'로 자리매김한 이유</p><p>'21세기 대군부인'의 OST는 단순한 배경음악을 넘어, 드라마의 감동을 배가시키는 마법을 선사했습니다. 'Aleph'의 'Already Free', 'hrtz.wav'의 'You Keep Me Here', 'HANRORO'의 'Our Goodbye', 'KiiiKiii'의 'Go On', 'BOYNEXTDOOR'의 'No Doubt', 'BIBI'의 'My Pace'까지, 각 트랙은 인물들의 희로애락을 응축하여 리스너들의 감정을 건드립니다. 복잡한 현대 사회 속에서 잊고 있던 순수한 사랑의 감정, 혹은 가슴 시린 이별의 아픔을 떠올리게 하는 이 OST는, 드라마를 사랑했던 모든 이들에게 잊지 못할 추억과 깊은 감동을 선사할 것입니다. 다시 한번, '21세기 대군부인' OST와 함께 그 황홀했던 순간들로 떠나보시길 강력 추천합니다.</p><p>💔 The Ultimate Emotional Trigger (Conclusion)</p><p>The OST for '21st Century Grand Royal Mistress' went beyond mere background music, offering magic that doubled the drama's emotional impact. From Aleph's 'Already Free,' hrtz.wav's 'You Keep Me Here,' HANRORO's 'Our Goodbye,' KiiiKiii's 'Go On,' BOYNEXTDOOR's 'No Doubt,' to BIBI's 'My Pace,' each track condenses the characters' joys and sorrows, touching the listeners' emotions. This OST, which reminds us of pure love emotions forgotten in complex modern society, or the pangs of heart-wrenching farewells, will provide unforgettable memories and deep emotion to everyone who loved the drama. We strongly recommend embarking on those enchanting moments once again with the '21st Century Grand Royal Mistress' OST.</p></div><p># 20260410 Kdrama OST - 21세기 대군부인 ( 21st Century Grand Royal Mistress )</p>
+</div>
+</div>
+        </div>
+
+        
+<div class="index-buttons">
+
+    <div class="index-link-wrapper">
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_Kdrama_OST/YMPL_Kdrama_OST.html" class="index-link">
+            
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL Kdrama OST
+                    </span>
+
+        </a>
+    </div>
+
+    <br>
+
+    <div class="translate-btn-wrapper-clean">
+        <a class="translate-btn-clean"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Kdrama_OST/untitled/20260410 Kdrama OST - 21세기 대군부인 ( 21st Century Grand Royal Mistress )_trk.html"
+           id="translateBtn_YMPL_Kdrama_OST"
+           data-en=""
+           data-ko=""
+           target="_blank">
+
+            🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)<br>
+                          ▶ Open Track Page
+
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    const btn = document.getElementById("translateBtn_YMPL_Kdrama_OST");
+    if (!btn) return;
+
+    const en = btn.dataset.en?.trim();
+    const ko = btn.dataset.ko?.trim();
+
+    // data 값이 없으면 기본값 사용
+    const defaultEn = `
+        🎵 Lyrics View / 📥 Track List Download<br>▶ Open Track Translation (EN/KO/ES/ZH)
+    `;
+
+    const defaultKo = `
+        🎵 가사보기 링크 / 📥 트랙 리스트 다운로드<br>▶ 트랙 번역 페이지 열기 (한/영/스페인/중)
+    `;
+
+    let isKo = false;
+
+    setInterval(() => {
+        btn.innerHTML = isKo
+            ? (en || defaultEn)
+            : (ko || defaultKo);
+
+        isKo = !isKo;
+        }, 3000);
+    })();
+</script>
+
+
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+    </div>
+
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+
+        } else {
+
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
+
+            setTimeout(() => {
+                wrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+
+        }
+    };
+}
+</script>
 <!-- BLOG_OST_END -->
 <article class="about">
 <h2 data-i18n="about_h2">YMPL – Data-Driven K-POP Insights Platform</h2>
@@ -2562,7 +2927,20 @@ if (typeof toggleExpandCard === 'undefined') {
 </div>
 <div class="mag-carousel">
 <button class="mag-prev">‹</button>
-<div class="mag-track">
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260410%20Kdrama%20OST%20-%2021%EC%84%B8%EA%B8%B0%20%EB%8C%80%EA%B5%B0%EB%B6%80%EC%9D%B8%20(%2021st%20Century%20Grand%20Royal%20Mistress%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/be649802/4488/4c38/86dd/aeeaa23f5076/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260410 Kdrama OST - 21세기 대군부인 ( 21st Century Grand Royal Mistress )</h3>
+<p>Timeless Love, The Fantasy Woven by '21st Century Grand Royal Mistress' OST ...</p>
+<div class="date">
+                                2026.07.07
+                            </div>
+</div>
+</div>
+</a>
 <a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260410 Kdrama OST - 21세기 대군부인 ( 21st Century Grand Royal Mistress ).html">
 <div class="magazine-card">
 <div class="mag-card-img">
