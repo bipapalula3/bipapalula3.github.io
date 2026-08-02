@@ -3285,7 +3285,7 @@ if (typeof toggleExpandCard === 'undefined') {
 				'mag_chart_arc_title': '每周 K-POP 榜单分析',
 				'mag_chart_arc_desc': '我们将带来更深入的热门歌曲音乐价值分析。',
 				'mag_mbti_arc_title': '每周新歌 MBTI 情感分析',
-				'mag_mbti_arc_desc': '寻找与您的情感相契合的 MBTI 分析歌单。',
+				'mag_mbti_arc_desc': '寻找与您的情感相契合的 MBTI 情感分析歌单。',
 				'mag_debut_arc_title': '本月出道艺人档案',
 				'mag_debut_arc_desc': '敬请期待更多精彩的新人艺人资料与故事。',
 				'mag_ost_arc_title': '韩剧 OST 沉浸式情感故事',
@@ -3297,8 +3297,8 @@ if (typeof toggleExpandCard === 'undefined') {
 
 		window.translations = translations;
 
-		// 2. 검색 설정
-		const TARGET_SEARCH_PAGE = 'YMPL/search.html';
+		// 2. 검색 설정 (Vercel API 통과)
+		const TARGET_SEARCH_PAGE = 'https://ympl-vercel-api.vercel.app/api/ympl-data?path=search.html&repo=YMPL';
 
 		// 3. 주요 함수들
 		function switchLanguage(lang) {
@@ -3342,28 +3342,35 @@ if (typeof toggleExpandCard === 'undefined') {
 
 		function processRewardSearch(type, displayText) {
 			const encryptedKey = generateAppKey(type);
-			window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
+			window.location.href = TARGET_SEARCH_PAGE + `&q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
 		}
 
 		function handleManualSearch() {
 			const query = document.getElementById('searchInput').value.trim();
 			if (query === "") return false;
-			window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
+			window.location.href = TARGET_SEARCH_PAGE + `&q=${encodeURIComponent(query)}`;
 			return false;
 		}
 
-		// 4. 페이지 초기화
+		// 4. 페이지 초기화 및 이벤트 리스너
 		document.addEventListener('DOMContentLoaded', () => {
 			initLanguage();
 			const trigger = document.querySelector('.select-trigger');
 			const menu = document.querySelector('.select-options');
 			trigger?.addEventListener('click', () => menu.classList.toggle('show'));
 
+			// 드롭다운 세렉트 옵션 Vercel API 자동 이동
 			document.querySelectorAll('.select-option').forEach(opt => {
 				opt.addEventListener('click', (e) => {
-					const url = opt.getAttribute('data-value');
-					if (url) {
-						window.location.href = url; 
+					const path = opt.getAttribute('data-value');
+					if (path) {
+						if (path.startsWith('http://') || path.startsWith('https://')) {
+							window.location.href = path;
+						} else {
+							// 앞부분 YMPL/ 제거 처리 후 Vercel API 연결
+							const cleanPath = path.replace(/^YMPL\//, '');
+							window.location.href = `https://ympl-vercel-api.vercel.app/api/ympl-data?path=${encodeURIComponent(cleanPath)}&repo=YMPL`;
+						}
 					}
 					menu.classList.remove('show');
 				});
@@ -3375,6 +3382,33 @@ if (typeof toggleExpandCard === 'undefined') {
 				const container = document.getElementById('customSelect');
 				if (container && !container.contains(e.target) && menu) {
 					menu.classList.remove('show');
+				}
+			});
+
+			// ===============================================
+			// 🚀 40개 이상의 카드 <a> 링크 자동 Vercel API 변환 처리
+			// ===============================================
+			document.addEventListener('click', function (e) {
+				const link = e.target.closest('a');
+				if (!link) return;
+
+				const href = link.getAttribute('href');
+
+				// bipapalula3.github.io 링크만 선택 가로채기
+				if (href && href.includes('bipapalula3.github.io')) {
+					e.preventDefault();
+
+					// URL에서 호스트명 및 상위 YMPL/ 경로 제거
+					let relativePath = href.replace(/^https?:\/\/bipapalula3\.github\.io\/(YMPL\/)?/, '');
+
+					// Vercel API 주소 생성
+					const vercelUrl = `https://ympl-vercel-api.vercel.app/api/ympl-data?path=${encodeURIComponent(relativePath)}&repo=YMPL`;
+
+					if (link.target === '_blank') {
+						window.open(vercelUrl, '_blank');
+					} else {
+						window.location.href = vercelUrl;
+					}
 				}
 			});
 		});
