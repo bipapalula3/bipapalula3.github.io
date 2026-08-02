@@ -3297,8 +3297,8 @@ if (typeof toggleExpandCard === 'undefined') {
 
 		window.translations = translations;
 
-		// 2. 검색 설정
-		const TARGET_SEARCH_PAGE = 'YMPL/search.html';
+		// 2. 검색 설정 (Vercel API 주소로 연결)
+		const TARGET_SEARCH_PAGE = 'https://ympl-vercel-api.vercel.app/api/ympl-data?path=docs/search.html&repo=YMPL';
 
 		// 3. 주요 함수들
 		function switchLanguage(lang) {
@@ -3342,28 +3342,35 @@ if (typeof toggleExpandCard === 'undefined') {
 
 		function processRewardSearch(type, displayText) {
 			const encryptedKey = generateAppKey(type);
-			window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
+			window.location.href = TARGET_SEARCH_PAGE + `&q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
 		}
 
 		function handleManualSearch() {
 			const query = document.getElementById('searchInput').value.trim();
 			if (query === "") return false;
-			window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
+			window.location.href = TARGET_SEARCH_PAGE + `&q=${encodeURIComponent(query)}`;
 			return false;
 		}
 
-		// 4. 페이지 초기화
+		// 4. 페이지 초기화 및 통합 가로채기 스크립트
 		document.addEventListener('DOMContentLoaded', () => {
 			initLanguage();
 			const trigger = document.querySelector('.select-trigger');
 			const menu = document.querySelector('.select-options');
 			trigger?.addEventListener('click', () => menu.classList.toggle('show'));
 
+			// 1) Kpop Artist Index 드롭다운 메뉴 Vercel API 변환
 			document.querySelectorAll('.select-option').forEach(opt => {
 				opt.addEventListener('click', (e) => {
-					const url = opt.getAttribute('data-value');
-					if (url) {
-						window.location.href = url; 
+					const path = opt.getAttribute('data-value');
+					if (path) {
+						if (path.startsWith('http://') || path.startsWith('https://')) {
+							window.location.href = path;
+						} else {
+							const relativePath = decodeURIComponent(path).replace(/^YMPL\//, '').replace(/^\//, '');
+							const cleanPath = "docs/" + relativePath;
+							window.location.href = `https://ympl-vercel-api.vercel.app/api/ympl-data?path=${encodeURIComponent(cleanPath)}&repo=YMPL`;
+						}
 					}
 					menu.classList.remove('show');
 				});
@@ -3375,6 +3382,43 @@ if (typeof toggleExpandCard === 'undefined') {
 				const container = document.getElementById('customSelect');
 				if (container && !container.contains(e.target) && menu) {
 					menu.classList.remove('show');
+				}
+			});
+
+			// 2) 페이지 내 모든 카드 및 푸터 <a> 링크 자동 가로채기
+			document.addEventListener('click', function (e) {
+				const link = e.target.closest('a');
+				if (!link) return;
+
+				const href = link.getAttribute('href');
+				if (!href || href.startsWith('javascript:') || href.startsWith('#')) return;
+
+				// 외부 스트리밍 서비스 등은 예외 처리하여 그대로 이동
+				if (href.includes('tidal.com') || href.includes('play.google.com') || href.includes('apple.com')) {
+					return; 
+				}
+
+				// GitHub 링크나 relative 링크(.html, /)인 경우 Vercel API로 변환
+				if (href.includes('bipapalula3.github.io') || href.startsWith('/') || href.endsWith('.html')) {
+					e.preventDefault();
+
+					let relativePath = "";
+
+					try {
+						const urlObj = new URL(href, window.location.origin);
+						relativePath = urlObj.pathname.replace(/^\/YMPL\//, '').replace(/^\//, '');
+					} catch (err) {
+						relativePath = href.replace(/^https?:\/\/bipapalula3\.github\.io\/(YMPL\/)?/, '').replace(/^\//, '');
+					}
+
+					const cleanPath = "docs/" + decodeURIComponent(relativePath);
+					const vercelUrl = `https://ympl-vercel-api.vercel.app/api/ympl-data?path=${encodeURIComponent(cleanPath)}&repo=YMPL`;
+
+					if (link.target === '_blank') {
+						window.open(vercelUrl, '_blank');
+					} else {
+						window.location.href = vercelUrl;
+					}
 				}
 			});
 		});
