@@ -1,0 +1,3383 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YMPL | K-POP TIDAL Archive</title>
+<script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1954623157146783"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+		/* =========================================================
+		1. ROOT / GLOBAL
+		========================================================= */
+		:root {
+			--bg-color: #0f1115;
+			--card-bg: #1a1d23;
+			--gold-main: #ffd966;
+			--gold-bright: #fff6d5;
+			--gold-dark: #7c662d;
+			--text-main: #e5e7eb;
+			--primary-blue: #2563eb;
+		}
+		body {
+			font-family: 'Noto Sans KR', sans-serif;
+			background: var(--bg-color);
+			color: var(--text-main);
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+			word-break: keep-all;
+		}
+		/* =========================================================
+		2. NAVIGATION
+		========================================================= */
+		nav {
+			display: flex;
+			flex-direction: column;
+			padding: 10px 5%;
+			gap: 10px;
+		}
+		.nav-top {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+		}
+		.nav-bottom {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 15px;
+			padding: 0 5px;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		.logo {
+			font-weight: 700;
+			font-size: 1.3rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			white-space: nowrap;
+		}
+		/* =========================================================
+		3. LANGUAGE BUTTON
+		========================================================= */
+		.lang-switcher {
+			display: flex;
+			gap: 5px;
+		}
+		.lang-switcher button {
+			background: #1f2933;
+			border: 1px solid #4b5563;
+			color: #fff;
+			padding: 5px 8px;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 11px;
+		}
+		/* =========================================================
+		4. CUSTOM SELECT
+		========================================================= */
+		.custom-select-container {
+			position: relative;
+			width: 100%;
+			max-width: 180px;
+			flex-grow: 1;
+			font-size: 14px;
+		}
+		.select-trigger {
+			background: #1f2933;
+			color: #fff;
+			border: 1px solid #4b5563;
+			padding: 8px 12px;
+			border-radius: 6px;
+			cursor: pointer;
+			text-align: center;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.select-options {
+			position: absolute;
+			top: 105%;
+			left: 0;
+			right: 0;
+			background: #1f2933;
+			border: 1px solid #4b5563;
+			border-radius: 6px;
+			display: none;
+			z-index: 1001;
+			max-height: 250px;
+			overflow-y: auto;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+		}
+		.select-options.show {
+			display: block;
+		}
+		.select-option {
+			padding: 10px;
+			color: #fff;
+			cursor: pointer;
+			border-bottom: 1px solid #334155;
+			line-height: 1.4;
+		}
+		.select-option:last-child {
+			border-bottom: none;
+		}
+		.select-option:hover {
+			background: #2d3743;
+		}
+		/* =========================================================
+		5. HERO
+		========================================================= */
+		.hero {
+			text-align: center;
+			padding: 20px 20px 120px;
+			background: linear-gradient(to bottom, #1e293b, #0f1115);
+		}
+		.hero h1 {
+			font-size: 3rem;
+			font-weight: 700;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			background: linear-gradient(-20deg, #00D4FF, #FF007F, #FDE100, #00D4FF);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-size: 200% auto;
+			animation: kpopNeonShimmer 10s linear infinite;
+			text-shadow: 0 0 10px rgba(255,255,255,0.3);
+		}
+		/* =========================================================
+		6. SEARCH
+		========================================================= */
+		.search-container {
+			max-width: 600px;
+			margin: 40px auto 0;
+			position: relative;
+		}
+		.search-container input {
+			width: 100%;
+			padding: 18px 25px;
+			border-radius: 35px;
+			border: 2px solid #334155;
+			background: #111827;
+			color: #fff;
+			font-size: 22px;
+			font-weight: 500;
+			outline: none;
+			transition: 0.3s;
+			box-sizing: border-box;
+		}
+		.search-container input::placeholder {
+			font-size: 22px;
+			font-weight: 400;
+		}
+		.search-container input:focus {
+			border-color: var(--primary-blue);
+			box-shadow: 0 0 15px rgba(37,99,235,0.2);
+		}
+		/* =========================================================
+		7. REWARD / SHORTCUT
+		========================================================= */
+		.shortcut-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 22px;
+			max-width: 1200px;
+			margin: -60px auto 50px;
+			padding: 0 20px;
+		}	
+		.reward-card {
+			background:
+				linear-gradient(
+					145deg,
+					rgba(45,35,15,0.96),
+					rgba(20,16,8,0.98)
+				);
+			border: 1px solid rgba(255,217,102,0.35);		
+			border-radius: 20px;		
+			min-height: 92px;		
+			display: flex;
+			align-items: center;
+			justify-content: center;		
+			text-align: center;		
+			cursor: pointer;
+			position: relative;
+			overflow: hidden;		
+			padding: 10px 18px;		
+			transition:
+				transform .22s ease,
+				box-shadow .25s ease,
+				border-color .25s ease,
+				filter .25s ease;		
+			box-shadow:
+				0 10px 25px rgba(0,0,0,0.45),
+				0 0 15px rgba(255,217,102,0.08);		
+			animation:
+				borderPulse 2.8s infinite ease-in-out;				
+			-webkit-tap-highlight-color: transparent;
+		}		
+		/* 광택 효과 */
+		.reward-card::before {		
+			content: '';		
+			position: absolute;
+			top: -120%;
+			left: -120%;		
+			width: 80%;
+			height: 320%;		
+			background:
+				linear-gradient(
+					to right,
+					transparent,
+					rgba(255,255,255,0.15),
+					transparent
+				);		
+			transform: rotate(25deg);		
+			animation: rewardShine 5s linear infinite;
+		}		
+		/* Glow */
+		.reward-card::after {		
+			content: '';		
+			position: absolute;
+			inset: 0;		
+			background:
+				radial-gradient(
+					circle at center,
+					rgba(255,217,102,0.12),
+					transparent 70%
+				);		
+			opacity: 0;
+			transition: opacity .3s ease;
+		}		
+		.reward-card:hover {		
+		    transform: none;
+			border-color: rgba(255,217,102,0.8);		
+			box-shadow:
+				0 18px 35px rgba(0,0,0,0.55),
+				0 0 18px rgba(255,217,102,0.22);		
+			filter: brightness(1.06);
+		}		
+		.reward-card:hover::after {
+			opacity: 1;
+		}
+		.reward-card:active {
+
+		    transform: none;
+		
+		    border-color: #60a5fa;
+		
+		    background:
+		        linear-gradient(
+		            145deg,
+		            rgba(40,55,95,0.98),
+		            rgba(20,28,45,1)
+		        );
+		
+		    box-shadow:
+		        0 0 18px rgba(96,165,250,0.35);
+		
+		    filter: brightness(1.08);
+		}
+		/* 버튼 텍스트 */
+		.reward-card h3 {
+			margin: 0;		
+			font-size: 1.7rem;		
+			font-weight: 900;		
+			line-height: 1.25;		
+			letter-spacing: 0.2px;		
+			position: relative;
+			z-index: 2;		
+			display: flex;
+			align-items: center;
+			justify-content: center;		
+			width: 100%;		
+			text-align: center;		
+			color: #ffe082;		
+			font-family:
+				'Poppins',
+				'Noto Sans KR',
+				sans-serif;		
+			text-shadow:
+				0 0 10px rgba(255,217,102,0.18);		
+			animation:
+				floatText 3.2s ease-in-out infinite;
+		}		
+		/* 모바일 */
+		@media (max-width: 768px) {		
+			.reward-card {
+				min-height: 82px;
+				padding: 10px 14px;
+			}		
+			.reward-card h3 {
+				font-size: 1.38rem;
+				line-height: 1.3;
+			}
+		}		
+		/* =========================
+		ANIMATION
+		========================= */		
+		@keyframes rewardShine {		
+			0% {
+				left: -140%;
+			}		
+			100% {
+				left: 180%;
+			}
+		}		
+		@keyframes goldTextFlow {		
+			0% {
+				background-position: 0% center;
+			}		
+			100% {
+				background-position: 200% center;
+			}
+		}
+		@keyframes floatText {
+			0% {
+				transform:
+					translateY(0px)
+					scale(1);
+			}
+			50% {
+				transform:
+					translateY(-2px)
+					scale(1.04);
+			}
+			100% {
+				transform:
+					translateY(0px)
+					scale(1);
+			}
+		}
+		/* =========================================================
+		8. MAGAZINE - FINAL STABLE VERSION
+		========================================================= */
+		.magazine-section {
+		    max-width: 1200px;
+		    margin: 80px auto;
+		    padding: 0 20px;
+		    display: flex;
+		    flex-direction: column;
+		}
+		
+		.magazine-section h2 {
+		    font-size: 1.5rem;
+		    margin: 0;
+		    font-weight: 700;
+		    background: linear-gradient(-45deg, #00D4FF, #FF007F, #FDE100, #00D4FF);
+		    -webkit-background-clip: text;
+		    background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		    background-size: 200% auto;
+		    animation: kpopNeonShimmer 4s linear infinite;
+		    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+		}
+		
+		.magazine-section h2 span.small-icon {
+		    -webkit-text-fill-color: initial;
+		    background: none;
+		    display: inline-block;
+		    animation: pulse-emoji 2.2s infinite ease-in-out;
+		    font-size: 1.0em;
+		    transform-origin: center;
+		}
+		
+		@keyframes pulse-emoji {
+		    0% { transform: scale(0.9); }
+		    50% { transform: scale(1.1); }
+		    100% { transform: scale(0.9); }
+		}
+		
+		.magazine-grid {
+		    display: grid;
+		    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		    gap: 20px;
+		    align-items: stretch;
+		}
+		
+		.magazine-card {
+		    background: #1a1d23;
+		    border: 1px solid #334155;
+		    border-radius: 12px;
+		    padding: 20px;
+		    cursor: pointer;
+		    display: flex;
+		    flex-direction: column;
+		    height: 360px;
+		    transition: transform .25s, border-color .25s, box-shadow .25s;
+		    text-decoration: none;
+		    color: inherit;
+		    position: relative;
+		    overflow: hidden;
+		}
+		
+		.magazine-card:hover {
+		    border-color: var(--gold-main);
+		    transform: translateY(-6px) scale(1.02);
+		    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 12px rgba(255,217,102,0.15);
+		}
+		
+		.mag-card-img {
+		    width:100%;
+		    aspect-ratio:1/1;
+		    background:#111;
+		    overflow:hidden;
+		    border-radius:8px;
+		    margin-bottom:15px;
+			transform:none;
+		}
+
+		.mag-card-img img {
+		    width: 100%;
+		    height: 100%;
+		    object-fit:contain;
+		}
+		
+		.mag-card-content {
+		    display: flex;
+		    flex-direction: column;
+		    flex-grow: 1;
+		}
+		
+		.mag-card-content h3 {
+		    margin-top: 0;
+		    line-height: 1.2;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 2;
+		    -webkit-box-orient: vertical;
+		    overflow: hidden;
+		}
+		
+		.magazine-card p {
+		    color:#9ca3af;
+		    font-size:.95rem;
+		    margin:10px 0 16px 0;
+		    line-height:1.2;
+		
+		    display:-webkit-box;
+		    -webkit-line-clamp:4;
+		    -webkit-box-orient:vertical;
+		    overflow:hidden;
+		
+		    flex-grow:1;
+		}
+		
+		.magazine-card .date {
+		    color: #4b5563;
+		    font-size: .7rem;
+		    margin-top: auto;
+		}
+		
+		.mag-header {
+		    display: flex;
+		    justify-content: flex-start;
+		    align-items: center;
+		    margin-bottom: 25px;
+		    position: relative;
+		    z-index: 40;
+		}
+		
+		.mag-footer {
+		    display: block;              /* !important 제거 */
+		    width: 100%;
+		    clear: both;                 /* 캐러셀과 완전히 분리 */
+		    margin-top: 10px;            /* 카드와 간격 확보 */
+		    text-align: left;
+		    position: relative;
+		    z-index: 5;
+		}
+		
+		.mag-more {
+		    display: inline-block;
+		    color: #ffd966;
+		    font-weight: 700;
+		    font-size: 19px;
+		    text-decoration: none;
+		    margin-left: 5px;
+		}
+		
+		.mag-more:hover {
+		    text-decoration: underline;
+		    color: #fff;
+		    text-shadow: 0 0 8px rgba(255, 217, 102, 0.4);
+		}
+		
+		.mag-help {
+		    margin-left: 8px;
+		    cursor: pointer;
+		    display: inline-flex;
+		    align-items: center;
+		    justify-content: center;
+		    width: 22px;
+		    height: 22px;
+		    border-radius: 50%;
+		    background: #1a1d23;
+		    border: 1px solid #4b5563;
+		    font-size: 14px;
+		    font-weight: 700;
+		    color: #ffd966;
+		    vertical-align: middle;
+		    position: relative;
+		    top: -2px;
+		    z-index: 50;
+		    -webkit-text-fill-color: #ffd966;
+		    background-clip: border-box;
+		    text-shadow: none;
+		    transition: all 0.18s ease;
+		}
+		
+		.mag-help:hover {
+		    background: #2d3743;
+		    border-color: #ffd966;
+		    transform: scale(1.2);
+		    box-shadow: 0 0 8px rgba(255, 217, 102, 0.5);
+		}
+		
+		.mag-help-popup {
+		    position: absolute;
+		    bottom: 35px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    width: 260px;
+		    background: rgba(17, 17, 17, 0.95);
+		    color: #fff;
+		    padding: 14px;
+		    border-radius: 8px;
+		    border: 1px solid #ffd966;
+		    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+		    font-size: 14px;
+		    z-index: 1000;
+		    line-height: 1.5;
+		    word-break: keep-all;
+		    -webkit-text-fill-color: #fff;
+		    text-shadow: none;
+		    backdrop-filter: blur(4px);
+		}
+		
+		.mag-help-popup strong {
+		    display: block;
+		    margin-bottom: 6px;
+		    font-size: 15px;
+		    color: #ffd966;
+		}
+		
+		.mag-carousel {
+		    position: relative;
+		    margin-bottom: 5px;
+		    width: 100%;
+		    overflow: hidden;
+		    display:block;
+		}
+		
+		.mag-track {
+		    display:flex;
+		    gap:20px;
+		    overflow-x:auto;
+		    overflow-y:visible;
+		    scroll-behavior:smooth;
+		    padding:4px 8px 10px 10px;  
+		}
+		
+		.mag-slide {
+		    flex: 0 0 calc((100% - 40px) / 3);
+		    max-width: calc((100% - 40px) / 3);
+		    text-decoration: none;
+		    color: inherit;
+		    padding-top:8px;
+		}
+		
+		.mag-prev, .mag-next {
+		    position: absolute;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    background: rgba(0, 0, 0, 0.7);
+		    border: 1px solid var(--gold-dark);
+		    color: var(--gold-main);
+		    font-size: 24px;
+		    width: 44px;
+		    height: 44px;
+		    border-radius: 50%;
+		    cursor: pointer;
+		    z-index: 100;
+		    transition: all 0.3s ease;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		}
+		
+		.mag-prev { left: 5px; }
+		.mag-next { right: 5px; }
+		
+		.mag-prev:hover, .mag-next:hover {
+		    background: var(--gold-main);
+		    color: #000;
+		    border-color: var(--gold-main);
+		}
+		
+		.mag-overlay {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.45));
+		    opacity: 0;
+		    transition: opacity .3s;
+		}
+		
+		.magazine-card:hover .mag-overlay {
+		    opacity: 1;
+		}
+		
+		.mag-badge {
+		    position: absolute;
+		    top: 10px;
+		    left: 10px;
+		    background: rgba(0,0,0,0.75);
+		    color: #ffd966;
+		    padding: 4px 8px;
+		    font-size: 11px;
+		    font-weight: 700;
+		    border-radius: 4px;
+		    letter-spacing: .5px;
+		}
+		
+		.magazine-card:hover h3 {
+		    color: #ffd966;
+		}
+
+		@media (max-width: 768px){
+
+		    .mag-track {
+		        scroll-behavior:smooth;
+		        overflow-x:auto;
+		        overflow-y:visible;
+		        scroll-snap-type:x mandatory;
+		        -webkit-overflow-scrolling: touch;
+		        padding:4px 8px 10px 10px;   /* 좌우 여백 추가 */
+		    }
+		    
+		    .mag-slide {
+		        min-width:300px;               /* 카드 폭 증가 */
+		        scroll-snap-align:start;
+		    }
+		    
+		    .mag-track::-webkit-scrollbar{
+		        display:none;
+		    }
+		
+		    .mag-prev,
+		    .mag-next{
+		        display:none;
+		    }
+
+			.mag-help-popup {
+		        position: fixed;    /* 부모를 벗어나 브라우저 화면 기준으로 고정 */
+		        top: 50%;           /* 화면 세로 중앙 */
+		        left: 50%;          /* 화면 가로 중앙 */
+		        bottom: auto;       /* 기존 bottom 값 초기화 */
+		        transform: translate(-50%, -50%); /* 정확한 중앙 배치 */
+		        width: 85vw;        /* 화면 너비의 85% 정도로 적절히 조절 */
+		        max-width: 320px;   /* 너무 커지지 않도록 제한 */
+		        box-shadow: 0 0 30px rgba(0,0,0,0.8); /* 배경과 분리되도록 그림자 강조 */
+		        z-index: 2000;      /* 다른 요소보다 무조건 위 */
+		    }
+		
+		}
+		/* =========================================================
+		9. PLACEHOLDER / ARCHIVE CARD
+		========================================================= */
+		.magazine-card.placeholder-more {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			border: 2px dashed var(--gold-dark) !important;
+			background: transparent !important;
+			height: 420px;
+			box-sizing: border-box;
+		}
+		.magazine-card.placeholder-more h3 {
+			color: var(--gold-main) !important;
+			margin: 0;
+		}
+		.archive-card {
+			background: #252525 !important;
+			border: 1px dashed #4a4a4a !important;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			height: 100%;
+		}
+		.archive-card:hover {
+			background: #333 !important;
+			border-style: solid !important;
+		}
+		.archive-card h3 {
+			color: #93c5fd;
+			margin-bottom: 8px;
+		}
+		.archive-card p {
+			font-size: 14px;
+			color: #a0a0a0;
+			margin-bottom: 15px;
+		}
+		.btn-more {
+			font-size: 13px;
+			font-weight: bold;
+			color: #fff;
+			opacity: .8;
+		}
+		/* =========================================================
+		10. ABOUT
+		========================================================= */
+		.about {
+			max-width: 800px;
+			margin: 80px auto;
+			padding: 20px;
+			line-height: 1.8;
+			color: #9ca3af;
+		}
+		.about h2 {
+			font-size: 1.5rem;
+		}
+		.about ul {
+			padding-left: 0;
+			list-style-position: inside;
+		}
+		/* =========================================================
+		11. FOOTER
+		========================================================= */
+		.footer-container {
+			padding: 40px 20px;
+			margin-top: 80px;
+			border-top: 1px solid #334155;
+			text-align: center;
+			font-size: .9rem;
+			color: #6b7280;
+			background: #0f1115;
+		}
+		.footer-links {
+			margin-bottom: 15px;
+		}
+		.footer-links a {
+			color: #9ca3af;
+			text-decoration: none;
+			margin: 0 15px;
+			transition: color .3s;
+		}
+		.footer-links a:hover {
+			color: #ffd966;
+		}
+		.copyright {
+			font-size: .85rem;
+			color: #4b5563;
+		}
+		/* =========================================================
+		12. ANIMATION
+		========================================================= */
+		@keyframes shimmer {
+			0% { left: -150%; }
+			100% { left: 150%; }
+		}
+		@keyframes borderPulse {
+			0% { border-color: var(--gold-dark); }
+			50% { border-color: var(--gold-main); }
+			100% { border-color: var(--gold-dark); }
+		}
+		@keyframes kpopNeonShimmer {
+			0% { background-position: 0% 50%; }
+			100% { background-position: 200% 50%; }
+		}
+		/* =========================================================
+		   13. BLOG INDEX CUSTOM (Milky Blue)
+		   ========================================================= */
+		/* 1. INDEX 링크: 우유빛 파란색 + 커지는 효과 */
+		.index-link {
+			display: block;
+			align-items: center;
+			color: #a5ccff !important; /* 우유빛 파란색 */
+			font-size: 0.95em;
+			line-height: 1.6;
+			text-decoration: none !important;
+			transition: all 0.3s ease-in-out !important;
+		}
+
+		.index-link:hover {
+			color: #ffffff !important; /* 호버 시 흰색 */
+			transform: scale(1.05) !important; /* 확실히 커짐 */
+			filter: drop-shadow(0 0 8px rgba(165, 204, 255, 0.6)) !important; /* 광채 */
+		}
+
+		/* 2. 번역 버튼: 우유빛 파란색 + 밝아지는 효과 */
+		.translate-btn-clean {
+			display: block;
+			width: 90%;
+			margin: 0 auto;
+			text-align: center;
+			background: rgba(165, 204, 255, 0.1) !important;
+			color: #a5ccff !important;
+			border: 1px solid rgba(165, 204, 255, 0.3) !important;
+			border-radius: 12px;
+			padding: 10px;
+			font-size: 15px;
+			font-weight: 500;
+			backdrop-filter: blur(6px);
+			transition: all 0.3s ease-in-out !important;
+			text-decoration: none !important;
+		}
+
+		.translate-btn-clean:hover {
+			background: rgba(165, 204, 255, 0.25) !important;
+			color: #ffffff !important;
+			transform: scale(1.05) !important;
+			filter: brightness(1.2) !important;
+			border-color: rgba(165, 204, 255, 0.6) !important;
+		}
+
+		/* 3. 공통: 밑줄 절대 금지 */
+		.index-page a, 
+		.blog-scope a {
+			text-decoration: none !important;
+		}
+		/* =========================================================
+		14. RESPONSIVE
+		========================================================= */
+		@media (min-width: 768px) {
+			.shortcut-grid {
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+			}
+		}
+		@media (max-width: 768px) {
+			.logo { font-size: 1.3rem; }
+			.logo img { height: 24px; }
+			.custom-select-container { max-width: 180px; }
+			.select-trigger { font-size: 15px; padding: 6px 5px; }
+			.select-option { font-size: 15px; padding: 8px 10px; }
+			.hero { padding: 20px 20px 100px !important; }
+			.hero h1 { font-size: 2rem !important; white-space: nowrap; }
+		}
+		/* =========================
+		   앱에서 footer 표시 유지해야해서 주석처리
+		========================= */		
+		/* .app-mode footer {
+		    display: none !important;
+		} */
+	</style>
+</head>
+<body>
+<!-- 모바일 브라우저 차단 및 글로벌 안내 -->
+<script>
+(function () {
+    const ua = navigator.userAgent.toLowerCase();
+
+    // 모바일 기기 체크
+    const isMobile = /android|iphone|ipad|ipod/i.test(ua);
+    const isAndroid = /android/i.test(ua);
+
+    // 앱(WebView) 감지
+    const isApp =
+        /wv/i.test(ua) ||
+        /ympl_app/i.test(ua) ||
+        window.ReactNativeWebView;
+
+    // PC 허용
+    if (!isMobile) return;
+
+    // 앱 허용
+    if (isApp) return;
+
+    // =============================
+    // 모바일 브라우저 차단 및 통합 다국어 안내
+    // =============================
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.margin = "0";
+    document.body.style.overflow = "hidden";
+
+    const langData = {
+        ko: {
+            title: "YMPL 스튜디오",
+            body: "현재 YMPL K-POP 검색 서비스는 안드로이드 앱 및 PC 웹 브라우저 환경에 최적화되어 있습니다.<br><br>아이폰 앱은 준비 중이오니, 원활한 이용을 위해 <strong>화면이 넓은 PC로 접속</strong>하거나 더 빠르고 편리한 <strong>YMPL 공식 앱</strong>을 이용해 보세요!",
+            btnText: "구글 플레이스토어에서 앱 열기"
+        },
+        en: {
+            title: "YMPL Studio",
+            body: "Currently, the YMPL K-POP search service is optimized for the Android app and PC web browser environments.<br><br>The iOS app is under development. For the best experience, please <strong>visit us on a wide-screen PC</strong> or use the faster and more convenient <strong>official YMPL app</strong>!",
+            btnText: "Get it on Google Play"
+        },
+        es: {
+            title: "YMPL Studio",
+            body: "Actualmente, el servicio de búsqueda YMPL K-POP está optimizado para la aplicación Android y el navegador web de PC.<br><br>La aplicación para iOS está en desarrollo. Para una mejor experiencia, ¡<strong>visítanos desde una PC de pantalla ancha</strong> o utiliza la <strong>aplicación oficial de YMPL</strong>, que es más rápida y cómoda!",
+            btnText: "Disponible en Google Play"
+        },
+        zh: {
+            title: "YMPL Studio",
+            body: "目前，YMPL K-POP 搜索服务已针对 Android 应用和 PC 网页浏览器环境进行了优化。<br><br>iOS 应用正在开发中。为了获得最佳体验，请<strong>使用大屏 PC 访问</strong>，或使用更快捷、更方便的 <strong>YMPL 官方应用</strong>！",
+            btnText: "在 Google Play 下载"
+        }
+    };
+
+    // 2. 사용자 시스템/브라우저 설정 언어 자동 감지
+    const userLang = navigator.language || navigator.userLanguage || 'en';
+    let defaultLang = 'en';
+    
+    if (userLang.startsWith('ko')) defaultLang = 'ko';
+    else if (userLang.startsWith('es')) defaultLang = 'es';
+    else if (userLang.startsWith('zh')) defaultLang = 'zh';
+
+    // 3. 화면 렌더링 함수
+    window.updateMobileScreen = function(lang) {
+        const data = langData[lang] || langData['en'];
+        
+        // 안드로이드 사용자에게만 플레이스토어 버튼을 보여줍니다.
+        let actionButton = "";
+        if (isAndroid) {
+            actionButton = `
+                <a href="https://play.google.com/store/apps/details?id=com.ympl.ympl_tidal" target="_blank" style="
+                    display:inline-block; background:#2196F3; color:white; text-decoration:none;
+                    padding:13px 26px; border-radius:25px; font-weight:bold; font-size:15px; margin-top:10px;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background 0.2s;
+                ">${data.btnText}</a>
+            `;
+        }
+
+        // 전체 차단 화면 구성 (상단 멀티 랭귀지 토글 + 헤드폰 이모지 포함)
+        document.body.innerHTML = `
+            <div style="
+                position:fixed; inset:0; z-index:999999; background:#111; color:white;
+                display:flex; align-items:center; justify-content:center; flex-direction:column;
+                font-family:sans-serif; text-align:center; padding:30px; box-sizing:border-box;
+            ">
+                <!-- 상단 언어 수동 선택 버튼 -->
+                <div style="position:absolute; top:20px; display:flex; gap:8px;">
+                    <button onclick="updateMobileScreen('en')" style="background:${lang==='en'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">EN</button>
+                    <button onclick="updateMobileScreen('ko')" style="background:${lang==='ko'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">KR</button>
+                    <button onclick="updateMobileScreen('es')" style="background:${lang==='es'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ES</button>
+                    <button onclick="updateMobileScreen('zh')" style="background:${lang==='zh'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ZH</button>
+                </div>
+
+                <!-- 헤드폰 아이콘 + 타이틀 영역 (이모지 크기 축소 및 중앙 정렬 보정) -->
+                <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:20px;">
+                    <span style="font-size:22px; line-height:1; display:inline-flex; align-items:center;">🎧</span>
+                    <h1 style="margin:0; font-size:26px; font-weight:bold; background: linear-gradient(-20deg, #00D4FF, #FF007F, #FDE100, #00D4FF); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto;">
+                        ${data.title}
+                    </h1>
+                </div>
+                
+                <p style="line-height:1.7; margin-bottom:25px; font-size:15px; color:#ddd; max-width:450px; word-break:keep-all;">
+                    ${data.body}
+                </p>
+                
+                ${actionButton}
+            </div>
+        `;
+    };
+
+    // 첫 진입 시 자동 감지된 언어로 실행
+    window.updateMobileScreen(defaultLang);
+})();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("app") === "1") {
+        document.body.classList.add("app-mode");
+    }
+});
+</script>
+<nav>
+<div class="nav-top">
+<div class="logo">
+<img alt="YMPL" height="30" onerror="this.onerror=null; this.src='https://bipapalula3.github.io/images/icon80.png';" src="https://bipapalula3.github.io/images/icon80.png"/>
+<span>YMPL</span>
+</div>
+</div>
+<div class="nav-bottom">
+<div class="lang-switcher">
+<button onclick="switchLanguage('en')">EN</button>
+<button onclick="switchLanguage('ko')">KO</button>
+<button onclick="switchLanguage('es')">ES</button>
+<button onclick="switchLanguage('zh')">ZH</button>
+</div>
+<div class="custom-select-container" id="customSelect">
+<div class="select-trigger">Kpop Artist Index (가나다)</div>
+<div class="select-options">
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_GK/1_TIDAL_Kpop_Artist_Link_GK.html">ㄱ1️⃣(G,K) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/2_TIDAL_Kpop_Artist_Link_GK.html">ㄱ2️⃣(G,K) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_N/1_TIDAL_Kpop_Artist_Link_N.html">ㄴ1️⃣(N) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_D/1_TIDAL_Kpop_Artist_Link_D.html">ㄷ1️⃣(D) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_LR/1_TIDAL_Kpop_Artist_Link_LR.html">ㄹ1️⃣(L,R) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_M/1_TIDAL_Kpop_Artist_Link_M.html">ㅁ1️⃣(M) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/1_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ1️⃣(B,P,V) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_BPV/2_TIDAL_Kpop_Artist_Link_BPV.html">ㅂ2️⃣(B,P,V) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CS/1_TIDAL_Kpop_Artist_Link_CS.html">ㅅ1️⃣(C,S) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_CS/2_TIDAL_Kpop_Artist_Link_CS.html">ㅅ2️⃣(C,S) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/1_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ1️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/2_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ2️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/3_TIDAL_Kpop_Artist_Link_AIO/3_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ3️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/4_TIDAL_Kpop_Artist_Link_AIO/4_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ4️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/5_TIDAL_Kpop_Artist_Link_AIO/5_TIDAL_Kpop_Artist_Link_AIO.html">ㅇ5️⃣(A,I,O) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_JG/1_TIDAL_Kpop_Artist_Link_JG.html">ㅈ1️⃣(J,G) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_JG/2_TIDAL_Kpop_Artist_Link_JG.html">ㅈ2️⃣(J,G) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_Ch/1_TIDAL_Kpop_Artist_Link_Ch.html">ㅊ1️⃣(Ch) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_CK/1_TIDAL_Kpop_Artist_Link_CK.html">ㅋ1️⃣(C,K Link)</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">ㅌ1️⃣(T) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_FP/1_TIDAL_Kpop_Artist_Link_FP.html">ㅍ1️⃣(F,P) Link</div>
+<div class="select-option" data-value="YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_H/1_TIDAL_Kpop_Artist_Link_H.html">ㅎ1️⃣(H) Link</div>
+</div>
+</div>
+</div>
+</nav>
+<header class="hero">
+<h1>TIDAL K-POP Finder</h1>
+<p data-i18n="hero_desc">
+Discover K-POP on TIDAL at a glance.
+</p>
+<div class="search-container">
+<form id="searchForm" onsubmit="handleManualSearch(); return false;">
+<input autocomplete="off" data-i18n="search_placeholder" id="searchInput" name="q" placeholder="Enter artist or song title" required="" type="text"/>
+</form>
+</div>
+</header>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const input =
+        document.getElementById("searchInput");
+
+    const form =
+        document.getElementById("searchForm");
+
+    // =============================
+    // 앱 환경 감지
+    // =============================
+    const isApp =
+        window.location.search.includes("app=1");
+
+    if (isApp) {
+
+        // 입력 막기
+        input.readOnly = true;
+
+        // 클릭 가능한 느낌
+        input.style.cursor = "pointer";
+
+        // 폼 submit 막기
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+        });
+
+        // 검색창 클릭
+        input.addEventListener("click", function () {
+
+            window.location.href =
+                "ympl://open-search";
+        });
+    }
+});
+
+</script>
+<section class="shortcut-grid">
+<div class="reward-card" onclick="processRewardSearch('WEEKLY_NEW', 'Weekly New Kpop Releases')">
+<h3 data-i18n="shortcut_weekly_new">🆕 Weekly New Albums</h3>
+</div>
+<div class="reward-card" onclick="processRewardSearch('WEEKLY_TOP', 'Ktop Chart - Newest First')">
+<h3 data-i18n="shortcut_ktop_chart">🔥 New Song Priority Chart</h3>
+</div>
+<div class="reward-card" onclick="processRewardSearch('MONTHLY_DEBUT', 'Latest Kpop Debut Albums')">
+<h3 data-i18n="shortcut_debut">💎 Latest Kpop Debut Albums</h3>
+</div>
+<div class="reward-card" onclick="processRewardSearch('KDRAMA_OST', 'Kdrama OST')">
+<h3 data-i18n="shortcut_ost">🎬 Kdrama OST Soundtrack</h3>
+</div>
+</section>
+<!-- BLOG_CHART_START -->
+<style>
+html { background:#111217; }
+body {
+      opacity: 1;
+      transition: opacity 0.12s ease;
+    }
+body.page-fade-out { opacity: 0; }
+body {
+      background:#111217;
+      color:#e6eef6;
+      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
+      font-size:16px;
+      padding:16px;
+      padding-bottom: 70px !important;      line-height:1.6;
+      text-align:left;
+      word-break:break-word;
+      line-break:strict;
+    }
+.index-page a { color:#93c5fd; text-decoration:none; }
+.index-page a:hover { text-decoration:underline; }
+.index-page h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
+.index-page .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
+.index-page .album-entry { margin:8px 0 8px; }
+.index-page img {
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 0 8px rgba(0,0,0,0.5);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+.index-page img:hover { transform: scale(1.03); filter: brightness(1.05); }
+.index-page .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
+.index-page .btn {
+      display:inline-block;
+      padding:10px 16px;
+      background:#1f6feb;
+      color:#fff;
+      border-radius:10px;
+      margin-top:10px;
+      margin-right:20px;
+      font-size:16px;
+      text-align:center;
+    }
+.index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
+.index-page .artist-img-box { position: relative; overflow: hidden; }
+.index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
+.index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
+.index-page /* =========================
+   Index Page Artist Media
+   ========================= */
+.index-page .artist-image-wrapper {
+  max-width: 420px;
+  margin: 16px 0 8px 0;
+}
+.index-page .index-page .album-entry {
+  margin-bottom: 48px;
+}
+.index-page .index-page .artist-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.index-page /* =========================
+   Mobile Tap / Click Smooth
+   ========================= */
+.index-page a, .index-page .index-page img {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+.index-page .index-page a, .index-page .index-page .artist-img {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.index-page .index-page a:active, .index-page .index-page .artist-img:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.index-page .index-page a {
+  touch-action: manipulation;
+}
+.index-page .translate-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 6px 6px 6px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.index-page .translate-btn {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 10px 16px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.index-page .translate-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+.index-page .translate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeFlow 24s linear infinite;
+}
+.index-page .translate-track {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-right: 40px;
+  opacity: 0;
+  animation: textFade 24s linear infinite;
+}
+
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+.index-page 10% {
+    transform: translateX(0);
+  }
+.index-page 82% {
+    transform: translateX(calc(-33.333%));
+  }
+.index-page 100% {
+    transform: translateX(calc(-33.333%));
+  }
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+.index-page 8% {
+    opacity: 1;
+  }
+.index-page 68% {
+    opacity: 1;
+  }
+.index-page 100% {
+    opacity: 0;
+  }
+.index-page .translate-btn:visited { color: #ffd966 !important; }
+.index-page .translate-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
+}
+.index-page .translate-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -150%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg);
+  -webkit-animation: shimmerTranslate 5s infinite linear;
+  animation: shimmerTranslate 5s infinite linear;
+}
+
+@keyframes shimmerTranslate {
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
+
+@keyframes pulseTranslate {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #ffd966;
+    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  }
+.index-page 50% {
+    transform: scale(1.01);
+    border-color: #fffb00;
+    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
+  }
+.index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
+.index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
+.index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
+.index-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.index-page h1 {
+    text-align: left;
+}
+
+
+</style>
+
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+
+    <div style="margin-bottom:20px;">
+        <h1 style='font-size:1.5em;'>20260727 Ktop Chart - Newest First</h1>
+    </div>
+
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+        <div class="index-page blog-scope">
+            <div class="artist-card">
+<div class="artist-media">
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/7caf6efc/13cc/4a32/bc29/9cb8b61e5f91/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/057d9596-2bf4-42f4-ae97-5b57f42762e0" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
+</div>
+<div class="ai-kpop-info">
+<div class="ai-content chart-analysis"><div class="artist-subtitle">🎧 YMPL Chart</div><div class="artist-subtitle" style="font-size:16px;">이번 주 K-TOP 차트는 늦여름 감성을 물씬 풍기는 신곡들로 가득하며, 특히 솔로 아티스트들의 깊이 있는 음악 세계가 돋보입니다.</div><div class="artist-subtitle" style="margin-top:8px;">🎧 YMPL Chart</div><div class="artist-subtitle" style="font-size:16px;">This week's K-TOP Chart is filled with new songs evoking late summer vibes, with solo artists' profound musical worlds particularly standing out.</div><p>2026년 7월 27일 K-TOP 차트는 한층 성숙해진 아티스트들의 신곡들이 대거 포진하며 음악적 스펙트럼을 넓히고 있습니다. 이전과는 다른 분위기의 곡들이 차트를 채우며 신선한 바람을 일으키고 있습니다.</p><p>The K-TOP Chart for July 27, 2026, is expanding its musical spectrum with a significant influx of new songs from increasingly mature artists. Tracks with a different atmosphere than before are filling the chart, creating a fresh wave.</p><p>✧</p><p>이번 주 차트 흐름</p><p>이번 주 차트는 솔로 아티스트들의 강세와 함께, 여름의 끝자락을 붙잡는 듯한 서정적인 멜로디와 깊이 있는 가사가 돋보입니다. 또한, 다양한 장르의 시도가 눈에 띄며 K-POP의 끊임없는 진화를 보여주고 있습니다.</p><p>Chart Trend</p><p>This week's chart shows the strength of solo artists, with lyrical melodies and profound lyrics that seem to hold onto the tail end of summer. Furthermore, attempts across various genres are noticeable, demonstrating the continuous evolution of K-POP.</p><p>✧</p><p>주목해야 할 핵심 곡</p><p>Young K의 'Marionette'는 앨범 전반에 걸친 그의 음악적 역량을 보여주는 곡으로, 섬세한 감정선을 그려냅니다. JENNIE의 'Less than a Lover'는 특유의 힙한 매력과 중독적인 멜로디로 리스너들을 사로잡고 있으며, BOL4의 'Please Summer!'는 청량한 사운드로 여름의 정취를 만끽하게 합니다.</p><p>Key Tracks to Watch</p><p>Young K's 'Marionette' showcases his overall musical prowess throughout the album, painting a delicate emotional line. JENNIE's 'Less than a Lover' captivates listeners with her unique hip charm and addictive melody, while BOL4's 'Please Summer!' lets listeners fully enjoy the summer atmosphere with its refreshing sound.</p><p>✧</p><p>총평</p><p>이번 주 차트는 아티스트들의 개성과 음악적 깊이가 공존하며 다채로운 K-POP의 현주소를 보여줍니다. 다음 주에는 이러한 흐름이 이어지면서 또 어떤 새로운 음악들이 차트를 뜨겁게 달굴지 기대됩니다.</p><p>Conclusion</p><p>This week's chart displays the diverse present of K-POP, where artists' individuality and musical depth coexist. Next week, we anticipate how new music will heat up the charts as this trend continues.</p></div>
+</div>
+</div>
+        </div>
+
+        
+<div class="index-buttons">
+
+    <div class="index-link-wrapper">
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_KTop_Chart_-_Newest_First/YMPL_KTop_Chart_-_Newest_First.html" class="index-link">
+            
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL KTop Chart - Newest First
+                    </span>
+
+        </a>
+    </div>
+
+    <br>
+
+    <div class="translate-btn-wrapper-clean">
+        <a class="translate-btn-clean"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_KTop_Chart_-_Newest_First/untitled/20260727%20Ktop%20Chart%20-%20Newest%20First_trk.html"
+           id="translateBtn_YMPL_KTop_Chart"
+           data-en=""
+           data-ko=""
+           target="_blank">
+
+            🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)<br>
+                          ▶ Open Track Page
+
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    const btn = document.getElementById("translateBtn_YMPL_KTop_Chart");
+    if (!btn) return;
+
+    const en = btn.dataset.en?.trim();
+    const ko = btn.dataset.ko?.trim();
+
+    // data 값이 없으면 기본값 사용
+    const defaultEn = `
+        🎵 Lyrics View / 📥 Track List Download<br>▶ Open Track Translation (EN/KO/ES/ZH)
+    `;
+
+    const defaultKo = `
+        🎵 가사보기 링크 / 📥 트랙 리스트 다운로드<br>▶ 트랙 번역 페이지 열기 (한/영/스페인/중)
+    `;
+
+    let isKo = false;
+
+    setInterval(() => {
+        btn.innerHTML = isKo
+            ? (en || defaultEn)
+            : (ko || defaultKo);
+
+        isKo = !isKo;
+        }, 3000);
+    })();
+</script>
+
+
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+    </div>
+
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+
+        } else {
+
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
+
+            setTimeout(() => {
+                wrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+
+        }
+    };
+}
+</script>
+<!-- BLOG_CHART_END -->
+<!-- BLOG_MBTI_START -->
+<style>
+html { background:#111217; }
+body {
+      opacity: 1;
+      transition: opacity 0.12s ease;
+    }
+body.page-fade-out { opacity: 0; }
+body {
+      background:#111217;
+      color:#e6eef6;
+      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
+      font-size:16px;
+      padding:16px;
+      padding-bottom: 70px !important;      line-height:1.6;
+      text-align:left;
+      word-break:break-word;
+      line-break:strict;
+    }
+.index-page a { color:#93c5fd; text-decoration:none; }
+.index-page a:hover { text-decoration:underline; }
+.index-page h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
+.index-page .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
+.index-page .album-entry { margin:8px 0 8px; }
+.index-page img {
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 0 8px rgba(0,0,0,0.5);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+.index-page img:hover { transform: scale(1.03); filter: brightness(1.05); }
+.index-page .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
+.index-page .btn {
+      display:inline-block;
+      padding:10px 16px;
+      background:#1f6feb;
+      color:#fff;
+      border-radius:10px;
+      margin-top:10px;
+      margin-right:20px;
+      font-size:16px;
+      text-align:center;
+    }
+.index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
+.index-page .artist-img-box { position: relative; overflow: hidden; }
+.index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
+.index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
+.index-page /* =========================
+   Index Page Artist Media
+   ========================= */
+.index-page .artist-image-wrapper {
+  max-width: 420px;
+  margin: 16px 0 8px 0;
+}
+.index-page .index-page .album-entry {
+  margin-bottom: 48px;
+}
+.index-page .index-page .artist-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.index-page /* =========================
+   Mobile Tap / Click Smooth
+   ========================= */
+.index-page a, .index-page .index-page img {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+.index-page .index-page a, .index-page .index-page .artist-img {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.index-page .index-page a:active, .index-page .index-page .artist-img:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.index-page .index-page a {
+  touch-action: manipulation;
+}
+.index-page .translate-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 6px 6px 6px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.index-page .translate-btn {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 10px 16px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.index-page .translate-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+.index-page .translate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeFlow 24s linear infinite;
+}
+.index-page .translate-track {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-right: 40px;
+  opacity: 0;
+  animation: textFade 24s linear infinite;
+}
+
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+.index-page 10% {
+    transform: translateX(0);
+  }
+.index-page 82% {
+    transform: translateX(calc(-33.333%));
+  }
+.index-page 100% {
+    transform: translateX(calc(-33.333%));
+  }
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+.index-page 8% {
+    opacity: 1;
+  }
+.index-page 68% {
+    opacity: 1;
+  }
+.index-page 100% {
+    opacity: 0;
+  }
+.index-page .translate-btn:visited { color: #ffd966 !important; }
+.index-page .translate-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
+}
+.index-page .translate-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -150%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg);
+  -webkit-animation: shimmerTranslate 5s infinite linear;
+  animation: shimmerTranslate 5s infinite linear;
+}
+
+@keyframes shimmerTranslate {
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
+
+@keyframes pulseTranslate {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #ffd966;
+    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  }
+.index-page 50% {
+    transform: scale(1.01);
+    border-color: #fffb00;
+    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
+  }
+.index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
+.index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
+.index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
+.index-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.index-page h1 {
+    text-align: left;
+}
+
+
+</style>
+
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+
+    <div style="margin-bottom:20px;">
+        <h1 style='font-size:1.5em;'>20260727 Weekly New Kpop Releases</h1>
+    </div>
+
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+        <div class="index-page blog-scope">
+            <div class="artist-card">
+<div class="artist-media">
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/492c1b91/3020/4a21/a5b8/97e5bd21a8fe/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/8e97c5ec-36cf-481c-bfcc-7396d9886f44" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
+</div>
+<div class="ai-kpop-info">
+<div class="ai-content mbti-analysis"><div class="artist-subtitle">🧬 MBTI Vibe</div><div class="artist-subtitle" style="font-size:16px;">이번 주 K-POP 신곡들은 활기찬 여름의 에너지와 추억을 되새기는 감성이 공존하는 ESTP와 ISFP의 조화, 특히 TWLV의 'GOOD FRIEND'는 관계에 대한 성찰을 담고 있습니다.</div><div class="artist-subtitle" style="margin-top:8px;">🧬 MBTI Vibe</div><div class="artist-subtitle" style="font-size:16px;">This week's K-pop new releases showcase a blend of ESTP's vibrant summer energy and ISFP's reflective nostalgia, with TWLV's 'GOOD FRIEND' particularly highlighting reflections on relationships.</div><p>이번 주 신규 K-POP 앨범들은 여름의 뜨거운 에너지와 시원한 청량감이 조화롭게 어우러져 다채로운 감성을 선사합니다. 앨범 전반적으로는 새로운 도전을 즐기고 즉흥적인 순간을 만끽하는 외향적 성향과, 내면의 감정을 탐구하고 예술적인 표현을 중시하는 내향적 성향이 균형을 이루고 있습니다. 특히 관계 속에서 느껴지는 복합적인 감정을 다룬 곡들이 눈에 띕니다.</p><p>This week's new K-pop albums offer a diverse range of emotions, harmoniously blending the hot energy of summer with refreshing coolness. Overall, the releases balance extroverted tendencies that enjoy new challenges and spontaneous moments with introverted tendencies that explore inner emotions and value artistic expression. Notably, songs delving into the complex emotions felt within relationships stand out.</p><p>✧</p><p>이번 주 MBTI 흐름</p><p>이번 주 신곡들의 전반적인 분위기는 여름의 활기찬 에너지와 함께, 추억을 되새기거나 관계를 탐구하는 섬세한 감성이 공존하며 ESTP와 ISFP의 특징이 두드러집니다. 즉흥적이고 즐거움을 추구하는 ESTP적인 면모와, 깊은 감정을 느끼고 표현하는 ISFP적인 면모가 조화롭게 나타나고 있습니다.  이는 젊음의 열정과 낭만적인 감성이 공존하는 이번 주의 트렌드를 보여줍니다.</p><p>MBTI Trend</p><p>The overall mood of this week's new releases presents a coexistence of vibrant summer energy with delicate emotions that reminisce or explore relationships, highlighting the characteristics of ESTP and ISFP. The spontaneous, pleasure-seeking aspect of ESTP and the deep emotional, expressive aspect of ISFP are harmoniously present. This demonstrates this week's trend of coexisting youthful passion and romantic sentiment.</p><p>✧</p><p>대표 MBTI 분석</p><p>이번 주 신곡들에서는 **ESTP (외향, 감각, 사고, 인식)** 와 **ISFP (내향, 감각, 감정, 인식)** 의 성향이 두드러집니다. ESTP는 'Please Summer!' (BOL4)와 같이 여름의 즐거움과 활동성을 즉각적으로 표현하며, 'SNEAKERS' (LUN8)처럼 트렌디하고 역동적인 매력을 발산합니다. 반면 ISFP는 'GOOD FRIEND' (TWLV)나 'Reminiscence' (KIM TAE RAE)처럼 관계 속 감정의 복잡함이나 지나간 시간을 그리워하는 서정적인 분위기를 섬세하게 그려냅니다. 이는 활동적인 여름과 내면적인 성찰이 공존하는 이번 주의 감성을 반영합니다.</p><p>Dominant MBTI</p><p>This week's new releases prominently feature the tendencies of **ESTP (Extroverted, Sensing, Thinking, Perceiving)** and **ISFP (Introverted, Sensing, Feeling, Perceiving)**. ESTPs express the immediate joys and activeness of summer, as heard in 'Please Summer!' (BOL4), and exude trendy, dynamic charm like in 'SNEAKERS' (LUN8). On the other hand, ISFPs delicately portray the complexity of emotions within relationships or the lyrical mood of longing for past times, as seen in 'GOOD FRIEND' (TWLV) or 'Reminiscence' (KIM TAE RAE). This reflects this week's sentiment of coexisting active summer and internal reflection.</p><p>✧</p><p>총평</p><p>이번 주 K-POP 신곡들은 여름의 청량하고 신나는 분위기를 즐기고 싶은 리스너들에게는 ESTP의 에너지를, 관계 속에서 깊은 감정을 느끼고 추억을 되새기고 싶은 리스너들에게는 ISFP의 감성을 선사합니다.  활동성과 감성적인 깊이가 모두 충족되는 이번 주는 다채로운 음악적 경험을 원하는 모든 이들에게 추천합니다.</p><p>Conclusion</p><p>This week's K-pop new releases offer ESTP's energy to listeners who want to enjoy the refreshing and exciting atmosphere of summer, and ISFP's sentiment to listeners who want to feel deep emotions within relationships and reminisce about memories. This week, where both activeness and emotional depth are satisfied, is recommended for anyone who desires a diverse musical experience.</p></div>
+</div>
+</div>
+        </div>
+
+        
+<div class="index-buttons">
+
+    <div class="index-link-wrapper">
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_Weekly_New_KPop_Releases/YMPL_Weekly_New_KPop_Releases.html" class="index-link">
+            
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL Weekly New KPop Releases
+                    </span>
+
+        </a>
+    </div>
+
+    <br>
+
+    <div class="translate-btn-wrapper-clean">
+        <a class="translate-btn-clean"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Weekly_New_KPop_Releases/untitled/20260727%20Weekly%20New%20Kpop%20Releases_trk.html"
+           id="translateBtn_YMPL_Weekly_New_KPop_Releases"
+           data-en=""
+           data-ko=""
+           target="_blank">
+
+            🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)<br>
+                          ▶ Open Track Page
+
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    const btn = document.getElementById("translateBtn_YMPL_Weekly_New_KPop_Releases");
+    if (!btn) return;
+
+    const en = btn.dataset.en?.trim();
+    const ko = btn.dataset.ko?.trim();
+
+    // data 값이 없으면 기본값 사용
+    const defaultEn = `
+        🎵 Lyrics View / 📥 Track List Download<br>▶ Open Track Translation (EN/KO/ES/ZH)
+    `;
+
+    const defaultKo = `
+        🎵 가사보기 링크 / 📥 트랙 리스트 다운로드<br>▶ 트랙 번역 페이지 열기 (한/영/스페인/중)
+    `;
+
+    let isKo = false;
+
+    setInterval(() => {
+        btn.innerHTML = isKo
+            ? (en || defaultEn)
+            : (ko || defaultKo);
+
+        isKo = !isKo;
+        }, 3000);
+    })();
+</script>
+
+
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+    </div>
+
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+
+        } else {
+
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
+
+            setTimeout(() => {
+                wrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+
+        }
+    };
+}
+</script>
+<!-- BLOG_MBTI_END -->
+<!-- BLOG_DEBUT_START -->
+<style>
+html { background:#111217; }
+body {
+      opacity: 1;
+      transition: opacity 0.12s ease;
+    }
+body.page-fade-out { opacity: 0; }
+body {
+      background:#111217;
+      color:#e6eef6;
+      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
+      font-size:16px;
+      padding:16px;
+      padding-bottom: 70px !important;      line-height:1.6;
+      text-align:left;
+      word-break:break-word;
+      line-break:strict;
+    }
+.index-page a { color:#93c5fd; text-decoration:none; }
+.index-page a:hover { text-decoration:underline; }
+.index-page h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
+.index-page .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
+.index-page .album-entry { margin:8px 0 8px; }
+.index-page img {
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 0 8px rgba(0,0,0,0.5);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+.index-page img:hover { transform: scale(1.03); filter: brightness(1.05); }
+.index-page .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
+.index-page .btn {
+      display:inline-block;
+      padding:10px 16px;
+      background:#1f6feb;
+      color:#fff;
+      border-radius:10px;
+      margin-top:10px;
+      margin-right:20px;
+      font-size:16px;
+      text-align:center;
+    }
+.index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
+.index-page .artist-img-box { position: relative; overflow: hidden; }
+.index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
+.index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
+.index-page /* =========================
+   Index Page Artist Media
+   ========================= */
+.index-page .artist-image-wrapper {
+  max-width: 420px;
+  margin: 16px 0 8px 0;
+}
+.index-page .index-page .album-entry {
+  margin-bottom: 48px;
+}
+.index-page .index-page .artist-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.index-page /* =========================
+   Mobile Tap / Click Smooth
+   ========================= */
+.index-page a, .index-page .index-page img {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+.index-page .index-page a, .index-page .index-page .artist-img {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.index-page .index-page a:active, .index-page .index-page .artist-img:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.index-page .index-page a {
+  touch-action: manipulation;
+}
+.index-page .translate-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 6px 6px 6px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.index-page .translate-btn {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 10px 16px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.index-page .translate-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+.index-page .translate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeFlow 24s linear infinite;
+}
+.index-page .translate-track {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-right: 40px;
+  opacity: 0;
+  animation: textFade 24s linear infinite;
+}
+
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+.index-page 10% {
+    transform: translateX(0);
+  }
+.index-page 82% {
+    transform: translateX(calc(-33.333%));
+  }
+.index-page 100% {
+    transform: translateX(calc(-33.333%));
+  }
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+.index-page 8% {
+    opacity: 1;
+  }
+.index-page 68% {
+    opacity: 1;
+  }
+.index-page 100% {
+    opacity: 0;
+  }
+.index-page .translate-btn:visited { color: #ffd966 !important; }
+.index-page .translate-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
+}
+.index-page .translate-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -150%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg);
+  -webkit-animation: shimmerTranslate 5s infinite linear;
+  animation: shimmerTranslate 5s infinite linear;
+}
+
+@keyframes shimmerTranslate {
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
+
+@keyframes pulseTranslate {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #ffd966;
+    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  }
+.index-page 50% {
+    transform: scale(1.01);
+    border-color: #fffb00;
+    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
+  }
+.index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
+.index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
+.index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
+.index-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.index-page h1 {
+    text-align: left;
+}
+
+
+</style>
+
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+
+    <div style="margin-bottom:20px;">
+        <h1 style='font-size:1.5em;'>20260731 Latest Kpop Debut Albums</h1>
+    </div>
+
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+        <div class="index-page blog-scope">
+            <div class="artist-card">
+<div class="artist-media">
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/af56a61e/1a8f/4004/bc5e/ccfa1768bbe6/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/629e4358-53dc-4d2f-9297-1fc679755d57" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
+</div>
+<div class="ai-kpop-info">
+<div class="ai-content debut-spotlight"><div class="artist-subtitle">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">다채로운 색으로 세상을 물들이다: 올 여름, K팝 신인들의 화려한 데뷔</div><div class="artist-subtitle" style="margin-top:8px;">✨ Debut Spotlight</div><div class="artist-subtitle" style="font-size:16px;">Painting the World with Diverse Colors: This Summer's Splendid Debut of K-Pop Rookies</div><p>뜨거운 여름, K팝 씬에 새로운 바람을 불어넣을 다채로운 색깔의 신인 아티스트들이 대거 등장했습니다. 저마다의 개성과 음악으로 가요계를 채울 이들의 데뷔는 앞으로 펼쳐질 K팝의 풍경을 더욱 풍성하게 만들 것입니다.</p><p>This hot summer, a large number of new artists with diverse colors have emerged to bring a fresh breeze to the K-pop scene. Their debuts, filling the music industry with their unique individuality and music, will make the future landscape of K-pop even richer.</p><p>✧</p><p>이달의 데뷔 흐름</p><p>이번 달 데뷔 아티스트들의 트랙 리스트를 살펴보면, 팝(Pop)을 기반으로 힙합(Hip-hop), R&amp;B, 댄스 등 다양한 장르의 시도가 엿보입니다. 특히 청량함과 에너지를 담은 곡들이 많아, 여름의 계절감과 잘 어우러지는 분위기입니다. 이외에도 밴드 사운드나 독특한 콘셉트의 곡들이 존재감을 드러내며 신인들의 다채로운 스펙트럼을 보여주고 있습니다.</p><p>Debut Trend</p><p>Looking at the track list of this month's debut artists, we can see attempts in various genres such as hip-hop, R&amp;B, and dance, based on pop. In particular, there are many songs filled with freshness and energy, creating an atmosphere that harmonizes well with the summer season. Additionally, band sounds and songs with unique concepts are making their presence felt, showcasing the diverse spectrum of new artists.</p><p>✧</p><p>신인 아티스트의 매력</p><p>새롭게 등장한 신인들은 자신감 넘치는 첫인상과 동시에, 음악에 대한 진정성 있는 태도를 보여줍니다. 화려한 퍼포먼스와 톡톡 튀는 비주얼뿐만 아니라, 각자의 서사를 담은 콘셉트로 팬들의 마음을 사로잡으려는 노력이 돋보입니다. 또한, 콜라보레이션이나 피처링을 통해 또 다른 아티스트와의 시너지를 보여주는 시도도 흥미롭습니다.</p><p>Rookie Appeal</p><p>The newly emerged rookies show confident first impressions while simultaneously demonstrating a sincere attitude towards their music. Beyond just flamboyant performances and catchy visuals, their efforts to capture fans' hearts with concepts that embody their individual narratives stand out. Furthermore, attempts to show synergy with other artists through collaborations or features are also intriguing.</p><p>✧</p><p>음악 &amp; 앨범 스타일</p><p>사운드적으로는 귀에 꽂히는 멜로디 라인과 트렌디한 비트가 주를 이룹니다. 긍정적인 에너지와 희망적인 메시지를 담은 곡들이 많아 리스너들에게 즐거움을 선사합니다. 일부 아티스트들은 몽환적이거나 감성적인 분위기를 연출하며 자신들만의 색깔을 분명히 하고 있습니다. 이는 신인들이 단순히 유행을 따르기보다, 자신만의 음악적 색채를 구축하려는 의지를 보여줍니다.</p><p>Music &amp; Album Style</p><p>Sound-wise, catchy melody lines and trendy beats are prominent. Many songs carry positive energy and hopeful messages, bringing joy to listeners. Some artists create dreamy or emotional atmospheres, clearly establishing their unique colors. This demonstrates the rookies' intention to build their own musical palette rather than simply following trends.</p><p>✧</p><p>성장 가능성과 기대감</p><p>이번 달 데뷔한 신인들은 탄탄한 기본기와 개성 넘치는 매력으로 K팝 시장에 신선한 활력을 불어넣고 있습니다. 앞으로 이들이 선보일 음악적 성장과 다채로운 활동을 통해 K팝의 지평을 넓혀나갈 가능성이 무궁무진합니다. 다가올 무대와 앨범에서 이들이 보여줄 새로운 모습에 많은 기대를 걸어봅니다.</p><p>Future Potential</p><p>The rookies who debuted this month are injecting fresh vitality into the K-pop market with their solid foundation and unique charms. Their potential to expand the horizons of K-pop through future musical growth and diverse activities is endless. We hold great expectations for the new aspects they will showcase in their upcoming stages and albums.</p></div><p># 20260731 Latest Kpop Debut Albums</p>
+</div>
+</div>
+        </div>
+
+        
+<div class="index-buttons">
+
+    <div class="index-link-wrapper">
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html" class="index-link">
+            
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL Latest KPop Debut Albums
+                    </span>
+
+        </a>
+    </div>
+
+    <br>
+
+    <div class="translate-btn-wrapper-clean">
+        <a class="translate-btn-clean"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Latest_KPop_Debut_Albums/untitled/20260731%20Latest%20Kpop%20Debut%20Albums_trk.html"
+           id="translateBtn_YMPL_Latest_KPop_Debut_Albums"
+           data-en=""
+           data-ko=""
+           target="_blank">
+
+            🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)<br>
+                          ▶ Open Track Page
+
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    const btn = document.getElementById("translateBtn_YMPL_Latest_KPop_Debut_Albums");
+    if (!btn) return;
+
+    const en = btn.dataset.en?.trim();
+    const ko = btn.dataset.ko?.trim();
+
+    // data 값이 없으면 기본값 사용
+    const defaultEn = `
+        🎵 Lyrics View / 📥 Track List Download<br>▶ Open Track Translation (EN/KO/ES/ZH)
+    `;
+
+    const defaultKo = `
+        🎵 가사보기 링크 / 📥 트랙 리스트 다운로드<br>▶ 트랙 번역 페이지 열기 (한/영/스페인/중)
+    `;
+
+    let isKo = false;
+
+    setInterval(() => {
+        btn.innerHTML = isKo
+            ? (en || defaultEn)
+            : (ko || defaultKo);
+
+        isKo = !isKo;
+        }, 3000);
+    })();
+</script>
+
+
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+    </div>
+
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+
+        } else {
+
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
+
+            setTimeout(() => {
+                wrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+
+        }
+    };
+}
+</script>
+<!-- BLOG_DEBUT_END -->
+<!-- BLOG_OST_START -->
+<style>
+html { background:#111217; }
+body {
+      opacity: 1;
+      transition: opacity 0.12s ease;
+    }
+body.page-fade-out { opacity: 0; }
+body {
+      background:#111217;
+      color:#e6eef6;
+      font-family:'Nanum Barun Gothic','Nanum Gothic','Malgun Gothic',Arial,sans-serif;
+      font-size:16px;
+      padding:16px;
+      padding-bottom: 70px !important;      line-height:1.6;
+      text-align:left;
+      word-break:break-word;
+      line-break:strict;
+    }
+.index-page a { color:#93c5fd; text-decoration:none; }
+.index-page a:hover { text-decoration:underline; }
+.index-page h1 { font-size:22px; margin-top:20px; margin-bottom:16px; text-align:left; letter-spacing:-0.04em; }
+.index-page .artist-subtitle { font-size:18px; letter-spacing:-0.04em; }
+.index-page .album-entry { margin:8px 0 8px; }
+.index-page img {
+      max-width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      box-shadow:0 0 8px rgba(0,0,0,0.5);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+.index-page img:hover { transform: scale(1.03); filter: brightness(1.05); }
+.index-page .credit { font-size:12px; color:#aaaaaa; margin-top:4px; text-align:left; }
+.index-page .btn {
+      display:inline-block;
+      padding:10px 16px;
+      background:#1f6feb;
+      color:#fff;
+      border-radius:10px;
+      margin-top:10px;
+      margin-right:20px;
+      font-size:16px;
+      text-align:center;
+    }
+.index-page .artist-image-wrapper { margin: 24px 0; max-width: 750px; }
+.index-page .artist-img-box { position: relative; overflow: hidden; }
+.index-page .artist-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.6); }
+.index-page .artist-credit-overlay { position: static; margin-top: 8px; font-size: 12px; color: #9ca3af; backdrop-filter: none; }
+.index-page .artist-link-overlay { position:absolute; left:12px; bottom:12px; display:flex; flex-direction:column-reverse; gap:10px; }
+
+    @keyframes pulseBtn { 0%, 100% { transform: scale(1); opacity: 0.75; }
+.index-page 50% { transform: scale(1.05); opacity: 1; }
+.index-page .artist-btn { padding: 12px 20px; font-size: 15px; color: #ffffff !important; font-weight: 700; text-shadow: 0 1px 2px rgba(0,0,0,0.7); background: #2563eb; border: 1px solid #93c5fd; border-radius: 14px; backdrop-filter: none; box-shadow: 0 4px 12px rgba(37,99,235,0.4); animation: pulseBtn 2s infinite ease-in-out; transition: box-shadow 0.2s ease; }
+.index-page .artist-btn:hover { transform: scale(1.08); opacity: 1; box-shadow: 0 6px 16px rgba(30,64,175,0.6); }
+.index-page /* =========================
+   Index Page Artist Media
+   ========================= */
+.index-page .artist-image-wrapper {
+  max-width: 420px;
+  margin: 16px 0 8px 0;
+}
+.index-page .index-page .album-entry {
+  margin-bottom: 48px;
+}
+.index-page .index-page .artist-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.index-page /* =========================
+   Mobile Tap / Click Smooth
+   ========================= */
+.index-page a, .index-page .index-page img {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  tap-highlight-color: rgba(0,0,0,0);
+}
+.index-page .index-page a, .index-page .index-page .artist-img {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.index-page .index-page a:active, .index-page .index-page .artist-img:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.index-page .index-page a {
+  touch-action: manipulation;
+}
+.index-page .translate-btn-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 6px 6px 6px;
+  background: #111217 !important;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+.index-page .translate-btn {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  width: calc(100% - 30px);
+  margin: 0 auto !important;
+  padding: 10px 16px;
+  background: linear-gradient(145deg, #3d341a, #1f1a0d);
+  color: #ffd966 !important;
+  text-decoration: none !important;
+  border: 0.4px solid #ffd966;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  min-height: 48px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  -webkit-animation: pulseTranslate 3s infinite ease-in-out;
+  animation: pulseTranslate 3s infinite ease-in-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.index-page .translate-marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+.index-page .translate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeFlow 24s linear infinite;
+}
+.index-page .translate-track {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding-right: 40px;
+  opacity: 0;
+  animation: textFade 24s linear infinite;
+}
+
+@keyframes marqueeFlow {
+  0% {
+    transform: translateX(0);
+  }
+.index-page 10% {
+    transform: translateX(0);
+  }
+.index-page 82% {
+    transform: translateX(calc(-33.333%));
+  }
+.index-page 100% {
+    transform: translateX(calc(-33.333%));
+  }
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+  }
+.index-page 8% {
+    opacity: 1;
+  }
+.index-page 68% {
+    opacity: 1;
+  }
+.index-page 100% {
+    opacity: 0;
+  }
+.index-page .translate-btn:visited { color: #ffd966 !important; }
+.index-page .translate-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 217, 102, 0.5);
+}
+.index-page .translate-btn::after {
+  content: '';
+  position: absolute; top: -50%; left: -150%;
+  width: 50%; height: 200%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(30deg);
+  -webkit-animation: shimmerTranslate 5s infinite linear;
+  animation: shimmerTranslate 5s infinite linear;
+}
+
+@keyframes shimmerTranslate {
+  0% { left: -150%; }
+.index-page 100% { left: 150%; }
+
+@keyframes pulseTranslate {
+  0%, 100% {
+    transform: scale(1);
+    border-color: #ffd966;
+    box-shadow: 0 0 10px rgba(255, 217, 102, 0.2);
+  }
+.index-page 50% {
+    transform: scale(1.01);
+    border-color: #fffb00;
+    box-shadow: 0 0 20px rgba(255, 251, 0, 0.6);
+  }
+.index-page .test-ad-card { margin:36px 0; padding:16px; border-radius:14px; background:#0f172a; border:1px dashed #334155; }
+.index-page .test-ad-label { font-size:13px; color:#93c5fd; margin-bottom:6px; }
+.index-page .test-ad-body { font-size:15px; color:#e5e7eb; }
+.index-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+.index-page h1 {
+    text-align: left;
+}
+
+
+</style>
+
+<div class="card-wrapper" style="width:90%; margin:40px auto; background:#1a1d24; border-radius:20px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; overflow:hidden;">
+
+    <div style="margin-bottom:20px;">
+        <h1 style='font-size:1.5em;'>20260220 Kdrama OST - 찬란한 너의 계절에 ( In Your Radiant Season )</h1>
+    </div>
+
+    <div class="blog-container" style="position:relative; max-height:280px; overflow:hidden; transition:max-height 0.5s ease-in-out;">
+        <div class="index-page blog-scope">
+            <div class="artist-card">
+<div class="artist-media">
+<div class="artist-image-wrapper"><div class="artist-img-box"><img alt="Artist image" class="artist-img" loading="lazy" src="https://resources.tidal.com/images/9c460ec8/96c1/423f/b0ef/fe26980690b9/1080x1080.jpg"/><div class="artist-link-overlay"><a class="artist-btn" href="https://tidal.com/playlist/ddb14736-1178-4ec8-939c-df4f8054a142" target="_blank" style='text-decoration:none;'>▶ Open in TIDAL 1</a></div></div><div class="artist-credit-overlay">Image courtesy of TIDAL</div></div>
+</div>
+<div class="ai-kpop-info">
+<div class="ai-content ost-analysis"><div class="artist-subtitle">🎵 OST Story</div><div class="artist-subtitle" style="font-size:16px; font-weight:bold;">시간을 초월한 사랑, '찬란한 너의 계절에' OST가 빚어낸 감성 교향곡</div><div class="artist-subtitle" style="margin-top:8px;">🎵 OST Story</div><div class="artist-subtitle" style="font-size:14px; color:#888;">Love Transcending Time: The Emotional Symphony Woven by 'In Your Radiant Season' OST</div><p>2026년, 우리의 마음을 뒤흔든 '찬란한 너의 계절에'가 OST를 통해 다시 한번 깊은 울림을 선사합니다. 찬란했던 순간들을 되새기게 하는 이 OST는 드라마의 애틋한 서사를 더욱 풍성하게 만들며 시청자들의 뜨거운 사랑을 받고 있습니다.</p><p>In 2026, 'In Your Radiant Season,' which shook our hearts, delivers a profound resonance once again through its OST. This soundtrack, which brings back radiant moments, enriches the drama's tender narrative and is receiving fervent love from viewers.</p><p>✧</p><p>🎬 음악이 완성한 드라마의 결정적 명장면</p><p>YEGNY의 'I Feel You'는 주인공들의 아슬아슬한 첫 만남과 설렘을, JUNGSOOMIN의 'You Are My Color'는 서로에게 스며드는 사랑의 순간을 애틋하게 그려냅니다. 또한 BANG YE DAM의 'About Time'은 운명적인 재회를 극적으로 만들며, Seo Ja Yeong의 'All I Wish'는 떠나간 이에 대한 그리움을 깊이 있게 담아내어 드라마의 감정선을 최고조로 끌어올립니다.</p><p>🎬 The Crucial Scene Perfected by Music</p><p>YEGNY's 'I Feel You' tenderly portrays the protagonists' precarious first encounter and burgeoning excitement, while JUNGSOOMIN's 'You Are My Color' poignantly captures moments of love seeping into each other. Furthermore, BANG YE DAM's 'About Time' dramatically heightens their fated reunion, and Seo Ja Yeong's 'All I Wish' deeply expresses longing for a departed soul, elevating the drama's emotional arc to its peak.</p><p>✧</p><p>🎤 아티스트의 음색과 캐릭터의 서사</p><p>YEGNY의 몽환적인 보컬은 풋풋한 첫사랑의 떨림을, Young Jun의 따뜻한 목소리는 순수한 우정과 사랑을, JUNGSOOMIN의 섬세한 감성은 깊어지는 관계의 복잡함을 표현합니다. Sunwoojunga의 신비로운 음색은 얽히고설킨 운명을, BEN의 애절한 가창력은 절절한 이별의 아픔을 완벽하게 대변하며 캐릭터들의 내면을 깊이 있게 파고듭니다.</p><p>🎤 Artist's Voice and Character Narrative</p><p>YEGNY's dreamlike vocals convey the tremor of young first love, Young Jun's warm voice expresses pure friendship and love, and JUNGSOOMIN's delicate emotions depict the complexity of a deepening relationship. Sunwoojunga's mysterious timbre perfectly embodies intertwined destinies, while BEN's sorrowful singing powerfully represents the pain of heartfelt separation, delving deeply into the characters' inner worlds.</p><p>✧</p><p>💔 리스너들의 '눈물 버튼' (총평)</p><p>'찬란한 너의 계절에' OST는 청춘의 찬란함과 이별의 아픔, 그리고 다시 피어나는 사랑까지, 인생의 모든 계절을 담아낸 명반입니다. 첫사랑의 설렘을 기억하는 이들, 애틋한 로맨스에 목마른 이들, 그리고 삶의 희로애락을 음악으로 위로받고 싶은 모든 분들께 이 OST를 강력히 추천합니다. 이 음악은 당신의 마음에 영원히 찬란한 계절을 선물할 것입니다.</p><p>💔 The Ultimate Emotional Trigger (Conclusion)</p><p>'In Your Radiant Season' OST is a masterpiece encapsulating all seasons of life, from the brilliance of youth and the pain of parting to the rekindling of love. We strongly recommend this OST to anyone who remembers the excitement of first love, longs for tender romance, or wishes to find solace in music through life's joys and sorrows. This music will forever bestow a radiant season upon your heart.</p></div>
+</div>
+</div>
+        </div>
+
+        
+<div class="index-buttons">
+
+    <div class="index-link-wrapper">
+        <a href="https://bipapalula3.github.io/YMPL/YMPL_Kdrama_OST/YMPL_Kdrama_OST.html" class="index-link">
+            
+<span class="icon" style="
+                        display:inline-block; 
+                        transition:transform 0.2s ease;
+                    ">
+                    📚
+                    </span>
+<span style="margin-left:6px;">
+                    INDEX: YMPL Kdrama OST
+                    </span>
+
+        </a>
+    </div>
+
+    <br>
+
+    <div class="translate-btn-wrapper-clean">
+        <a class="translate-btn-clean"
+           href="https://bipapalula3.github.io/YMPL/trk/YMPL_Kdrama_OST/untitled/20260220 Kdrama OST - 찬란한 너의 계절에 ( In Your Radiant Season )_trk.html"
+           id="translateBtn_YMPL_Kdrama_OST"
+           data-en=""
+           data-ko=""
+           target="_blank">
+
+            🎵 Lyrics View / 📥 Track List Download / 🌐 Translation (EN/KO/ES/ZH)<br>
+                          ▶ Open Track Page
+
+        </a>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    const btn = document.getElementById("translateBtn_YMPL_Kdrama_OST");
+    if (!btn) return;
+
+    const en = btn.dataset.en?.trim();
+    const ko = btn.dataset.ko?.trim();
+
+    // data 값이 없으면 기본값 사용
+    const defaultEn = `
+        🎵 Lyrics View / 📥 Track List Download<br>▶ Open Track Translation (EN/KO/ES/ZH)
+    `;
+
+    const defaultKo = `
+        🎵 가사보기 링크 / 📥 트랙 리스트 다운로드<br>▶ 트랙 번역 페이지 열기 (한/영/스페인/중)
+    `;
+
+    let isKo = false;
+
+    setInterval(() => {
+        btn.innerHTML = isKo
+            ? (en || defaultEn)
+            : (ko || defaultKo);
+
+        isKo = !isKo;
+        }, 3000);
+    })();
+</script>
+
+
+        <div class="mask-layer" style="position:absolute; bottom:0; left:0; width:100%; height:120px; background:linear-gradient(transparent, #1a1d24); pointer-events:none; z-index:5;"></div>
+    </div>
+
+    <div onclick="toggleExpandCard(this)" style="display:flex; flex-direction:column; align-items:center; cursor:pointer; padding:15px 0; color:#a5ccff; transition:0.3s; margin-top:10px;">
+        <span class="toggle-text" style="font-size:18px; font-weight:bold; letter-spacing:1.5px; margin-bottom:4px;">MORE</span>
+
+        <svg class="arrow-icon" style="width:20px; height:20px; fill:#a5ccff; transition:transform 0.4s;" viewBox="0 0 24 24">
+            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+// 함수 이름이 중복되지 않도록 유니크하게 하거나, 한 번만 정의되도록 체크합니다.
+if (typeof toggleExpandCard === 'undefined') {
+    window.toggleExpandCard = function(btn) {
+
+        // 클릭된 버튼(btn)을 기준으로 같은 카드 내부의 요소들을 찾습니다.
+        const wrapper = btn.closest('.card-wrapper');
+        const container = wrapper.querySelector('.blog-container');
+        const text = wrapper.querySelector('.toggle-text');
+        const mask = wrapper.querySelector('.mask-layer');
+        const arrow = wrapper.querySelector('.arrow-icon');
+
+        if (container.style.maxHeight === '280px' || container.style.maxHeight === '') {
+
+            // 펼치기
+            container.style.maxHeight = '5000px';
+            text.innerText = 'LESS';
+            mask.style.opacity = '0';
+            arrow.style.transform = 'rotate(180deg)';
+
+        } else {
+
+            // 접기
+            container.style.maxHeight = '280px';
+            text.innerText = 'MORE';
+            mask.style.opacity = '1';
+            arrow.style.transform = 'rotate(0deg)';
+
+            setTimeout(() => {
+                wrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+
+        }
+    };
+}
+</script>
+<!-- BLOG_OST_END -->
+<article class="about">
+<h2 data-i18n="about_h2">YMPL – Data-Driven K-POP Insights Platform</h2>
+<p data-i18n="about_intro">YMPL is a professional K-POP archive platform...</p>
+<ul>
+<li><span data-i18n="f1_title">Intuitive Search:</span> <span data-i18n="f1_desc">Description...</span></li>
+<li><span data-i18n="f2_title">Database:</span> <span data-i18n="f2_desc">Description...</span></li>
+<li><span data-i18n="f3_title">Trends:</span> <span data-i18n="f3_desc">Description...</span></li>
+</ul>
+<p data-i18n="about_closing">Closing statement...</p>
+</article>
+<div id="magazine-container">
+<!-- CHART_START -->
+<section class="magazine-section">
+<div class="mag-header">
+<h2>
+<span class="small-icon">🏆</span>
+                Chart Decoded
+                <span class="mag-help" data-i18n-desc="mag_chart_arc_desc" data-i18n-title="mag_chart_arc_title">
+                    ❔
+                </span>
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260727%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/7caf6efc/13cc/4a32/bc29/9cb8b61e5f91/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260727 Ktop Chart - Newest First</h3>
+<p>This week's K-TOP Chart is filled with new songs evoking late summer vibes, with solo artists' profound musical worlds particularly standing out. ...</p>
+<div class="date">
+                                2026.07.30
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260720%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/305f3f91/1c8c/45eb/b2da/6c8ae9e61fa5/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260720 Ktop Chart - Newest First</h3>
+<p>This week's chart is dominated by impactful new releases from BTS and aespa, alongside fresh genre explorations, while RESCE`NE's debut track 'Pretty Girl' signals a strong rookie surge. ...</p>
+<div class="date">
+                                2026.07.22
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260713%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/42ca1f79/9d1f/4e04/8185/e6cd05d1cb29/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260713 Ktop Chart - Newest First</h3>
+<p>This week's K-pop chart showcases a rich sound spectrum, harmonizing comebacks from idol groups and profound music from solo artists. Notably, each group and artist clearly displays their unique color, asserting their competitiveness. ...</p>
+<div class="date">
+                                2026.07.14
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260707%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/13a70632/b663/4679/a5de/8be250be3205/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260707 Ktop Chart - Newest First</h3>
+<p>This week's K-POP chart highlights a return of major fandoms and the rise of new faces, with BOYNEXTDOOR's consecutive hits and BTS's substantial new releases grabbing attention. The collaboration between aespa and G-DRAGON, 'WDA', is generating significant buzz as a legendary pairing. ...</p>
+<div class="date">
+                                2026.07.09
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260629%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/29aec987/fdad/4355/8414/da3788fc4bb0/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260629 Ktop Chart - Newest First</h3>
+<p>This week's chart is energized by the vibrant new tracks from RIIZE and BOYNEXTDOOR, capturing the essence of summer and adding a fresh pulse to K-POP. ...</p>
+<div class="date">
+                                2026.07.04
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260622%20Ktop%20Chart%20-%20Newest%20First.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/4445910d/9c5d/4e6a/b662/eaba0966fa02/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260622 Ktop Chart - Newest First</h3>
+<p>The K-POP chart is colored with vibrant hues, highlighting BTS's return and the presence of hip-hop veterans. Notably, RIIZE's energy refreshingly fills the chart. ...</p>
+<div class="date">
+                                2026.06.24
+                            </div>
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_KTop_Chart_-_Newest_First/YMPL_KTop_Chart_-_Newest_First.html">
+                + 더보기
+            </a>
+</div>
+</section>
+<!-- CHART_END -->
+<!-- NEWVOICES_START -->
+<section class="magazine-section">
+<div class="mag-header">
+<h2>
+<span class="small-icon">🎤</span>
+                New Voices on YMPL
+                <span class="mag-help" data-i18n-desc="mag_voice_arc_desc" data-i18n-title="mag_voice_arc_title">
+                    ❔
+                </span>
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/%EC%95%84%EC%9D%B4%EC%9C%A0%20(IU).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/81822be7/5901/483d/b04c/7d953d1d2df5/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>타이달 아이유 ( Tidal IU )</h3>
+<p>Melody Queen IU: An artist who sings the emotion of 'Love wins all' and the mystery of 'Holssi' ...</p>
+<div class="date">
+                                2026.08.01
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_BPV/%EB%B0%A9%ED%83%84%EC%86%8C%EB%85%84%EB%8B%A8%20(BTS).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/e54e097c/74cd/4be0/8723/cb1481f467e7/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>타이달 방탄소년단 ( Tidal BTS )</h3>
+<p>BTS - Icons connecting the world through music and storytelling, delivering the explosive energy of 'Dynamite' and the warm resonance of 'Spring Day'. ...</p>
+<div class="date">
+                                2026.08.01
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/%ED%88%AC%EC%96%B4%EC%8A%A4%20(TWS).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/cd076ff1/79a9/4bf6/96e4/ecd693e6c3cb/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>타이달 투어스 ( Tidal TWS )</h3>
+<p>TWS – Capturing the excitement of first encounters, a fresh breeze filled with refreshing energy ...</p>
+<div class="date">
+                                2026.08.01
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_GK/%EA%B9%80%EB%8F%99%EB%A5%A0%20(Kim%20Dong%20Ryul).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/0ab9c9d5/66dd/458d/9ded/577054a1adb2/320x320.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>타이달 김동률 ( Tidal Kim Dong Ryul )</h3>
+<p>Kim Dong Ryul — An alchemist of melodies that caress the heart like a forgotten 'An Old Song' in the deep night. ...</p>
+<div class="date">
+                                2026.08.01
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/2_TIDAL_Kpop_Artist_Link_AIO/%EC%98%81%EC%BC%80%EC%9D%B4%20(Young%20K).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/eafd1d7b/1252/423d/99da/8bbd7b2d86d7/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>타이달 영케이 ( Tidal Young K )</h3>
+<p>A Harmony of Deep Emotion and Explosive Energy ...</p>
+<div class="date">
+                                2026.08.01
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_AIO/%EC%95%85%EB%8F%99%EB%AE%A4%EC%A7%80%EC%85%98%20(AKMU).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/93e84de8/091e/4eab/8b8c/fe5cedbdb30b/750x750.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>타이달 악동뮤지션 ( Tidal AKMU )</h3>
+<p>AKMU (악동뮤지션) – From the youthful excitement of ‘Love Lee’ to the free-spirited energy of ‘DADA,’ an original duo expanding their musical spectrum ...</p>
+<div class="date">
+                                2026.04.19
+                            </div>
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/Korean_Artist_Profiles/1_TIDAL_Kpop_Artist_Link_T/1_TIDAL_Kpop_Artist_Link_T.html">
+                + 더보기
+            </a>
+</div>
+</section>
+<!-- NEWVOICES_END -->
+<!-- MBTI_START -->
+<section class="magazine-section">
+<div class="mag-header">
+<h2>
+<span class="small-icon">🧬</span>
+                MBTI Vibe Lab
+                <span class="mag-help" data-i18n-desc="mag_mbti_arc_desc" data-i18n-title="mag_mbti_arc_title">
+                    ❔
+                </span>
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260727%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/492c1b91/3020/4a21/a5b8/97e5bd21a8fe/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260727 Weekly New Kpop Releases</h3>
+<p>This week's K-pop new releases showcase a blend of ESTP's vibrant summer energy and ISFP's reflective nostalgia, with TWLV's 'GOOD FRIEND' particularly highlighting reflections on relationships. ...</p>
+<div class="date">
+                                2026.07.30
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260720%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/fdad03c5/bb95/40fa/8090/10bc427bf314/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260720 Weekly New Kpop Releases</h3>
+<p>This week's vibe is a feast of ISFP, marked by emotional exploration and honest expression. We can glimpse the charm of ISFP in 'Tunnel' and 'My Confession'. ...</p>
+<div class="date">
+                                2026.07.22
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260713%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/923ebecb/13f5/4521/9d72/6703ab05b9e4/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260713 Weekly New Kpop Releases</h3>
+<p>This week's new releases showcase vibrant and diverse charms like 'ENFP', with 'WOOAH - SUMMER' bringing the coolness of summer and 'YEONJUN - Ice Cream' delivering sweet excitement. ...</p>
+<div class="date">
+                                2026.07.14
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260707%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/65130a6d/37e1/40ea/8fbf/6c5971fc5a98/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260707 Weekly New Kpop Releases</h3>
+<p>This week's K-pop new releases oscillate between the spontaneity of ESTP and the passion of ENFP, radiating energy. Notably, DXMON's 'CHEESE' and BE'O's 'Cherry Cola' embody this vibrancy. ...</p>
+<div class="date">
+                                2026.07.09
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260629%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/8f257076/f276/4b96/93cc/fe9683099afd/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260629 Weekly New Kpop Releases</h3>
+<p>This week, a feast of diverse emotions unfolds, showcasing a broad spectrum akin to MBTI predispositions. Notably, the confident melody of 'SUPERSTAR' and the experimental sound of 'Molecular Gastronomy' perfectly capture this week's charm, encompassing both extroverted (E) and introverted (I) tendencies. ...</p>
+<div class="date">
+                                2026.07.04
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260622%20Weekly%20New%20Kpop%20Releases.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/eddebb43/6df3/4d16/8ee1/88888c7dc126/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260622 Weekly New Kpop Releases</h3>
+<p>A feast for emotional explorers, this week's new K-pop releases showcase the diverse spectrum of MBTI. Notably, 'Clubsoul - 그때는 몰랐다' and 'YoungJae - A Perfect Day' stimulate emotions with their distinct charms. ...</p>
+<div class="date">
+                                2026.06.24
+                            </div>
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_Weekly_New_KPop_Releases/YMPL_Weekly_New_KPop_Releases.html">
+                + 더보기
+            </a>
+</div>
+</section>
+<!-- MBTI_END -->
+<!-- DEBUT_START -->
+<section class="magazine-section">
+<div class="mag-header">
+<h2>
+<span class="small-icon">✨</span>
+                Debut Artist Spotlight
+                <span class="mag-help" data-i18n-desc="mag_debut_arc_desc" data-i18n-title="mag_debut_arc_title">
+                    ❔
+                </span>
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260731%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/af56a61e/1a8f/4004/bc5e/ccfa1768bbe6/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260731 Latest Kpop Debut Albums</h3>
+<p>Painting the World with Diverse Colors: This Summer's Splendid Debut of K-Pop Rookies ...</p>
+<div class="date">
+                                2026.07.30
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260630%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/89ede186/af34/4779/8a77/5d409b63cda2/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260630 Latest Kpop Debut Albums</h3>
+<p>A spectrum of colors paints K-POP, heralding the arrival of new talents who will shine like "You Light Up My Life". ...</p>
+<div class="date">
+                                2026.06.30
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260531%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/c264b32e/2f44/4c5d/bd2f/e4a9f49952ca/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260531 Latest Kpop Debut Albums</h3>
+<p>The Overture of Debut, Painted with Diverse Colors: Fresh as WURi's '26 degrees', Tender as Universe's 'Unlove' ...</p>
+<div class="date">
+                                2026.06.10
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260430%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/1e730e02/479c/4316/a3f3/78bf30c477c8/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260430 Latest Kpop Debut Albums</h3>
+<p>A spectrum of colors heralding new beginnings, the music world of rookie artists unfolds, filled with excitement and anticipation, like Hongjomihak's 'Blush'. ...</p>
+<div class="date">
+                                2026.05.02
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/769da48e/97bb/46ab/9f1f/9e41be8cfb5a/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260331 Latest Kpop Debut Albums</h3>
+<p>A kaleidoscope of colors signaling new beginnings, a feast of emerging artists ready to fill the listener's heart garden with diverse music: as intense as 'Red Flowers In My Garden', as free as 'Free Falling'. ...</p>
+<div class="date">
+                                2026.04.13
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260228%20Latest%20Kpop%20Debut%20Albums.html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/ebf20ab7/bc2e/4f93/8d60/d39c4c0cd57d/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260228 Latest Kpop Debut Albums</h3>
+<p>A new wave, painting the music scene with diverse colors: from the delicate emotion of '다시 만날 계절' to the intense energy of 'INVINCIBLE'. ...</p>
+<div class="date">
+                                2026.04.13
+                            </div>
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_Latest_KPop_Debut_Albums/YMPL_Latest_KPop_Debut_Albums.html">
+                + 더보기
+            </a>
+</div>
+</section>
+<!-- DEBUT_END -->
+<!-- OST_START -->
+<section class="magazine-section">
+<div class="mag-header">
+<h2>
+<span class="small-icon">🎬</span>
+                Kdrama OST Story
+                <span class="mag-help" data-i18n-desc="mag_ost_arc_desc" data-i18n-title="mag_ost_arc_title">
+                    ❔
+                </span>
+</h2>
+</div>
+<div class="mag-carousel">
+<button class="mag-prev">‹</button>
+<div class="mag-track"><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260220%20Kdrama%20OST%20-%20%EC%B0%AC%EB%9E%80%ED%95%9C%20%EB%84%88%EC%9D%98%20%EA%B3%84%EC%A0%88%EC%97%90%20(%20In%20Your%20Radiant%20Season%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/9c460ec8/96c1/423f/b0ef/fe26980690b9/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260220 Kdrama OST - 찬란한 너의 계절에 ( In Your Radiant Season )</h3>
+<p>Love Transcending Time: The Emotional Symphony Woven by 'In Your Radiant Season' OST ...</p>
+<div class="date">
+                                2026.08.01
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260508%20Kdrama%20OST%20-%20%EC%83%A4%EC%9D%B4%EB%8B%9D%20(%20Still%20Shining%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/3b2b264b/394e/47ab/8098/086aad5af133/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260508 Kdrama OST - 샤이닝 ( Still Shining )</h3>
+<p>Fragments of Radiant Days, The Magic Woven by the 2026 Kdrama OST 'Shining' ...</p>
+<div class="date">
+                                2026.07.30
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260103%20Kdrama%20OST%20-%20%EC%9D%80%EC%95%A0%ED%95%98%EB%8A%94%20%EB%8F%84%EC%A0%81%EB%8B%98%EC%95%84%20(%20To%20My%20Beloved%20Thief%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/63308d3e/af84/421a/9073/6920346c97ec/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260103 Kdrama OST - 은애하는 도적님아 ( To My Beloved Thief )</h3>
+<p>Stolen Time, Stolen Heart… The Heartbreaking Romance Woven by the 'To My Beloved Thief' OST ...</p>
+<div class="date">
+                                2026.07.26
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260313%20Kdrama%20OST%20-%20%EC%8B%A0%EC%9D%B4%EB%9E%91%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C%20(%20Phantom%20Lawyer%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/d744d81c/3b81/4da2/bb45/1198e2567546/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260313 Kdrama OST - 신이랑 법률사무소 ( Phantom Lawyer )</h3>
+<p>The True Story Hidden Behind the Robes, The Wave of Empathy Created by the OST of 'Phantom Lawyer' ...</p>
+<div class="date">
+                                2026.07.20
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260530%20Kdrama%20OST%20-%20%EC%8B%A0%EC%9E%85%EC%82%AC%EC%9B%90%20%EA%B0%95%ED%9A%8C%EC%9E%A5%20(%20Reborn%20Rookie%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/0267a2f0/e59d/4623/8895/9d2d55232dca/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260530 Kdrama OST - 신입사원 강회장 ( Reborn Rookie )</h3>
+<p>Rewriting Success Against Time: The Narrative of Youth Painted by 'Reborn Rookie' OST ...</p>
+<div class="date">
+                                2026.07.18
+                            </div>
+</div>
+</div>
+</a><a class="mag-slide" href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260511%20Kdrama%20OST%20-%20%EC%8A%A4%ED%84%B0%EB%94%94%EA%B7%B8%EB%A3%B9%20(%20STUDY%20GROUP%20).html">
+<div class="magazine-card">
+<div class="mag-card-img">
+<img loading="lazy" src="https://resources.tidal.com/images/db95bf09/9b0a/4a34/9c6c/c2d78690ad0a/1080x1080.jpg"/>
+</div>
+<div class="mag-card-content">
+<h3>20260511 Kdrama OST - 스터디그룹 ( STUDY GROUP )</h3>
+<p>Friendship Blossoming Amidst Chaos: A Chronicle of Youth Woven by the 'Study Group' OST ...</p>
+<div class="date">
+                                2026.07.18
+                            </div>
+</div>
+</div>
+</a>
+</div>
+<button class="mag-next">›</button>
+</div>
+<div class="mag-footer">
+<a class="mag-more" data-i18n="view_more" href="https://bipapalula3.github.io/YMPL/YMPL_Kdrama_OST/YMPL_Kdrama_OST.html">
+                + 더보기
+            </a>
+</div>
+</section>
+<!-- OST_END -->
+<script>
+		document.addEventListener("click", function (e) {
+	    	const help = e.target.closest(".mag-help");
+		    if (help) {
+		        // 기존 팝업 제거
+		        document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
+		
+		        const titleKey = help.dataset.i18nTitle;
+		        const descKey = help.dataset.i18nDesc;
+		        
+		        // 현재 언어 가져오기 (없으면 기본값 en)
+		        const lang = window.currentLang || localStorage.getItem('preferredLang') || "en";
+		
+		        const titleText = window.translations?.[lang]?.[titleKey] || "[title missing]";
+		        const descText = window.translations?.[lang]?.[descKey] || "[desc missing]";
+		
+		        const popup = document.createElement("div");
+		        popup.className = "mag-help-popup";
+		        popup.innerHTML = `<strong>${titleText}</strong><div>${descText}</div>`;
+		
+		        help.appendChild(popup);
+		        popup.style.display = "block";
+		
+		        e.stopPropagation();
+		        return;
+		    }
+		    // 바깥 클릭 시 팝업 닫기
+		    document.querySelectorAll(".mag-help-popup").forEach(p => p.remove());
+		});
+	</script>
+<script>
+		document.addEventListener("DOMContentLoaded", function(){
+		
+		    document.querySelectorAll(".mag-carousel").forEach(carousel => {
+		
+		        const track = carousel.querySelector(".mag-track");
+		        const prev = carousel.querySelector(".mag-prev");
+		        const next = carousel.querySelector(".mag-next");
+		
+		        if(!track || !prev || !next) return;
+		
+		        function getSlideWidth(){
+		            const slide = track.querySelector(".mag-slide");
+		            const gap = 20;
+		            return slide.offsetWidth + gap;
+		        }
+		
+		        next.addEventListener("click", () => {
+		            track.scrollBy({
+		                left: getSlideWidth() * 3,
+		                behavior: "smooth"
+		            });
+		        });
+		
+		        prev.addEventListener("click", () => {
+		            track.scrollBy({
+		                left: -getSlideWidth() * 3,
+		                behavior: "smooth"
+		            });
+		        });
+		
+		    });
+		
+		});
+	</script>
+<footer class="footer-container">
+<div class="footer-links">
+<a data-i18n="nav_privacy" href="/privacy.html">Privacy Policy</a>
+<a data-i18n="nav_terms" href="/terms.html">Terms of Service</a>
+<a data-i18n="nav_contact" href="/contact.html">Contact</a>
+</div>
+<div class="copyright">
+<p data-i18n="footer_notice_1">This site is a curation service that organizes information from external platforms such as TIDAL.</p>
+<p data-i18n="footer_notice_2">All copyrights belong to their respective owners, and this site does not host any content directly.</p>
+<p data-i18n="footer_copyright">© 2026 YMPL Music Database. All rights reserved.</p>
+</div>
+</footer>
+<script>
+		// 1. 번역 사전 데이터
+		const translations = {
+			'en': {
+				'hero_desc': 'Discover K-POP on TIDAL at a glance.',
+				'search_placeholder': 'Enter artist or song title',
+				'shortcut_weekly_new': '🆕 Weekly New Albums',
+			    'shortcut_ktop_chart': '🔥 New Song Priority Chart',
+			    'shortcut_debut': '💎 Latest Debut Albums',
+				'shortcut_ost': '🎬 Kdrama OST Soundtrack',
+				'about_h2': 'YMPL – Data-Driven K-POP Insights Platform',
+				'about_intro': 'YMPL (Your Music Playlist Link) is a data-driven K-POP curation platform designed to help users explore and understand music more deeply. It goes beyond simple link aggregation by combining structured music data with trend analysis to provide meaningful insights and a richer discovery experience.',
+				'f1_title': '<strong>🎧 Data-Driven Music Archive:</strong>',
+				'f1_desc': 'YMPL organizes a vast collection of K-POP artists and discographies into a structured database. With an intuitive index, users can quickly find artists and explore their music in a clear and efficient way.',
+				'f2_title': '<strong>📊 Trend Analysis & Curated Content:</strong>',
+				'f2_desc': 'Beyond raw data, YMPL analyzes weekly releases and charts to uncover music trends. Content such as Weekly New Kpop Releases, Ktop Chart, and Debut Artist Spotlight helps users understand styles, emotions, and evolving patterns in K-POP.',
+				'f3_title': '<strong>🔗 Seamless Music Access:</strong>',
+				'f3_desc': 'All content is connected to the global high-quality streaming platform TIDAL, allowing users to instantly access and listen to music after discovery, creating a smooth and uninterrupted experience.',
+				'about_closing': 'YMPL is not just a database. By combining Data, Insight, and Access, it enables users to discover music faster, understand trends deeper, and enjoy K-POP more efficiently.',				
+				'nav_privacy': 'Privacy Policy', 'nav_terms': 'Terms of Service', 'nav_contact': 'Contact',
+				'footer_notice_1': 'This site is a curation service that organizes information from external platforms such as TIDAL.',
+				'footer_notice_2': 'All copyrights belong to their respective owners, and this site does not host any content directly.',
+				'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.',
+				'view_more': '+ View More',
+				'mag_chart_arc_title': 'Weekly K-POP Chart Analysis',
+				'mag_chart_arc_desc': 'We will return with deeper musical analysis of top chart hits.',
+				'mag_mbti_arc_title': 'Weekly New Song MBTI Analysis',
+				'mag_mbti_arc_desc': 'Find the MBTI analysis playlist that matches your vibe.',
+				'mag_debut_arc_title': 'Monthly Debut Artist Profiles',
+				'mag_debut_arc_desc': 'Stay tuned for new debut artist profiles and stories.',
+				'mag_ost_arc_title': 'Kdrama OST Emotional Narrative',
+				'mag_ost_arc_desc': 'Explore deep stories and unforgettable scenes brought to life by music.',
+				'mag_voice_arc_title': 'YMPL New Artist Archive',
+				'mag_voice_arc_desc': 'Discover updated profiles and hidden gems of new artists.'
+			},
+			'ko': {
+				'hero_desc': 'TIDAL에서 K-POP을 한눈에 찾아보세요.',
+				'search_placeholder': '아티스트나 곡 제목을 입력하세요',
+				'shortcut_weekly_new': '🆕 주간 발매 앨범',
+				'shortcut_ktop_chart': '🔥 신곡 우선 차트',
+				'shortcut_debut': '💎 최신 데뷔 앨범',
+				'shortcut_ost': '🎬 드라마 OST 트렉',
+				'about_h2': 'YMPL – 데이터 기반 K-POP 인사이트 플랫폼',
+				'about_intro': 'YMPL(Your Music Playlist Link)은 K-POP 음악을 더 깊이 이해하고 탐색할 수 있도록 설계된 데이터 기반 큐레이션 플랫폼입니다. 단순한 링크 모음이 아니라, 음악 데이터와 트렌드 분석을 결합하여 사용자에게 새로운 관점과 인사이트를 제공합니다.',				
+				'f1_title': '<strong>🎧 데이터 기반 아카이브:</strong>',
+				'f1_desc': 'YMPL은 방대한 K-POP 아티스트와 디스코그래피 데이터를 체계적으로 정리하여 제공합니다. 가나다순 아티스트 인덱스를 통해 원하는 가수를 빠르게 찾고, 음악 정보를 한눈에 확인할 수 있는 효율적인 탐색 환경을 제공합니다.',				
+				'f2_title': '<strong>📊 트렌드 분석 & 큐레이션 콘텐츠:</strong>',
+				'f2_desc': '단순한 데이터 제공을 넘어, 매주 업데이트되는 신곡과 차트를 기반으로 음악 트렌드를 분석합니다. Weekly New Kpop Releases, Ktop Chart, Debut Artist Spotlight 등의 콘텐츠를 통해 감성, 스타일, 흐름을 해석하여 K-POP을 더 깊이 이해할 수 있도록 돕습니다.',				
+				'f3_title': '<strong>🔗 빠르고 직관적인 음악 연결:</strong>',
+				'f3_desc': '모든 콘텐츠는 글로벌 고음질 스트리밍 플랫폼인 TIDAL과 연결되어 있어, 아티스트나 곡을 찾은 뒤 즉시 감상으로 이어질 수 있습니다. 검색부터 감상까지 끊김 없는 경험을 제공합니다.',
+				'about_closing': 'YMPL은 단순한 데이터베이스가 아닌, 데이터(Data)·분석(Insight)·연결(Access)을 결합한 음악 탐색 플랫폼입니다. 사용자가 K-POP을 더 빠르게 발견하고, 더 깊이 이해하며, 더 편리하게 즐길 수 있도록 돕는 것을 목표로 합니다.',								
+				'nav_privacy': '개인정보처리방침', 'nav_terms': '이용약관', 'nav_contact': '문의하기',
+				'footer_notice_1': '본 사이트는 TIDAL 등 외부 플랫폼의 정보를 정리한 큐레이션 서비스입니다.',
+				'footer_notice_2': '모든 저작권은 각 권리자에게 있으며, 본 사이트는 콘텐츠를 직접 호스팅하지 않습니다.',
+				'footer_copyright': '© 2026 YMPL Music Database. All rights reserved.',
+				'view_more': '+ 더보기',
+				'mag_chart_arc_title': '주간 K-POP 차트 신곡 분석',
+				'mag_chart_arc_desc': '탑차트 신곡의 음악적 가치를 깊이 있게 분석하여 찾아오겠습니다.',
+				'mag_mbti_arc_title': '주간 신곡 MBTI 감성 분석',
+				'mag_mbti_arc_desc': '당신의 감성과 어울리는 MBTI 분석 플레이리스트를 찾아보세요.',
+				'mag_debut_arc_title': '이번 달 데뷔 아티스트 프로필',
+				'mag_debut_arc_desc': '새롭게 데뷔한 아티스트의 프로필과 비하인드 스토리로 찾아오겠습니다.',
+				'mag_ost_arc_title': '드라마 OST 과몰입 감성 스토리',
+				'mag_ost_arc_desc': '음악으로 오랫동안 기억되는 드라마 명장면 속 깊은 감동과 서사.',
+				'mag_voice_arc_title': 'YMPL New 아티스트 프로필',
+				'mag_voice_arc_desc': '새롭게 업데이트된 아티스트들의 프로필과 숨어 있는 앨범을 만나보세요.'
+			},
+			'es': {
+				'hero_desc': 'Descubra K-POP en TIDAL de un vistazo.',
+				'search_placeholder': 'Ingrese artista o título de canción',
+				'shortcut_weekly_new': '🆕 Álbumes Nuevos Semanales',
+			    'shortcut_ktop_chart': '🔥 Lista Prioritaria de Nuevas Canciones',
+			    'shortcut_debut': '💎 Álbumes de Debut Recientes',
+				'shortcut_ost': '🎬 Banda sonora de Kdramas',	
+				'about_h2': 'YMPL – Plataforma de Insights K-POP basada en datos',
+				'about_intro': 'YMPL (Your Music Playlist Link) es una plataforma de curación de K-POP basada en datos, diseñada para ayudar a los usuarios a explorar y comprender la música de forma más profunda. No es solo una colección de enlaces, sino una combinación de datos musicales estructurados y análisis de tendencias que ofrece una experiencia de descubrimiento más rica.',
+				'f1_title': '<strong>🎧 Archivo musical basado en datos:</strong>',
+				'f1_desc': 'YMPL organiza una amplia colección de artistas y discografías de K-POP en una base de datos estructurada. Gracias a su índice intuitivo, los usuarios pueden encontrar artistas rápidamente y explorar su música de manera eficiente.',
+				'f2_title': '<strong>📊 Análisis de tendencias y contenido curado:</strong>',
+				'f2_desc': 'Más allá de los datos, YMPL analiza lanzamientos semanales y rankings para identificar tendencias musicales. Contenidos como Weekly New Kpop Releases, Ktop Chart y Debut Artist Spotlight ayudan a comprender estilos, emociones y cambios en el K-POP.',
+				'f3_title': '<strong>🔗 Acceso inmediato a la música:</strong>',
+				'f3_desc': 'Todo el contenido está conectado con la plataforma global de streaming de alta calidad TIDAL, permitiendo a los usuarios escuchar música al instante después de descubrirla.',
+				'about_closing': 'YMPL no es solo una base de datos. Al combinar Datos, Análisis y Acceso, permite descubrir música más rápido, entender tendencias en profundidad y disfrutar del K-POP de manera más eficiente.',
+				'nav_privacy': 'Política de privacidad', 'nav_terms': 'Términos de servicio', 'nav_contact': 'Contacto',
+				'footer_notice_1': 'Este sitio es un servicio de curación que organiza información de plataformas externas como TIDAL.',
+				'footer_notice_2': 'Todos los derechos de autor pertenecen a sus respectivos propietarios y este sitio no aloja contenido directamente.',
+				'footer_copyright': '© 2026 YMPL Music Database. Todos los derechos reservados.',
+				'view_more': '+ Ver más',
+				'mag_chart_arc_title': 'Análisis de listas K-POP',
+				'mag_chart_arc_desc': 'Volveremos con análisis musicales más profundos de los éxitos.',
+				'mag_mbti_arc_title': 'Análisis MBTI de nuevas canciones',
+				'mag_mbti_arc_desc': 'Encuentra la lista de reproducción MBTI que mejor se adapte a ti.',
+				'mag_debut_arc_title': 'Perfiles de artistas debutantes del mes',
+				'mag_debut_arc_desc': 'Mantente al tanto para nuevos perfiles e historias de debuts.',
+				'mag_ost_arc_title': 'Narrativa Emocional de OST de Kdramas',
+				'mag_ost_arc_desc': 'Explore historias profundas y escenas inolvidables que cobran vida gracias a la música.',
+				'mag_voice_arc_title': 'Archivo de nuevos artistas YMPL',
+				'mag_voice_arc_desc': 'Descubre perfiles actualizados y tesoros ocultos de nuevos artistas.'
+			},
+			'zh': {
+				'hero_desc': '一目了然地探索 TIDAL 上的 K-POP。',
+				'search_placeholder': '输入艺人或歌曲名称',
+				'shortcut_weekly_new': '🆕 每周新专辑',
+			    'shortcut_ktop_chart': '🔥 新歌优先排行榜',
+			    'shortcut_debut': '💎 最新出道专辑',
+				'shortcut_ost': '🎬 韩剧原声带',
+				'about_h2': 'YMPL – 数据驱动的K-POP音乐洞察平台',
+				'about_intro': 'YMPL（Your Music Playlist Link）是一个基于数据的K-POP音乐策展平台，旨在帮助用户更深入地探索和理解音乐。它不仅是一个链接集合，而是将结构化音乐数据与趋势分析相结合，提供更有价值的音乐发现体验。',
+				'f1_title': '<strong>🎧 数据驱动的音乐档案库：</strong>',
+				'f1_desc': 'YMPL系统化整理了大量K-POP艺人及其作品信息。通过直观的索引结构，用户可以快速查找艺人并高效浏览其音乐内容。',
+				'f2_title': '<strong>📊 趋势分析与内容策展：</strong>',
+				'f2_desc': '不仅提供数据，YMPL还基于每周新歌和排行榜进行趋势分析。通过 Weekly New Kpop Releases、Ktop Chart 和 Debut Artist Spotlight 等内容，帮助用户理解音乐风格、情绪以及K-POP的发展趋势。',
+				'f3_title': '<strong>🔗 无缝音乐访问体验：</strong>',
+				'f3_desc': '所有内容均连接至高品质流媒体平台TIDAL，用户在发现音乐后可以立即收听，实现流畅无缝的使用体验。',
+				'about_closing': 'YMPL不仅是一个数据库。通过结合数据（Data）、洞察（Insight）与连接（Access），帮助用户更快发现音乐、更深入理解趋势，并更高效地享受K-POP。',
+				'nav_privacy': '隐私政策', 'nav_terms': '服务条款', 'nav_contact': '联系我们',
+				'footer_notice_1': '本网站是一个整理 TIDAL 等外部平台信息的策展服务。',
+				'footer_notice_2': '所有版权归各自权利人所有，本网站不直接托管任何内容。',
+				'footer_copyright': '© 2026 YMPL Music Database. 保留所有权利。',
+				'view_more': '+ 查看更多',
+				'mag_chart_arc_title': '每周 K-POP 榜单分析',
+				'mag_chart_arc_desc': '我们将带来更深入的热门歌曲音乐价值分析。',
+				'mag_mbti_arc_title': '每周新歌 MBTI 情感分析',
+				'mag_mbti_arc_desc': '寻找与您的情感相契合的 MBTI 分析歌单。',
+				'mag_debut_arc_title': '本月出道艺人档案',
+				'mag_debut_arc_desc': '敬请期待更多精彩的新人艺人资料与故事。',
+				'mag_ost_arc_title': '韩剧 OST 沉浸式情感故事',
+				'mag_ost_arc_desc': '探索由音乐赋予生命的深刻故事与令人难忘的经典画面。',
+				'mag_voice_arc_title': 'YMPL 新晋艺人档案库',
+				'mag_voice_arc_desc': '探索新晋艺人的最新档案及其隐藏专辑。'
+			}
+		};
+
+		window.translations = translations;
+
+		// 2. 검색 설정
+		const TARGET_SEARCH_PAGE = 'YMPL/search.html';
+
+		// 3. 주요 함수들
+		function switchLanguage(lang) {
+			if (!translations[lang]) lang = 'en';
+			window.currentLang = lang; // 현재 선택된 언어를 전역에 저장
+			document.querySelectorAll('[data-i18n]').forEach(element => {
+				const key = element.getAttribute('data-i18n');
+				if (translations[lang][key]) {
+					if (element.tagName === 'INPUT') {
+						element.placeholder = translations[lang][key];
+					} else {
+						element.innerHTML = translations[lang][key];
+					}
+				}
+			});
+			localStorage.setItem('preferredLang', lang);
+		}
+
+		function initLanguage() {
+			const savedLang = localStorage.getItem('preferredLang');
+			if (savedLang) {
+				switchLanguage(savedLang);
+				return;
+			}
+			const browserLang = navigator.language.substring(0, 2);
+			const supportedLangs = ['en', 'ko', 'es', 'zh'];
+			switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+		}
+
+		function generateAppKey(rewardType) {
+			const now = new Date();
+			const dateString = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+			const digits = dateString.split('');
+			let builder = "";
+			for (let i = 0; i < digits.length; i += 2) builder += digits[i];
+			for (let i = digits.length - 1; i >= 0; i--) if (i % 2 === 1) builder += digits[i];
+			const typeChar = { 'WEEKLY_NEW': 'N', 'WEEKLY_TOP': 'T', 'MONTHLY_DEBUT': 'D', 'KDRAMA_OST': 'O' }[rewardType];
+			let insertIndex = parseInt(dateString.slice(-1)) % 4; 
+			return builder.slice(0, insertIndex) + typeChar + builder.slice(insertIndex);
+		}
+
+		function processRewardSearch(type, displayText) {
+			const encryptedKey = generateAppKey(type);
+			window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(encryptedKey)}&label=${encodeURIComponent(displayText)}`;
+		}
+
+		function handleManualSearch() {
+			const query = document.getElementById('searchInput').value.trim();
+			if (query === "") return false;
+			window.location.href = TARGET_SEARCH_PAGE + `?q=${encodeURIComponent(query)}`;
+			return false;
+		}
+
+		// 4. 페이지 초기화
+		document.addEventListener('DOMContentLoaded', () => {
+			initLanguage();
+			const trigger = document.querySelector('.select-trigger');
+			const menu = document.querySelector('.select-options');
+			trigger?.addEventListener('click', () => menu.classList.toggle('show'));
+
+			document.querySelectorAll('.select-option').forEach(opt => {
+				opt.addEventListener('click', (e) => {
+					const url = opt.getAttribute('data-value');
+					if (url) {
+						window.location.href = url; 
+					}
+					menu.classList.remove('show');
+				});
+			});
+
+			document.querySelector('[data-i18n="footer_copyright"]').innerHTML = `© ${new Date().getFullYear()} YMPL Music Database. All rights reserved.`;
+
+			window.addEventListener('click', (e) => {
+				const container = document.getElementById('customSelect');
+				if (container && !container.contains(e.target) && menu) {
+					menu.classList.remove('show');
+				}
+			});
+		});
+	</script>
+</div></body>
+</html>
