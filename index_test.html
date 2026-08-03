@@ -909,6 +909,21 @@
             body: "Currently, the YMPL K-POP search service is optimized for the Android app and PC web browser environments.<br><br>The iOS app is under development. For the best experience, please <strong>visit us on a wide-screen PC</strong> or use the faster and more convenient <strong>official YMPL app</strong>!",
             btnText: "Get it on Google Play"
         },
+        pl: {
+            title: "YMPL Studio",
+            body: "Obecnie usługa wyszukiwania YMPL K-POP jest zoptymalizowana dla aplikacji na Androida oraz przeglądarek internetowych na PC.<br><br>Aplikacja na iOS jest w trakcie przygotowania. Aby uzyskać najlepszą jakość, <strong>odwiedź nas na komputerze PC</strong> lub skorzystaj z szybszej i wygodniejszej <strong>oficjalnej aplikacji YMPL</strong>!",
+            btnText: "Pobierz z Google Play"
+        },
+        "pt-BR": {
+            title: "YMPL Studio",
+            body: "Atualmente, o serviço de pesquisa YMPL K-POP está otimizado para o aplicativo Android e navegadores de PC.<br><br>O aplicativo para iOS está em desenvolvimento. Para uma melhor experiência, <strong>acesse em um PC</strong> ou use o <strong>aplicativo oficial da YMPL</strong>, que é mais rápido e prático!",
+            btnText: "Disponível no Google Play"
+        },
+        de: {
+            title: "YMPL Studio",
+            body: "Derzeit ist der YMPL K-POP-Suchdienst für die Android-App und PC-Webbrowser optimiert.<br><br>Die iOS-App befindet sich in Entwicklung. Für das beste Erlebnis <strong>besuchen Sie uns bitte auf einem PC</strong> oder nutzen Sie die schnellere und bequemere <strong>offizielle YMPL-App</strong>!",
+            btnText: "Jetzt bei Google Play"
+        },
         es: {
             title: "YMPL Studio",
             body: "Actualmente, el servicio de búsqueda YMPL K-POP está optimizado para la aplicación Android y el navegador web de PC.<br><br>La aplicación para iOS está en desarrollo. Para una mejor experiencia, ¡<strong>visítanos desde una PC de pantalla ancha</strong> o utiliza la <strong>aplicación oficial de YMPL</strong>, que es más rápida y cómoda!",
@@ -922,10 +937,13 @@
     };
 
     // 2. 사용자 시스템/브라우저 설정 언어 자동 감지
-    const userLang = navigator.language || navigator.userLanguage || 'en';
+    const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
     let defaultLang = 'en';
     
     if (userLang.startsWith('ko')) defaultLang = 'ko';
+    else if (userLang.startsWith('pl')) defaultLang = 'pl';
+    else if (userLang.startsWith('pt')) defaultLang = 'pt-BR';
+    else if (userLang.startsWith('de')) defaultLang = 'de';
     else if (userLang.startsWith('es')) defaultLang = 'es';
     else if (userLang.startsWith('zh')) defaultLang = 'zh';
 
@@ -945,22 +963,30 @@
             `;
         }
 
-        // 전체 차단 화면 구성 (상단 멀티 랭귀지 토글 + 헤드폰 이모지 포함)
+        // 전체 차단 화면 구성 (상단 풀다운 드롭다운 메뉴 + 헤드폰 이모지 포함)
         document.body.innerHTML = `
             <div style="
                 position:fixed; inset:0; z-index:999999; background:#111; color:white;
                 display:flex; align-items:center; justify-content:center; flex-direction:column;
                 font-family:sans-serif; text-align:center; padding:30px; box-sizing:border-box;
             ">
-                <!-- 상단 언어 수동 선택 버튼 -->
-                <div style="position:absolute; top:20px; display:flex; gap:8px;">
-                    <button onclick="updateMobileScreen('en')" style="background:${lang==='en'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">EN</button>
-                    <button onclick="updateMobileScreen('ko')" style="background:${lang==='ko'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">KR</button>
-                    <button onclick="updateMobileScreen('es')" style="background:${lang==='es'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ES</button>
-                    <button onclick="updateMobileScreen('zh')" style="background:${lang==='zh'?'#2196F3':'#333'}; color:white; border:none; padding:6px 12px; border-radius:15px; cursor:pointer; font-size:12px; font-weight:bold;">ZH</button>
+                <!-- 상단 언어 수동 선택 (풀다운 드롭다운 메뉴) -->
+                <div style="position:absolute; top:20px;">
+                    <select onchange="updateMobileScreen(this.value)" style="
+                        background:#222; color:white; border:1px solid #444; padding:6px 12px;
+                        border-radius:8px; font-size:13px; font-weight:bold; cursor:pointer; outline:none;
+                    ">
+                        <option value="en" ${lang==='en'?'selected':''}>English</option>
+                        <option value="ko" ${lang==='ko'?'selected':''}>한국어</option>
+                        <option value="pl" ${lang==='pl'?'selected':''}>Polski</option>
+                        <option value="pt-BR" ${lang==='pt-BR'?'selected':''}>Português (Brasil)</option>
+                        <option value="de" ${lang==='de'?'selected':''}>Deutsch</option>
+                        <option value="es" ${lang==='es'?'selected':''}>Español</option>
+                        <option value="zh" ${lang==='zh'?'selected':''}>中文</option>
+                    </select>
                 </div>
 
-                <!-- 헤드폰 아이콘 + 타이틀 영역 (이모지 크기 축소 및 중앙 정렬 보정) -->
+                <!-- 헤드폰 아이콘 + 타이틀 영역 -->
                 <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:20px;">
                     <span style="font-size:22px; line-height:1; display:inline-flex; align-items:center;">🎧</span>
                     <h1 style="margin:0; font-size:26px; font-weight:bold; background: linear-gradient(-20deg, #00D4FF, #FF007F, #FDE100, #00D4FF); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto;">
@@ -998,10 +1024,18 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 <div class="nav-bottom">
 <div class="lang-switcher">
-<button onclick="switchLanguage('en')">EN</button>
-<button onclick="switchLanguage('ko')">KO</button>
-<button onclick="switchLanguage('es')">ES</button>
-<button onclick="switchLanguage('zh')">ZH</button>
+    <select onchange="switchLanguage(this.value)" style="
+        background: #222; color: #fff; border: 1px solid #444; padding: 4px 8px;
+        border-radius: 6px; font-size: 13px; cursor: pointer; outline: none;
+    ">
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="pl">Polski</option>
+        <option value="pt-BR">Português (Brasil)</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="zh">中文</option>
+    </select>
 </div>
 <div class="custom-select-container" id="customSelect">
 <div class="select-trigger">Kpop Artist Index (가나다)</div>
@@ -3163,7 +3197,7 @@ if (typeof toggleExpandCard === 'undefined') {
 </div>
 </footer>
 <script>
-		// 1. 번역 사전 데이터
+		// 1. 번역 사전 데이터 (7개 국어 지원)
 		const translations = {
 			'en': {
 				'hero_desc': 'Discover K-POP on TIDAL at a glance.',
@@ -3228,6 +3262,102 @@ if (typeof toggleExpandCard === 'undefined') {
 				'mag_ost_arc_desc': '음악으로 오랫동안 기억되는 드라마 명장면 속 깊은 감동과 서사.',
 				'mag_voice_arc_title': 'YMPL New 아티스트 프로필',
 				'mag_voice_arc_desc': '새롭게 업데이트된 아티스트들의 프로필과 숨어 있는 앨범을 만나보세요.'
+			},
+			'pl': {
+				'hero_desc': 'Odkryj K-POP na TIDAL w mgnieniu oka.',
+				'search_placeholder': 'Wpisz wykonawcę lub tytuł utworu',
+				'shortcut_weekly_new': '🆕 Tygodniowe Nowe Albumy',
+				'shortcut_ktop_chart': '🔥 Wykres Priorytetowy Nowych Utworów',
+				'shortcut_debut': '💎 Najnowsze Albumy Debiutanckie',
+				'shortcut_ost': '🎬 Ścieżka Dźwiękowa z Kdram',
+				'about_h2': 'YMPL – Platforma Insightów K-POP Oparta na Danych',
+				'about_intro': 'YMPL (Your Music Playlist Link) to oparta na danych platforma kuratorska K-POP stworzona, aby pomóc użytkownikom w głębszym odkrywaniu i rozumieniu muzyki. Łączy ustrukturyzowane dane muzyczne z analizą trendów, oferując bogatsze doświadczenia.',
+				'f1_title': '<strong>🎧 Archiwum Muzyczne Oparte na Danych:</strong>',
+				'f1_desc': 'YMPL porządkuje bogatą kolekcję artystów K-POP i ich dyskografii w ustrukturyzowanej bazie danych, umożliwiając szybkie wyszukiwanie.',
+				'f2_title': '<strong>📊 Analiza Trendów i Treści Kuratorskie:</strong>',
+				'f2_desc': 'YMPL analizuje cotygodniowe wydania i listy przebojów, pomagając zrozumieć style, emocje i rozwijające się wzorce w K-POP.',
+				'f3_title': '<strong>🔗 Bezproblemowy Dostęp do Muzyki:</strong>',
+				'f3_desc': 'Wszystkie treści są połączone z globalną platformą streamingową TIDAL, umożliwiając natychmiastowe słuchanie po odkryciu utworu.',
+				'about_closing': 'YMPL to połączenie Danych, Analizy i Dostępu, ułatwiające szybsze i głębsze odkrywanie K-POP.',
+				'nav_privacy': 'Polityka prywatności', 'nav_terms': 'Warunki korzystania', 'nav_contact': 'Kontakt',
+				'footer_notice_1': 'Ta strona jest usługą kuratorską porządkującą informacje z zewnętrznych platform, takich jak TIDAL.',
+				'footer_notice_2': 'Wszystkie prawa autorskie należą do ich właścicieli. Strona nie hostuje bezpośrednio żadnych treści.',
+				'footer_copyright': '© 2026 YMPL Music Database. Wszelkie prawa zastrzeżone.',
+				'view_more': '+ Zobacz więcej',
+				'mag_chart_arc_title': 'Analiza Tygodniowych List K-POP',
+				'mag_chart_arc_desc': 'Powrócimy z głębszą analizą muzyczną największych hitów.',
+				'mag_mbti_arc_title': 'Tygodniowa Analiza MBTI Nowych Utworów',
+				'mag_mbti_arc_desc': 'Znajdź playlistę analizy MBTI dopasowaną do Twojego klimatu.',
+				'mag_debut_arc_title': 'Miesięczne Profile Debiutujących Artystów',
+				'mag_debut_arc_desc': 'Bądź na bieżąco z profilami i historiami nowych debiutantów.',
+				'mag_ost_arc_title': 'Emocjonalna Narracja OST z Kdram',
+				'mag_ost_arc_desc': 'Odkrywaj głębokie historie i niezapomniane sceny ożywione przez muzykę.',
+				'mag_voice_arc_title': 'Archiwum Nowych Artystów YMPL',
+				'mag_voice_arc_desc': 'Odkryj zaktualizowane profile i ukryte perełki nowych wykonawców.'
+			},
+			'pt-BR': {
+				'hero_desc': 'Descubra K-POP no TIDAL em um piscar de olhos.',
+				'search_placeholder': 'Digite o artista ou título da música',
+				'shortcut_weekly_new': '🆕 Álbuns Novos da Semana',
+				'shortcut_ktop_chart': '🔥 Gráfico Prioritário de Novas Músicas',
+				'shortcut_debut': '💎 Álbuns de Estreia Mais Recentes',
+				'shortcut_ost': '🎬 Trilha Sonora de Doramas',
+				'about_h2': 'YMPL – Plataforma de Insights K-POP Baseada em Dados',
+				'about_intro': 'YMPL (Your Music Playlist Link) é uma plataforma de curadoria de K-POP baseada em dados, projetada para ajudar os usuários a explorar a música de forma mais profunda através da combinação de dados estruturados e análise de tendências.',
+				'f1_title': '<strong>🎧 Arquivo Musical Baseado em Dados:</strong>',
+				'f1_desc': 'YMPL organiza uma vasta coleção de artistas e discografias de K-POP em um banco de dados estruturado para pesquisas rápidas e eficientes.',
+				'f2_title': '<strong>📊 Análise de Tendências e Conteúdo Curado:</strong>',
+				'f2_desc': 'Analisamos lançamentos semanais e paradas para identificar tendências, estilos e evolução do K-POP.',
+				'f3_title': '<strong>🔗 Acesso Contínuo à Música:</strong>',
+				'f3_desc': 'Todo o conteúdo está conectado diretamente ao TIDAL, permitindo ouvir as músicas instantaneamente após a descoberta.',
+				'about_closing': 'O YMPL combina Dados, Análise e Acesso para que você aproveite o K-POP de forma mais inteligente.',
+				'nav_privacy': 'Política de Privacidade', 'nav_terms': 'Termos de Serviço', 'nav_contact': 'Contato',
+				'footer_notice_1': 'Este site é um serviço de curadoria que organiza informações de plataformas externas como o TIDAL.',
+				'footer_notice_2': 'Todos os direitos autorais pertencem aos seus respectivos proprietários.',
+				'footer_copyright': '© 2026 YMPL Music Database. Todos os direitos reservados.',
+				'view_more': '+ Ver mais',
+				'mag_chart_arc_title': 'Análise Semanal do Ranking K-POP',
+				'mag_chart_arc_desc': 'Voltaremos com análises musicais mais aprofundadas dos maiores sucessos.',
+				'mag_mbti_arc_title': 'Análise MBTI das Novas Músicas da Semana',
+				'mag_mbti_arc_desc': 'Encontre a playlist de análise MBTI que combina com o seu estilo.',
+				'mag_debut_arc_title': 'Perfis Mensais de Artistas Estreantes',
+				'mag_debut_arc_desc': 'Fique atento aos novos perfis e histórias de artistas estreantes.',
+				'mag_ost_arc_title': 'Narrativa Emocional das Trilhas de Doramas',
+				'mag_ost_arc_desc': 'Explore histórias profundas e cenas inesquecíveis trazidas à vida pela música.',
+				'mag_voice_arc_title': 'Arquivo de Novos Artistas YMPL',
+				'mag_voice_arc_desc': 'Descubra perfis atualizados e joias escondidas de novos artistas.'
+			},
+			'de': {
+				'hero_desc': 'Entdecken Sie K-POP auf TIDAL auf einen Blick.',
+				'search_placeholder': 'Künstler oder Songtitel eingeben',
+				'shortcut_weekly_new': '🆕 Wöchentlich neue Alben',
+				'shortcut_ktop_chart': '🔥 Neue Song-Prioritätscharts',
+				'shortcut_debut': '💎 Neueste Debüt-Alben',
+				'shortcut_ost': '🎬 Kdrama OST Soundtrack',
+				'about_h2': 'YMPL – Datenbasierte K-POP Insights-Plattform',
+				'about_intro': 'YMPL (Your Music Playlist Link) ist eine datenbasierte K-POP-Kuration-Plattform, die entwickelt wurde, um Benutzern zu helfen, Musik tiefer zu erkunden und zu verstehen.',
+				'f1_title': '<strong>🎧 Datenbasiertes Musikarchiv:</strong>',
+				'f1_desc': 'YMPL organisiert eine umfangreiche Sammlung von K-POP-Künstlern und Diskografien in einer strukturierten Datenbank.',
+				'f2_title': '<strong>📊 Trendanalyse & Kuratierte Inhalte:</strong>',
+				'f2_desc': 'Über Rohdaten hinaus analysiert YMPL wöchentliche Veröffentlichungen und Charts, um Musiktrends aufzudecken.',
+				'f3_title': '<strong>🔗 Nahtloser Musikzugriff:</strong>',
+				'f3_desc': 'Alle Inhalte sind mit der globalen Streaming-Plattform TIDAL verbunden, um direktes Anhören zu ermöglichen.',
+				'about_closing': 'YMPL kombiniert Daten, Einblicke und Zugang für ein effizienteres K-POP-Erlebnis.',
+				'nav_privacy': 'Datenschutz-Bestimmungen', 'nav_terms': 'Nutzungsbedingungen', 'nav_contact': 'Kontakt',
+				'footer_notice_1': 'Diese Seite ist ein Kurationsdienst, der Informationen von externen Plattformen wie TIDAL organisiert.',
+				'footer_notice_2': 'Alle Urheberrechte liegen bei den jeweiligen Eigentümern.',
+				'footer_copyright': '© 2026 YMPL Music Database. Alle Rechte vorbehalten.',
+				'view_more': '+ Mehr anzeigen',
+				'mag_chart_arc_title': 'Wöchentliche K-POP Chart-Analyse',
+				'mag_chart_arc_desc': 'Wir kehren mit tieferen musikalischen Analysen der Top-Hits zurück.',
+				'mag_mbti_arc_title': 'Wöchentliche MBTI-Analyse neuer Songs',
+				'mag_mbti_arc_desc': 'Finden Sie die MBTI-Playlist, die zu Ihrer Stimmung passt.',
+				'mag_debut_arc_title': 'Monatliche Profile neuer Künstler',
+				'mag_debut_arc_desc': 'Bleiben Sie dran für neue Künstlerprofile und Geschichten.',
+				'mag_ost_arc_title': 'Emotionales Kdrama OST-Narrativ',
+				'mag_ost_arc_desc': 'Erkunden Sie tiefe Geschichten und unvergessliche Szenen, die durch Musik zum Leben erweckt werden.',
+				'mag_voice_arc_title': 'YMPL Neues Künstlerarchiv',
+				'mag_voice_arc_desc': 'Entdecken Sie aktualisierte Profile und versteckte Juwelen neuer Künstler.'
 			},
 			'es': {
 				'hero_desc': 'Descubra K-POP en TIDAL de un vistazo.',
@@ -3297,13 +3427,15 @@ if (typeof toggleExpandCard === 'undefined') {
 
 		window.translations = translations;
 
-		// 2. 검색 페이지 주소 (search.html은 GitHub Pages 주소 직접 사용)
+		// 2. 검색 페이지 주소
 		const TARGET_SEARCH_PAGE = 'https://bipapalula3.github.io/YMPL/search.html';
 
 		// 3. 주요 함수들
 		function switchLanguage(lang) {
 			if (!translations[lang]) lang = 'en';
 			window.currentLang = lang;
+			
+			// 다국어 텍스트 적용
 			document.querySelectorAll('[data-i18n]').forEach(element => {
 				const key = element.getAttribute('data-i18n');
 				if (translations[lang][key]) {
@@ -3314,19 +3446,36 @@ if (typeof toggleExpandCard === 'undefined') {
 					}
 				}
 			});
+
+			// 풀다운 드롭다운 Select 요소 상태 동기화
+			document.querySelectorAll('.lang-switcher select').forEach(select => {
+				select.value = lang;
+			});
+
 			localStorage.setItem('preferredLang', lang);
 		}
 
 		function initLanguage() {
 			const savedLang = localStorage.getItem('preferredLang');
-			if (savedLang) {
+			if (savedLang && translations[savedLang]) {
 				switchLanguage(savedLang);
 				return;
 			}
-			const browserLang = navigator.language.substring(0, 2);
-			const supportedLangs = ['en', 'ko', 'es', 'zh'];
-			switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+			
+			// 브라우저 언어 자동 탐지 (pt-br, pl, de, es, zh, ko 대응)
+			const fullBrowserLang = navigator.language.toLowerCase();
+			const shortBrowserLang = fullBrowserLang.substring(0, 2);
+			
+			let selectedLang = 'en';
+			if (fullBrowserLang.startsWith('pt')) {
+				selectedLang = 'pt-BR';
+			} else if (translations[shortBrowserLang]) {
+				selectedLang = shortBrowserLang;
+			}
+			
+			switchLanguage(selectedLang);
 		}
+</script>
 
 		function generateAppKey(rewardType) {
 			const now = new Date();
