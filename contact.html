@@ -11,15 +11,20 @@
         p { color: #9ca3af; margin-bottom: 30px; }
         .contact-box { background: #1a1d23; padding: 30px; border-radius: 12px; border: 1px solid #334155; }
         /* 언어 버튼 스타일 */
-        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; }
-        .lang-switcher button { background: #1f2933; border: 1px solid #455563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .lang-switcher button { background: #1f2933; border: 1px solid #455563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+        .lang-switcher button:hover { background: #374151; }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- 7개 국어 토글 버튼 -->
         <div class="lang-switcher">
             <button onclick="switchLanguage('en')">EN</button>
             <button onclick="switchLanguage('ko')">KO</button>
+            <button onclick="switchLanguage('pl')">PL</button>
+            <button onclick="switchLanguage('pt-BR')">PT-BR</button>
+            <button onclick="switchLanguage('de')">DE</button>
             <button onclick="switchLanguage('es')">ES</button>
             <button onclick="switchLanguage('zh')">ZH</button>
         </div>
@@ -52,6 +57,21 @@
                 'contact_desc': '서비스 이용 중 불편한 점이나, 저작권 관련 수정 요청, 기타 제휴 문의가 있으시면 아래 메일로 연락 부탁드립니다.',
                 'contact_sub': '문의 이메일', 'contact_back': '메인으로 돌아가기'
             },
+            'pl': {
+                'contact_title': 'Kontakt | YMPL', 'contact_h1': 'Kontakt',
+                'contact_desc': 'Jeśli masz jakiekolwiek uwagi, prośby o modyfikację praw autorskich lub zapytania dotyczące współpracy podczas korzystania z serwisu, skontaktuj się z nami pod poniższym adresem e-mail.',
+                'contact_sub': 'E-mail kontaktowy', 'contact_back': 'Powrót do strony głównej'
+            },
+            'pt-BR': {
+                'contact_title': 'Contato | YMPL', 'contact_h1': 'Contato',
+                'contact_desc': 'Se você tiver algum comentário, solicitação de modificação de direitos autorais ou dúvidas sobre parcerias durante o uso do serviço, entre em contato conosco pelo e-mail abaixo.',
+                'contact_sub': 'E-mail de Contato', 'contact_back': 'Voltar ao Início'
+            },
+            'de': {
+                'contact_title': 'Kontakt | YMPL', 'contact_h1': 'Kontakt',
+                'contact_desc': 'Wenn Sie während der Nutzung des Dienstes Feedback, Anfragen zur Urheberrechtsänderung oder Partnerschaftsanfragen haben, kontaktieren Sie uns bitte unter der unten stehenden E-Mail-Adresse.',
+                'contact_sub': 'Kontakt-E-Mail', 'contact_back': 'Zurück zur Hauptseite'
+            },
             'es': {
                 'contact_title': 'Contacto | YMPL', 'contact_h1': 'Contacto',
                 'contact_desc': 'Si tiene algún comentario, solicitud de modificación de derechos de autor o consulta de asociación mientras utiliza el servicio, comuníquese con nosotros al correo electrónico a continuación.',
@@ -77,13 +97,23 @@
 
         function initLanguage() {
             const savedLang = localStorage.getItem('preferredLang');
-            if (savedLang) {
+            if (savedLang && translations[savedLang]) {
                 switchLanguage(savedLang);
                 return;
             }
-            const browserLang = navigator.language.substring(0, 2);
-            const supportedLangs = ['en', 'ko', 'es', 'zh'];
-            switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+            
+            // 브라우저 언어 자동 탐지 (pt-BR 대응 포함)
+            const fullBrowserLang = navigator.language.toLowerCase();
+            const shortBrowserLang = fullBrowserLang.substring(0, 2);
+            
+            let selectedLang = 'en';
+            if (fullBrowserLang.startsWith('pt')) {
+                selectedLang = 'pt-BR';
+            } else if (translations[shortBrowserLang]) {
+                selectedLang = shortBrowserLang;
+            }
+
+            switchLanguage(selectedLang);
         }
 
         document.addEventListener('DOMContentLoaded', initLanguage);
