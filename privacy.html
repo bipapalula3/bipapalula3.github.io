@@ -12,15 +12,20 @@
         p { color: #9ca3af; }
         ul { color: #9ca3af; }
         /* 언어 버튼 스타일 */
-        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; }
-        .lang-switcher button { background: #1f2933; border: 1px solid #4b5563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .lang-switcher button { background: #1f2933; border: 1px solid #4b5563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+        .lang-switcher button:hover { background: #374151; }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- 7개 국어 언어 토글 버튼 -->
         <div class="lang-switcher">
             <button onclick="switchLanguage('en')">EN</button>
             <button onclick="switchLanguage('ko')">KO</button>
+            <button onclick="switchLanguage('pl')">PL</button>
+            <button onclick="switchLanguage('pt-BR')">PT-BR</button>
+            <button onclick="switchLanguage('de')">DE</button>
             <button onclick="switchLanguage('es')">ES</button>
             <button onclick="switchLanguage('zh')">ZH</button>
         </div>
@@ -78,6 +83,39 @@
                 'privacy_h2_4': '4. 문의', 'privacy_p4': '개인정보처리방침에 대해 문의사항이 있으시면 아래 이메일로 연락해 주시기 바랍니다.',
                 'privacy_back': '메인으로 돌아가기'
             },
+            'pl': {
+                'privacy_title': 'Polityka prywatności | YMPL', 'privacy_h1': 'Polityka prywatności',
+                'privacy_intro': 'YMPL (zwana dalej „witryną”) szanuje Twoją prywatność i stara się przestrzegać odpowiednich przepisów prawa.',
+                'privacy_h2_1': '1. Gromadzone informacje', 'privacy_p1': 'Witryna nie zbiera bezpośrednio danych osobowych. Jednak dane dotyczące plików cookie i plików dziennika mogą być gromadzone w celu działania usługi i analizy statystycznej.',
+                'privacy_h2_2': '2. Reklamy Google AdSense', 'privacy_p2': 'Ta witryna wyświetla reklamy za pośrednictwem Google AdSense. Dostawcy zewnętrzni, w tym Google, używają plików cookie do wyświetlania reklam na podstawie wcześniejszych odwiedzin użytkownika.',
+                'privacy_li1': 'Użytkownicy mogą zrezygnować z reklam spersonalizowanych w <a href="https://adssettings.google.com/">Ustawieniach reklam</a>.',
+                'privacy_li2': 'Więcej informacji na temat zapobiegania śledzeniu można znaleźć na stronie <a href="http://www.aboutads.info/">www.aboutads.info</a>.',
+                'privacy_h2_3': '3. Linki zewnętrzne', 'privacy_p3': 'Ta witryna zawiera linki do zewnętrznych platform, takich jak TIDAL. Polityka prywatności zewnętrznych witryn podlega ich własnym zasadom.',
+                'privacy_h2_4': '4. Kontakt', 'privacy_p4': 'Jeśli masz jakiekolwiek pytania dotyczące polityki prywatności, skontaktuj się z nami pod poniższym adresem e-mail.',
+                'privacy_back': 'Powrót do strony głównej'
+            },
+            'pt-BR': {
+                'privacy_title': 'Política de Privacidade | YMPL', 'privacy_h1': 'Política de Privacidade',
+                'privacy_intro': 'O YMPL (doravante \'o site\') valoriza sua privacidade e se esforça para cumprir as leis aplicáveis.',
+                'privacy_h2_1': '1. Informações Coletadas', 'privacy_p1': 'Este site não coleta diretamente informações de identificação pessoal. No entanto, cookies e arquivos de log podem ser coletados para operação do serviço e análise estatística.',
+                'privacy_h2_2': '2. Publicidade Google AdSense', 'privacy_p2': 'Este site exibe anúncios por meio do Google AdSense. Fornecedores terceirizados usam cookies para veicular anúncios com base em visitas anteriores do usuário.',
+                'privacy_li1': 'Os usuários podem optar por desativar a publicidade personalizada nas <a href="https://adssettings.google.com/">Configurações de anúncios</a>.',
+                'privacy_li2': 'Para saber mais sobre como evitar o rastreamento, visite <a href="http://www.aboutads.info/">www.aboutads.info</a>.',
+                'privacy_h2_3': '3. Links Externos', 'privacy_p3': 'Este site contém links para plataformas externas, como o TIDAL. A política de privacidade de sites externos segue suas respectivas políticas.',
+                'privacy_h2_4': '4. Contato', 'privacy_p4': 'Se você tiver alguma dúvida sobre a política de privacidade, entre em contato conosco pelo e-mail abaixo.',
+                'privacy_back': 'Voltar ao Início'
+            },
+            'de': {
+                'privacy_title': 'Datenschutz-Bestimmungen | YMPL', 'privacy_h1': 'Datenschutz-Bestimmungen',
+                'privacy_intro': 'YMPL (nachfolgend \'die Website\') schätzt Ihre Privatsphäre und ist bestrebt, die einschlägigen Gesetze einzuhalten.',
+                'privacy_h2_1': '1. Erfasste Informationen', 'privacy_p1': 'Diese Website erfasst keine personenbezogenen Daten direkt. Für den Betrieb und statistische Analysen können jedoch Cookies und Logfiles gesammelt werden.',
+                'privacy_h2_2': '2. Google AdSense Werbung', 'privacy_p2': 'Diese Website schaltet Anzeigen über Google AdSense. Drittanbieter verwenden Cookies, um Anzeigen basierend auf früheren Besuchen zu schalten.',
+                'privacy_li1': 'Nutzer können personalisierte Werbung in den <a href="https://adssettings.google.com/">Anzeigeneinstellungen</a> deaktivieren.',
+                'privacy_li2': 'Weitere Informationen zum Verhindern von Tracking finden Sie unter <a href="http://www.aboutads.info/">www.aboutads.info</a>.',
+                'privacy_h2_3': '3. Externe Links', 'privacy_p3': 'Diese Website enthält Links zu externen Plattformen wie TIDAL. Die Datenschutzbestimmungen externer Websites unterliegen deren jeweiligen Richtlinien.',
+                'privacy_h2_4': '4. Kontakt', 'privacy_p4': 'Wenn Sie Fragen zur Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter der unten stehenden E-Mail-Adresse.',
+                'privacy_back': 'Zurück zur Hauptseite'
+            },
             'es': {
                 'privacy_title': 'Política de privacidad | YMPL', 'privacy_h1': 'Política de privacidad',
                 'privacy_intro': 'YMPL (en adelante, "el sitio") valora su privacidad y se esfuerza por cumplir con las leyes pertinentes.',
@@ -104,24 +142,37 @@
 
         function switchLanguage(lang) {
             if (!translations[lang]) lang = 'en';
+            
+            // 다국어 텍스트 적용
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang][key]) {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
             localStorage.setItem('preferredLang', lang);
         }
 
         function initLanguage() {
             const savedLang = localStorage.getItem('preferredLang');
-            if (savedLang) {
+            if (savedLang && translations[savedLang]) {
                 switchLanguage(savedLang);
                 return;
             }
-            const browserLang = navigator.language.substring(0, 2);
-            const supportedLangs = ['en', 'ko', 'es', 'zh'];
-            switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+            
+            // 브라우저 설정 언어 감지
+            const fullBrowserLang = navigator.language.toLowerCase();
+            const shortBrowserLang = fullBrowserLang.substring(0, 2);
+            
+            let selectedLang = 'en';
+            if (fullBrowserLang.startsWith('pt')) {
+                selectedLang = 'pt-BR';
+            } else if (translations[shortBrowserLang]) {
+                selectedLang = shortBrowserLang;
+            }
+
+            switchLanguage(selectedLang);
         }
 
         document.addEventListener('DOMContentLoaded', initLanguage);
