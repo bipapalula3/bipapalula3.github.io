@@ -11,15 +11,20 @@
         h2 { color: #fff; margin-top: 40px; border-bottom: 1px solid #334155; padding-bottom: 10px; }
         p { color: #9ca3af; }
         /* 언어 버튼 스타일 */
-        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; }
-        .lang-switcher button { background: #1f2933; border: 1px solid #4b5563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+        .lang-switcher { display: flex; gap: 5px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .lang-switcher button { background: #1f2933; border: 1px solid #4b5563; color: #fff; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+        .lang-switcher button:hover { background: #374151; }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- 7개 국어 토글 버튼 -->
         <div class="lang-switcher">
             <button onclick="switchLanguage('en')">EN</button>
             <button onclick="switchLanguage('ko')">KO</button>
+            <button onclick="switchLanguage('pl')">PL</button>
+            <button onclick="switchLanguage('pt-BR')">PT-BR</button>
+            <button onclick="switchLanguage('de')">DE</button>
             <button onclick="switchLanguage('es')">ES</button>
             <button onclick="switchLanguage('zh')">ZH</button>
         </div>
@@ -38,6 +43,7 @@
 
         <h2 data-i18n="terms_h2_4">4. Amendment of Terms</h2>
         <p data-i18n="terms_p4">These terms may be changed without prior notice based on operational needs, and the changes will become effective upon being posted on the site.</p>
+        
         <p style="margin-top:50px; text-align:center;">
             <a href="https://bipapalula3.github.io/?app=1"
                data-i18n="terms_back"
@@ -66,6 +72,33 @@
                 'terms_h2_3': '3. 저작권 안내', 'terms_p3': '사이트 내에 표시된 아티스트 정보, 앨범 커버, 음악 메타데이터의 저작권은 각 원저작권자와 해당 음원 플랫폼에 있습니다. 모든 콘텐츠의 권리는 해당 기관에 귀속됩니다.',
                 'terms_h2_4': '4. 약관의 개정', 'terms_p4': '본 약관은 운영상의 필요에 따라 사전 고지 없이 변경될 수 있으며, 변경된 내용은 사이트에 게재됨으로써 효력이 발생합니다.',
                 'terms_back': '메인으로 돌아가기'
+            },
+            'pl': {
+                'terms_title': 'Warunki korzystania | YMPL', 'terms_h1': 'Warunki korzystania',
+                'terms_intro': 'YMPL świadczy usługi wyszukiwania i kuratorowania linków K-POP dla użytkowników TIDAL na całym świecie. Korzystając z tej witryny, zgadzasz się na poniższe warunki.',
+                'terms_h2_1': '1. Cel usługi', 'terms_p1': 'Ta witryna to narzędzie wspomagające wyszukiwanie, które systematycznie porządkuje dane muzyczne, ułatwiając użytkownikom znalezienie ulubionej muzyki K-POP.',
+                'terms_h2_2': '2. Ograniczenie odpowiedzialności', 'terms_p2': 'Ta witryna łączy informacje wyszukiwane przez użytkowników z zewnętrznymi platformami (TIDAL). <strong>Witryna nie przechowuje ani nie rozpowszechnia bezpośrednio treści muzycznych</strong> i nie ponosi odpowiedzialności prawnej za treści ani prawa autorskie witryn zewnętrznych.',
+                'terms_h2_3': '3. Informacja o prawach autorskich', 'terms_p3': 'Prawa autorskie do informacji o artystach, okładek albumów i metadanych muzycznych należą do ich właścicieli i odpowiednich platform muzycznych.',
+                'terms_h2_4': '4. Zmiana warunków', 'terms_p4': 'Niniejsze warunki mogą ulec zmianie bez powiadomienia, a zmiany wchodzą w życie z chwilą opublikowania ich na stronie.',
+                'terms_back': 'Powrót do strony głównej'
+            },
+            'pt-BR': {
+                'terms_title': 'Termos de Serviço | YMPL', 'terms_h1': 'Termos de Serviço',
+                'terms_intro': 'O YMPL oferece serviços de busca e curadoria de links K-POP para usuários do TIDAL em todo o mundo. Ao usar este site, você concorda com os termos abaixo.',
+                'terms_h2_1': '1. Objetivo do Serviço', 'terms_p1': 'Este site é uma ferramenta de auxílio à pesquisa que organiza dados de música para ajudar os usuários a encontrar suas músicas de K-POP com mais facilidade.',
+                'terms_h2_2': '2. Limitação de Responsabilidade', 'terms_p2': 'Este site conecta informações pesquisadas a plataformas externas (TIDAL). <strong>O site não hospeda nem distribui conteúdo musical diretamente</strong> e não assume responsabilidade legal por sites externos vinculados.',
+                'terms_h2_3': '3. Aviso de Direitos Autorais', 'terms_p3': 'Os direitos autorais de informações de artistas, capas de álbuns e metadados pertencem aos respectivos detentores de direitos originais e plataformas de música.',
+                'terms_h2_4': '4. Alteração dos Termos', 'terms_p4': 'Estes termos podem ser alterados sem aviso prévio com base nas necessidades operacionais, entrando em vigor após a publicação no site.',
+                'terms_back': 'Voltar ao Início'
+            },
+            'de': {
+                'terms_title': 'Nutzungsbedingungen | YMPL', 'terms_h1': 'Nutzungsbedingungen',
+                'terms_intro': 'YMPL bietet K-POP-Such- und Link-Kuratierungsdienste für TIDAL-Nutzer weltweit. Durch die Nutzung dieser Website stimmen Sie den folgenden Bedingungen zu.',
+                'terms_h2_1': '1. Zweck des Dienstes', 'terms_p1': 'Diese Website ist ein Suchhilfewerkzeug, das Musikdaten systematisch organisiert, um Nutzern das Auffinden von K-POP-Musik zu erleichtern.',
+                'terms_h2_2': '2. Haftungsbeschränkung', 'terms_p2': 'Diese Website verbindet gesuchte Informationen mit externen Plattformen (TIDAL). <strong>Diese Website hostet oder verbreitet keine Musikinhalte direkt</strong> und übernimmt keine rechtliche Haftung für verlinkte externe Seiten.',
+                'terms_h2_3': '3. Urheberrechtshinweis', 'terms_p3': 'Das Urheberrecht an Künstlerinformationen, Albumcovern und Musikmetadaten liegt bei den jeweiligen Inhabern und Musikplattformen.',
+                'terms_h2_4': '4. Änderung der Bedingungen', 'terms_p4': 'Diese Bedingungen können ohne vorherige Ankündigung geändert werden und treten mit ihrer Veröffentlichung auf der Website in Kraft.',
+                'terms_back': 'Zurück zur Hauptseite'
             },
             'es': {
                 'terms_title': 'Términos de servicio | YMPL', 'terms_h1': 'Términos de servicio',
@@ -100,13 +133,23 @@
 
         function initLanguage() {
             const savedLang = localStorage.getItem('preferredLang');
-            if (savedLang) {
+            if (savedLang && translations[savedLang]) {
                 switchLanguage(savedLang);
                 return;
             }
-            const browserLang = navigator.language.substring(0, 2);
-            const supportedLangs = ['en', 'ko', 'es', 'zh'];
-            switchLanguage(supportedLangs.includes(browserLang) ? browserLang : 'en');
+            
+            // 브라우저 언어 감지 및 pt-BR 처리
+            const fullBrowserLang = navigator.language.toLowerCase();
+            const shortBrowserLang = fullBrowserLang.substring(0, 2);
+            
+            let selectedLang = 'en';
+            if (fullBrowserLang.startsWith('pt')) {
+                selectedLang = 'pt-BR';
+            } else if (translations[shortBrowserLang]) {
+                selectedLang = shortBrowserLang;
+            }
+
+            switchLanguage(selectedLang);
         }
 
         document.addEventListener('DOMContentLoaded', initLanguage);
