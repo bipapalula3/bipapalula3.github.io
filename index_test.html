@@ -3206,86 +3206,96 @@ if (typeof toggleExpandCard === 'undefined') {
 </div>
 </footer>
 
-<!-- 카테고리/초성 버튼 목록 -->
-<div class="sitemap-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px;">
-    <button onclick="toggleIndex('KDRAMA-OST')" style="background:#111; color:#ccc; border:1px solid #333; padding:6px 12px; border-radius:4px; cursor:pointer;">K-Drama OST</button>
-    <button onclick="toggleIndex('DEBUT-ALBUMS')" style="background:#111; color:#ccc; border:1px solid #333; padding:6px 12px; border-radius:4px; cursor:pointer;">Debut Albums</button>
-    <button onclick="toggleIndex('KTOP-CHART')" style="background:#111; color:#ccc; border:1px solid #333; padding:6px 12px; border-radius:4px; cursor:pointer;">K-Top Chart</button>
-    <button onclick="toggleIndex('WEEKLY-RELEASES')" style="background:#111; color:#ccc; border:1px solid #333; padding:6px 12px; border-radius:4px; cursor:pointer;">Weekly Releases</button>
+<!-- 메인 타이틀 -->
+<div class="sitemap-container" style="max-width: 900px; margin: 0 auto; color: #ccc; font-family: sans-serif;">
+    <h2 style="text-align: center; color: #fff; margin-bottom: 20px; font-size: 1.5rem;">K-POP Music Hub (Sitemap)</h2>
+
+    <!-- 카테고리 전환 버튼 목록 -->
+    <div class="sitemap-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 25px;">
+        <button onclick="showCategory('KDRAMA-OST')" style="background:#222; color:#fff; border:1px solid #444; padding:8px 16px; border-radius:4px; cursor:pointer;">K-Drama OST</button>
+        <button onclick="showCategory('DEBUT-ALBUMS')" style="background:#222; color:#fff; border:1px solid #444; padding:8px 16px; border-radius:4px; cursor:pointer;">Latest K-Pop Debut Albums</button>
+        <button onclick="showCategory('KTOP-CHART')" style="background:#222; color:#fff; border:1px solid #444; padding:8px 16px; border-radius:4px; cursor:pointer;">K-Top Chart</button>
+        <button onclick="showCategory('WEEKLY-RELEASES')" style="background:#222; color:#fff; border:1px solid #444; padding:8px 16px; border-radius:4px; cursor:pointer;">Weekly New K-Pop Releases</button>
+    </div>
+
+    <!-- 사이트맵 컨텐츠 섹션 -->
+    <div class="sitemap-content">
+
+        <!-- 1. K-Drama OST Section -->
+        <div id="KDRAMA-OST" class="sitemap-section" style="display: block; margin-bottom: 30px;">
+            <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem; margin-bottom: 15px;">K-Drama OST</h3>
+            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/18 어게인 (18 Again).html" style="color:#aaa; text-decoration:none;">18 어게인 (18 Again)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/은애하는 도적님아 (To My Beloved Thief).html" style="color:#aaa; text-decoration:none;">은애하는 도적님아 (To My Beloved Thief)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/연애 실용 가이드 (The Practical Guide to Love).html" style="color:#aaa; text-decoration:none;">연애 실용 가이드 (The Practical Guide to Love)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/찬란한 너의 계절에 (In Your Radiant Season).html" style="color:#aaa; text-decoration:none;">찬란한 너의 계절에 (In Your Radiant Season)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/신이랑 법률사무소 (Phantom Lawyer).html" style="color:#aaa; text-decoration:none;">신이랑 법률사무소 (Phantom Lawyer)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/유미의 세포들 3 (Yumi Cells 3).html" style="color:#aaa; text-decoration:none;">유미의 세포들 3 (Yumi Cells 3)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/21세기 대군부인 (21st Century Grand Royal Mistress).html" style="color:#aaa; text-decoration:none;">21세기 대군부인 (21st Century Grand Royal Mistress)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/모두가 자신의 무가치함과 싸우고 있다 (We Are All Trying Here).html" style="color:#aaa; text-decoration:none;">모두가 자신의 무가치함과 싸우고 있다 (We Are All Trying Here)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/샤이닝 (Still Shining).html" style="color:#aaa; text-decoration:none;">샤이닝 (Still Shining)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/스터디그룹 (STUDY GROUP).html" style="color:#aaa; text-decoration:none;">스터디그룹 (STUDY GROUP)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/신입사원 강회장 (Reborn Rookie).html" style="color:#aaa; text-decoration:none;">신입사원 강회장 (Reborn Rookie)</a></li>
+            </ul>
+        </div>
+
+        <!-- 2. Latest K-Pop Debut Albums Section -->
+        <div id="DEBUT-ALBUMS" class="sitemap-section" style="display: none; margin-bottom: 30px;">
+            <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem; margin-bottom: 15px;">Latest K-Pop Debut Albums</h3>
+            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 01월 데뷔 앨범 (January 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 01월 데뷔 앨범 (January 2026 Debut Albums)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 02월 데뷔 앨범 (February 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 02월 데뷔 앨범 (February 2026 Debut Albums)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 03월 데뷔 앨범 (March 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 03월 데뷔 앨범 (March 2026 Debut Albums)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 04월 데뷔 앨범 (April 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 04월 데뷔 앨범 (April 2026 Debut Albums)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 05월 데뷔 앨범 (May 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 05월 데뷔 앨범 (May 2026 Debut Albums)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 06월 데뷔 앨범 (June 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 06월 데뷔 앨범 (June 2026 Debut Albums)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/2026년 07월 데뷔 앨범 (July 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 07월 데뷔 앨범 (July 2026 Debut Albums)</a></li>
+            </ul>
+        </div>
+
+        <!-- 3. K-Top Chart Section -->
+        <div id="KTOP-CHART" class="sitemap-section" style="display: none; margin-bottom: 30px;">
+            <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem; margin-bottom: 15px;">K-Top Chart (Newest First)</h3>
+            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/케이탑 차트 (K-Top Chart 2026-08-03).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-08-03)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/케이탑 차트 (K-Top Chart 2026-07-27).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-27)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/케이탑 차트 (K-Top Chart 2026-07-20).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-20)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/케이탑 차트 (K-Top Chart 2026-07-13).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-13)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/케이탑 차트 (K-Top Chart 2026-07-07).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-07)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/케이탑 차트 (K-Top Chart 2026-06-29).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-06-29)</a></li>
+            </ul>
+        </div>
+
+        <!-- 4. Weekly New K-Pop Releases Section -->
+        <div id="WEEKLY-RELEASES" class="sitemap-section" style="display: none; margin-bottom: 30px;">
+            <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem; margin-bottom: 15px;">Weekly New K-Pop Releases</h3>
+            <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px;">
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/주간 신곡 (Weekly Releases 2026-08-03).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-08-03)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/주간 신곡 (Weekly Releases 2026-07-27).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-27)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/주간 신곡 (Weekly Releases 2026-07-20).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-20)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/주간 신곡 (Weekly Releases 2026-07-13).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-13)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/주간 신곡 (Weekly Releases 2026-07-07).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-07)</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/주간 신곡 (Weekly Releases 2026-06-29).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-06-29)</a></li>
+            </ul>
+        </div>
+
+    </div>
 </div>
 
-<!-- 사이트맵 컨텐츠 섹션 -->
-<div class="sitemap-content" style="max-width: 900px; margin: 0 auto;">
-
-    <!-- 1. K-Drama OST Section -->
-    <div id="KDRAMA-OST" class="sitemap-section" style="display: block; margin-bottom: 30px;">
-        <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem;">K-Drama OST</h3>
-        <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px;">
-            <li><a href="YMPL/Kdrama_OST/18 어게인 (18 Again).html" style="color:#aaa; text-decoration:none;">18 어게인 (18 Again)</a></li>
-            <li><a href="YMPL/Kdrama_OST/은애하는 도적님아 (To My Beloved Thief).html" style="color:#aaa; text-decoration:none;">은애하는 도적님아 (To My Beloved Thief)</a></li>
-            <li><a href="YMPL/Kdrama_OST/연애 실용 가이드 (The Practical Guide to Love).html" style="color:#aaa; text-decoration:none;">연애 실용 가이드 (The Practical Guide to Love)</a></li>
-            <li><a href="YMPL/Kdrama_OST/찬란한 너의 계절에 (In Your Radiant Season).html" style="color:#aaa; text-decoration:none;">찬란한 너의 계절에 (In Your Radiant Season)</a></li>
-            <li><a href="YMPL/Kdrama_OST/신이랑 법률사무소 (Phantom Lawyer).html" style="color:#aaa; text-decoration:none;">신이랑 법률사무소 (Phantom Lawyer)</a></li>
-            <li><a href="YMPL/Kdrama_OST/유미의 세포들 3 (Yumi Cells 3).html" style="color:#aaa; text-decoration:none;">유미의 세포들 3 (Yumi Cells 3)</a></li>
-            <li><a href="YMPL/Kdrama_OST/21세기 대군부인 (21st Century Grand Royal Mistress).html" style="color:#aaa; text-decoration:none;">21세기 대군부인 (21st Century Grand Royal Mistress)</a></li>
-            <li><a href="YMPL/Kdrama_OST/모두가 자신의 무가치함과 싸우고 있다 (We Are All Trying Here).html" style="color:#aaa; text-decoration:none;">모두가 자신의 무가치함과 싸우고 있다 (We Are All Trying Here)</a></li>
-            <li><a href="YMPL/Kdrama_OST/샤이닝 (Still Shining).html" style="color:#aaa; text-decoration:none;">샤이닝 (Still Shining)</a></li>
-            <li><a href="YMPL/Kdrama_OST/스터디그룹 (STUDY GROUP).html" style="color:#aaa; text-decoration:none;">스터디그룹 (STUDY GROUP)</a></li>
-            <li><a href="YMPL/Kdrama_OST/신입사원 강회장 (Reborn Rookie).html" style="color:#aaa; text-decoration:none;">신입사원 강회장 (Reborn Rookie)</a></li>
-        </ul>
-    </div>
-
-    <!-- 2. Latest K-Pop Debut Albums Section -->
-    <div id="DEBUT-ALBUMS" class="sitemap-section" style="display: block; margin-bottom: 30px;">
-        <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem;">Latest K-Pop Debut Albums</h3>
-        <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px;">
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 01월 데뷔 앨범 (January 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 01월 데뷔 앨범 (January 2026 Debut Albums)</a></li>
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 02월 데뷔 앨범 (February 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 02월 데뷔 앨범 (February 2026 Debut Albums)</a></li>
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 03월 데뷔 앨범 (March 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 03월 데뷔 앨범 (March 2026 Debut Albums)</a></li>
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 04월 데뷔 앨범 (April 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 04월 데뷔 앨범 (April 2026 Debut Albums)</a></li>
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 05월 데뷔 앨범 (May 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 05월 데뷔 앨범 (May 2026 Debut Albums)</a></li>
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 06월 데뷔 앨범 (June 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 06월 데뷔 앨범 (June 2026 Debut Albums)</a></li>
-            <li><a href="YMPL/Latest_Kpop_Debut_Albums/2026년 07월 데뷔 앨범 (July 2026 Debut Albums).html" style="color:#aaa; text-decoration:none;">2026년 07월 데뷔 앨범 (July 2026 Debut Albums)</a></li>
-        </ul>
-    </div>
-
-    <!-- 3. K-Top Chart Section -->
-    <div id="KTOP-CHART" class="sitemap-section" style="display: block; margin-bottom: 30px;">
-        <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem;">K-Top Chart (Newest First)</h3>
-        <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px;">
-            <li><a href="YMPL/KTop_Chart/케이탑 차트 (K-Top Chart 2026-08-03).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-08-03)</a></li>
-            <li><a href="YMPL/KTop_Chart/케이탑 차트 (K-Top Chart 2026-07-27).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-27)</a></li>
-            <li><a href="YMPL/KTop_Chart/케이탑 차트 (K-Top Chart 2026-07-20).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-20)</a></li>
-            <li><a href="YMPL/KTop_Chart/케이탑 차트 (K-Top Chart 2026-07-13).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-13)</a></li>
-            <li><a href="YMPL/KTop_Chart/케이탑 차트 (K-Top Chart 2026-07-07).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-07-07)</a></li>
-            <li><a href="YMPL/KTop_Chart/케이탑 차트 (K-Top Chart 2026-06-29).html" style="color:#aaa; text-decoration:none;">케이탑 차트 (K-Top Chart 2026-06-29)</a></li>
-        </ul>
-    </div>
-
-    <!-- 4. Weekly New K-Pop Releases Section -->
-    <div id="WEEKLY-RELEASES" class="sitemap-section" style="display: block; margin-bottom: 30px;">
-        <h3 style="color: #fff; border-bottom: 1px solid #333; padding-bottom: 8px; font-size: 1.1rem;">Weekly New K-Pop Releases</h3>
-        <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px;">
-            <li><a href="YMPL/Weekly_New_KPop_Releases/주간 신곡 (Weekly Releases 2026-08-03).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-08-03)</a></li>
-            <li><a href="YMPL/Weekly_New_KPop_Releases/주간 신곡 (Weekly Releases 2026-07-27).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-27)</a></li>
-            <li><a href="YMPL/Weekly_New_KPop_Releases/주간 신곡 (Weekly Releases 2026-07-20).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-20)</a></li>
-            <li><a href="YMPL/Weekly_New_KPop_Releases/주간 신곡 (Weekly Releases 2026-07-13).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-13)</a></li>
-            <li><a href="YMPL/Weekly_New_KPop_Releases/주간 신곡 (Weekly Releases 2026-07-07).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-07-07)</a></li>
-            <li><a href="YMPL/Weekly_New_KPop_Releases/주간 신곡 (Weekly Releases 2026-06-29).html" style="color:#aaa; text-decoration:none;">주간 신곡 (Weekly Releases 2026-06-29)</a></li>
-        </ul>
-    </div>
-
-</div>
-
-<!-- 자바스크립트 토글 함수 -->
+<!-- 버튼 클릭 시 해당 카테고리만 출력하는 스크립트 -->
 <script>
-function toggleIndex(id) {
-    const section = document.getElementById(id);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+function showCategory(id) {
+    const sections = document.querySelectorAll('.sitemap-section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    const targetSection = document.getElementById(id);
+    if (targetSection) {
+        targetSection.style.display = 'block';
     }
 }
-</script>	
+</script>
 
 <!-- 푸터 밖 독립 사이트맵 섹션 -->
 <section class="sitemap-directory" style="background-color: #0b0c10; padding: 25px 20px; text-align: center; border-top: 1px solid #222;">
