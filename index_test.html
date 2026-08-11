@@ -3210,10 +3210,10 @@ if (typeof toggleExpandCard === 'undefined') {
     
     <!-- 타이틀 -->
     <div style="color: #ffd966; font-weight: bold; margin-bottom: 12px; font-size: 0.95rem;">
-        K-POP Music Hub (Sitemap)
+        K-POP Artist Profiles Index (Sitemap)
     </div>
 
-    <!-- 1. 카테고리 버튼 목록 -->
+    <!-- 카테고리 버튼 목록 -->
     <div class="sitemap-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 15px;">
         <button onclick="showCategory('KDRAMA-OST')" style="background:#1f2833; color:#c5c6c7; border:1px solid #45a29e; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:0.85rem;">K-Drama OST</button>
         <button onclick="showCategory('DEBUT-ALBUMS')" style="background:#1f2833; color:#c5c6c7; border:1px solid #45a29e; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:0.85rem;">Latest K-Pop Debut Albums</button>
@@ -3226,49 +3226,110 @@ if (typeof toggleExpandCard === 'undefined') {
 
         <!-- 1. K-Drama OST Section -->
         <div id="KDRAMA-OST" class="sitemap-section" style="display: none; margin-top: 20px;">
-            <h3 style="color: #66fcf1; border-bottom: 1px solid #1f2833; padding-bottom: 8px; font-size: 1rem; margin-bottom: 12px;">K-Drama OST</h3>
             <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin: 0;">
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20200921%20Kdrama%20OST%20-%2018%20%EC%96%B4%EA%B2%8C%EC%9D%B8%20(%2018%20Again%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">18 어게인 ( 18 Again )</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260103%20Kdrama%20OST%20-%20%EC%9D%80%EC%95%A0%ED%95%98%EB%8A%94%20%EB%8F%84%EC%A0%81%EB%8B%98%EC%95%84%20(%20To%20My%20Beloved%20Thief%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">은애하는 도적님아 ( To My Beloved Thief )</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260114%20Kdrama%20OST%20-%20%EC%97%B0%EC%95%A0%20%EC%8B%A4%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C%20(%20The%20Practical%20Guide%20to%20Love%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">연애 실용 가이드 ( The Practical Guide to Love )</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260220%20Kdrama%20OST%20-%20%EC%B0%AC%EB%9E%80%ED%95%9C%20%EB%84%88%EC%9D%98%20%EA%B3%84%EC%A0%88%EC%97%90%20(%20In%20Your%20Radiant%20Season%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">찬란한 너의 계절에 ( In Your Radiant Season )</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260313%20Kdrama%20OST%20-%20%EC%8B%A0%EC%9D%B4%EB%9E%91%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C%20(%20Phantom%20Lawyer%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">신이랑 법률사무소 ( Phantom Lawyer )</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260403%20Kdrama%20OST%20-%20%EC%9C%A0%EB%AF%B8%EC%9D%98%20%EC%84%B8%ED%8F%AC%EB%93%A4%203%20(%20Yumi%20Cells%203%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">유미의 세포들 3 ( Yumi Cells 3 )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20200921%20Kdrama%20OST%20-%2018%20%EC%96%B4%EA%B2%8C%EC%9D%B8%20(%2018%20Again%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20200921 Kdrama OST - 18 어게인 ( 18 Again )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260103%20Kdrama%20OST%20-%20%EC%9D%80%EC%95%A0%ED%95%98%EB%8A%94%20%EB%8F%84%EC%A0%81%EB%8B%98%EC%95%84%20(%20To%20My%20Beloved%20Thief%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260103 Kdrama OST - 은애하는 도적님아 ( To My Beloved Thief )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260114%20Kdrama%20OST%20-%20%EC%97%B0%EC%95%A0%20%EC%8B%A4%EC%9A%A9%20%EA%B0%80%EC%9D%B4%EB%93%9C%20(%20The%20Practical%20Guide%20to%20Love%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260114 Kdrama OST - 연애 실용 가이드 ( The Practical Guide to Love )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260220%20Kdrama%20OST%20-%20%EC%B0%AC%EB%9E%80%ED%95%9C%20%EB%84%88%EC%9D%98%20%EA%B3%84%EC%A0%88%EC%97%90%20(%20In%20Your%20Radiant%20Season%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260220 Kdrama OST - 찬란한 너의 계절에 ( In Your Radiant Season )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260313%20Kdrama%20OST%20-%20%EC%8B%A0%EC%9D%B4%EB%9E%91%20%EB%B2%95%EB%A5%A0%EC%82%AC%EB%AC%B4%EC%86%8C%20(%20Phantom%20Lawyer%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260313 Kdrama OST - 신이랑 법률사무소 ( Phantom Lawyer )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260403%20Kdrama%20OST%20-%20%EC%9C%A0%EB%AF%B8%EC%9D%98%20%EC%84%B8%ED%8F%AC%EB%93%A4%203%20(%20Yumi%20Cells%203%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260403 Kdrama OST - 유미의 세포들 3 ( Yumi Cells 3 )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260410%20Kdrama%20OST%20-%2021%EC%84%B8%EA%B8%B0%20%EB%8C%80%EA%B5%B0%EB%B8%80%EC%9D%B8%20(%2021st%20Century%20Grand%20Royal%20Mistress%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260410 Kdrama OST - 21세기 대군부인 ( 21st Century Grand Royal Mistress )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260418%20Kdrama%20OST%20-%20%EB%AA%A8%EB%90%90%EA%B0%80%20%EC%9E%90%EC%8B%A0%EC%9D%98%20%EB%AC%B4%EA%B0%80%EC%B9%98%ED%95%A8%EA%B3%BC%20%EC%8B%B8%EC%9A%B0%EA%B3%A0%20%EC%9E%88%EB%8B%A4%20(%20We%20Are%20All%20Trying%20Here%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260418 Kdrama OST - 모두가 자신의 무가치함과 싸우고 있다 ( We Are All Trying Here )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260508%20Kdrama%20OST%20-%20%EC%83%A4%EC%9D%B4%EB%8B%BB%20(%20Still%20Shining%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260508 Kdrama OST - 샤이닝 ( Still Shining )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260511%20Kdrama%20OST%20-%20%EC%8A%A4%ED%84%B0%EB%94%B0%EA%B7%B8%EB%A3%B9%20(%20STUDY%20GROUP%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260511 Kdrama OST - 스터디그룹 ( STUDY GROUP )</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Kdrama_OST/untitled/20260530%20Kdrama%20OST%20-%20%EC%8B%A0%EC%9E%85%EC%82%AC%EC%9B%90%20%EA%B0%95%ED%9A%8C%EC%9E%A5%20(%20Reborn%20Rookie%20).html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260530 Kdrama OST - 신입사원 강회장 ( Reborn Rookie )</a></li>
             </ul>
         </div>
 
         <!-- 2. Latest K-Pop Debut Albums Section -->
         <div id="DEBUT-ALBUMS" class="sitemap-section" style="display: none; margin-top: 20px;">
-            <h3 style="color: #66fcf1; border-bottom: 1px solid #1f2833; padding-bottom: 8px; font-size: 1rem; margin-bottom: 12px;">Latest K-Pop Debut Albums</h3>
             <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin: 0;">
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260131%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-01-31 Debut Albums</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260228%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-02-28 Debut Albums</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-03-31 Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260131%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260131 Latest Kpop Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260228%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260228 Latest Kpop Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260331%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260331 Latest Kpop Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260430%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260430 Latest Kpop Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260531%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260531 Latest Kpop Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260630%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260630 Latest Kpop Debut Albums</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Latest_KPop_Debut_Albums/untitled/20260731%20Latest%20Kpop%20Debut%20Albums.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260731 Latest Kpop Debut Albums</a></li>
             </ul>
         </div>
 
         <!-- 3. K-Top Chart Section -->
         <div id="KTOP-CHART" class="sitemap-section" style="display: none; margin-top: 20px;">
-            <h3 style="color: #66fcf1; border-bottom: 1px solid #1f2833; padding-bottom: 8px; font-size: 1rem; margin-bottom: 12px;">K-Top Chart (Newest First)</h3>
             <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin: 0;">
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260803%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-08-03 K-Top Chart</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260727%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-07-27 K-Top Chart</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260720%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-07-20 K-Top Chart</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260228%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260228 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260308%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260308 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260315%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260315 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260322%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260322 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260329%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260329 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260405%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260405 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260412%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260412 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260419%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260419 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260426%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260426 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260503%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260503 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260510%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260510 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260517%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260517 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260524%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260524 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260601%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260601 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260608%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260608 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260615%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260615 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260622%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260622 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260629%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260629 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260707%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260707 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260713%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260713 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260720%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260720 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260727%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260727 Ktop Chart - Newest First</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_KTop_Chart_-_Newest_First/untitled/20260803%20Ktop%20Chart%20-%20Newest%20First.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260803 Ktop Chart - Newest First</a></li>
             </ul>
         </div>
 
         <!-- 4. Weekly New K-Pop Releases Section -->
         <div id="WEEKLY-RELEASES" class="sitemap-section" style="display: none; margin-top: 20px;">
-            <h3 style="color: #66fcf1; border-bottom: 1px solid #1f2833; padding-bottom: 8px; font-size: 1rem; margin-bottom: 12px;">Weekly New K-Pop Releases</h3>
             <ul style="list-style: none; padding-left: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; margin: 0;">
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260803%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-08-03 Weekly Releases</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260727%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-07-27 Weekly Releases</a></li>
-                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260720%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">2026-07-20 Weekly Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260222%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260222 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260228%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260228 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260308%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260308 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260315%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260315 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260322%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260322 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260329%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260329 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260405%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260405 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260412%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260412 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260419%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260419 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260426%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260426 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260503%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260503 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260510%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260510 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260517%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260517 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260524%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260524 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260601%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260601 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260608%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260608 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260615%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260615 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260622%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260622 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260629%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260629 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260707%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260707 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260713%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260713 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260720%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260720 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260727%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260727 Weekly New Kpop Releases</a></li>
+                <li><a href="https://bipapalula3.github.io/YMPL/blog/YMPL_Weekly_New_KPop_Releases/untitled/20260803%20Weekly%20New%20Kpop%20Releases.html" style="color:#c5c6c7; text-decoration:none; font-size:0.85rem;">20260803 Weekly New Kpop Releases</a></li>
             </ul>
         </div>
 
     </div>
 </section>
+
+<!-- 버튼 클릭 토글 스크립트 -->
+<script>
+function showCategory(id) {
+    const sections = document.querySelectorAll('.sitemap-section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    const targetSection = document.getElementById(id);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
+}
+</script>
 
 <!-- 버튼 클릭 토글 스크립트 -->
 <script>
