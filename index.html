@@ -3331,21 +3331,6 @@ function showCategory(id) {
 }
 </script>
 
-<!-- 버튼 클릭 토글 스크립트 -->
-<script>
-function showCategory(id) {
-    const sections = document.querySelectorAll('.sitemap-section');
-    sections.forEach(section => {
-        section.style.display = 'none';
-    });
-
-    const targetSection = document.getElementById(id);
-    if (targetSection) {
-        targetSection.style.display = 'block';
-    }
-}
-</script>
-
 <!-- 푸터 밖 독립 사이트맵 섹션 -->
 <section class="sitemap-directory" style="background-color: #0b0c10; padding: 25px 20px; text-align: center; border-top: 1px solid #222;">
     
